@@ -33,8 +33,8 @@ public class Connection {
     }
 
     public static Connection buildConnection(String clientId, String clientSecret, String redirectUrl){
-        connection.setRefreshCount(Config.REFRESH_TOKEN_COUNT);
-        connection.setAutoRefresh(Config.DELAULT_AUTO_REFRESH_TOKEN);
+        refreshCount=Config.REFRESH_TOKEN_COUNT;
+        autoRefresh=Config.DELAULT_AUTO_REFRESH_TOKEN;
         connection.setClientId(clientId);
         connection.setClientSecret(clientSecret);
         connection.setRedirectUrl(redirectUrl);

@@ -27,14 +27,17 @@ public class AuthApi {
     private static final UrlTemplate TOKEN_URL = new UrlTemplate("/token");
     private static ArrayList<Header> headers;
     private static ArrayList<NameValuePair> nameValuePairs = new ArrayList<>();
-
+    private AuthApi authApi=new AuthApi();
     private AuthApi(){}
-
+    public AuthApi getAuthApi(){
+        return authApi;
+    }
     /**
      * 发起授权请求，获取授权url，改为发送请求
      *
      * @return URL
      */
+
     public static URL getAuthorizeUrl() {
         URL url = null;
         String urlString = GET_AUTH_URI.build(Config.DEFAULT_AUTH_URL);
@@ -47,7 +50,7 @@ public class AuthApi {
         catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        RequestClient requestClient = new RequestClient(url.toString(), "get", null, null, null);
+        RequestClient requestClient = RequestClient.buildRequest(url.toString(), "get", null, null, null);
         requestClient.sendRequest();
         return url;
     }
@@ -71,7 +74,7 @@ public class AuthApi {
         NameValuePair nameValuePair3 = new BasicNameValuePair("redirect_uri", connection.getRedirectUrl());
         headers = RequestOption.getAuthHeaders(connection);
         nameValuePairs = RequestUtil.addToNameValuePairList(nameValuePair1, nameValuePair2, nameValuePair3);
-        RequestClient requestClient = new RequestClient(url, "post", headers, nameValuePairs);
+        RequestClient requestClient = RequestClient.buildRequest(url, "post", headers, nameValuePairs);
         TokenInfo tokenOutput = (TokenInfo) TransformationUtil.requestClientToOutputObject(requestClient, TokenInfo.class);
         return tokenOutput;
     }
@@ -91,7 +94,7 @@ public class AuthApi {
         NameValuePair nameValuePair2 = new BasicNameValuePair("refresh_token", refreshTokenRes);
         headers = RequestOption.getAuthHeaders(connection);
         nameValuePairs = RequestUtil.addToNameValuePairList(nameValuePair1, nameValuePair2);
-        RequestClient requestClient = new RequestClient(url, "post", headers, nameValuePairs);
+        RequestClient requestClient = RequestClient.buildRequest(url, "post", headers, nameValuePairs);
         TokenInfo tokenOutput = (TokenInfo) TransformationUtil.requestClientToOutputObject(requestClient, TokenInfo.class);
         if (CommonUtil.checkObjectsInvoke(tokenOutput.getAccessToken())) {
             //已经成功获取了新的Token，需要放入Connection

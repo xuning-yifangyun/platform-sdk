@@ -2,11 +2,13 @@ package com.fangcloud.sdk.request;
 
 import com.fangcloud.sdk.util.TransformationUtil;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -14,32 +16,38 @@ import java.util.Objects;
  */
 public class RequestPut extends RequestOperation {
     private RequestClient requestClient;
-    private HttpClient httpClient;
+    private static HttpClient httpClient;
     private HttpResponse httpResponse;
-
-    public RequestPut(RequestClient requestClient) {
-        super(requestClient);
-        this.requestClient = requestClient;
+    private String url;
+    private List<Header> headers;
+    private List<NameValuePair> nameValuePairs;
+    private String postBody;
+    public RequestPut() {
+        this.requestClient = RequestClient.getRequestClient();
+        this.url=requestClient.getUrl();
+        this.headers=requestClient.getHeaders();
+        this.nameValuePairs=requestClient.getNameValuePairs();
+        this.postBody=requestClient.getPostBody();
     }
 
     @Override
     protected HttpResponse oper() {
-        this.httpClient = this.requestClient.httpClient;
-        HttpPut httpPut = new HttpPut(requestClient.url);
+        this.httpClient = this.requestClient.getHttpClient();
+        HttpPut httpPut = new HttpPut(url);
         //设置header
-        if (requestClient.headers.size() > 0 && !Objects.equals(requestClient.headers, null)) {
-            for (Header header : requestClient.headers) {
+        if (headers.size() > 0 && !Objects.equals(headers, null)) {
+            for (Header header : headers) {
                 httpPut.setHeader(header.getKey(), header.getValue());
             }
         }
         //设置QueryString
-        if (!Objects.equals(requestClient.nameValuePairs, null)) {
-            httpPut.setEntity(TransformationUtil.toHttpEntity(requestClient.nameValuePairs));
+        if (!Objects.equals(nameValuePairs, null)) {
+            httpPut.setEntity(TransformationUtil.toHttpEntity(nameValuePairs));
         }
 
         //设置postBody
-        if (!Objects.equals(requestClient.postBody, null)) {
-            StringEntity stringEntity = TransformationUtil.toStringEntity(requestClient.postBody);
+        if (!Objects.equals(postBody, null)) {
+            StringEntity stringEntity = TransformationUtil.toStringEntity(postBody);
             stringEntity.setContentType("application/json");
             stringEntity.setContentEncoding("UTF-8");
             httpPut.setEntity(stringEntity);

@@ -10,30 +10,30 @@ import org.apache.http.impl.client.DefaultHttpClient;
  * Created by xuning on 2016/8/10.
  */
 public abstract class RequestOperation {
-    private RequestClient requestClient;
+    private static RequestClient requestClient;
 
-    public RequestOperation(RequestClient requestClient) {
-        this.requestClient = requestClient;
+    public RequestOperation() {
+        requestClient=RequestClient.getRequestClient();
     }
 
     protected void openHttpClient() {
-        this.requestClient.httpClient = new DefaultHttpClient();
+        this.requestClient.setHttpClient(new DefaultHttpClient());
     }
 
     protected abstract HttpResponse oper();
 
     protected void closeHttpClient() {
-        this.requestClient.httpClient.getConnectionManager().shutdown();
+        this.requestClient.getHttpClient().getConnectionManager().shutdown();
     }
 
     public void postBodyEntityConfig() {
-        String method = this.requestClient.method;
+        String method = this.requestClient.getMethod();
         if (method.equals(Config.METHOD_POST) || method.equals(Config.METHOD_PUT)) {
             //entity配置
-            StringEntity stringEntity = TransformationUtil.toStringEntity(this.requestClient.postBody);
+            StringEntity stringEntity = TransformationUtil.toStringEntity(this.requestClient.getPostBody());
             stringEntity.setContentType("application/json");
             stringEntity.setContentEncoding("UTF-8");
-            this.requestClient.stringEntity=stringEntity;
+            this.requestClient.setStringEntity(stringEntity);
         }
     }
 
@@ -42,9 +42,9 @@ public abstract class RequestOperation {
         openHttpClient();
 
         //操作，具体为资源配置
-        requestClient.httpResponse = oper();
+        requestClient.setHttpResponse(oper());
         //关闭requestClient
         closeHttpClient();
-        return requestClient.httpResponse;
+        return requestClient.getHttpResponse();
     }
 }
