@@ -2,13 +2,13 @@ package com.fangcloud.sdk;
 
 import com.fangcloud.sdk.api.FileApi;
 import com.fangcloud.sdk.bean.input.file.PreviewKind;
-import com.fangcloud.sdk.bean.output.ResultOutput;
-import com.fangcloud.sdk.bean.output.file.CreateOutput;
-import com.fangcloud.sdk.bean.output.file.FileInfoOutput;
-import com.fangcloud.sdk.bean.output.file.FilePresignDownloadOutput;
-import com.fangcloud.sdk.bean.output.file.FilePresignUploadOutput;
-import com.fangcloud.sdk.bean.output.file.FilePreviewDownloadOutput;
-import com.fangcloud.sdk.bean.output.file.FilePreviewInfoOutput;
+import com.fangcloud.sdk.bean.output.Result;
+import com.fangcloud.sdk.bean.output.file.Create;
+import com.fangcloud.sdk.bean.output.file.FileInfo;
+import com.fangcloud.sdk.bean.output.file.FilePresignDownload;
+import com.fangcloud.sdk.bean.output.file.FilePresignUpload;
+import com.fangcloud.sdk.bean.output.file.FilePreviewDownload;
+import com.fangcloud.sdk.bean.output.file.FilePreviewInfo;
 import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
 import org.junit.Assert;
@@ -29,20 +29,17 @@ public class TApiFile {
     public String clientSecret = "5c179dfe-0f5a-4124-9690-42b69ec3aef7";
     public String rediectUrl = "http://121.41.52.18:8080/callback";
     public long testFileId = 501000511232L;
-    public Connection connection = new Connection(clientId, clientSecret, rediectUrl);
+    public Connection connection = Connection.getConnection().buildConnection(clientId,clientSecret,rediectUrl);
 
     /**
      * 根据id获取文件信息
      */
     @Test
     public void TgetileInfo() {
-        Connection connection = new Connection(clientId, clientSecret, rediectUrl);
         connection.setAccessToken(Config.TestAccessToken);
-        FileInfoOutput fileInfoOutput = new FileInfoOutput();
-        FileApi fileApi = new FileApi(connection);
-        FileInfoOutput fileInfo = fileApi.getFileInfo(testFileId);
+        FileInfo fileInfo = FileApi.getFileInfo(testFileId);
         Assert.assertEquals("出现错误", "xuning", fileInfo.getOwnedBy().getName());
-        Assert.assertTrue("没有正确返回信息", fileInfoOutput.getSuccess());
+        Assert.assertTrue("没有正确返回信息", fileInfo.getSuccess());
     }
 
     /**
@@ -50,10 +47,8 @@ public class TApiFile {
      */
     @Test
     public void TUpdateFile() {
-        Connection connection = new Connection(clientId, clientSecret, rediectUrl);
         connection.setAccessToken(Config.TestAccessToken);
-        FileApi fileApi = new FileApi(connection);
-        FileInfoOutput fileInfoOutput1 = fileApi.updateFile(testFileId, "dog.jpg", "这是徐宁的修改");
+        FileInfo fileInfoOutput1 = FileApi.updateFile(testFileId, "dog.jpg", "这是徐宁的修改");
         System.out.println(fileInfoOutput1.getName());
         System.out.println(fileInfoOutput1.getModifiedAt());
         System.out.println("测试结果：" + fileInfoOutput1.getSuccess());
@@ -66,10 +61,8 @@ public class TApiFile {
      */
     @Test
     public void TDeleteFile() {
-        Connection connection = new Connection(clientId, clientSecret, rediectUrl);
         connection.setAccessToken(Config.TestAccessToken);
-        FileApi fileApi = new FileApi(connection);
-        ResultOutput resultOutput = fileApi.deleteFile(testFileId);
+        Result resultOutput = FileApi.deleteFile(testFileId);
         System.out.println(resultOutput.getSuccess());
     }
 
@@ -78,10 +71,8 @@ public class TApiFile {
      */
     @Test
     public void TDeleteFileFromTrash() {
-        Connection connection = new Connection(clientId, clientSecret, rediectUrl);
         connection.setAccessToken(Config.TestAccessToken);
-        FileApi fileApi = new FileApi(connection);
-        ResultOutput resultOutput = fileApi.deleteFileFromTrash(false, testFileId);
+        Result resultOutput = FileApi.deleteFileFromTrash(false, testFileId);
         System.out.println(resultOutput.getSuccess());
     }
 
@@ -91,10 +82,8 @@ public class TApiFile {
      */
     @Test
     public void TrecoveryFileFromTrash() {
-        Connection connection = new Connection(clientId, clientSecret, rediectUrl);
         connection.setAccessToken(Config.TestAccessToken);
-        FileApi fileApi = new FileApi(connection);
-        ResultOutput resultOutput = fileApi.recoveryFileFromTrash(true);
+        Result resultOutput = FileApi.recoveryFileFromTrash(true);
         System.out.println(resultOutput.getSuccess());
     }
 
@@ -103,12 +92,10 @@ public class TApiFile {
      */
     @Test
     public void TmoveFile() {
-        Connection connection = new Connection(clientId, clientSecret, rediectUrl);
         connection.setAccessToken(Config.TestAccessToken);
-        FileApi fileApi = new FileApi(connection);
         List<Long> longs = new ArrayList<>();
         longs.add(testFileId);
-        ResultOutput resultOutput = fileApi.moveFile(longs, 501000031450L);
+        Result resultOutput = FileApi.moveFile(longs, 501000031450L);
         System.out.println(resultOutput.getSuccess());
     }
 
@@ -117,10 +104,8 @@ public class TApiFile {
      */
     @Test
     public void TuploadFile() {
-        Connection connection = new Connection(clientId, clientSecret, rediectUrl);
         connection.setAccessToken(Config.TestAccessToken);
-        FileApi fileApi = new FileApi(connection);
-        FilePresignUploadOutput filePresignUploadOutput = fileApi.uploadFile(501000031450L, "xuning的上传");
+        FilePresignUpload filePresignUploadOutput = FileApi.uploadFile(501000031450L, "xuning的上传");
         System.out.println(filePresignUploadOutput.getSuccess());
         System.out.println(filePresignUploadOutput.getPresignUrl());
     }
@@ -130,10 +115,8 @@ public class TApiFile {
      */
     @Test
     public void TupdateNewVersionFile() {
-        Connection connection = new Connection(clientId, clientSecret, rediectUrl);
         connection.setAccessToken(Config.TestAccessToken);
-        FileApi fileApi = new FileApi(connection);
-        FilePresignUploadOutput filePresignUploadOutput = fileApi.newVersion(501000511231L, "dog1", "test上传");
+        FilePresignUpload filePresignUploadOutput = FileApi.newVersion(501000511231L, "dog1", "test上传");
         System.out.println(filePresignUploadOutput.getSuccess());
         System.out.println(filePresignUploadOutput.getPresignUrl());
     }
@@ -143,10 +126,8 @@ public class TApiFile {
      */
     @Test
     public void TGetFileDownloadUrl() {
-        Connection connection = new Connection(clientId, clientSecret, rediectUrl);
         connection.setAccessToken(Config.TestAccessToken);
-        FileApi fileApi = new FileApi(connection);
-        FilePresignDownloadOutput filePresignDownloadOutput = fileApi.download(testFileId);
+        FilePresignDownload filePresignDownloadOutput = FileApi.download(testFileId);
         System.out.println(filePresignDownloadOutput.getSuccess());
         Map<Long, String> stringMap = filePresignDownloadOutput.getDownloadTargetIdToDownloadUrl();
         System.out.println(stringMap.get(testFileId));
@@ -157,10 +138,8 @@ public class TApiFile {
      */
     @Test
     public void TpreviewInfo() {
-        Connection connection = new Connection(clientId, clientSecret, rediectUrl);
         connection.setAccessToken(Config.TestAccessToken);
-        FileApi fileApi = new FileApi(connection);
-        FilePreviewInfoOutput filePreviewInfoOutput = fileApi.preview(testFileId, false, PreviewKind.IMAGE_64.getValue());
+        FilePreviewInfo filePreviewInfoOutput = FileApi.preview(testFileId, false, PreviewKind.IMAGE_64.getValue());
         System.out.println(filePreviewInfoOutput.getSuccess());
         System.out.println(filePreviewInfoOutput.getCategory());
     }
@@ -170,10 +149,8 @@ public class TApiFile {
      */
     @Test
     public void TpreviewDownloadURl() {
-        Connection connection = new Connection(clientId, clientSecret, rediectUrl);
         connection.setAccessToken(Config.TestAccessToken);
-        FileApi fileApi = new FileApi(connection);
-        FilePreviewDownloadOutput filePreviewInfoOutput = fileApi.previewDownload(testFileId, 0, PreviewKind.IMAGE_64.getValue());
+        FilePreviewDownload filePreviewInfoOutput = FileApi.previewDownload(testFileId, 0, PreviewKind.IMAGE_64.getValue());
         System.out.println(filePreviewInfoOutput.getSuccess());
         System.out.println(filePreviewInfoOutput.getDownloadUrl());
     }
@@ -183,10 +160,8 @@ public class TApiFile {
      */
     @Test
     public void TGetPreviewIframeURL() {
-        Connection connection = new Connection(clientId, clientSecret, rediectUrl);
         connection.setAccessToken(Config.TestAccessToken);
-        FileApi fileApi = new FileApi(connection);
-        String previewUrl = fileApi.getPreviewFrameUrl(testFileId, "dog.jpg");
+        String previewUrl = FileApi.getPreviewFrameUrl(testFileId, "dog.jpg");
         System.out.println(previewUrl);
     }
 
@@ -195,10 +170,8 @@ public class TApiFile {
      */
     @Test
     public void TcopyFile() {
-        Connection connection = new Connection(clientId, clientSecret, rediectUrl);
         connection.setAccessToken(Config.TestAccessToken);
-        FileApi fileApi = new FileApi(connection);
-        CreateOutput createOutput = fileApi.copyFile(testFileId, 501000031450L, false);
+        Create createOutput = FileApi.copyFile(testFileId, 501000031450L, false);
         System.out.println(createOutput.getSuccess());
         System.out.println(createOutput.getNewFile().getName());
     }

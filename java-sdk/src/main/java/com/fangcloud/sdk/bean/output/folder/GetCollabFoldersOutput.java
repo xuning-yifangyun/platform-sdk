@@ -5,9 +5,9 @@ import com.fangcloud.sdk.bean.output.PagingResponse;
 import java.util.List;
 
 public class GetCollabFoldersOutput extends PagingResponse {
-    private List<FolderInfoOutput> folders;
+    private List<FolderInfo> folders;
 
-    public List<FolderInfoOutput> getFolders() {
+    public List<FolderInfo> getFolders() {
         return folders;
     }
 

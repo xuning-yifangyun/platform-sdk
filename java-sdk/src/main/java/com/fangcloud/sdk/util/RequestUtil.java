@@ -13,6 +13,7 @@ import java.util.ArrayList;
  * 请求Util
  */
 public class RequestUtil {
+    private RequestUtil(){}
     /**
      * 添加Query参数
      *

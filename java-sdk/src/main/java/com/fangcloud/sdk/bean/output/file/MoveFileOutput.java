@@ -1,18 +1,18 @@
 package com.fangcloud.sdk.bean.output.file;
 
 import com.fangcloud.sdk.bean.output.BaseOutput;
-import com.fangcloud.sdk.bean.output.folder.FolderInfoOutput;
+import com.fangcloud.sdk.bean.output.folder.FolderInfo;
 import com.google.gson.annotations.SerializedName;
 
 public class MoveFileOutput extends BaseOutput {
     @SerializedName("new_parent")
-    private FolderInfoOutput newParent;
+    private FolderInfo newParent;
 
-    public FolderInfoOutput getNewParent() {
+    public FolderInfo getNewParent() {
         return newParent;
     }
 
-    public void setNewParent(FolderInfoOutput newParent) {
+    public void setNewParent(FolderInfo newParent) {
         this.newParent = newParent;
     }
 }

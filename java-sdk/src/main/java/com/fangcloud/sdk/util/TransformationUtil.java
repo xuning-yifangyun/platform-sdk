@@ -21,6 +21,8 @@ import java.util.List;
  */
 public class TransformationUtil {
 
+    private TransformationUtil(){}
+
     /**
      * 转换为HttpEntity
      *

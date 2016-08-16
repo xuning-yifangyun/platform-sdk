@@ -12,6 +12,7 @@ import java.util.Objects;
 
 /**
  * Created by xuning on 2016/8/10.
+ * 改写成单例模式
  */
 public class RequestPost extends RequestOperation {
     private RequestClient requestClient;

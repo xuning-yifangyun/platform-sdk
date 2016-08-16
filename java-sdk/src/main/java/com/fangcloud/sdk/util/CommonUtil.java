@@ -7,6 +7,7 @@ import java.util.Objects;
  * 通用
  */
 public class CommonUtil {
+    private CommonUtil(){}
     /**
      * 验证对象是不是有效值
      *

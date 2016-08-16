@@ -10,6 +10,7 @@ import java.nio.charset.Charset;
  * 删除TestAccessToken
  */
 public class Config {
+    private Config(){}
     //auth--
     public static final String DEFAULT_AUTH_URL = "https://oauth-server.fangcloud.net/oauth";
     public static final String DEFAULT_API_URI = "https://platform.fangcloud.net/api";
@@ -39,5 +40,5 @@ public class Config {
     //response
 
     //Test
-    public static final String TestAccessToken = "d930b17b-bab2-40e8-8022-92a3bcc7348a";
+    public static final String TestAccessToken = "6879554c-ca6c-4027-8540-c7e200c81bc9";
 }

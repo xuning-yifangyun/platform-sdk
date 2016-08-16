@@ -1,7 +1,7 @@
 package com.fangcloud.sdk.api;
 
 import com.fangcloud.sdk.request.RequestOption;
-import com.fangcloud.sdk.bean.output.auth.TokenOutput;
+import com.fangcloud.sdk.bean.output.auth.TokenInfo;
 import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
 import com.fangcloud.sdk.request.Header;
@@ -22,26 +22,24 @@ import java.util.ArrayList;
  * 权限类别接口
  */
 public class AuthApi {
-    private Connection connection;
+    private static Connection connection=Connection.getConnection();
     private static final UrlTemplate GET_AUTH_URI = new UrlTemplate("/authorize");
     private static final UrlTemplate TOKEN_URL = new UrlTemplate("/token");
-    private ArrayList<Header> headers = new ArrayList<>();
-    private ArrayList<NameValuePair> nameValuePairs = new ArrayList<>();
+    private static ArrayList<Header> headers;
+    private static ArrayList<NameValuePair> nameValuePairs = new ArrayList<>();
 
-    public AuthApi(Connection connection) {
-        this.connection = connection;
-    }
+    private AuthApi(){}
 
     /**
-     * 发起授权请求，获取授权url
+     * 发起授权请求，获取授权url，改为发送请求
      *
      * @return URL
      */
-    public URL getAuthorizeUrl() {
+    public static URL getAuthorizeUrl() {
         URL url = null;
         String urlString = GET_AUTH_URI.build(Config.DEFAULT_AUTH_URL);
         String queryPrame = String
-                .format("?client_id=%s&redirect_uri=%s&response_type=%s&state=", this.connection.getClientId(), this.connection.getRedirectUrl(), "code");
+                .format("?client_id=%s&redirect_uri=%s&response_type=%s&state=", connection.getClientId(), connection.getRedirectUrl(), "code");
         String res = urlString + queryPrame;
         try {
             url = new URL(res);
@@ -49,6 +47,8 @@ public class AuthApi {
         catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        RequestClient requestClient = new RequestClient(url.toString(), "get", null, null, null);
+        requestClient.sendRequest();
         return url;
     }
 
@@ -58,21 +58,21 @@ public class AuthApi {
      * @param
      * @return
      */
-    public TokenOutput getTokenByAuthCode(String... authCodes) {
-        String authCodeRes = this.connection.getAuthCode();
+    public static TokenInfo getTokenByAuthCode(String... authCodes) {
+        String authCodeRes = connection.getAuthCode();
         if (!CommonUtil.checkObjectsInvoke(authCodeRes)) {
             authCodeRes = CommonUtil.checkObjectsInvoke(authCodes) ? authCodes[0] : null;
         }
         //这里如果出现是空的情况，那么需要接住。并且处理
-        this.connection.setAuthCode(authCodeRes);
+        connection.setAuthCode(authCodeRes);
         String url = TOKEN_URL.build(Config.DEFAULT_AUTH_URL);
         NameValuePair nameValuePair1 = new BasicNameValuePair("grant_type", Config.DEFAULT_GRANT_TYPE);
         NameValuePair nameValuePair2 = new BasicNameValuePair("code", authCodeRes);
-        NameValuePair nameValuePair3 = new BasicNameValuePair("redirect_uri", this.connection.getRedirectUrl());
-        headers = RequestOption.getAuthHeaders(this.connection);
+        NameValuePair nameValuePair3 = new BasicNameValuePair("redirect_uri", connection.getRedirectUrl());
+        headers = RequestOption.getAuthHeaders(connection);
         nameValuePairs = RequestUtil.addToNameValuePairList(nameValuePair1, nameValuePair2, nameValuePair3);
         RequestClient requestClient = new RequestClient(url, "post", headers, nameValuePairs);
-        TokenOutput tokenOutput = (TokenOutput) TransformationUtil.requestClientToOutputObject(requestClient, TokenOutput.class);
+        TokenInfo tokenOutput = (TokenInfo) TransformationUtil.requestClientToOutputObject(requestClient, TokenInfo.class);
         return tokenOutput;
     }
 
@@ -81,21 +81,21 @@ public class AuthApi {
      *
      * @return
      */
-    public TokenOutput getTokenByRefreshToken(String... refreshtokens) {
-        String refreshTokenRes = this.connection.getRefreshToken();
+    public static TokenInfo getTokenByRefreshToken(String... refreshtokens) {
+        String refreshTokenRes = connection.getRefreshToken();
         if (refreshtokens.length > 0) {
             refreshTokenRes = CommonUtil.checkObjectsInvoke(refreshTokenRes) ? refreshTokenRes : refreshtokens[0];
         }
         String url = TOKEN_URL.build(Config.DEFAULT_AUTH_URL);
         NameValuePair nameValuePair1 = new BasicNameValuePair("grant_type", "refresh_token");
         NameValuePair nameValuePair2 = new BasicNameValuePair("refresh_token", refreshTokenRes);
-        headers = RequestOption.getAuthHeaders(this.connection);
+        headers = RequestOption.getAuthHeaders(connection);
         nameValuePairs = RequestUtil.addToNameValuePairList(nameValuePair1, nameValuePair2);
         RequestClient requestClient = new RequestClient(url, "post", headers, nameValuePairs);
-        TokenOutput tokenOutput = (TokenOutput) TransformationUtil.requestClientToOutputObject(requestClient, TokenOutput.class);
+        TokenInfo tokenOutput = (TokenInfo) TransformationUtil.requestClientToOutputObject(requestClient, TokenInfo.class);
         if (CommonUtil.checkObjectsInvoke(tokenOutput.getAccessToken())) {
             //已经成功获取了新的Token，需要放入Connection
-            this.connection.setAccessToken(tokenOutput.getAccessToken());
+            connection.setAccessToken(tokenOutput.getAccessToken());
         }
         else {
             //refreshToken过期，需要抛出处理
@@ -106,12 +106,12 @@ public class AuthApi {
     /**
      *重建Token
      */
-    public void rebuidAccessToken(){
+    public static void rebuildAccessToken(){
         //拿到regreshToken
-        String reRefreshToken=this.connection.getRefreshToken();
+        String reRefreshToken=connection.getRefreshToken();
         if(null!=reRefreshToken){
-            TokenOutput tokenOutput=getTokenByRefreshToken(reRefreshToken);
-            this.connection.setAccessToken(tokenOutput.getAccessToken());
+            TokenInfo tokenOutput=getTokenByRefreshToken(reRefreshToken);
+            connection.setAccessToken(tokenOutput.getAccessToken());
         }else{
             //获取refreshToken异常,说明Token已经失效
         }

@@ -1,86 +1,59 @@
 package com.fangcloud.sdk.core;
 
 import com.fangcloud.sdk.api.AuthApi;
-import com.fangcloud.sdk.bean.output.auth.TokenOutput;
+import com.fangcloud.sdk.bean.output.auth.TokenInfo;
 import org.apache.commons.codec.binary.Base64;
 
 /**
  * Created by xuning on 2016/8/9.
  */
 public class Connection {
-    private String ClientId;
-    private String ClientSecret;
-    private String authCode;
-    private String redirectUrl;
-    private String accessToken;
-    private String refreshToken;
-    private String username;
-    private String password;
-    private String apiKey;
-    private Boolean autoRefresh;
-    private int refreshCount;
 
-    /**
-     * 续爱发起授权请求的Connect
-     *
-     * @param clientId
-     * @param clientSecret
-     * @param redirectUrl
+    private static String ClientId;
+    private static String ClientSecret;
+    private static String authCode;
+    private static String redirectUrl;
+    private static String accessToken;
+    private static String refreshToken;
+    private static String username;
+    private static String password;
+    private static String apiKey;
+    private static Boolean autoRefresh;
+    private static int refreshCount;
+    private static Connection connection=new Connection();
+
+    private Connection(){}
+
+    /***
+     * 不使用懒加载
+     * @return
      */
-    public Connection(String clientId, String clientSecret, String redirectUrl) {
-        this(clientId, clientSecret, redirectUrl, null, null, null, null, null, null, null, Config.REFRESH_TOKEN_COUNT);
+    public static Connection getConnection(){
+        return connection;
     }
 
-    /**
-     * 这里的实例化是获取到授权码之后的实例化
-     * 这里的Connect建议写成一个单例模式，因为所有的Api实现都需要Connection
-     *
-     * @param clientId
-     * @param clientSecret
-     * @param redirectUrl
-     * @param authCode
-     */
-    public Connection(String clientId, String clientSecret, String redirectUrl, String authCode) {
-        ClientId = clientId;
-        ClientSecret = clientSecret;
-        this.authCode = authCode;
-        this.redirectUrl = redirectUrl;
-        TokenOutput tokenOutput = new AuthApi(this).getTokenByAuthCode();
-        this.accessToken = tokenOutput.getAccessToken();
-        this.refreshToken = tokenOutput.getRefreshToken();
-        this.refreshCount = Config.REFRESH_TOKEN_COUNT;
-        this.autoRefresh=Config.DELAULT_AUTO_REFRESH_TOKEN;
+    public static Connection buildConnection(String clientId, String clientSecret, String redirectUrl){
+        connection.setRefreshCount(Config.REFRESH_TOKEN_COUNT);
+        connection.setAutoRefresh(Config.DELAULT_AUTO_REFRESH_TOKEN);
+        connection.setClientId(clientId);
+        connection.setClientSecret(clientSecret);
+        connection.setRedirectUrl(redirectUrl);
+        return connection;
     }
 
-    /**
-     * 初始化所有的属性，扩展
-     *
-     * @param clientId
-     * @param clientSecret
-     * @param redirectUrl
-     * @param authCode
-     * @param accessToken
-     * @param refreshToken
-     * @param username
-     * @param password
-     * @param apiKey
-     * @param autoRefresh
-     * @param refreshCount
-     */
-    public Connection(String clientId, String clientSecret, String redirectUrl, String authCode, String accessToken, String refreshToken, String username,
-            String password, String apiKey, Boolean autoRefresh, int refreshCount) {
-        ClientId = clientId;
-        ClientSecret = clientSecret;
-        this.authCode = authCode;
-        this.redirectUrl = redirectUrl;
-        this.accessToken = accessToken;
-        this.refreshToken = refreshToken;
-        this.username = username;
-        this.password = password;
-        this.apiKey = apiKey;
-        this.autoRefresh = autoRefresh;
-        this.refreshCount = refreshCount;
+    public static Connection getAccessTokenByAuthCode(String authCode){
+        TokenInfo tokenInfo=AuthApi.getTokenByAuthCode(authCode);
+        connection.setAccessToken(tokenInfo.getAccessToken());
+        connection.setRefreshToken(tokenInfo.getRefreshToken());
+        return connection;
     }
+
+    public static Connection refreshAccessToken(){
+        AuthApi.rebuildAccessToken();
+        return connection;
+    }
+
+
 
     public String getAuthorizationBase64() {
         return Base64.encodeBase64String((this.ClientId + ":" + this.ClientSecret).getBytes());

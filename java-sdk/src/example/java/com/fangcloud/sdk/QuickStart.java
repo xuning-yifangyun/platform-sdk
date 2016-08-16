@@ -1,11 +1,6 @@
 package com.fangcloud.sdk;
 
-import com.fangcloud.sdk.api.AuthApi;
-import com.fangcloud.sdk.api.FileApi;
-import com.fangcloud.sdk.bean.output.file.FileInfoOutput;
 import com.fangcloud.sdk.core.Connection;
-
-import java.net.URL;
 
 /**
  * Created by xuning on 2016/8/12.
@@ -19,20 +14,11 @@ public class QuickStart {
         String clientId = "youClientID";
         String clientSecret = "youClientSecret";
         String rediectUrl = "youRedirectURL";
+//       先构建client的基本信息
+        Connection connection = Connection.buildConnection(clientId, clientSecret, rediectUrl);
+        connection.getAccessTokenByAuthCode("");
+        connection.refreshAccessToken();
 
-        Connection connection = null;
-
-        connection = new Connection(clientId, clientSecret, rediectUrl);
-
-        AuthApi authApi = new AuthApi(connection);
-        URL authCode = authApi.getAuthorizeUrl();
-
-        //获取到之后发起请求，在回调方法中获取authCode传入connection
-        connection = new Connection(clientId, clientSecret, rediectUrl, authCode.toString());
-
-        //这里拿到Connection之后进行，实例化api对象，connection为参数
-        FileApi fileApi = new FileApi(connection);
-        FileInfoOutput fileInfoOutput = fileApi.getFileInfo(12355L);
         //获取到返回结果
     }
 
