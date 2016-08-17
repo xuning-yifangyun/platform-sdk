@@ -61,7 +61,6 @@ public class TransformationUtil {
     public static final String httpResponseToString(HttpResponse httpResponse) {
         String res = null;
         try {
-            System.out.println(httpResponse.getEntity());
             res = EntityUtils.toString(httpResponse.getEntity());
         }
         catch (IOException e) {

@@ -15,6 +15,12 @@ public class TApiItem {
     public String rediectUrl = Config.testRediectUrl;
     public Connection connection = Connection.buildConnection(clientId, clientSecret, rediectUrl);
     private static ItemApi itemApi=ItemApi.getItemApi();
+
+    public TApiItem() {
+        Connection connection = Connection.buildConnection(clientId, clientSecret, rediectUrl);
+        connection.setRefreshToken(Config.TestRefreshToken);
+    }
+
     /**
      * 按条件搜索文件
      */

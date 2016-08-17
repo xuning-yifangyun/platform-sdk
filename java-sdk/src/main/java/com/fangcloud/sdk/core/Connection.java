@@ -2,7 +2,25 @@ package com.fangcloud.sdk.core;
 
 import com.fangcloud.sdk.api.AuthApi;
 import com.fangcloud.sdk.bean.output.auth.TokenInfo;
+import com.fangcloud.sdk.request.Header;
+import com.fangcloud.sdk.util.RequestUtil;
+import com.fangcloud.sdk.util.TransformationUtil;
+import com.fangcloud.sdk.util.UrlTemplate;
+import com.google.gson.Gson;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by xuning on 2016/8/9.
@@ -20,40 +38,83 @@ public class Connection {
     private static String apiKey;
     private static Boolean autoRefresh;
     private static int refreshCount;
-    private static Connection connection=new Connection();
+    private static Connection connection = new Connection();
+    private static final UrlTemplate AUTH = new UrlTemplate("/token");
 
-    private Connection(){}
+    private Connection() {
+    }
 
     /***
      * 不使用懒加载
+     *
      * @return
      */
-    public static Connection getConnection(){
+    public static Connection getConnection() {
         return connection;
     }
 
-    public static Connection buildConnection(String clientId, String clientSecret, String redirectUrl){
-        refreshCount=Config.REFRESH_TOKEN_COUNT;
-        autoRefresh=Config.DELAULT_AUTO_REFRESH_TOKEN;
+    public static Connection buildConnection(String clientId, String clientSecret, String redirectUrl) {
+        refreshCount = Config.REFRESH_TOKEN_COUNT;
+        autoRefresh = Config.DELAULT_AUTO_REFRESH_TOKEN;
         connection.setClientId(clientId);
         connection.setClientSecret(clientSecret);
         connection.setRedirectUrl(redirectUrl);
         return connection;
     }
 
-    public static Connection getAccessTokenByAuthCode(String authCode){
-        TokenInfo tokenInfo=AuthApi.getTokenByAuthCode(authCode);
+    public static Connection getAccessTokenByAuthCode(String authCode) {
+        TokenInfo tokenInfo = AuthApi.getTokenByAuthCode(authCode);
         connection.setAccessToken(tokenInfo.getAccessToken());
         connection.setRefreshToken(tokenInfo.getRefreshToken());
         return connection;
     }
 
-    public static Connection refreshAccessToken(){
+    public static Connection refreshAccessToken() {
         AuthApi.rebuildAccessToken();
         return connection;
     }
 
+    /**
+     * 独立不为单例刷新Token，仅做Token失效刷新使用
+     */
+    public static void tryRefreshToken() {
+        HttpClient httpClient = null;
+        try {
+            httpClient = new DefaultHttpClient();
+            String url = AUTH.build(Config.DEFAULT_AUTH_URL);
+            NameValuePair nameValuePair1 = new BasicNameValuePair("grant_type", "refresh_token");
+            NameValuePair nameValuePair2 = new BasicNameValuePair("refresh_token", refreshToken);
+            List<NameValuePair> nameValuePairs = RequestUtil.addToNameValuePairList(nameValuePair1, nameValuePair2);
+            List<Header> headers = new ArrayList<>();
+            HttpPost httpPost = new HttpPost(url);
+            httpPost.setHeader("Authorization", "Basic " + connection.getAuthorizationBase64());
+            try {
+                HttpEntity stringEntity = new UrlEncodedFormEntity(nameValuePairs, "UTF-8");
+                httpPost.setEntity(stringEntity);
+            }
+            catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            HttpResponse httpResponse = null;
+            try {
+                httpResponse = httpClient.execute(httpPost);
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+            String jsonString = TransformationUtil.httpResponseToString(httpResponse);
+            TokenInfo tokenInfo = new Gson().fromJson(jsonString, TokenInfo.class);
+            connection.setAccessToken(tokenInfo.getAccessToken());
+            System.err.println("获取到的Token是：" + tokenInfo.getAccessToken());
+        }
+        catch (Exception e) {
+            //抛出refreshToken失效异常
+        }
+        finally {
+            httpClient.getConnectionManager().shutdown();
+        }
 
+    }
 
     public String getAuthorizationBase64() {
         return Base64.encodeBase64String((this.ClientId + ":" + this.ClientSecret).getBytes());

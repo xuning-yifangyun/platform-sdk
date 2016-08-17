@@ -47,7 +47,10 @@ public class FileApi {
 
     private static Connection connection = Connection.getConnection();
     private static ArrayList<Header> headers = RequestOption.getApiCommonHeader(connection);
-
+    private static FileApi fileApi=new FileApi();
+    public static FileApi getFileApi(){
+        return fileApi;
+    }
     private FileApi() {
     }
 

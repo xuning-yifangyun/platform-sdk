@@ -1,6 +1,5 @@
 package com.fangcloud.sdk;
 
-import com.fangcloud.sdk.api.AuthApi;
 import com.fangcloud.sdk.api.FileApi;
 import com.fangcloud.sdk.bean.input.file.PreviewKind;
 import com.fangcloud.sdk.bean.output.Result;
@@ -30,14 +29,17 @@ public class TApiFile {
     public String clientSecret = Config.testClientSecret;
     public String rediectUrl = Config.testRediectUrl;
     public long testFileId = 501000511232L;
-    public Connection connection = Connection.buildConnection(clientId, clientSecret, rediectUrl);
+
 
     /**
      * Token信心从这里刷新获取
      */
     public TApiFile() {
+        //为了简单测试，这里在请求之前就刷新TokenToken，但会大大的降低运行效率，不建议使用
+//        Connection.getConnection().setRefreshToken(Config.TestRefreshToken);
+//        AuthApi.rebuildAccessToken();
+        Connection connection = Connection.buildConnection(clientId, clientSecret, rediectUrl);
         connection.setRefreshToken(Config.TestRefreshToken);
-        AuthApi.rebuildAccessToken();
     }
 
     /**

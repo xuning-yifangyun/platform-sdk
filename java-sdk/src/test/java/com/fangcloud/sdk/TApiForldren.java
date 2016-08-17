@@ -26,6 +26,12 @@ public class TApiForldren {
     public Connection connection = Connection.buildConnection(clientId, clientSecret, rediectUrl);
     public static long testfoldrenId=501000031450L;
     private FolderApi folderApi=FolderApi.getFolderApi();
+
+    public TApiForldren() {
+        Connection connection = Connection.buildConnection(clientId, clientSecret, rediectUrl);
+        connection.setRefreshToken(Config.TestRefreshToken);
+    }
+
     /**
      * 获取文件夹信息
      */

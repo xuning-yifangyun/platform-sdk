@@ -1,14 +1,15 @@
 package com.fangcloud.sdk.request;
 
-import com.fangcloud.sdk.bean.exception.ExternalErrorCode;
-import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
 import com.fangcloud.sdk.core.Config;
+import com.fangcloud.sdk.core.Connection;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.entity.StringEntity;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by xuning on 2016/8/9.
@@ -16,18 +17,19 @@ import java.util.List;
 public class RequestClient {
     private HttpResponse httpResponse;
     private static HttpClient httpClient;
-    private String url;
-    private String method;
-    private List<Header> headers;
-    private List<NameValuePair> nameValuePairs;
-    private String postBody;
-    private StringEntity stringEntity;
+    private static String url;
+    private static String method;
+    private static List<Header> headers;
+    private static List<NameValuePair> nameValuePairs;
+    private static String postBody;
+    private static StringEntity stringEntity;
     private static RequestOperation requestOperation;
+    private static Connection connection=Connection.getConnection();
     private static RequestClient requestClient = new RequestClient();
-
+    private static RequestClient[] requestClients=new  RequestClient[3];
+    private static final Logger LOGGER = Logger.getLogger(RequestClient.class.getName());
     private RequestClient() {
     }
-
     public static RequestClient getRequestClient() {
         return requestClient;
     }
@@ -41,50 +43,50 @@ public class RequestClient {
     }
 
     public static RequestClient buildRequest(String url, String method, List<Header> headers, List<NameValuePair> nameValuePairs, String postBody) {
-        requestClient.url = url;
-        requestClient.postBody = postBody;
-        requestClient.method = method;
-        requestClient.headers = headers;
-        requestClient.nameValuePairs = nameValuePairs;
+        requestClient.setUrl(url);
+        requestClient.setPostBody(postBody);
+        requestClient.setMethod(method);
+        requestClient.setHeaders(headers);
+        requestClient.setNameValuePairs(nameValuePairs);
         return requestClient;
     }
 
+
     public HttpResponse sendRequest() {
-        int refreshCount = 2;
-        if (method.equals(Config.METHOD_GET)) {
-            //get方法
-            requestOperation = new RequestGet();
-        }
-        else if (method.equals(Config.METHOD_POST)) {
-            //post方法
-            requestOperation = new RequestPost();
-        }
-        else if (method.equals(Config.METHOD_PUT)) {
-            //put方法
-            requestOperation = new RequestPut();
-        }
-        else if (method.equals(Config.METHOD_DELETE)) {
-            //delete方法
-            requestOperation = new RequestDelete();
-        }
-        else {
-            throw new OpenApiSDKException(ExternalErrorCode.CONNECTION_METHOD_INVALID);
-        }
-        requestClient.httpResponse = requestOperation.execute();
-
-        int sendRes = httpResponse.getStatusLine().getStatusCode();
-
-        refreshCount--;
-        //如果refreshCount为1，这里通过success结果，如果为false，刷新一次Token信息，并回调此方法，
-        if (refreshCount == 1) {
-            if (sendRes != 200) {
-
+        while ((Config.REFRESH_TOKEN_COUNT--)>0){
+            if (method.equals(Config.METHOD_GET)) {
+                requestOperation = new RequestGet();
+            }
+            else if (method.equals(Config.METHOD_POST)) {
+                requestOperation = new RequestPost();
+            }
+            else if (method.equals(Config.METHOD_PUT)) {
+                requestOperation = new RequestPut();
+            }
+            else if (method.equals(Config.METHOD_DELETE)) {
+                requestOperation = new RequestDelete();
+            }
+            httpResponse = requestOperation.execute();
+            int sendRes=httpResponse.getStatusLine().getStatusCode();
+            System.out.println("请求资源获取到响应码："+sendRes);
+            //这里accesstokendier
+            if(sendRes==401){
+                //只有在非oauth请求下为执行有效
+                connection.tryRefreshToken();
+                headers=RequestOption.getApiCommonHeader(Connection.getConnection());
+            }else{
+                return httpResponse;
             }
         }
-        refreshCount--;
-        //如果为0，异常为refreshToken过期
         return httpResponse;
     }
+
+    private void logRequest(RequestClient connection) {
+        if (LOGGER.isLoggable(Level.FINE)) {
+            LOGGER.log(Level.FINE, this.toString());
+        }
+    }
+
 
     public HttpResponse getHttpResponse() {
         return httpResponse;

@@ -2,6 +2,7 @@ package com.fangcloud.sdk;
 
 import com.fangcloud.sdk.api.UserApi;
 import com.fangcloud.sdk.bean.output.user.GetUserInfo;
+import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
 import org.junit.Test;
 
@@ -16,6 +17,12 @@ public class TUserApi {
     public String rediectUrl = "http://121.41.52.18:8080/callback";
     public Connection connection = Connection.buildConnection(clientId, clientSecret, rediectUrl);
     private UserApi userApi=UserApi.getUserApi();//保证修改后的兼容性
+
+    public TUserApi() {
+        Connection connection = Connection.buildConnection(clientId, clientSecret, rediectUrl);
+        connection.setRefreshToken(Config.TestRefreshToken);
+    }
+
     @Test
     public void TgetAsUserCode(){
         System.out.println("需要申请url，无法测试");
