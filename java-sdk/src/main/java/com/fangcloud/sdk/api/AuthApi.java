@@ -38,7 +38,7 @@ public class AuthApi {
      * @return URL
      */
 
-    public static URL getAuthorizeUrl() {
+    public static void getAuthorizeUrl() {
         URL url = null;
         String urlString = GET_AUTH_URI.build(Config.DEFAULT_AUTH_URL);
         String queryPrame = String
@@ -52,7 +52,6 @@ public class AuthApi {
         }
         RequestClient requestClient = RequestClient.buildRequest(url.toString(), "get", null, null, null);
         requestClient.sendRequest();
-        return url;
     }
 
     /**
