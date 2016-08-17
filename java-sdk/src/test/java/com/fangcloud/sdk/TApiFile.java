@@ -31,9 +31,6 @@ public class TApiFile {
     public long testFileId = 501000511232L;
 
 
-    /**
-     * Token信心从这里刷新获取
-     */
     public TApiFile() {
         //为了简单测试，这里在请求之前就刷新TokenToken，但会大大的降低运行效率，不建议使用
 //        Connection.getConnection().setRefreshToken(Config.TestRefreshToken);

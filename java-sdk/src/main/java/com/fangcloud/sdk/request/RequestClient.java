@@ -68,7 +68,7 @@ public class RequestClient {
             }
             httpResponse = requestOperation.execute();
             int sendRes=httpResponse.getStatusLine().getStatusCode();
-            System.out.println("请求资源获取到响应码："+sendRes);
+//            System.out.println("请求资源获取到响应码："+sendRes);
             //这里accesstokendier
             if(sendRes==401){
                 //只有在非oauth请求下为执行有效
@@ -77,13 +77,14 @@ public class RequestClient {
             }else{
                 return httpResponse;
             }
+            logRequest(this);
         }
         return httpResponse;
     }
 
     private void logRequest(RequestClient connection) {
-        if (LOGGER.isLoggable(Level.FINE)) {
-            LOGGER.log(Level.FINE, this.toString());
+        if (LOGGER.isLoggable(Level.INFO)) {
+            LOGGER.log(Level.INFO, this.toString());
         }
     }
 

@@ -1,5 +1,6 @@
 package com.fangcloud.sdk.core;
 
+import com.fangcloud.sdk.util.PropertiesUtil;
 import org.apache.http.HttpVersion;
 
 import java.nio.charset.Charset;
@@ -23,6 +24,7 @@ public class Config {
     //system
     public static final String DEFAULT_CHARSET = "UTF-8";
     public static final Charset DEFAULT_CHARSET_TYPE = Charset.defaultCharset();
+    public static final String LOG_PATH= PropertiesUtil.isLinux()?"/var/log/":"C://";
 
     //request
     public static final HttpVersion HTTP_VERSION = HttpVersion.HTTP_1_1;

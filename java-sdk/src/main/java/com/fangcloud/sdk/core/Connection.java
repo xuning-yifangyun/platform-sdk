@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by xuning on 2016/8/9.
@@ -40,7 +42,7 @@ public class Connection {
     private static int refreshCount;
     private static Connection connection = new Connection();
     private static final UrlTemplate AUTH = new UrlTemplate("/token");
-
+    private static final Logger LOGGER=Logger.getLogger(Connection.class.getName());
     private Connection() {
     }
 
@@ -105,15 +107,21 @@ public class Connection {
             String jsonString = TransformationUtil.httpResponseToString(httpResponse);
             TokenInfo tokenInfo = new Gson().fromJson(jsonString, TokenInfo.class);
             connection.setAccessToken(tokenInfo.getAccessToken());
-            System.err.println("获取到的Token是：" + tokenInfo.getAccessToken());
+//            System.err.println("获取到的Token是：" + tokenInfo.getAccessToken());
         }
         catch (Exception e) {
             //抛出refreshToken失效异常
         }
         finally {
+            logConnection(Connection.getConnection());
             httpClient.getConnectionManager().shutdown();
         }
 
+    }
+    private static void logConnection(Connection connection) {
+        if (LOGGER.isLoggable(Level.SEVERE)) {
+            LOGGER.log(Level.SEVERE,connection.toString());
+        }
     }
 
     public String getAuthorizationBase64() {
