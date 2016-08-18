@@ -2,7 +2,6 @@ package com.fangcloud.sdk.core;
 
 import com.fangcloud.sdk.api.AuthApi;
 import com.fangcloud.sdk.bean.output.auth.TokenInfo;
-import com.fangcloud.sdk.request.Header;
 import com.fangcloud.sdk.util.RequestUtil;
 import com.fangcloud.sdk.util.TransformationUtil;
 import com.fangcloud.sdk.util.UrlTemplate;
@@ -19,7 +18,6 @@ import org.apache.http.message.BasicNameValuePair;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -87,7 +85,6 @@ public class Connection {
             NameValuePair nameValuePair1 = new BasicNameValuePair("grant_type", "refresh_token");
             NameValuePair nameValuePair2 = new BasicNameValuePair("refresh_token", refreshToken);
             List<NameValuePair> nameValuePairs = RequestUtil.addToNameValuePairList(nameValuePair1, nameValuePair2);
-            List<Header> headers = new ArrayList<>();
             HttpPost httpPost = new HttpPost(url);
             httpPost.setHeader("Authorization", "Basic " + connection.getAuthorizationBase64());
             try {

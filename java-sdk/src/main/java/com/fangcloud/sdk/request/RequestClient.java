@@ -70,6 +70,7 @@ public class RequestClient {
             int sendRes=httpResponse.getStatusLine().getStatusCode();
 //            System.out.println("请求资源获取到响应码："+sendRes);
             //这里accesstokendier
+            logRequest(this);
             if(sendRes==401){
                 //只有在非oauth请求下为执行有效
                 connection.tryRefreshToken();
@@ -77,7 +78,7 @@ public class RequestClient {
             }else{
                 return httpResponse;
             }
-            logRequest(this);
+
         }
         return httpResponse;
     }

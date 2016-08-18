@@ -1,5 +1,6 @@
 package com.fangcloud.sdk;
 
+import com.fangcloud.sdk.api.AuthApi;
 import com.fangcloud.sdk.core.Connection;
 
 /**
@@ -18,6 +19,8 @@ public class QuickStart {
         Connection connection = Connection.getConnection().buildConnection(clientId, clientSecret, rediectUrl);
 //        connection.
         System.out.println(connection.getClientId());
+
+        AuthApi.getTokenByAuthCode();
 
         //获取到返回结果
     }

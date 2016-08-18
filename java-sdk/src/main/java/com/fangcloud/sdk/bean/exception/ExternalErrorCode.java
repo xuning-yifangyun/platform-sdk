@@ -14,8 +14,6 @@ public class ExternalErrorCode {
     // permission denied
     public static final String PERMISSION_DENIED = "permission_denied";
 
-
-
     private String value;
 
     ExternalErrorCode(String value) {
