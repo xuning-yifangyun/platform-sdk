@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b0644a4-9401-45ca-8595-314cff2dcc26" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/util/LogUtil.java" afterPath="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/util/LogUtil.java" />
     </list>
     <ignored path="platform-sdk.iws" />
@@ -25,7 +26,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TApiFile.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TApiFile.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/java-sdk/src/test/java/com/fangcloud/sdk/TApiFile.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="527">
@@ -91,16 +92,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LogUtil.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LogUtil.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/util/LogUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="724">
-              <caret line="76" column="70" selection-start-line="76" selection-start-column="70" selection-end-line="76" selection-end-column="70" />
+            <state relative-caret-position="268">
+              <caret line="47" column="46" selection-start-line="47" selection-start-column="46" selection-end-line="47" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#719#720#0" expanded="true" />
-                <element signature="e#2241#2242#0" expanded="true" />
-                <element signature="e#2324#2325#0" expanded="true" />
+                <element signature="e#795#796#0" expanded="true" />
+                <element signature="e#2461#2462#0" expanded="true" />
+                <element signature="e#2544#2545#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1200,13 +1201,13 @@
       <workItem from="1471397883274" duration="27723000" />
       <workItem from="1471451014409" duration="602000" />
       <workItem from="1471455444340" duration="2294000" />
-      <workItem from="1471485400445" duration="24717000" />
+      <workItem from="1471485400445" duration="24906000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TApiFile_TgetFileInfo - 2016.08.18 at 19h 25m 21s.xml">
-      <configuration name="TApiFile.TgetFileInfo" configurationId="JUnit" />
+    <history-entry file="TApiFile_TUpdateFile - 2016.08.18 at 19h 40m 14s.xml">
+      <configuration name="TApiFile.TUpdateFile" configurationId="JUnit" />
     </history-entry>
     <history-entry file="TApiFile_TgetFileInfo - 2016.08.18 at 19h 26m 36s.xml">
       <configuration name="TApiFile.TgetFileInfo" configurationId="JUnit" />
@@ -1237,7 +1238,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110262000" />
+    <option name="totallyTimeSpent" value="110451000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1677,25 +1678,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/util/LogUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="724">
-          <caret line="76" column="70" selection-start-line="76" selection-start-column="70" selection-end-line="76" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#719#720#0" expanded="true" />
-            <element signature="e#2241#2242#0" expanded="true" />
-            <element signature="e#2324#2325#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/java-sdk/src/test/java/com/fangcloud/sdk/TApiFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="58" column="47" selection-start-line="58" selection-start-column="47" selection-end-line="58" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/util/LogUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="47" column="46" selection-start-line="47" selection-start-column="46" selection-end-line="47" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#795#796#0" expanded="true" />
+            <element signature="e#2461#2462#0" expanded="true" />
+            <element signature="e#2544#2545#0" expanded="true" />
           </folding>
         </state>
       </provider>

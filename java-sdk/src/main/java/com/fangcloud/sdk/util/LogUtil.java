@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
+import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Formatter;
 import java.util.logging.Level;
@@ -21,6 +22,7 @@ public class LogUtil {
     public static final int NUM_LINES = 100000;
     private static LogUtil logUtil = new LogUtil();
     public FileHandler fhandler;
+    ConsoleHandler consoleHandler;
     Logger logger;
     private LogUtil() {
 
@@ -41,6 +43,9 @@ public class LogUtil {
             fhandler = new FileHandler(Config.LOG_PATH  + LogUtil.formateTime(System.currentTimeMillis(), "yyyy_MM_dd") + ".log", true);
             fhandler.setLevel(Level.INFO);
             fhandler.setFormatter(new MyLogHander());
+            consoleHandler=new ConsoleHandler();
+            consoleHandler.setLevel(Level.OFF);
+            logger.addHandler(consoleHandler);
             logger = Logger.getLogger("requestClient");
             logger.addHandler(fhandler);
             logger.info(log);
