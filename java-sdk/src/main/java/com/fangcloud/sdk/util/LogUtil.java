@@ -13,7 +13,6 @@ import java.util.logging.Formatter;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
-import java.util.logging.MemoryHandler;
 
 /**
  * Created by xuning on 2016/8/17.
@@ -23,7 +22,6 @@ public class LogUtil {
     private static LogUtil logUtil = new LogUtil();
     public FileHandler fhandler;
     Logger logger;
-    MemoryHandler mhandler;
     private LogUtil() {
 
     }
@@ -40,23 +38,17 @@ public class LogUtil {
             }
         }
         try {
-            fhandler = new FileHandler(Config.LOG_PATH  + LogUtil.formateTime(System.currentTimeMillis(), "yyyy_MM_dd") + ".log");
-            mhandler = new MemoryHandler(fhandler, NUM_LINES, Level.OFF);
-            // 构造一个记录器
+            fhandler = new FileHandler(Config.LOG_PATH  + LogUtil.formateTime(System.currentTimeMillis(), "yyyy_MM_dd") + ".log", true);
+            fhandler.setLevel(Level.INFO);
+            fhandler.setFormatter(new MyLogHander());
             logger = Logger.getLogger("requestClient");
-            // 为记录器添加一个MemoryHandler
-
-
-            mhandler.push();
-
+            logger.addHandler(fhandler);
+            logger.info(log);
         }
         catch (IOException e) {
             e.printStackTrace();
         }finally {
-            mhandler.close();
         }
-
-
     }
 
     public void printLog(String log) {
@@ -82,7 +74,7 @@ public class LogUtil {
     class MyLogHander extends Formatter {
         @Override
         public String format(LogRecord record) {
-            return record.getLevel() + ":" + record.getMessage()+"\n";
+            return record.getLevel() + ":" + record.getMessage()+"\r\n";
         }
     }
 }
