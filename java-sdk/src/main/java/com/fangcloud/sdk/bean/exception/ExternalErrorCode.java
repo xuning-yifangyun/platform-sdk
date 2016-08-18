@@ -10,6 +10,9 @@ public class ExternalErrorCode {
     public static final String SIZE_EXCEEDED = "size_exceeded";
     public static final String FIELD_REQUIRED = "field_required";
     public static final String URL_INVALID = "url_invalid";
+    public static final String INVALID_TOKEN="token is invalid";
+    public static final String EXECUTE_METHOD_ERROR="execute http method error";
+
 
     // permission denied
     public static final String PERMISSION_DENIED = "permission_denied";

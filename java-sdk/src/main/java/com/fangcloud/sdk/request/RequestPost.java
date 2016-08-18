@@ -1,5 +1,7 @@
 package com.fangcloud.sdk.request;
 
+import com.fangcloud.sdk.bean.exception.ExternalErrorCode;
+import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
 import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.util.TransformationUtil;
 import org.apache.http.HttpResponse;
@@ -14,7 +16,6 @@ import java.util.Objects;
 
 /**
  * Created by xuning on 2016/8/10.
- * 改写成单例模式
  */
 public class RequestPost extends RequestOperation {
     private RequestClient requestClient;
@@ -27,41 +28,36 @@ public class RequestPost extends RequestOperation {
 
     public RequestPost() {
         this.requestClient = RequestClient.getRequestClient();
-        this.url=requestClient.getUrl();
-        this.headers=requestClient.getHeaders();
-        this.nameValuePairs=requestClient.getNameValuePairs();
-        this.postBody=requestClient.getPostBody();
+        this.url = requestClient.getUrl();
+        this.headers = requestClient.getHeaders();
+        this.nameValuePairs = requestClient.getNameValuePairs();
+        this.postBody = requestClient.getPostBody();
     }
 
     @Override
     protected HttpResponse oper() {
         this.httpClient = this.requestClient.getHttpClient();
         HttpPost httpPost = new HttpPost(url);
-        //设置header
         if (headers.size() > 0 && !Objects.equals(headers, null)) {
             for (Header header : headers) {
                 httpPost.setHeader(header.getKey(), header.getValue());
             }
         }
-        //设置QueryString
-        if (null!=nameValuePairs) {
+        if (null != nameValuePairs) {
             httpPost.setEntity(TransformationUtil.toHttpEntity(nameValuePairs));
         }
-
-        //设置postBody
         if (!Objects.equals(postBody, null)) {
             StringEntity stringEntity = TransformationUtil.toStringEntity(postBody);
             stringEntity.setContentType(Config.DEFAULT_CONTENT_TYPE);
-            stringEntity.setContentEncoding("UTF-8");
+            stringEntity.setContentEncoding(Config.DEFAULT_CHARSET);
             httpPost.setEntity(stringEntity);
         }
-
-        //执行
         try {
             this.httpResponse = this.httpClient.execute(httpPost);
         }
         catch (IOException e) {
-            e.printStackTrace();
+            int sendRes = httpResponse.getStatusLine().getStatusCode();
+            throw new OpenApiSDKException(ExternalErrorCode.EXTERNAL_LOGIN_PASSWORD_ERROR + " is:" + e, sendRes, httpResponse.toString());
         }
         return this.httpResponse;
     }

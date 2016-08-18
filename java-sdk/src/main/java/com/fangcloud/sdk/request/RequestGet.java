@@ -1,5 +1,7 @@
 package com.fangcloud.sdk.request;
 
+import com.fangcloud.sdk.bean.exception.ExternalErrorCode;
+import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -16,9 +18,10 @@ public class RequestGet extends RequestOperation {
     private HttpClient httpClient;
     private HttpResponse httpResponse;
     private List<Header> headers;
+
     public RequestGet() {
         this.requestClient = RequestClient.getRequestClient();
-        this.headers=requestClient.getHeaders();
+        this.headers = requestClient.getHeaders();
     }
 
     @Override
@@ -34,7 +37,8 @@ public class RequestGet extends RequestOperation {
             this.httpResponse = this.httpClient.execute(httpGet);
         }
         catch (IOException e) {
-            e.printStackTrace();
+            int sendRes = httpResponse.getStatusLine().getStatusCode();
+            throw new OpenApiSDKException(ExternalErrorCode.EXTERNAL_LOGIN_PASSWORD_ERROR + " is:" + e, sendRes, httpResponse.toString());
         }
         return this.httpResponse;
     }

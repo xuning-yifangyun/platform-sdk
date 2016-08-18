@@ -11,13 +11,10 @@ import java.util.ArrayList;
  */
 public class RequestOption {
     private static ArrayList<Header> headers = new ArrayList<>();
-    private RequestOption(){}
-    /**
-     * 这里可能存在一定的问题
-     *
-     * @param connection
-     * @return
-     */
+
+    private RequestOption() {
+    }
+
     public static ArrayList<Header> getAuthHeaders(Connection connection) {
         Header header = new Header("Authorization", "Basic " + connection.getAuthorizationBase64());
         headers = RequestUtil.addToHeaderList(header);

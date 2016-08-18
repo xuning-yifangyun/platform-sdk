@@ -2,14 +2,13 @@ package com.fangcloud.sdk.request;
 
 import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
+import com.fangcloud.sdk.util.LogUtil;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.entity.StringEntity;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by xuning on 2016/8/9.
@@ -24,12 +23,13 @@ public class RequestClient {
     private static String postBody;
     private static StringEntity stringEntity;
     private static RequestOperation requestOperation;
-    private static Connection connection=Connection.getConnection();
+    private static Connection connection = Connection.getConnection();
     private static RequestClient requestClient = new RequestClient();
-    private static RequestClient[] requestClients=new  RequestClient[3];
-    private static final Logger LOGGER = Logger.getLogger(RequestClient.class.getName());
+    private static int sendRes;
+
     private RequestClient() {
     }
+
     public static RequestClient getRequestClient() {
         return requestClient;
     }
@@ -51,9 +51,8 @@ public class RequestClient {
         return requestClient;
     }
 
-
     public HttpResponse sendRequest() {
-        while ((Config.REFRESH_TOKEN_COUNT--)>0){
+        while ((Config.REFRESH_TOKEN_COUNT--) > 0) {
             if (method.equals(Config.METHOD_GET)) {
                 requestOperation = new RequestGet();
             }
@@ -67,28 +66,45 @@ public class RequestClient {
                 requestOperation = new RequestDelete();
             }
             httpResponse = requestOperation.execute();
-            int sendRes=httpResponse.getStatusLine().getStatusCode();
-//            System.out.println("请求资源获取到响应码："+sendRes);
-            //这里accesstokendier
-            logRequest(this);
-            if(sendRes==401){
-                //只有在非oauth请求下为执行有效
+            sendRes = httpResponse.getStatusLine().getStatusCode();
+            if (sendRes == 401) {
                 connection.tryRefreshToken();
-                headers=RequestOption.getApiCommonHeader(Connection.getConnection());
-            }else{
+                headers = RequestOption.getApiCommonHeader(Connection.getConnection());
+            }
+            else {
+                logRequest();
                 return httpResponse;
             }
-
         }
         return httpResponse;
     }
 
-    private void logRequest(RequestClient connection) {
-        if (LOGGER.isLoggable(Level.INFO)) {
-            LOGGER.log(Level.INFO, this.toString());
-        }
+    private void logRequest() {
+        LogUtil.getLogUtil().printLog(this.toString());
     }
 
+    @Override
+    public String toString() {
+        if (Config.OPEN_LOG_OUTPUT || Config.OPEN_LOG_PRINT) {
+            String requestTime = LogUtil.formateTime(System.currentTimeMillis(), "yyyy_MM_dd HH:mm:ss");
+            String hRes = "";
+            for (Header h : headers) {
+                hRes += (h.getKey() + ":" + h.getValue() + " ");
+            }
+            String nRes = "";
+            if (null != nameValuePairs) {
+                for (NameValuePair nameValuePair : nameValuePairs) {
+                    nRes += (nameValuePair.getName() + ":" + " ");
+                }
+            }
+            return (requestTime + "--- [" + "response code：" + sendRes + "] [url: " + this.getUrl() +
+                    "] [method:" + this.getMethod() + "] [header：" + hRes + "] [request option:" +
+                    nRes + "] [postbody :" + postBody + "]" + "---");
+        }
+        else {
+            return null;
+        }
+    }
 
     public HttpResponse getHttpResponse() {
         return httpResponse;

@@ -1,11 +1,12 @@
 package com.fangcloud.sdk;
 
 import com.fangcloud.sdk.api.AuthApi;
+import com.fangcloud.sdk.api.FileApi;
 import com.fangcloud.sdk.core.Connection;
 
 /**
  * Created by xuning on 2016/8/12.
- * 快速实践
+ * 快速实践demo
  */
 public class QuickStart {
 
@@ -15,14 +16,16 @@ public class QuickStart {
         String clientId = "bbe8e63d-89b0-4f31-ba07-5fd602d501d8";
         String clientSecret = "5c179dfe-0f5a-4124-9690-42b69ec3aef7";
         String rediectUrl = "http://121.41.52.18:8080/callback";
-        //       先构建client的基本信息
+        //1：建立连接
         Connection connection = Connection.getConnection().buildConnection(clientId, clientSecret, rediectUrl);
 //        connection.
-        System.out.println(connection.getClientId());
 
-        AuthApi.getTokenByAuthCode();
+        //2：授权码接口
+        AuthApi.getTokenByAuthCode("you authcode");
 
-        //获取到返回结果
+        //3：获取资源
+        FileApi.getFileInfo(111111111);
+
     }
 
 }

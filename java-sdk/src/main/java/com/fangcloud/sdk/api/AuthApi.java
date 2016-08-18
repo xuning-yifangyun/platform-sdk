@@ -75,6 +75,8 @@ public class AuthApi {
         nameValuePairs = RequestUtil.addToNameValuePairList(nameValuePair1, nameValuePair2, nameValuePair3);
         RequestClient requestClient = RequestClient.buildRequest(url, "post", headers, nameValuePairs);
         TokenInfo tokenOutput = (TokenInfo) TransformationUtil.requestClientToOutputObject(requestClient, TokenInfo.class);
+        connection.setAccessToken(tokenOutput.getAccessToken());
+        connection.setRefreshToken(tokenOutput.getRefreshToken());
         return tokenOutput;
     }
 

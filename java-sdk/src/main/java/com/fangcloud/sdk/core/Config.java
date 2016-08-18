@@ -9,6 +9,7 @@ import java.nio.charset.Charset;
  * OpenApi-Java--SDK配置文件
  * 注意：部署到生产环境需要修改DEFAULT_AUTH_URL和DEFAULT_API_URI
  * 删除TestAccessToken
+ * 生产获取修改log配置
  */
 public class Config {
     private Config(){}
@@ -25,8 +26,9 @@ public class Config {
     public static final String DEFAULT_CHARSET = "UTF-8";
     public static final Charset DEFAULT_CHARSET_TYPE = Charset.defaultCharset();
     public static final boolean OPEN_LOG_PRINT = true;
-    public static final boolean OPEN_LOG_OUTPUT = false;
-    public static final String LOG_PATH= PropertiesUtil.isLinux()?"/var/log/":"C://";
+    public static final boolean OPEN_LOG_OUTPUT = true;
+    public static final boolean ALLOW_OUTPUT_JSON_RESULT = true;
+    public static final String LOG_PATH= PropertiesUtil.isLinux()?"/var/open-api-sdk/log/":"C:/var/open-api-sdk/log/";
 
     //request
     public static final HttpVersion HTTP_VERSION = HttpVersion.HTTP_1_1;

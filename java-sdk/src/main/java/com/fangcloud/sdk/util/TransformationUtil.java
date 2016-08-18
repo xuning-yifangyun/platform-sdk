@@ -79,7 +79,7 @@ public class TransformationUtil {
     public static final Object requestClientToOutputObject(RequestClient requestClient, Class classes) {
         HttpResponse httpResponse = requestClient.sendRequest();
         String res = httpResponseToString(httpResponse);
-        System.out.println("在Transfrrom中获取到返回的jsonString是\n"+res);
+        System.out.println(res);
         return new Gson().fromJson(res, classes);
     }
 

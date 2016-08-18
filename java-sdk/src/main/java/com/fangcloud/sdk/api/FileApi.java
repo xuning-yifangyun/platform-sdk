@@ -47,10 +47,12 @@ public class FileApi {
 
     private static Connection connection = Connection.getConnection();
     private static ArrayList<Header> headers = RequestOption.getApiCommonHeader(connection);
-    private static FileApi fileApi=new FileApi();
-    public static FileApi getFileApi(){
+    private static FileApi fileApi = new FileApi();
+
+    public static FileApi getFileApi() {
         return fileApi;
     }
+
     private FileApi() {
     }
 
@@ -60,7 +62,7 @@ public class FileApi {
      * @param id
      * @return
      */
-    public static FileInfo getFileInfo(long id) {
+    public static FileInfo getFileInfo(long id){
         String url = INFO.build(Config.DEFAULT_API_URI, id);
         RequestClient requestClient = RequestClient.buildRequest(url, "get", headers, null, null);
         return (FileInfo) TransformationUtil.requestClientToOutputObject(requestClient, FileInfo.class);

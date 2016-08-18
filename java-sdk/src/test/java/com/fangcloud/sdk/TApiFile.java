@@ -37,13 +37,14 @@ public class TApiFile {
 //        AuthApi.rebuildAccessToken();
         Connection connection = Connection.buildConnection(clientId, clientSecret, rediectUrl);
         connection.setRefreshToken(Config.TestRefreshToken);
+//        AuthApi.getTokenByAuthCode("66jtO4");
     }
 
     /**
      * 根据id获取文件信息
      */
     @Test
-    public void TgetileInfo() {
+    public void TgetFileInfo() {
         FileInfo fileInfo = FileApi.getFileInfo(testFileId);
         Assert.assertEquals("出现错误", "xuning", fileInfo.getOwnedBy().getName());
         Assert.assertTrue("没有正确返回信息", fileInfo.getSuccess());
