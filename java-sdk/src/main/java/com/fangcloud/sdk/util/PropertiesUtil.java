@@ -9,7 +9,6 @@ public class PropertiesUtil {
 
     private static PropertiesUtil propertiesUtil = new PropertiesUtil();
     private static Properties properties = System.getProperties();
-    ;
 
     private PropertiesUtil() {
 

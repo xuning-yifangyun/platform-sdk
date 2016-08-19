@@ -18,23 +18,26 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class RequestClient {
     private HttpResponse httpResponse;
     private static HttpClient httpClient;
-    private static String url;
-    private static String method;
-    private static List<Header> headers;
-    private static List<NameValuePair> nameValuePairs;
-    private static String postBody;
-    private static StringEntity stringEntity;
+    private String url;
+    private String method;
+    private List<Header> headers;
+    private List<NameValuePair> nameValuePairs;
+    private String postBody;
+    private StringEntity stringEntity;
     private static RequestOperation requestOperation;
     private static Connection connection = Connection.getConnection();
     private static RequestClient requestClient = new RequestClient();
     private static int sendRes;
-    private static ReadWriteLock readWriteLock=new ReentrantReadWriteLock();
+    private ReadWriteLock readWriteLock=new ReentrantReadWriteLock();
 
     private RequestClient() {
     }
-
     public static RequestClient getRequestClient() {
         return requestClient;
+    }
+
+    public static RequestClient buildRequest(String url, String method){
+        return requestClient.buildRequest(url, method, null, null, null);
     }
 
     public static RequestClient buildRequest(String url, String method, List<Header> headers) {

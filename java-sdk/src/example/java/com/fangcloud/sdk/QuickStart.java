@@ -1,31 +1,12 @@
 package com.fangcloud.sdk;
-
 import com.fangcloud.sdk.api.AuthApi;
 import com.fangcloud.sdk.api.FileApi;
 import com.fangcloud.sdk.core.Connection;
-
-/**
- * Created by xuning on 2016/8/12.
- * 快速实践demo
- */
 public class QuickStart {
-
+    public static Connection connection=null;
     public static void main(String[] args) {
-
-        //这些参数可以也可以用配置文件的方式读取
-        String clientId = "bbe8e63d-89b0-4f31-ba07-5fd602d501d8";
-        String clientSecret = "5c179dfe-0f5a-4124-9690-42b69ec3aef7";
-        String rediectUrl = "http://121.41.52.18:8080/callback";
-        //1：建立连接
-        Connection connection = Connection.getConnection().buildConnection(clientId, clientSecret, rediectUrl);
-//        connection.
-
-        //2：授权码接口
+        connection = Connection.getConnection().buildConnection("clientId", "clientSecret", "rediectUrl");
         AuthApi.getTokenByAuthCode("you authcode");
-
-        //3：获取资源
-        FileApi.getFileInfo(111111111);
-
+        FileApi.getFileInfo(0);
     }
-
 }

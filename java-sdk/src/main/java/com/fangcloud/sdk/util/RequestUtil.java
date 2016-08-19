@@ -1,5 +1,6 @@
 package com.fangcloud.sdk.util;
 
+import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
 import com.fangcloud.sdk.request.Header;
 import org.apache.http.NameValuePair;
 
@@ -22,7 +23,7 @@ public class RequestUtil {
      */
     public static ArrayList<NameValuePair> addToNameValuePairList(NameValuePair... valuePairs) {
         if (valuePairs.length <= 0) {
-            return null;
+            throw new OpenApiSDKException("query header is null");
         }
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<>();
         for (NameValuePair p : valuePairs) {
@@ -38,9 +39,8 @@ public class RequestUtil {
      * @return
      */
     public static ArrayList<Header> addToHeaderList(Header... headers) {
-
         if (headers.length <= 0) {
-            return null;
+            throw new OpenApiSDKException("request header is null");
         }
         ArrayList<Header> headerList = new ArrayList<>();
         for (Header header : headers) {

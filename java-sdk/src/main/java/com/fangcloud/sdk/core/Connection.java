@@ -32,7 +32,7 @@ public class Connection {
     private static String ClientSecret;
     private static String authCode;
     private static String redirectUrl;
-    private static String accessToken;
+    private String accessToken;
     private static String refreshToken;
     private static String username;
     private static String password;
@@ -45,11 +45,6 @@ public class Connection {
     private Connection() {
     }
 
-    /***
-     * 不使用懒加载
-     *
-     * @return
-     */
     public static Connection getConnection() {
         return connection;
     }
