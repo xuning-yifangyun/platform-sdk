@@ -24,7 +24,6 @@ public abstract class RequestOperation {
     }
 
     public HttpResponse execute() {
-
         openHttpClient();
 
         requestClient.setHttpResponse(oper());

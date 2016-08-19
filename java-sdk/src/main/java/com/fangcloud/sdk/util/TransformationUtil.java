@@ -35,7 +35,7 @@ public class TransformationUtil {
             httpEntity = new UrlEncodedFormEntity(valuePairs, "UTF-8");
         }
         catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+
         }
         return httpEntity;
     }
@@ -79,6 +79,7 @@ public class TransformationUtil {
     public static final Object requestClientToOutputObject(RequestClient requestClient, Class classes) {
         HttpResponse httpResponse = requestClient.sendRequest();
         String res = httpResponseToString(httpResponse);
+
         System.out.println(res);
         return new Gson().fromJson(res, classes);
     }

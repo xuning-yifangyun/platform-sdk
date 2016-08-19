@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 public class LogUtil {
     public static final int NUM_LINES = 100000;
     private static LogUtil logUtil = new LogUtil();
-    public FileHandler fhandler;
+    public FileHandler fileHeandler;
     ConsoleHandler consoleHandler;
     Logger logger;
     private LogUtil() {
@@ -40,19 +40,18 @@ public class LogUtil {
             }
         }
         try {
-            fhandler = new FileHandler(Config.LOG_PATH  + LogUtil.formateTime(System.currentTimeMillis(), "yyyy_MM_dd") + ".log", true);
-            fhandler.setLevel(Level.INFO);
-            fhandler.setFormatter(new MyLogHander());
-            consoleHandler=new ConsoleHandler();
-            consoleHandler.setLevel(Level.OFF);
-            logger.addHandler(consoleHandler);
+            fileHeandler = new FileHandler(Config.LOG_PATH  + LogUtil.formateTime(System.currentTimeMillis(), "yyyy_MM_dd") + ".log", true);
+            fileHeandler.setLevel(Level.INFO);
+            fileHeandler.setFormatter(new MyLogHander());
             logger = Logger.getLogger("requestClient");
-            logger.addHandler(fhandler);
+            logger.setLevel(Level.INFO);
+            logger.addHandler(fileHeandler);
             logger.info(log);
         }
         catch (IOException e) {
             e.printStackTrace();
         }finally {
+            fileHeandler.close();
         }
     }
 

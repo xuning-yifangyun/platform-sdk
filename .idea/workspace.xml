@@ -3,7 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="6b0644a4-9401-45ca-8595-314cff2dcc26" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/core/Config.java" afterPath="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/core/Config.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestClient.java" afterPath="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestDelete.java" afterPath="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestDelete.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestGet.java" afterPath="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestGet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestOperation.java" afterPath="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestOperation.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/util/LogUtil.java" afterPath="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/util/LogUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/util/TransformationUtil.java" afterPath="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/util/TransformationUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java-sdk/src/test/java/com/fangcloud/sdk/TApiFile.java" afterPath="$PROJECT_DIR$/java-sdk/src/test/java/com/fangcloud/sdk/TApiFile.java" />
     </list>
     <ignored path="platform-sdk.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,8 +36,8 @@
       <file leaf-file-name="TApiFile.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/java-sdk/src/test/java/com/fangcloud/sdk/TApiFile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="58" column="47" selection-start-line="58" selection-start-column="47" selection-end-line="58" selection-end-column="47" />
+            <state relative-caret-position="476">
+              <caret line="46" column="32" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -38,11 +45,43 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Config.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/core/Config.java">
+      <file leaf-file-name="RequestClient.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="30" column="85" selection-start-line="30" selection-start-column="85" selection-end-line="30" selection-end-column="85" />
+            <state relative-caret-position="442">
+              <caret line="83" column="43" selection-start-line="83" selection-start-column="43" selection-end-line="83" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Connection.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/core/Connection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="239">
+              <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReadWriteLock.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/util/concurrent/locks/ReadWriteLock.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="341">
+              <caret line="118" column="17" selection-start-line="118" selection-start-column="17" selection-end-line="118" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RequestGet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestGet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="545">
+              <caret line="46" column="33" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -51,8 +90,28 @@
       <file leaf-file-name="RequestOperation.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestOperation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+            <state relative-caret-position="340">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RequestDelete.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestDelete.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="37" column="18" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileApi.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/api/FileApi.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="283">
+              <caret line="67" column="61" selection-start-line="67" selection-start-column="61" selection-end-line="67" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -61,78 +120,24 @@
       <file leaf-file-name="TransformationUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/util/TransformationUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1224">
-              <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RequestClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="918">
-              <caret line="88" column="98" selection-start-line="88" selection-start-column="98" selection-end-line="88" selection-end-column="98" />
+            <state relative-caret-position="255">
+              <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2977#2978#0" expanded="true" />
-                <element signature="e#3039#3040#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RequestGet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestGet.java">
+      <file leaf-file-name="ReentrantReadWriteLock.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/util/concurrent/locks/ReentrantReadWriteLock.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="43" column="5" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LogUtil.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/util/LogUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="47" column="46" selection-start-line="47" selection-start-column="46" selection-end-line="47" selection-end-column="46" />
+            <state relative-caret-position="79">
+              <caret line="231" column="11" selection-start-line="231" selection-start-column="11" selection-end-line="231" selection-end-column="11" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#795#796#0" expanded="true" />
-                <element signature="e#2461#2462#0" expanded="true" />
-                <element signature="e#2544#2545#0" expanded="true" />
+                <element signature="e#7839#7840#0" expanded="true" />
+                <element signature="e#7866#7867#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileHandler.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/util/logging/FileHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-125">
-              <caret line="244" column="11" selection-start-line="244" selection-start-column="11" selection-end-line="244" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MemoryHandler.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/util/logging/MemoryHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="140" column="11" selection-start-line="140" selection-start-column="11" selection-end-line="140" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Logger.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/util/logging/Logger.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-686">
-              <caret line="1319" column="16" selection-start-line="1319" selection-start-column="16" selection-end-line="1319" selection-end-column="16" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -180,7 +185,6 @@
         <option value="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/util/LogUtils.java" />
         <option value="$PROJECT_DIR$/java-sdk/.gitignore" />
         <option value="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/api/AuthApi.java" />
-        <option value="$PROJECT_DIR$/java-sdk/src/test/java/com/fangcloud/sdk/TApiFile.java" />
         <option value="$PROJECT_DIR$/java-sdk/src/example/java/com/fangcloud/sdk/QuickStart.java" />
         <option value="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/api/FileApi.java" />
         <option value="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/core/Connection.java" />
@@ -188,13 +192,14 @@
         <option value="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestPut.java" />
         <option value="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestOption.java" />
         <option value="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestPost.java" />
-        <option value="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestOperation.java" />
+        <option value="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/util/LogUtil.java" />
+        <option value="$PROJECT_DIR$/java-sdk/src/test/java/com/fangcloud/sdk/TApiFile.java" />
         <option value="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestGet.java" />
+        <option value="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/core/Config.java" />
+        <option value="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestOperation.java" />
         <option value="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestDelete.java" />
         <option value="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/util/TransformationUtil.java" />
-        <option value="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/core/Config.java" />
         <option value="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestClient.java" />
-        <option value="$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/util/LogUtil.java" />
       </list>
     </option>
   </component>
@@ -271,7 +276,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -455,48 +459,6 @@
               <option name="myItemId" value="sdk" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bean" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform-sdk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platform-sdk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java-sdk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sdk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bean" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="exception" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -574,12 +536,13 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="C:/myuse/Dev/work_space/com_workspace/OpenPlatform" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -608,7 +571,7 @@
       <recent name="C:\Users\xuning\Desktop\Commit\platform-sdk\java-sdk\src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TApiFile.TUpdateFile">
+  <component name="RunManager" selected="JUnit.TApiFile.TgetFileInfo">
     <configuration default="false" name="TApiForldren.getForldrenInfo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1171,8 +1134,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.TApiFile.TUpdateFile" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.TApiFile.TgetFileInfo" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.TApiFile.TgetFileInfo" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.TApiFile.TUpdateFile" />
         <item index="2" class="java.lang.String" itemvalue="JUnit.TApiForldren.TcreateFolder" />
         <item index="3" class="java.lang.String" itemvalue="JUnit.TApiForldren.getForldrenInfo" />
         <item index="4" class="java.lang.String" itemvalue="JUnit.TApiFile.TuploadFile" />
@@ -1201,44 +1164,46 @@
       <workItem from="1471397883274" duration="27723000" />
       <workItem from="1471451014409" duration="602000" />
       <workItem from="1471455444340" duration="2294000" />
-      <workItem from="1471485400445" duration="24906000" />
+      <workItem from="1471485400445" duration="25709000" />
+      <workItem from="1471538823183" duration="2351000" />
+      <workItem from="1471570225877" duration="3210000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TApiFile_TUpdateFile - 2016.08.18 at 19h 40m 14s.xml">
-      <configuration name="TApiFile.TUpdateFile" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TApiFile_TgetFileInfo - 2016.08.18 at 19h 26m 36s.xml">
+    <history-entry file="TApiFile_TgetFileInfo - 2016.08.19 at 01h 15m 18s.xml">
       <configuration name="TApiFile.TgetFileInfo" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TApiFile_TgetFileInfo - 2016.08.18 at 19h 30m 22s.xml">
+    <history-entry file="TApiFile_TgetFileInfo - 2016.08.19 at 09h 45m 11s.xml">
       <configuration name="TApiFile.TgetFileInfo" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TApiFile_TgetFileInfo - 2016.08.18 at 19h 31m 57s.xml">
+    <history-entry file="TApiFile_TgetFileInfo - 2016.08.19 at 09h 47m 28s.xml">
       <configuration name="TApiFile.TgetFileInfo" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TApiFile_TgetFileInfo - 2016.08.18 at 19h 34m 23s.xml">
+    <history-entry file="TApiFile_TgetFileInfo - 2016.08.19 at 09h 58m 31s.xml">
       <configuration name="TApiFile.TgetFileInfo" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TApiFile_TgetFileInfo - 2016.08.18 at 19h 35m 13s.xml">
+    <history-entry file="TApiFile_TgetFileInfo - 2016.08.19 at 10h 02m 17s.xml">
       <configuration name="TApiFile.TgetFileInfo" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TApiFile_TgetFileInfo - 2016.08.18 at 19h 35m 35s.xml">
+    <history-entry file="TApiFile_TgetFileInfo - 2016.08.19 at 10h 03m 22s.xml">
       <configuration name="TApiFile.TgetFileInfo" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TApiFile_TgetFileInfo - 2016.08.18 at 19h 37m 26s.xml">
+    <history-entry file="TApiFile_TgetFileInfo - 2016.08.19 at 10h 14m 42s.xml">
       <configuration name="TApiFile.TgetFileInfo" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TApiFile_TgetFileInfo - 2016.08.18 at 19h 38m 40s.xml">
+    <history-entry file="TApiFile_TgetFileInfo - 2016.08.19 at 10h 20m 57s.xml">
       <configuration name="TApiFile.TgetFileInfo" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TApiFile_TgetFileInfo - 2016.08.18 at 19h 39m 00s.xml">
+    <history-entry file="TApiFile_TgetFileInfo - 2016.08.19 at 10h 22m 23s.xml">
+      <configuration name="TApiFile.TgetFileInfo" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TApiFile_TgetFileInfo - 2016.08.19 at 10h 24m 14s.xml">
       <configuration name="TApiFile.TgetFileInfo" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110451000" />
+    <option name="totallyTimeSpent" value="116815000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1246,26 +1211,26 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32502708" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32394367" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1108742" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11140725" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21343446" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21776815" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21235102" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21776815" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel remote servers log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21801706" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15351813" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4182015" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41734862" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1296,34 +1261,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/bean/input/file/UpdateFileBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpcore/4.4.1/httpcore-4.4.1.jar!/org/apache/http/message/BasicStatusLine.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar!/com/google/gson/Gson.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/bean/output/auth/TokenInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpclient/4.4.1/httpclient-4.4.1.jar!/org/apache/http/impl/client/AbstractHttpClient.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
@@ -1488,9 +1425,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1498,7 +1432,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
           <caret line="113" column="48" selection-start-line="113" selection-start-column="48" selection-end-line="113" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1506,17 +1439,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
           <caret line="44" column="38" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/api/FileApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="64" column="47" selection-start-line="64" selection-start-column="47" selection-end-line="64" selection-end-column="47" />
-          <folding>
-            <element signature="e#2856#2857#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1525,16 +1447,6 @@
         <state relative-caret-position="595">
           <caret line="109" column="7" selection-start-line="109" selection-start-column="7" selection-end-line="109" selection-end-column="7" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/core/Connection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-306">
-          <caret line="77" column="7" selection-start-line="77" selection-start-column="7" selection-end-line="77" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1554,51 +1466,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestOption.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestDelete.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="56" column="13" selection-start-line="56" selection-start-column="13" selection-end-line="56" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java-sdk/src/test/java/com/fangcloud/sdk/TApiForldren.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="114" column="0" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/bean/exception/ExternalErrorCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/bean/exception/OpenApiSDKException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="581">
-          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/Paeam.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1610,94 +1481,234 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/util/TransformationUtil.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/util/logging/Logger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+        <state relative-caret-position="21488">
+          <caret line="1319" column="16" selection-start-line="1319" selection-start-column="16" selection-end-line="1319" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#69154#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#9154#9155#0" expanded="false" />
+            <element signature="e#9183#9184#0" expanded="false" />
+            <element signature="e#11495#11496#0" expanded="false" />
+            <element signature="e#11554#11555#0" expanded="false" />
+            <element signature="e#12974#12975#0" expanded="false" />
+            <element signature="e#13012#13013#0" expanded="false" />
+            <element signature="e#14296#14450#0" expanded="false" />
+            <element signature="e#14449#14450#0" expanded="false" />
+            <element signature="e#22512#22513#0" expanded="false" />
+            <element signature="e#22559#22560#0" expanded="false" />
+            <element signature="e#24843#24844#0" expanded="false" />
+            <element signature="e#24915#24916#0" expanded="false" />
+            <element signature="e#25231#25232#0" expanded="false" />
+            <element signature="e#25272#25273#0" expanded="false" />
+            <element signature="e#25995#25996#0" expanded="false" />
+            <element signature="e#26024#26025#0" expanded="false" />
+            <element signature="e#53535#53536#0" expanded="false" />
+            <element signature="e#53569#53570#0" expanded="false" />
+            <element signature="e#54237#54238#0" expanded="false" />
+            <element signature="e#54264#54265#0" expanded="false" />
+            <element signature="e#55644#55645#0" expanded="false" />
+            <element signature="e#55690#55691#0" expanded="false" />
+            <element signature="e#55859#55860#0" expanded="false" />
+            <element signature="e#55913#55914#0" expanded="false" />
+            <element signature="e#56817#56818#0" expanded="false" />
+            <element signature="e#56857#56858#0" expanded="false" />
+            <element signature="e#57132#57616#0" expanded="false" />
+            <element signature="e#57615#57616#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/util/logging/MemoryHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1989">
+          <caret line="140" column="11" selection-start-line="140" selection-start-column="11" selection-end-line="140" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/util/logging/FileHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3706">
+          <caret line="244" column="11" selection-start-line="244" selection-start-column="11" selection-end-line="244" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/util/LogUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="66" column="5" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java-sdk/src/test/java/com/fangcloud/sdk/TApiForldren.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestOperation.java">
+    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/bean/exception/ExternalErrorCode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
-          <folding />
+        <state relative-caret-position="221">
+          <caret line="13" column="80" selection-start-line="13" selection-start-column="80" selection-end-line="13" selection-end-column="80" />
+          <folding>
+            <element signature="e#920#921#0" expanded="false" />
+            <element signature="e#954#955#0" expanded="false" />
+            <element signature="e#983#984#0" expanded="false" />
+            <element signature="e#1016#1017#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestGet.java">
+    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/bean/exception/OpenApiSDKException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="43" column="5" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+        <state relative-caret-position="204">
+          <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+          <folding>
+            <element signature="e#1332#1333#0" expanded="false" />
+            <element signature="e#1367#1368#0" expanded="false" />
+            <element signature="e#1402#1403#0" expanded="false" />
+            <element signature="e#1433#1434#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/bean/input/BaseApiBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/bean/input/file/CopyFileBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#647#648#0" expanded="false" />
+            <element signature="e#676#677#0" expanded="false" />
+            <element signature="e#718#719#0" expanded="false" />
+            <element signature="e#754#755#0" expanded="false" />
+            <element signature="e#793#794#0" expanded="false" />
+            <element signature="e#830#831#0" expanded="false" />
+            <element signature="e#888#889#0" expanded="false" />
+            <element signature="e#940#941#0" expanded="false" />
+            <element signature="e#981#982#0" expanded="false" />
+            <element signature="e#1019#1020#0" expanded="false" />
+            <element signature="e#1078#1079#0" expanded="false" />
+            <element signature="e#1125#1126#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestOption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/core/Config.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="30" column="85" selection-start-line="30" selection-start-column="85" selection-end-line="30" selection-end-column="85" />
+        <state relative-caret-position="358">
+          <caret line="49" column="56" selection-start-line="49" selection-start-column="56" selection-end-line="49" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/util/logging/Logger.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/util/concurrent/locks/ReadWriteLock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-686">
-          <caret line="1319" column="16" selection-start-line="1319" selection-start-column="16" selection-end-line="1319" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/util/logging/MemoryHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="140" column="11" selection-start-line="140" selection-start-column="11" selection-end-line="140" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="88" column="98" selection-start-line="88" selection-start-column="98" selection-end-line="88" selection-end-column="98" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2977#2978#0" expanded="true" />
-            <element signature="e#3039#3040#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/util/logging/FileHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-125">
-          <caret line="244" column="11" selection-start-line="244" selection-start-column="11" selection-end-line="244" selection-end-column="11" />
+        <state relative-caret-position="341">
+          <caret line="118" column="17" selection-start-line="118" selection-start-column="17" selection-end-line="118" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/java-sdk/src/test/java/com/fangcloud/sdk/TApiFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="58" column="47" selection-start-line="58" selection-start-column="47" selection-end-line="58" selection-end-column="47" />
+        <state relative-caret-position="476">
+          <caret line="46" column="32" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/util/LogUtil.java">
+    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestOperation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="47" column="46" selection-start-line="47" selection-start-column="46" selection-end-line="47" selection-end-column="46" />
+        <state relative-caret-position="340">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/core/Connection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#795#796#0" expanded="true" />
-            <element signature="e#2461#2462#0" expanded="true" />
-            <element signature="e#2544#2545#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestGet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="46" column="33" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/api/FileApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="67" column="61" selection-start-line="67" selection-start-column="61" selection-end-line="67" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_79/src.zip!/java/util/concurrent/locks/ReentrantReadWriteLock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="231" column="11" selection-start-line="231" selection-start-column="11" selection-end-line="231" selection-end-column="11" />
+          <folding>
+            <element signature="e#7839#7840#0" expanded="true" />
+            <element signature="e#7866#7867#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestDelete.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="37" column="18" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/util/TransformationUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java-sdk/src/main/java/com/fangcloud/sdk/request/RequestClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="83" column="43" selection-start-line="83" selection-start-column="43" selection-end-line="83" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>

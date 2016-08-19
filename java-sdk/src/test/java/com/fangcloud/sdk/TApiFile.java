@@ -45,6 +45,7 @@ public class TApiFile {
      */
     @Test
     public void TgetFileInfo() {
+        Config.setOpenLogOutput(true);
         FileInfo fileInfo = FileApi.getFileInfo(testFileId);
         Assert.assertEquals("出现错误", "xuning", fileInfo.getOwnedBy().getName());
         Assert.assertTrue("没有正确返回信息", fileInfo.getSuccess());

@@ -18,7 +18,7 @@ public class RequestGet extends RequestOperation {
     private HttpClient httpClient;
     private HttpResponse httpResponse;
     private List<Header> headers;
-
+    private int sendRes;
     public RequestGet() {
         this.requestClient = RequestClient.getRequestClient();
         this.headers = requestClient.getHeaders();
@@ -35,10 +35,14 @@ public class RequestGet extends RequestOperation {
         }
         try {
             this.httpResponse = this.httpClient.execute(httpGet);
+
+            int sendRes = httpResponse.getStatusLine().getStatusCode();
         }
         catch (IOException e) {
-            int sendRes = httpResponse.getStatusLine().getStatusCode();
-            throw new OpenApiSDKException(ExternalErrorCode.EXTERNAL_LOGIN_PASSWORD_ERROR + " is:" + e, sendRes, httpResponse.toString());
+            System.out.println(sendRes);
+            throw new OpenApiSDKException(ExternalErrorCode.EXTERNAL_LOGIN_PASSWORD_ERROR + " is:", sendRes, null);
+        }catch (NullPointerException n){
+            System.out.println("空指针异常");
         }
         return this.httpResponse;
     }

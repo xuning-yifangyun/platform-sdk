@@ -9,6 +9,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.entity.StringEntity;
 
 import java.util.List;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * Created by xuning on 2016/8/9.
@@ -26,6 +28,7 @@ public class RequestClient {
     private static Connection connection = Connection.getConnection();
     private static RequestClient requestClient = new RequestClient();
     private static int sendRes;
+    private static ReadWriteLock readWriteLock=new ReentrantReadWriteLock();
 
     private RequestClient() {
     }
@@ -52,7 +55,9 @@ public class RequestClient {
     }
 
     public HttpResponse sendRequest() {
+        readWriteLock.writeLock();
         while ((Config.REFRESH_TOKEN_COUNT--) > 0) {
+
             if (method.equals(Config.METHOD_GET)) {
                 requestOperation = new RequestGet();
             }
@@ -76,6 +81,7 @@ public class RequestClient {
                 return httpResponse;
             }
         }
+        readWriteLock.writeLock().unlock();
         return httpResponse;
     }
 
