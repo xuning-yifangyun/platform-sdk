@@ -64,7 +64,7 @@ public class FileApi {
      */
     public static FileInfo getFileInfo(long id){
         String url = INFO.build(Config.DEFAULT_API_URI, id);
-        RequestClient requestClient = RequestClient.buildRequest(url, "get", headers, null, null);
+        RequestClient requestClient = RequestClient.buildRequest(url, "get", headers);
         return (FileInfo) TransformationUtil.requestClientToOutputObject(requestClient, FileInfo.class);
     }
 

@@ -21,7 +21,6 @@ import org.apache.http.message.BasicNameValuePair;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * Created by xuning on 2016/8/9.
@@ -41,7 +40,7 @@ public class Connection {
     private static int refreshCount;
     private static Connection connection = new Connection();
     private static final UrlTemplate AUTH = new UrlTemplate("/token");
-    private static final Logger LOGGER=Logger.getLogger(Connection.class.getName());
+
     private Connection() {
     }
 
@@ -102,14 +101,12 @@ public class Connection {
             connection.setAccessToken(tokenInfo.getAccessToken());
         }
         catch (Exception e) {
-           throw new OpenApiSDKException(ExternalErrorCode.INVALID_TOKEN);
+            throw new OpenApiSDKException(ExternalErrorCode.INVALID_TOKEN);
         }
         finally {
             httpClient.getConnectionManager().shutdown();
         }
-
     }
-
 
     public String getAuthorizationBase64() {
         return Base64.encodeBase64String((this.ClientId + ":" + this.ClientSecret).getBytes());

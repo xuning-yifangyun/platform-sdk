@@ -79,8 +79,9 @@ public class TransformationUtil {
     public static final Object requestClientToOutputObject(RequestClient requestClient, Class classes) {
         HttpResponse httpResponse = requestClient.sendRequest();
         String res = httpResponseToString(httpResponse);
-
-        System.out.println(res);
+        if(Config.ALLOW_OUTPUT_JSON_RESULT){
+            System.out.println(res);
+        }
         return new Gson().fromJson(res, classes);
     }
 

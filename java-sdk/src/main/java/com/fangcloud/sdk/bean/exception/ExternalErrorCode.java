@@ -11,6 +11,7 @@ public class ExternalErrorCode {
     public static final String FIELD_REQUIRED = "field_required";
     public static final String URL_INVALID = "url_invalid";
     public static final String INVALID_TOKEN="token is invalid";
+    public static final String REQUEST_METHOD_ERROR = "request method is error";
     public static final String EXECUTE_METHOD_ERROR="execute http method error";
 
 
