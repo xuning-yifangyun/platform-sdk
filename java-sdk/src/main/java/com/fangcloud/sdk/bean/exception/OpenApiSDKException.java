@@ -5,14 +5,18 @@ package com.fangcloud.sdk.bean.exception;
  */
 public class OpenApiSDKException extends RuntimeException {
     private static final long serialVersionUID = 1L;
-    private final long responseCode;
-    private final String response;
+    private  long responseCode;
+    private  String response;
 
     public OpenApiSDKException(String message) {
+        super(message);
         this.responseCode = 0;
         this.response = null;
     }
-
+    public OpenApiSDKException(String message, long responseCode){
+        super(message);
+        this.responseCode=responseCode;
+    }
     public OpenApiSDKException(String message, long responseCode, String response) {
         super(message);
         this.responseCode = responseCode;

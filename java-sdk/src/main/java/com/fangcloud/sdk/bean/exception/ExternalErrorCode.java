@@ -12,7 +12,9 @@ public class ExternalErrorCode {
     public static final String URL_INVALID = "url_invalid";
     public static final String INVALID_TOKEN="token is invalid";
     public static final String REQUEST_METHOD_ERROR = "request method is error";
-    public static final String EXECUTE_METHOD_ERROR="execute http method error";
+    public static final String REQUEST_NO_RESPONSE="request is not response";
+    public static final String REQUEST_IS_BAD="request is bad";
+    public static final String NOT_KNOW_ERROR="not know this exception's reasion";
 
 
     // permission denied

@@ -119,12 +119,12 @@ public class FolderApi {
      * 从回收站恢复文件
      *
      * @param folderIds
-     * @param restore_all
+     * @param restoreAll
      * @return
      */
-    public static RestoreFolderFromTrash recoveryFolderFromTrash(List<Long> folderIds, boolean restore_all) {
+    public static RestoreFolderFromTrash recoveryFolderFromTrash(List<Long> folderIds, boolean restoreAll) {
         String url = DELETE_FROM_TRASH.build(Config.DEFAULT_API_URI);
-        RestoreFolderFromTrashBean restoreFolderFromTrashBean = new RestoreFolderFromTrashBean(restore_all, folderIds);
+        RestoreFolderFromTrashBean restoreFolderFromTrashBean = new RestoreFolderFromTrashBean(restoreAll, folderIds);
         String postBodyJsonString = TransformationUtil.postBodyObjToJsonString(restoreFolderFromTrashBean);
         RequestClient requestClient = RequestClient.buildRequest(url, "post", headers, null, postBodyJsonString);
         return (RestoreFolderFromTrash) TransformationUtil.requestClientToOutputObject(requestClient, RestoreFolderFromTrash.class);

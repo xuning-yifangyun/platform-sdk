@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by xuning on 2016/8/12.
  */
-public class ErrorsInfoOutput {
+public class ErrorsInfo {
     @SerializedName("errors")
     private List<ReponseErrorInfo> errors;
     @SerializedName("request_id")
@@ -28,24 +28,24 @@ public class ErrorsInfoOutput {
     public void setRequestId(String requestId) {
         this.requestId = requestId;
     }
-}
-class ReponseErrorInfo{
-    private String msg;
-    private String code;
+    public class ReponseErrorInfo{
+        private String msg;
+        private String code;
 
-    public String getMsg() {
-        return msg;
-    }
+        public String getMsg() {
+            return msg;
+        }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
+        public void setMsg(String msg) {
+            this.msg = msg;
+        }
 
-    public String getCode() {
-        return code;
-    }
+        public String getCode() {
+            return code;
+        }
 
-    public void setCode(String code) {
-        this.code = code;
+        public void setCode(String code) {
+            this.code = code;
+        }
     }
 }

@@ -99,6 +99,7 @@ public class Connection {
             String jsonString = TransformationUtil.httpResponseToString(httpResponse);
             TokenInfo tokenInfo = new Gson().fromJson(jsonString, TokenInfo.class);
             connection.setAccessToken(tokenInfo.getAccessToken());
+
         }
         catch (Exception e) {
             throw new OpenApiSDKException(ExternalErrorCode.INVALID_TOKEN);

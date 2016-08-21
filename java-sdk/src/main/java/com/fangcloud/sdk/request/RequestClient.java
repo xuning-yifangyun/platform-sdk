@@ -1,5 +1,7 @@
 package com.fangcloud.sdk.request;
 
+import com.fangcloud.sdk.bean.exception.ExternalErrorCode;
+import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
 import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
 import com.fangcloud.sdk.util.LogUtil;
@@ -17,26 +19,24 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class RequestClient {
     private HttpResponse httpResponse;
-    private static HttpClient httpClient;
+    private HttpClient httpClient;
     private String url;
     private String method;
     private List<Header> headers;
     private List<NameValuePair> nameValuePairs;
     private String postBody;
     private StringEntity stringEntity;
-    private static RequestOperation requestOperation;
+    private RequestOperation requestOperation;
     private static Connection connection = Connection.getConnection();
     private static RequestClient requestClient = new RequestClient();
-    private static int sendRes;
-    private ReadWriteLock readWriteLock=new ReentrantReadWriteLock();
+    private int sendRes;
+    private ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 
-    private RequestClient() {
-    }
     public static RequestClient getRequestClient() {
         return requestClient;
     }
 
-    public static RequestClient buildRequest(String url, String method){
+    public static RequestClient buildRequest(String url, String method) {
         return requestClient.buildRequest(url, method, null, null, null);
     }
 
@@ -60,27 +60,34 @@ public class RequestClient {
     public HttpResponse sendRequest() {
         readWriteLock.writeLock();
         while ((Config.REFRESH_TOKEN_COUNT--) > 0) {
-
-            if (method.equals(Config.METHOD_GET)) {
+            switch (method) {
+            case Config.METHOD_GET:
                 requestOperation = new RequestGet();
-            }
-            else if (method.equals(Config.METHOD_POST)) {
+                break;
+            case Config.METHOD_POST:
                 requestOperation = new RequestPost();
-            }
-            else if (method.equals(Config.METHOD_PUT)) {
+                break;
+            case Config.METHOD_PUT:
                 requestOperation = new RequestPut();
-            }
-            else if (method.equals(Config.METHOD_DELETE)) {
+                break;
+            case Config.METHOD_DELETE:
                 requestOperation = new RequestDelete();
+                break;
+            default:
+                throw new OpenApiSDKException(ExternalErrorCode.REQUEST_METHOD_ERROR);
             }
             httpResponse = requestOperation.execute();
             sendRes = httpResponse.getStatusLine().getStatusCode();
+            logRequest(this.toString());
             if (sendRes == 401) {
                 connection.tryRefreshToken();
                 headers = RequestOption.getApiCommonHeader(Connection.getConnection());
             }
             else {
-                logRequest();
+                if (sendRes != 200) {
+                    RequestIntercept.ErrorInfoIntercept(httpResponse);
+
+                }
                 return httpResponse;
             }
         }
@@ -88,8 +95,8 @@ public class RequestClient {
         return httpResponse;
     }
 
-    private void logRequest() {
-        LogUtil.getLogUtil().printLog(this.toString());
+    public static void logRequest(String str) {
+        LogUtil.getLogUtil().printLog(str);
     }
 
     @Override
@@ -110,9 +117,7 @@ public class RequestClient {
                     "] [method:" + this.getMethod() + "] [header：" + hRes + "] [request option:" +
                     nRes + "] [postbody :" + postBody + "]" + "---");
         }
-        else {
-            return null;
-        }
+        return null;
     }
 
     public HttpResponse getHttpResponse() {
@@ -123,12 +128,12 @@ public class RequestClient {
         this.httpResponse = httpResponse;
     }
 
-    public static HttpClient getHttpClient() {
+    public HttpClient getHttpClient() {
         return httpClient;
     }
 
-    public static void setHttpClient(HttpClient httpClient) {
-        RequestClient.httpClient = httpClient;
+    public void setHttpClient(HttpClient httpClient) {
+        this.httpClient = httpClient;
     }
 
     public String getUrl() {
@@ -179,11 +184,11 @@ public class RequestClient {
         this.postBody = postBody;
     }
 
-    public static RequestOperation getRequestOperation() {
+    public RequestOperation getRequestOperation() {
         return requestOperation;
     }
 
-    public static void setRequestOperation(RequestOperation requestOperation) {
-        RequestClient.requestOperation = requestOperation;
+    public void setRequestOperation(RequestOperation requestOperation) {
+        this.requestOperation = requestOperation;
     }
 }

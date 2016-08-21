@@ -1,6 +1,5 @@
 package com.fangcloud.sdk.api;
 
-import com.fangcloud.sdk.bean.T_1.factory.RequestClientFactory;
 import com.fangcloud.sdk.bean.input.file.CopyFileBean;
 import com.fangcloud.sdk.bean.input.file.DeleteFileBean;
 import com.fangcloud.sdk.bean.input.file.DeleteFileFromTrashBean;
@@ -26,10 +25,7 @@ import com.fangcloud.sdk.request.RequestClient;
 import com.fangcloud.sdk.request.RequestOption;
 import com.fangcloud.sdk.util.TransformationUtil;
 import com.fangcloud.sdk.util.UrlTemplate;
-import org.apache.http.HttpResponse;
-import org.apache.http.util.EntityUtils;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,28 +55,14 @@ public class FileApi {
 
     private FileApi() {
     }
-    public static String getTest(long id, String newName, String newDescription){
-        String url = UPDATE.build(Config.DEFAULT_API_URI, id);
-        UpdateFileBean updateFileBean = new UpdateFileBean(newName, newDescription);
-        String postBodyJsonString = TransformationUtil.postBodyObjToJsonString(updateFileBean);
-        com.fangcloud.sdk.bean.T_1.factory.RequestClient requestClient = RequestClientFactory.getRequestClient(url, "put", headers, null, postBodyJsonString);
-        HttpResponse httpResponse=requestClient.sendRequest();
-        String res=null;
-        try {
-            res=EntityUtils.toString(httpResponse.getEntity());
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        return res;
-    }
+
     /**
      * 获取文件信息
      *
      * @param id
      * @return
      */
-    public static FileInfo getFileInfo(long id){
+    public static FileInfo getFileInfo(long id) {
         String url = INFO.build(Config.DEFAULT_API_URI, id);
         RequestClient requestClient = RequestClient.buildRequest(url, "get", headers);
         return (FileInfo) TransformationUtil.requestClientToOutputObject(requestClient, FileInfo.class);

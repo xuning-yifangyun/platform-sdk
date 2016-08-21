@@ -32,12 +32,8 @@ public class TApiFile {
 
 
     public TApiFile() {
-        //为了简单测试，这里在请求之前就刷新TokenToken，但会大大的降低运行效率，不建议使用
-//        Connection.getConnection().setRefreshToken(Config.TestRefreshToken);
-//        AuthApi.rebuildAccessToken();
         Connection connection = Connection.buildConnection(clientId, clientSecret, rediectUrl);
         connection.setRefreshToken(Config.TestRefreshToken);
-//        AuthApi.getTokenByAuthCode("66jtO4");
     }
 
     /**
@@ -51,12 +47,6 @@ public class TApiFile {
         Assert.assertTrue("没有正确返回信息", fileInfo.getSuccess());
     }
 
-    @Test
-    public void getTestFactory(){
-        Config.setOpenLogOutput(true);
-        String fileInfo = FileApi.getTest(testFileId, "dog.jpg", "ning update");
-        System.out.println(fileInfo);
-    }
     /**
      * 更新文件
      */
