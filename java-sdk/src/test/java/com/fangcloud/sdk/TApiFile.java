@@ -51,6 +51,12 @@ public class TApiFile {
         Assert.assertTrue("没有正确返回信息", fileInfo.getSuccess());
     }
 
+    @Test
+    public void getTestFactory(){
+        Config.setOpenLogOutput(true);
+        String fileInfo = FileApi.getTest(testFileId, "dog.jpg", "ning update");
+        System.out.println(fileInfo);
+    }
     /**
      * 更新文件
      */

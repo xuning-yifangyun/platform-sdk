@@ -70,6 +70,17 @@ public class TransformationUtil {
     }
 
     /**
+     * httpresponse转换为Object
+     * @param httpResponse
+     * @param classes
+     * @return
+     */
+    public static final Object httpResponseToObject(HttpResponse httpResponse, Class classes){
+        String res=httpResponseToString(httpResponse);
+        return new Gson().fromJson(res, classes);
+    }
+
+    /**
      * 直接取出Client转换为Object
      *
      * @param requestClient
