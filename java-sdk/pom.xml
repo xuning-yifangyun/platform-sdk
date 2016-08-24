@@ -6,10 +6,10 @@
     <groupId>com.fangcloud.sdk</groupId>
     <artifactId>java-sdk</artifactId>
     <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.1</version>
     <!-- TODO project name  -->
     <name>java-sdk</name>
-    <description></description>
+    <description>yifangyun open-api java-sdk</description>
 
     <!--compiler-->
     <dependencies>
@@ -47,7 +47,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
+    <!--Compiler-->
     <build>
         <plugins>
             <plugin>
@@ -61,4 +61,34 @@
         </plugins>
     </build>
 
+    <!--Deploy-->
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+    <!--Licenses-->
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <!--Scm Config-->
+    <scm>
+        <tag>master</tag>
+        <url>https://github.com/xuning-yifangyun/platform-sdk.git</url>
+        <connection>scm:git:git@github.com:xuning-yifangyun/platform-sdk.git</connection>
+        <developerConnection>scm:git:git@github.com:xuning-yifangyun/platform-sdk.git</developerConnection>
+    </scm>
+    <!--my infoemation-->
+    <developers>
+        <developer>
+            <name>yifangyun_xuning</name>
+            <email>1748373312@qq.com</email>
+            <organization>fangcloud</organization>
+        </developer>
+    </developers>
+    <!--GPG-->
 </project>
