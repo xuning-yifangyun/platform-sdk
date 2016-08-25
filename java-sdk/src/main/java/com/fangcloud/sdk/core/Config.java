@@ -13,9 +13,12 @@ import java.nio.charset.Charset;
  * 删除Test属性
  */
 public class Config {
-    private static Config config=new Config();
-    private Config(){}
-    public static Config getConfig(){
+    private Config() {
+    }
+
+    private static Config config = new Config();
+
+    public static Config getConfig() {
         return config;
     }
 
@@ -33,9 +36,9 @@ public class Config {
     public static boolean OPEN_LOG_PRINT = false;
     public static boolean OPEN_LOG_OUTPUT = true;
     public static boolean ALLOW_OUTPUT_JSON_RESULT = false;
-    public static String WIN_LOG_DIR="/var/open-api-sdk/log/";
-    public static String LINUX_LOG_DIR="C:/var/open-api-sdk/log/";
-    public static final String LOG_PATH= PropertiesUtil.isLinux()?LINUX_LOG_DIR:WIN_LOG_DIR;
+    public static String WIN_LOG_DIR = "/var/open-api-sdk/log/";
+    public static String LINUX_LOG_DIR = "C:/var/open-api-sdk/log/";
+    public static final String LOG_PATH = PropertiesUtil.isLinux() ? LINUX_LOG_DIR : WIN_LOG_DIR;
 
     //request
     public static final HttpVersion HTTP_VERSION = HttpVersion.HTTP_1_1;
@@ -52,11 +55,7 @@ public class Config {
 
     //response
 
-    //Test
-    public static final String testClientID = "bbe8e63d-89b0-4f31-ba07-5fd602d501d8";
-    public static final String testClientSecret = "5c179dfe-0f5a-4124-9690-42b69ec3aef7";
-    public static final String testRediectUrl = "http://121.41.52.18:8080/callback";
-    public static final String TestRefreshToken = "bceecd8b-ba45-4aca-8c4e-a80ed253f9f2";
+    //set method
 
     public static void setOpenLogPrint(boolean openLogPrint) {
         OPEN_LOG_PRINT = openLogPrint;

@@ -8,7 +8,6 @@ import com.fangcloud.sdk.bean.output.folder.MoveFolder;
 import com.fangcloud.sdk.bean.output.folder.RestoreFolderFromTrash;
 import com.fangcloud.sdk.bean.output.folder.UpdateFolder;
 import com.fangcloud.sdk.bean.output.item.ItemList;
-import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
 import org.junit.Test;
 
@@ -20,16 +19,17 @@ import java.util.List;
  * 测试结果：从回收站恢复文件，提示方法不被允许
  */
 public class TApiForldren {
-    public String clientId = Config.testClientID;
-    public String clientSecret = Config.testClientSecret;
-    public String rediectUrl = Config.testRediectUrl;
-    public Connection connection = Connection.buildConnection(clientId, clientSecret, rediectUrl);
+    //Test
+    public static final String testClientID = "bbe8e63d-89b0-4f31-ba07-5fd602d501d8";
+    public static final String testClientSecret = "5c179dfe-0f5a-4124-9690-42b69ec3aef7";
+    public static final String testRediectUrl = "http://121.41.52.18:8080/callback";
+    public static final String TestRefreshToken = "bceecd8b-ba45-4aca-8c4e-a80ed253f9f2";
     public static long testfoldrenId=501000031450L;
     private FolderApi folderApi=FolderApi.getFolderApi();
 
     public TApiForldren() {
-        Connection connection = Connection.buildConnection(clientId, clientSecret, rediectUrl);
-        connection.setRefreshToken(Config.TestRefreshToken);
+        Connection connection = Connection.buildConnection(testClientID, testClientSecret, testRediectUrl);
+        connection.setRefreshToken(TestRefreshToken);
     }
 
     /**
