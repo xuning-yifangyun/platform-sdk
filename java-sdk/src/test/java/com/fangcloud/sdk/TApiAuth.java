@@ -14,6 +14,9 @@ public class TApiAuth {
     public String rediectUrl = Config.testRediectUrl;
     public Connection connection=Connection.buildConnection(clientId,clientSecret,rediectUrl);
 
+    public  TApiAuth(){
+        Config.setAllowOutputJsonResult(true);
+    }
     /**
      * 获取Auth URL
      */

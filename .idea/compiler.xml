@@ -22,10 +22,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="OpenPlaformDemo" />
         <module name="sdk" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="OpenPlaformDemo" target="1.5" />
       <module name="sdk" target="1.7" />
     </bytecodeTargetLevel>
   </component>

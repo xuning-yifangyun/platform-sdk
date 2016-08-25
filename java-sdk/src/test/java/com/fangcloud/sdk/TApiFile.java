@@ -30,10 +30,11 @@ public class TApiFile {
     public String rediectUrl = Config.testRediectUrl;
     public long testFileId = 501000511232L;
 
-
     public TApiFile() {
         Connection connection = Connection.buildConnection(clientId, clientSecret, rediectUrl);
         connection.setRefreshToken(Config.TestRefreshToken);
+        Config.setAllowOutputJsonResult(true);
+
     }
 
     /**
@@ -42,7 +43,8 @@ public class TApiFile {
     @Test
     public void TgetFileInfo() {
         Config.setOpenLogOutput(true);
-        FileInfo fileInfo = FileApi.getFileInfo(testFileId);
+        FileApi fileApi=new FileApi();
+        FileInfo fileInfo = fileApi.getFileInfo(testFileId);
         Assert.assertEquals("出现错误", "xuning", fileInfo.getOwnedBy().getName());
         Assert.assertTrue("没有正确返回信息", fileInfo.getSuccess());
     }

@@ -27,9 +27,6 @@ public class AuthApi {
     private static ArrayList<NameValuePair> nameValuePairs = new ArrayList<>();
     private AuthApi authApi = new AuthApi();
 
-    private AuthApi() {
-    }
-
     public AuthApi getAuthApi() {
         return authApi;
     }

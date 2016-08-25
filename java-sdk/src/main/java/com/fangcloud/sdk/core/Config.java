@@ -27,14 +27,15 @@ public class Config {
     public static final boolean DELAULT_AUTO_REFRESH_TOKEN = true;
     public static int REFRESH_TOKEN_COUNT = 2;
 
-
     //system
     public static final String DEFAULT_CHARSET = "UTF-8";
     public static final Charset DEFAULT_CHARSET_TYPE = Charset.defaultCharset();
     public static boolean OPEN_LOG_PRINT = false;
-    public static boolean OPEN_LOG_OUTPUT = false;
-    public static final boolean ALLOW_OUTPUT_JSON_RESULT = true;
-    public static final String LOG_PATH= PropertiesUtil.isLinux()?"/var/open-api-sdk/log/":"C:/var/open-api-sdk/log/";
+    public static boolean OPEN_LOG_OUTPUT = true;
+    public static boolean ALLOW_OUTPUT_JSON_RESULT = false;
+    public static String WIN_LOG_DIR="/var/open-api-sdk/log/";
+    public static String LINUX_LOG_DIR="C:/var/open-api-sdk/log/";
+    public static final String LOG_PATH= PropertiesUtil.isLinux()?LINUX_LOG_DIR:WIN_LOG_DIR;
 
     //request
     public static final HttpVersion HTTP_VERSION = HttpVersion.HTTP_1_1;
@@ -63,5 +64,17 @@ public class Config {
 
     public static void setOpenLogOutput(boolean openLogOutput) {
         OPEN_LOG_OUTPUT = openLogOutput;
+    }
+
+    public static void setWinLogDir(String winLogDir) {
+        WIN_LOG_DIR = winLogDir;
+    }
+
+    public static void setLinuxLogDir(String linuxLogDir) {
+        LINUX_LOG_DIR = linuxLogDir;
+    }
+
+    public static void setAllowOutputJsonResult(boolean allowOutputJsonResult) {
+        ALLOW_OUTPUT_JSON_RESULT = allowOutputJsonResult;
     }
 }

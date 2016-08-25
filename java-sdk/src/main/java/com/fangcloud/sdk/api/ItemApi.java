@@ -12,7 +12,7 @@ import com.fangcloud.sdk.util.UrlTemplate;
 import java.util.List;
 
 public class ItemApi {
-    private ItemApi(){}
+    public ItemApi(){}
 
     private static final UrlTemplate SEARCH = new UrlTemplate("/item/search");
     private static Connection connection=Connection.getConnection();

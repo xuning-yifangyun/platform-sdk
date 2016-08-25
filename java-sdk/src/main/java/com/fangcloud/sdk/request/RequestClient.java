@@ -86,7 +86,6 @@ public class RequestClient {
             else {
                 if (sendRes != 200) {
                     RequestIntercept.ErrorInfoIntercept(httpResponse);
-
                 }
                 return httpResponse;
             }

@@ -53,8 +53,7 @@ public class FileApi {
         return fileApi;
     }
 
-    private FileApi() {
-    }
+
 
     /**
      * 获取文件信息

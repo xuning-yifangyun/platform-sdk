@@ -19,6 +19,7 @@ public class TApiItem {
     public TApiItem() {
         Connection connection = Connection.buildConnection(clientId, clientSecret, rediectUrl);
         connection.setRefreshToken(Config.TestRefreshToken);
+        Config.setAllowOutputJsonResult(true);
     }
 
     /**

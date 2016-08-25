@@ -35,14 +35,15 @@ public class FolderApi {
     private static final UrlTemplate CHRLDREN = new UrlTemplate("/folder/children");
     private static Connection connection = Connection.getConnection();
     private static List<Header> headers = RequestOption.getApiCommonHeader(connection);
-    private static FolderApi folderApi=new FolderApi();
+    private static FolderApi folderApi = new FolderApi();
 
-    private FolderApi() {
+    public FolderApi() {
     }
 
-    public static FolderApi getFolderApi(){
+    public static FolderApi getFolderApi() {
         return folderApi;
     }
+
     /**
      * 获取文件夹信息
      *
