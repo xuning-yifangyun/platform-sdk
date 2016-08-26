@@ -59,7 +59,8 @@ public class RequestClient {
 
     public HttpResponse sendRequest() {
 //        readWriteLock.writeLock();
-        while ((Config.REFRESH_TOKEN_COUNT--) > 0) {
+        int refreshTokenCount=Config.REFRESH_TOKEN_COUNT;
+        while (refreshTokenCount > 0) {
             switch (method) {
             case Config.METHOD_GET:
                 requestOperation = new RequestGet();
@@ -80,7 +81,9 @@ public class RequestClient {
             sendRes = httpResponse.getStatusLine().getStatusCode();
             logRequest(this.toString());
             if (sendRes == 401) {
-                connection.tryRefreshToken();
+                synchronized (new RequestClient()){
+                    connection.tryRefreshToken();
+                }
                 headers = RequestOption.getApiCommonHeader(Connection.getConnection());
             }
             else {
