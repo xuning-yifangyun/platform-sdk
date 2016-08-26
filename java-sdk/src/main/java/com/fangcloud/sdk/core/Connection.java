@@ -29,7 +29,7 @@ public class Connection {
 
     private static String ClientId;
     private static String ClientSecret;
-    private static String authCode;
+    private String authCode;
     private static String redirectUrl;
     private String accessToken;
     private static String refreshToken;

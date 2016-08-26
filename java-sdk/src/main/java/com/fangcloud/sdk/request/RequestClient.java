@@ -58,7 +58,7 @@ public class RequestClient {
     }
 
     public HttpResponse sendRequest() {
-        readWriteLock.writeLock();
+//        readWriteLock.writeLock();
         while ((Config.REFRESH_TOKEN_COUNT--) > 0) {
             switch (method) {
             case Config.METHOD_GET:
@@ -90,7 +90,7 @@ public class RequestClient {
                 return httpResponse;
             }
         }
-        readWriteLock.writeLock().unlock();
+//        readWriteLock.writeLock().unlock();
         return httpResponse;
     }
 

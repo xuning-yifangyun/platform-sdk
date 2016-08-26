@@ -7,7 +7,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
  * Created by xuning on 2016/8/10.
  */
 public abstract class RequestOperation {
-    private static RequestClient requestClient;
+    private RequestClient requestClient;
 
     public RequestOperation() {
         requestClient = RequestClient.getRequestClient();
