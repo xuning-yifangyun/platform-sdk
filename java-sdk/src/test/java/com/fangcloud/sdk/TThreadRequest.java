@@ -1,10 +1,11 @@
 package com.fangcloud.sdk;
 
 import com.fangcloud.sdk.api.FileApi;
+import com.fangcloud.sdk.api.FolderApi;
 import com.fangcloud.sdk.bean.output.file.FileInfo;
+import com.fangcloud.sdk.bean.output.folder.FolderInfo;
 import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
-import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -25,11 +26,46 @@ public class TThreadRequest {
     @Test
     public void TgetFileInfo() {
         int count=5;
-        while((count--)>0){
-            FileApi fileApi = new FileApi();
-            FileInfo fileInfo = fileApi.getFileInfo(testFileId);
-            Assert.assertEquals("出现错误", "xuning", fileInfo.getOwnedBy().getName());
-            Assert.assertTrue("没有正确返回信息", fileInfo.getSuccess());
+        FileApi fileApi = new FileApi();
+        while ((count--)>0){
+            FileInfo fileInfo1 = fileApi.getFileInfo(testFileId);
+        }
+    }
+
+    /**
+     * 多线程测试
+     */
+    @Test
+    public void TRunnable(){
+        AT a=new AT("1号窗口");
+        AT a1=new AT("2号窗口");
+        AT a2=new AT("3号窗口");
+        Thread thread=new Thread(a);
+        Thread thread1=new Thread(a1);
+        Thread thread2=new Thread(a1);
+        thread.start();
+        thread1.start();
+        thread2.start();
+    }
+}
+class A implements Runnable {
+    public long testFileId = 501000511232L;
+    public static long testfoldrenId=501000031450L;
+    public String str=null;
+    public A(String str){
+        this.str=str;
+    }
+    @Override
+    public void run() {
+        int count=5;
+        FileApi fileApi = new FileApi();
+        FolderApi folderApi = new FolderApi();
+        while ((count--)>0){
+            System.out.println(this.str+"发送第"+(5-count)+"次：");
+            FileInfo fileInfo1 = fileApi.getFileInfo(testFileId);
+            FolderInfo folderInfoOutput= folderApi.getFolderInfo(testfoldrenId);
         }
     }
 }
+
+

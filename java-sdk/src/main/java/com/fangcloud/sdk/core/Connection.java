@@ -72,7 +72,7 @@ public class Connection {
     /**
      * 独立不为单例刷新Token，仅做Token失效刷新使用
      */
-    public static void tryRefreshToken() {
+    public static void  tryRefreshToken() {
         HttpClient httpClient = null;
         try {
             httpClient = new DefaultHttpClient();

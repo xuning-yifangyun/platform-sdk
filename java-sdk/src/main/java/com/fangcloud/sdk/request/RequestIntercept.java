@@ -4,10 +4,11 @@ import com.fangcloud.sdk.bean.exception.ExternalErrorCode;
 import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
 import com.fangcloud.sdk.bean.output.ErrorsInfo;
 import com.fangcloud.sdk.core.Config;
-import com.fangcloud.sdk.util.LogUtil;
 import com.fangcloud.sdk.util.TransformationUtil;
 import com.google.gson.Gson;
 import org.apache.http.HttpResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,7 @@ public class RequestIntercept {
     private static String requestId;
     private static String code;
     private static String msg;
-
+    private static Logger logger= LoggerFactory.getLogger(RequestIntercept.class);
     public static void ErrorInfoIntercept(HttpResponse httpResponse) {
         Map<String, Object> errorInfoMap = null;
         sendRes = httpResponse.getStatusLine().getStatusCode();
@@ -39,7 +40,7 @@ public class RequestIntercept {
 
         if (Config.OPEN_LOG_OUTPUT) {
             String errorLog = "[error_code:" + code + "][request_id: " + requestId + "]";
-            LogUtil.getLogUtil().printLog(errorLog);
+            logger.error(errorLog);
         }
 
         if (null == resJsonString) {

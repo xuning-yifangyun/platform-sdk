@@ -40,7 +40,6 @@ public class TApiFile {
     public TApiFile() {
         connection.setRefreshToken(TestRefreshToken);
         Config.setAllowOutputJsonResult(true);
-
     }
 
     /**

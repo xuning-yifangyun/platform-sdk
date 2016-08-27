@@ -9,6 +9,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.*;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -20,7 +21,7 @@ import java.util.List;
  * 数据转换
  */
 public class TransformationUtil {
-
+private static org.slf4j.Logger logger=LoggerFactory.getLogger(TransformationUtil.class);
     private TransformationUtil(){}
 
     /**
@@ -91,7 +92,7 @@ public class TransformationUtil {
         HttpResponse httpResponse = requestClient.sendRequest();
         String res = httpResponseToString(httpResponse);
         if(Config.ALLOW_OUTPUT_JSON_RESULT){
-            System.out.println(res);
+            logger.info(res);
         }
         return new Gson().fromJson(res, classes);
     }

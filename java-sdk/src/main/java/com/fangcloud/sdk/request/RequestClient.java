@@ -9,10 +9,10 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.entity.StringEntity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * Created by xuning on 2016/8/9.
@@ -30,8 +30,7 @@ public class RequestClient {
     private static Connection connection = Connection.getConnection();
     private static RequestClient requestClient = new RequestClient();
     private int sendRes;
-    private ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
-
+    private static Logger logger= LoggerFactory.getLogger(RequestClient.class);
     public static RequestClient getRequestClient() {
         return requestClient;
     }
@@ -58,7 +57,6 @@ public class RequestClient {
     }
 
     public HttpResponse sendRequest() {
-//        readWriteLock.writeLock();
         int refreshTokenCount=Config.REFRESH_TOKEN_COUNT;
         while (refreshTokenCount > 0) {
             switch (method) {
@@ -79,7 +77,7 @@ public class RequestClient {
             }
             httpResponse = requestOperation.execute();
             sendRes = httpResponse.getStatusLine().getStatusCode();
-            logRequest(this.toString());
+            logger.error(this.toString());
             if (sendRes == 401) {
                 synchronized (new RequestClient()){
                     connection.tryRefreshToken();
@@ -93,7 +91,6 @@ public class RequestClient {
                 return httpResponse;
             }
         }
-//        readWriteLock.writeLock().unlock();
         return httpResponse;
     }
 
@@ -115,7 +112,7 @@ public class RequestClient {
                     nRes += (nameValuePair.getName() + ":" + " ");
                 }
             }
-            return (requestTime + "--- [" + "response code：" + sendRes + "] [url: " + this.getUrl() +
+            return ("[" + "response code：" + sendRes + "] [url: " + this.getUrl() +
                     "] [method:" + this.getMethod() + "] [header：" + hRes + "] [request option:" +
                     nRes + "] [postbody :" + postBody + "]" + "---");
         }
