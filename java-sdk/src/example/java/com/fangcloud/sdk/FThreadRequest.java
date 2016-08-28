@@ -20,9 +20,9 @@ public class FThreadRequest {
 //    }
 
     public static void main(String[] args) {
-        connection.setRefreshToken(TestRefreshToken);
-        Config.setAllowOutputJsonResult(true);
-        Config.setOpenLogOutput(true);
+        connection.setAccessToken("efe16f79-8c2a-4e68-badf-d3902f1e0da6");
+        Config.setAllowOutputJsonResult(false);
+        Config.setOpenLogOutput(false);
         AT a=new AT("1号窗口");
         AT a1=new AT("2号窗口");
         AT a2=new AT("3号窗口");
@@ -32,10 +32,7 @@ public class FThreadRequest {
         thread.start();
         thread1.start();
         thread2.start();
-
     }
-
-
 }
 
 

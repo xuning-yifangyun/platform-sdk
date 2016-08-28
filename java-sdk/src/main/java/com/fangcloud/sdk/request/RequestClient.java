@@ -56,7 +56,7 @@ public class RequestClient {
         return requestClient;
     }
 
-    public HttpResponse sendRequest() {
+    public HttpResponse sendRequest(){
         int refreshTokenCount=Config.REFRESH_TOKEN_COUNT;
         while (refreshTokenCount > 0) {
             switch (method) {
@@ -77,17 +77,30 @@ public class RequestClient {
             }
             httpResponse = requestOperation.execute();
             sendRes = httpResponse.getStatusLine().getStatusCode();
-            logger.error(this.toString());
-            if (sendRes == 401) {
+
+            //accessToken有效时间的逻辑
+            //可以在拦截器获取Token的有效访问时间，判定时间差
+            /*
+            if 有效时间没有超出范围
+                直接使用accessToken，
+             else
+                刷新token
+             可以在
+
+             */
+            if(Config.ALLOW_OUTPUT_LOG_FILE){
+                logger.info(this.toString());
+            }
+
+            if (sendRes != 200) {
+                RequestIntercept.ErrorInfoIntercept(httpResponse);
                 synchronized (new RequestClient()){
+                    refreshTokenCount--;
                     connection.tryRefreshToken();
                 }
                 headers = RequestOption.getApiCommonHeader(Connection.getConnection());
             }
             else {
-                if (sendRes != 200) {
-                    RequestIntercept.ErrorInfoIntercept(httpResponse);
-                }
                 return httpResponse;
             }
         }
@@ -112,7 +125,7 @@ public class RequestClient {
                     nRes += (nameValuePair.getName() + ":" + " ");
                 }
             }
-            return ("[" + "response code：" + sendRes + "] [url: " + this.getUrl() +
+            return ("[" + "response code：" + sendRes + "] request info: [url: " + this.getUrl() +
                     "] [method:" + this.getMethod() + "] [header：" + hRes + "] [request option:" +
                     nRes + "] [postbody :" + postBody + "]" + "---");
         }

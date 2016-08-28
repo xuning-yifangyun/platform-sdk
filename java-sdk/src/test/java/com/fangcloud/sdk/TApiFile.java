@@ -38,8 +38,9 @@ public class TApiFile {
     public long testFileId = 501000511232L;
 
     public TApiFile() {
-        connection.setRefreshToken(TestRefreshToken);
-        Config.setAllowOutputJsonResult(true);
+//        connection.setRefreshToken(TestRefreshToken);
+//        Config.setAllowOutputJsonResult(true);
+        connection.setAccessToken("4032c737-5326-4cac-97e1-cba70c8793b1");
     }
 
     /**

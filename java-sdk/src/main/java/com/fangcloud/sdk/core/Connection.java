@@ -17,8 +17,9 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -32,15 +33,15 @@ public class Connection {
     private String authCode;
     private static String redirectUrl;
     private String accessToken;
-    private static String refreshToken;
+    private String refreshToken;
     private static String username;
     private static String password;
     private static String apiKey;
-    private static Boolean autoRefresh;
+    private Boolean autoRefresh;
     private static int refreshCount;
     private static Connection connection = new Connection();
     private static final UrlTemplate AUTH = new UrlTemplate("/token");
-
+    private static Logger logger= LoggerFactory.getLogger(Connection.class);
     private Connection() {
     }
 
@@ -50,7 +51,7 @@ public class Connection {
 
     public static Connection buildConnection(String clientId, String clientSecret, String redirectUrl) {
         refreshCount = Config.REFRESH_TOKEN_COUNT;
-        autoRefresh = Config.DELAULT_AUTO_REFRESH_TOKEN;
+        connection.setAutoRefresh(Config.DELAULT_AUTO_REFRESH_TOKEN);
         connection.setClientId(clientId);
         connection.setClientSecret(clientSecret);
         connection.setRedirectUrl(redirectUrl);
@@ -72,13 +73,13 @@ public class Connection {
     /**
      * 独立不为单例刷新Token，仅做Token失效刷新使用
      */
-    public static void  tryRefreshToken() {
+    public static void tryRefreshToken(){
         HttpClient httpClient = null;
         try {
             httpClient = new DefaultHttpClient();
             String url = AUTH.build(Config.DEFAULT_AUTH_URL);
             NameValuePair nameValuePair1 = new BasicNameValuePair("grant_type", "refresh_token");
-            NameValuePair nameValuePair2 = new BasicNameValuePair("refresh_token", refreshToken);
+            NameValuePair nameValuePair2 = new BasicNameValuePair("refresh_token", connection.getRefreshToken());
             List<NameValuePair> nameValuePairs = RequestUtil.addToNameValuePairList(nameValuePair1, nameValuePair2);
             HttpPost httpPost = new HttpPost(url);
             httpPost.setHeader("Authorization", "Basic " + connection.getAuthorizationBase64());
@@ -90,11 +91,9 @@ public class Connection {
                 e.printStackTrace();
             }
             HttpResponse httpResponse = null;
-            try {
-                httpResponse = httpClient.execute(httpPost);
-            }
-            catch (IOException e) {
-                e.printStackTrace();
+            httpResponse = httpClient.execute(httpPost);
+            if(null==httpResponse){
+                throw new OpenApiSDKException(ExternalErrorCode.REQUEST_NO_RESPONSE);
             }
             String jsonString = TransformationUtil.httpResponseToString(httpResponse);
             TokenInfo tokenInfo = new Gson().fromJson(jsonString, TokenInfo.class);

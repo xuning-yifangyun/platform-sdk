@@ -21,6 +21,10 @@
     </layout>
   </appender>
 
+  <logger name="com.fangcloud.sdk">
+    <level value="debug"/>
+  </logger>
+
   <root>
     <level value="info" />
     <appender-ref ref="STDOUT" />

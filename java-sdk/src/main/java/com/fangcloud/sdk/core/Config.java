@@ -33,12 +33,15 @@ public class Config {
     //system
     public static final String DEFAULT_CHARSET = "UTF-8";
     public static final Charset DEFAULT_CHARSET_TYPE = Charset.defaultCharset();
-    public static boolean OPEN_LOG_PRINT = false;
+
+    //simple log
+    public static boolean OPEN_LOG_PRINT = true;
     public static boolean OPEN_LOG_OUTPUT = true;
     public static boolean ALLOW_OUTPUT_JSON_RESULT = false;
     public static String WIN_LOG_DIR = "/var/open-api-sdk/log/";
     public static String LINUX_LOG_DIR = "C:/var/open-api-sdk/log/";
     public static final String LOG_PATH = PropertiesUtil.isLinux() ? LINUX_LOG_DIR : WIN_LOG_DIR;
+    public static boolean ALLOW_OUTPUT_LOG_FILE=true;
 
     //request
     public static final HttpVersion HTTP_VERSION = HttpVersion.HTTP_1_1;

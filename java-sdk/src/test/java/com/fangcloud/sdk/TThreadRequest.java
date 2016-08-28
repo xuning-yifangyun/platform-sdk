@@ -67,5 +67,3 @@ class A implements Runnable {
         }
     }
 }
-
-

@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
  */
 public class LogFactory {
     private static Logger logger;
-
     public static Logger getLogger(String loggerName) {
         logger = LoggerFactory.getLogger(loggerName);
         return logger;
@@ -18,4 +17,5 @@ public class LogFactory {
         String loggerName = classes.getName();
         return getLogger(loggerName);
     }
+
 }

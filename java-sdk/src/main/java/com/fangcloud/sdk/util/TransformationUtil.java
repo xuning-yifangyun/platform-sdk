@@ -88,7 +88,7 @@ private static org.slf4j.Logger logger=LoggerFactory.getLogger(TransformationUti
      * @param classes
      * @return
      */
-    public static final Object requestClientToOutputObject(RequestClient requestClient, Class classes) {
+    public static final Object requestClientToOutputObject(RequestClient requestClient, Class classes){
         HttpResponse httpResponse = requestClient.sendRequest();
         String res = httpResponseToString(httpResponse);
         if(Config.ALLOW_OUTPUT_JSON_RESULT){

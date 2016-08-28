@@ -26,8 +26,8 @@
         <module name="sdk" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="OpenPlaformDemo" target="1.5" />
+    <bytecodeTargetLevel target="1.7">
+      <module name="OpenPlaformDemo" target="1.7" />
       <module name="sdk" target="1.7" />
     </bytecodeTargetLevel>
   </component>

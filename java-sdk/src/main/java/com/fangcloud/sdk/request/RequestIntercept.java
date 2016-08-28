@@ -39,7 +39,7 @@ public class RequestIntercept {
         msg = reponseErrorInfos.get(0).getMsg();
 
         if (Config.OPEN_LOG_OUTPUT) {
-            String errorLog = "[error_code:" + code + "][request_id: " + requestId + "]";
+            String errorLog ="[error_code:" + code + "][request_id: " + requestId + "]";
             logger.error(errorLog);
         }
 
@@ -51,6 +51,8 @@ public class RequestIntercept {
             throw new OpenApiSDKException(ExternalErrorCode.REQUEST_NO_RESPONSE);
         case 500:
             throw new OpenApiSDKException(ExternalErrorCode.NOT_KNOW_ERROR);
+        case 401:
+            break;
         default:
             throw new OpenApiSDKException(code);
         }
