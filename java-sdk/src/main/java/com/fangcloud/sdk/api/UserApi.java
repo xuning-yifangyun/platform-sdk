@@ -78,13 +78,13 @@ public class UserApi {
         String baseUrl = DOWNLOAD_PROFILE_PIC.build(Config.DEFAULT_API_URI);
         String url = String.format(baseUrl + "?user_id=%s&profile_pic_key=%s", userId, profilePicKey);
         RequestClient requestClient = RequestClient.buildRequest(url, "get", headers, null, null);
-        InputStream httpResponse = null;
+        InputStream inputStream = null;
         try {
-            httpResponse = requestClient.sendRequest().getEntity().getContent();
+            inputStream = requestClient.sendRequest().getEntity().getContent();
         }
         catch (IOException e) {
             e.printStackTrace();
         }
-        return httpResponse;
+        return inputStream;
     }
 }

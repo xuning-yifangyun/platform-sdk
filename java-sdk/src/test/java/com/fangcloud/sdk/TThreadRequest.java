@@ -20,7 +20,7 @@ public class TThreadRequest {
     public long testFileId = 501000511232L;
     public TThreadRequest(){
         connection.setRefreshToken(TestRefreshToken);
-        Config.setAllowOutputJsonResult(true);
+        Config.setAllowOutputJsonResult(false);
         Config.setOpenLogOutput(true);
     }
     @Test
@@ -37,14 +37,14 @@ public class TThreadRequest {
      */
     @Test
     public void TRunnable(){
-//        AT a=new AT("1号窗口");
-//        AT a1=new AT("2号窗口");
-//        Thread thread=new Thread(a);
-//        Thread thread1=new Thread(a1);
-//        Thread thread2=new Thread(a1);
-//        thread.start();
-//        thread1.start();
-//        thread2.start();
+        AT a=new AT("1号窗口");
+        AT a1=new AT("2号窗口");
+        Thread thread=new Thread(a);
+        Thread thread1=new Thread(a1);
+        Thread thread2=new Thread(a1);
+        thread.start();
+        thread1.start();
+        thread2.start();
     }
 }
 class A implements Runnable {

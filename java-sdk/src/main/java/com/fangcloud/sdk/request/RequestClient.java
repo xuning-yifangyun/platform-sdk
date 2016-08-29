@@ -56,7 +56,7 @@ public class RequestClient {
         return requestClient;
     }
 
-    public HttpResponse sendRequest(){
+    public synchronized HttpResponse sendRequest(){
         int refreshTokenCount=Config.REFRESH_TOKEN_COUNT;
         while (refreshTokenCount > 0) {
             switch (method) {
@@ -94,10 +94,10 @@ public class RequestClient {
 
             if (sendRes != 200) {
                 RequestIntercept.ErrorInfoIntercept(httpResponse);
-                synchronized (new RequestClient()){
+//                synchronized (new RequestClient()){
                     refreshTokenCount--;
                     connection.tryRefreshToken();
-                }
+//                }
                 headers = RequestOption.getApiCommonHeader(Connection.getConnection());
             }
             else {

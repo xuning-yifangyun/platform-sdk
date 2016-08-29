@@ -37,7 +37,8 @@ public class Connection {
     private static String username;
     private static String password;
     private static String apiKey;
-    private Boolean autoRefresh;
+    private boolean autoRefresh;
+    private long expiresIn;
     private static int refreshCount;
     private static Connection connection = new Connection();
     private static final UrlTemplate AUTH = new UrlTemplate("/token");

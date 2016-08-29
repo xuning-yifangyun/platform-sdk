@@ -36,7 +36,7 @@ public class RequestGet extends RequestOperation {
         try {
             this.httpResponse = this.httpClient.execute(httpGet);
 
-            int sendRes = httpResponse.getStatusLine().getStatusCode();
+//            int sendRes = httpResponse.getStatusLine().getStatusCode();
         }
         catch (IOException e) {
             System.out.println(sendRes);
