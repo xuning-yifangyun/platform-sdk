@@ -23,7 +23,8 @@ public class TApiAuth {
      */
     @Test
     public void TGetAuthUrl() {
-
+        //临时测试
+        //https://oauth-server.fangcloud.net/oauth/authorize?client_id=bbe8e63d-89b0-4f31-ba07-5fd602d501d8&redirect_uri=http://121.41.52.18:8080/callback&response_type=code&state=
     }
 
     /**
@@ -32,7 +33,7 @@ public class TApiAuth {
      */
     @Test
     public void TGteToken() {
-        String authCode = "jdcuwq";
+        String authCode = "I8rIEh";
         connection= connection.getAccessTokenByAuthCode(authCode);
         System.out.println("获取的Token是："+connection.getAccessToken());
         System.out.println("获取的refreshToken是："+connection.getRefreshToken());

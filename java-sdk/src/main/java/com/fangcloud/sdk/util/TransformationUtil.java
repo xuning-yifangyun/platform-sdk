@@ -1,5 +1,7 @@
 package com.fangcloud.sdk.util;
 
+import com.fangcloud.sdk.bean.exception.ExternalErrorCode;
+import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
 import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.request.RequestClient;
 import com.google.gson.Gson;
@@ -36,7 +38,7 @@ private static org.slf4j.Logger logger=LoggerFactory.getLogger(TransformationUti
             httpEntity = new UrlEncodedFormEntity(valuePairs, "UTF-8");
         }
         catch (UnsupportedEncodingException e) {
-
+            throw new OpenApiSDKException(ExternalErrorCode.UN_SUPPORT_ENCODING);
         }
         return httpEntity;
     }
@@ -66,6 +68,7 @@ private static org.slf4j.Logger logger=LoggerFactory.getLogger(TransformationUti
         }
         catch (IOException e) {
             e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return res;
     }
@@ -78,6 +81,9 @@ private static org.slf4j.Logger logger=LoggerFactory.getLogger(TransformationUti
      */
     public static final Object httpResponseToObject(HttpResponse httpResponse, Class classes){
         String res=httpResponseToString(httpResponse);
+        if(null==res){
+            throw new OpenApiSDKException(ExternalErrorCode.HTTP_RESPONSE_IS_NULL);
+        }
         return new Gson().fromJson(res, classes);
     }
 
@@ -120,6 +126,9 @@ private static org.slf4j.Logger logger=LoggerFactory.getLogger(TransformationUti
 
     public static final List<Long> ArrToArrayListpostBody(long... ids) {
         List<Long> idsList = new ArrayList<>();
+        if(null==ids){
+            return null;
+        }
         for (long id : ids) {
             idsList.add(id);
         }

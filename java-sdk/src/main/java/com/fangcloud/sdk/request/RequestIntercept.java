@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by xuning on 2016/8/22.
@@ -23,7 +22,6 @@ public class RequestIntercept {
     private static String msg;
     private static Logger logger= LoggerFactory.getLogger(RequestIntercept.class);
     public static void ErrorInfoIntercept(HttpResponse httpResponse) {
-        Map<String, Object> errorInfoMap = null;
         sendRes = httpResponse.getStatusLine().getStatusCode();
 
         String resJsonString = TransformationUtil.httpResponseToString(httpResponse);
@@ -51,7 +49,9 @@ public class RequestIntercept {
             throw new OpenApiSDKException(ExternalErrorCode.REQUEST_NO_RESPONSE);
         case 500:
             throw new OpenApiSDKException(ExternalErrorCode.NOT_KNOW_ERROR);
-        case 401:
+//        case 401:
+//            break;
+        case 200:
             break;
         default:
             throw new OpenApiSDKException(code);

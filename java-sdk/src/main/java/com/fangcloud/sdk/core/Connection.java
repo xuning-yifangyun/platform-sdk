@@ -20,7 +20,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
@@ -39,10 +38,12 @@ public class Connection {
     private static String apiKey;
     private boolean autoRefresh;
     private long expiresIn;
+    private long applyTokenDate;
     private static int refreshCount;
     private static Connection connection = new Connection();
     private static final UrlTemplate AUTH = new UrlTemplate("/token");
-    private static Logger logger= LoggerFactory.getLogger(Connection.class);
+    private static Logger logger = LoggerFactory.getLogger(Connection.class);
+
     private Connection() {
     }
 
@@ -59,10 +60,9 @@ public class Connection {
         return connection;
     }
 
+    //授权码接收接口
     public static Connection getAccessTokenByAuthCode(String authCode) {
-        TokenInfo tokenInfo = AuthApi.getTokenByAuthCode(authCode);
-        connection.setAccessToken(tokenInfo.getAccessToken());
-        connection.setRefreshToken(tokenInfo.getRefreshToken());
+        AuthApi.getTokenByAuthCode(authCode);
         return connection;
     }
 
@@ -73,32 +73,34 @@ public class Connection {
 
     /**
      * 独立不为单例刷新Token，仅做Token失效刷新使用
+     * 需要进一步优化此方法代码
      */
-    public static void tryRefreshToken(){
+    public synchronized static void tryRefreshToken() {
         HttpClient httpClient = null;
         try {
             httpClient = new DefaultHttpClient();
             String url = AUTH.build(Config.DEFAULT_AUTH_URL);
             NameValuePair nameValuePair1 = new BasicNameValuePair("grant_type", "refresh_token");
-            NameValuePair nameValuePair2 = new BasicNameValuePair("refresh_token", connection.getRefreshToken());
+            String refreshToken = connection.getRefreshToken();
+            if (refreshToken == null) {
+                throw new OpenApiSDKException(ExternalErrorCode.REFRESH_TOKEN_IS_NULL);
+            }
+            NameValuePair nameValuePair2 = new BasicNameValuePair("refresh_token", refreshToken);
             List<NameValuePair> nameValuePairs = RequestUtil.addToNameValuePairList(nameValuePair1, nameValuePair2);
             HttpPost httpPost = new HttpPost(url);
             httpPost.setHeader("Authorization", "Basic " + connection.getAuthorizationBase64());
-            try {
-                HttpEntity stringEntity = new UrlEncodedFormEntity(nameValuePairs, "UTF-8");
-                httpPost.setEntity(stringEntity);
-            }
-            catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
+            HttpEntity stringEntity = new UrlEncodedFormEntity(nameValuePairs, "UTF-8");
+            httpPost.setEntity(stringEntity);
             HttpResponse httpResponse = null;
             httpResponse = httpClient.execute(httpPost);
-            if(null==httpResponse){
+            if (null == httpResponse) {
                 throw new OpenApiSDKException(ExternalErrorCode.REQUEST_NO_RESPONSE);
             }
             String jsonString = TransformationUtil.httpResponseToString(httpResponse);
             TokenInfo tokenInfo = new Gson().fromJson(jsonString, TokenInfo.class);
             connection.setAccessToken(tokenInfo.getAccessToken());
+            connection.setExpiresIn(tokenInfo.getExpiresIn());
+            connection.setApplyTokenDate(System.currentTimeMillis());
         }
         catch (Exception e) {
             throw new OpenApiSDKException(ExternalErrorCode.INVALID_TOKEN);
@@ -106,6 +108,14 @@ public class Connection {
         finally {
             httpClient.getConnectionManager().shutdown();
         }
+    }
+
+    public void setApplyTokenDate(long applyTokenDate) {
+        this.applyTokenDate = applyTokenDate;
+    }
+
+    public void setExpiresIn(long expiresIn) {
+        this.expiresIn = expiresIn;
     }
 
     public String getAuthorizationBase64() {
@@ -198,5 +208,13 @@ public class Connection {
 
     public void setRefreshCount(int refreshCount) {
         this.refreshCount = refreshCount;
+    }
+
+    public long getExpiresIn() {
+        return expiresIn;
+    }
+
+    public long getApplyTokenDate() {
+        return applyTokenDate;
     }
 }

@@ -37,6 +37,8 @@ public class TThreadRequest {
      */
     @Test
     public void TRunnable(){
+
+
         AT a=new AT("1号窗口");
         AT a1=new AT("2号窗口");
         Thread thread=new Thread(a);
@@ -45,6 +47,14 @@ public class TThreadRequest {
         thread.start();
         thread1.start();
         thread2.start();
+
+    }
+    @Test
+    public void TTime() throws InterruptedException {
+        long d1=System.currentTimeMillis();
+        Thread.sleep(3800);
+        long d2=System.currentTimeMillis();
+        System.out.println((d2-d1)/1000);
     }
 }
 class A implements Runnable {

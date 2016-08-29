@@ -1,5 +1,7 @@
 package com.fangcloud.sdk.api;
 
+import com.fangcloud.sdk.bean.exception.ExternalErrorCode;
+import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
 import com.fangcloud.sdk.bean.output.auth.TokenInfo;
 import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
@@ -34,7 +36,6 @@ public class AuthApi {
     /**
      * 发起授权请求
      *
-     *
      * @return URL
      */
 
@@ -66,10 +67,12 @@ public class AuthApi {
         headers = RequestOption.getAuthHeaders(connection);
         nameValuePairs = RequestUtil.addToNameValuePairList(nameValuePair1, nameValuePair2, nameValuePair3);
         RequestClient requestClient = RequestClient.buildRequest(url, "post", headers, nameValuePairs);
-        TokenInfo tokenOutput = (TokenInfo) TransformationUtil.requestClientToOutputObject(requestClient, TokenInfo.class);
-        connection.setAccessToken(tokenOutput.getAccessToken());
-        connection.setRefreshToken(tokenOutput.getRefreshToken());
-        return tokenOutput;
+        TokenInfo tokenInfo = (TokenInfo) TransformationUtil.requestClientToOutputObject(requestClient, TokenInfo.class);
+        connection.setAccessToken(tokenInfo.getAccessToken());
+        connection.setRefreshToken(tokenInfo.getRefreshToken());
+        connection.setExpiresIn(tokenInfo.getExpiresIn());
+        connection.setApplyTokenDate(System.currentTimeMillis());
+        return tokenInfo;
     }
 
     /**
@@ -88,29 +91,29 @@ public class AuthApi {
         headers = RequestOption.getAuthHeaders(connection);
         nameValuePairs = RequestUtil.addToNameValuePairList(nameValuePair1, nameValuePair2);
         RequestClient requestClient = RequestClient.buildRequest(url, "post", headers, nameValuePairs);
-        TokenInfo tokenOutput = (TokenInfo) TransformationUtil.requestClientToOutputObject(requestClient, TokenInfo.class);
-        if (CommonUtil.checkObjectsInvoke(tokenOutput.getAccessToken())) {
+        TokenInfo tokenInfo = (TokenInfo) TransformationUtil.requestClientToOutputObject(requestClient, TokenInfo.class);
+        if (CommonUtil.checkObjectsInvoke(tokenInfo.getAccessToken())) {
             //已经成功获取了新的Token，需要放入Connection
-            connection.setAccessToken(tokenOutput.getAccessToken());
+            connection.setAccessToken(tokenInfo.getAccessToken());
+            connection.setExpiresIn(tokenInfo.getExpiresIn());
+            connection.setApplyTokenDate(System.currentTimeMillis());
         }
         else {
-            //refreshToken过期，需要抛出处理
+            throw new OpenApiSDKException(ExternalErrorCode.REFRESH_TOKEN_INVALID);
         }
-        return tokenOutput;
+        return tokenInfo;
     }
 
     /**
      * 重建Token
      */
     public static void rebuildAccessToken() {
-        //拿到regreshToken
         String reRefreshToken = connection.getRefreshToken();
         if (null != reRefreshToken) {
-            TokenInfo tokenOutput = getTokenByRefreshToken(reRefreshToken);
-            connection.setAccessToken(tokenOutput.getAccessToken());
+            getTokenByRefreshToken(reRefreshToken);
         }
         else {
-            //获取refreshToken异常,说明Token已经失效
+            throw new OpenApiSDKException(ExternalErrorCode.REFRESH_TOKEN_IS_NULL);
         }
     }
 

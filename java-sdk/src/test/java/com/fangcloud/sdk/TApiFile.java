@@ -38,9 +38,10 @@ public class TApiFile {
     public long testFileId = 501000511232L;
 
     public TApiFile() {
+//        AuthApi.getTokenByAuthCode("5KmOCG");
 //        connection.setRefreshToken(TestRefreshToken);
-//        Config.setAllowOutputJsonResult(true);
-        connection.setAccessToken("4032c737-5326-4cac-97e1-cba70c8793b1");
+        Config.setAllowOutputJsonResult(true);
+//        connection.setAccessToken("9d11b455-9274-43cf-a042-539872a2729e");
     }
 
     /**
@@ -55,13 +56,13 @@ public class TApiFile {
         Assert.assertTrue("没有正确返回信息", fileInfo.getSuccess());
     }
 
-
-
     /**
      * 更新文件
      */
     @Test
     public void TUpdateFile() {
+        connection.setRefreshToken(TestRefreshToken);
+        connection.setApplyTokenDate(1);
         FileInfo fileInfoOutput1 = FileApi.updateFile(testFileId, "dog.jpg", "ning update");
         System.out.println(fileInfoOutput1.getName());
         System.out.println(fileInfoOutput1.getModifiedAt());

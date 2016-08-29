@@ -1,5 +1,6 @@
 package com.fangcloud.sdk;
 
+import com.fangcloud.sdk.api.AuthApi;
 import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
 
@@ -13,14 +14,18 @@ public class FThreadRequest {
         public static final String TestRefreshToken = "bceecd8b-ba45-4aca-8c4e-a80ed253f9f2";
         private static Connection connection = Connection.buildConnection(testClientID, testClientSecret, testRediectUrl);
         public long testFileId = 501000511232L;
-    //    public FThreadRequest(){
-    //        connection.setRefreshToken(TestRefreshToken);
-    //        Config.setAllowOutputJsonResult(true);
-    //        Config.setOpenLogOutput(true);
-    //    }
+        public FThreadRequest(){
+//            connection.setRefreshToken(TestRefreshToken);
+            Config.setAllowOutputJsonResult(true);
+            Config.setOpenLogOutput(true);
+        }
 
         public static void main(String[] args) {
-            connection.setAccessToken("be3da2b1-a0af-446c-bb58-327cca1afe89");
+//            connection.setApplyTokenDate(20000);
+//            connection.setExpiresIn(100000000L);
+//            connection.setAccessToken("684616b1-3d39-4c87-8ba9-b487488ed7df");
+            AuthApi.getTokenByAuthCode("4ovSsz");
+//            connection.setRefreshToken(TestRefreshToken);
             Config.setAllowOutputJsonResult(true);
             Config.setOpenLogOutput(true);
             AT a=new AT("1号窗口");

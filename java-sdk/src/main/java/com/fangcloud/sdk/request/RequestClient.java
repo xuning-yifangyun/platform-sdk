@@ -75,34 +75,53 @@ public class RequestClient {
             default:
                 throw new OpenApiSDKException(ExternalErrorCode.REQUEST_METHOD_ERROR);
             }
+
             httpResponse = requestOperation.execute();
+            long nowTime=System.currentTimeMillis();
+            long applyTokenTime=connection.getApplyTokenDate();
+            long expirseIn=connection.getExpiresIn();
+//            logger.debug("时间差："+(nowTime-applyTokenTime)+"现在时间"+nowTime+"Token申请时间："+
+//                    applyTokenTime+"有效时间"+expirseIn*1000);
+//          先验证时间会有一个逻辑问题
             sendRes = httpResponse.getStatusLine().getStatusCode();
-
-            //accessToken有效时间的逻辑
-            //可以在拦截器获取Token的有效访问时间，判定时间差
-            /*
-            if 有效时间没有超出范围
-                直接使用accessToken，
-             else
-                刷新token
-             可以在
-
-             */
             if(Config.ALLOW_OUTPUT_LOG_FILE){
                 logger.info(this.toString());
             }
+            //前者为已经验证，后者为授权码换token
+            if((nowTime-applyTokenTime)<expirseIn*1000||(expirseIn==0&&applyTokenTime==0)){
+                if(sendRes==200){
+                    return httpResponse;
+                }else{
+                    if(sendRes==401){
+                        //这个时候的401应该是在实际业务场景中不存在的，但是，这里
+                        //token刷新必须建立在已经发起过授权请求的基础之上，又非常有利于单元测试，需要考虑处理方案？
+                    }
+                    RequestIntercept.ErrorInfoIntercept(httpResponse);
+                }
+            }else{
+                refreshTokenCount--;
+                connection.tryRefreshToken();
+                System.out.println(!url.matches("oauth/token"));
+                if(!url.contains("oauth/token")){
+                    headers = RequestOption.getApiCommonHeader(Connection.getConnection());
+                }
+            }
 
-            if (sendRes != 200) {
-                RequestIntercept.ErrorInfoIntercept(httpResponse);
-//                synchronized (new RequestClient()){
-                    refreshTokenCount--;
-                    connection.tryRefreshToken();
-//                }
-                headers = RequestOption.getApiCommonHeader(Connection.getConnection());
-            }
-            else {
-                return httpResponse;
-            }
+//            sendRes = httpResponse.getStatusLine().getStatusCode();
+//
+//            if(Config.ALLOW_OUTPUT_LOG_FILE){
+//                logger.info(this.toString());
+//            }
+//
+//            if (sendRes != 200) {
+//                RequestIntercept.ErrorInfoIntercept(httpResponse);
+//                refreshTokenCount--;
+//                connection.tryRefreshToken();
+//                headers = RequestOption.getApiCommonHeader(Connection.getConnection());
+//            }
+//            else {
+//                return httpResponse;
+//            }
         }
         return httpResponse;
     }
@@ -131,6 +150,8 @@ public class RequestClient {
         }
         return null;
     }
+
+
 
     public HttpResponse getHttpResponse() {
         return httpResponse;
