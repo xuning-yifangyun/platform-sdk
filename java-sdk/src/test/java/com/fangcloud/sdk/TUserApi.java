@@ -21,6 +21,7 @@ public class TUserApi {
     public TUserApi() {
         connection.setRefreshToken(TestRefreshToken);
         Config.setAllowOutputJsonResult(true);
+        connection.setApplyTokenDate(1);
     }
 
     @Test

@@ -30,6 +30,7 @@ public class TApiForldren {
     public TApiForldren() {
         Connection connection = Connection.buildConnection(testClientID, testClientSecret, testRediectUrl);
         connection.setRefreshToken(TestRefreshToken);
+        connection.setApplyTokenDate(1);
     }
 
     /**

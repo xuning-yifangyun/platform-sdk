@@ -41,6 +41,9 @@ public class TApiFile {
 //        AuthApi.getTokenByAuthCode("5KmOCG");
 //        connection.setRefreshToken(TestRefreshToken);
         Config.setAllowOutputJsonResult(true);
+        connection.setRefreshToken(TestRefreshToken);
+        connection.setApplyTokenDate(1);
+
 //        connection.setAccessToken("9d11b455-9274-43cf-a042-539872a2729e");
     }
 
@@ -49,6 +52,7 @@ public class TApiFile {
      */
     @Test
     public void TgetFileInfo() {
+
         Config.setOpenLogOutput(true);
         FileApi fileApi = new FileApi();
         FileInfo fileInfo = fileApi.getFileInfo(testFileId);

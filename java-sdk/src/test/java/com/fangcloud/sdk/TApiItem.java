@@ -20,6 +20,7 @@ public class TApiItem {
     public TApiItem() {
         connection.setRefreshToken(TestRefreshToken);
         Config.setAllowOutputJsonResult(true);
+        connection.setApplyTokenDate(1);
     }
 
     /**

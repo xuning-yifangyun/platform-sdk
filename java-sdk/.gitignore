@@ -1,7 +1,6 @@
 *.class
 .idea*
 .idea/*
-.iml
 *.war
 *.ear
 *.iml

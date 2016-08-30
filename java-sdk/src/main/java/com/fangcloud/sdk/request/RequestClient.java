@@ -13,11 +13,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by xuning on 2016/8/9.
  */
 public class RequestClient {
+    private Lock lock=new ReentrantLock();
     private HttpResponse httpResponse;
     private HttpClient httpClient;
     private String url;
@@ -56,7 +59,8 @@ public class RequestClient {
         return requestClient;
     }
 
-    public synchronized HttpResponse sendRequest(){
+    public HttpResponse sendRequest(){
+
         int refreshTokenCount=Config.REFRESH_TOKEN_COUNT;
         while (refreshTokenCount > 0) {
             switch (method) {
@@ -75,38 +79,37 @@ public class RequestClient {
             default:
                 throw new OpenApiSDKException(ExternalErrorCode.REQUEST_METHOD_ERROR);
             }
-
+            lock.lock();
             httpResponse = requestOperation.execute();
+            lock.unlock();
             long nowTime=System.currentTimeMillis();
             long applyTokenTime=connection.getApplyTokenDate();
             long expirseIn=connection.getExpiresIn();
-//            logger.debug("时间差："+(nowTime-applyTokenTime)+"现在时间"+nowTime+"Token申请时间："+
-//                    applyTokenTime+"有效时间"+expirseIn*1000);
-//          先验证时间会有一个逻辑问题
+
             sendRes = httpResponse.getStatusLine().getStatusCode();
             if(Config.ALLOW_OUTPUT_LOG_FILE){
                 logger.info(this.toString());
             }
+
+
             //前者为已经验证，后者为授权码换token
             if((nowTime-applyTokenTime)<expirseIn*1000||(expirseIn==0&&applyTokenTime==0)){
                 if(sendRes==200){
                     return httpResponse;
                 }else{
-                    if(sendRes==401){
-                        //这个时候的401应该是在实际业务场景中不存在的，但是，这里
-                        //token刷新必须建立在已经发起过授权请求的基础之上，又非常有利于单元测试，需要考虑处理方案？
-                    }
+                    //401???
                     RequestIntercept.ErrorInfoIntercept(httpResponse);
                 }
             }else{
-                refreshTokenCount--;
-                connection.tryRefreshToken();
-                System.out.println(!url.matches("oauth/token"));
-                if(!url.contains("oauth/token")){
-                    headers = RequestOption.getApiCommonHeader(Connection.getConnection());
-                }
+                    lock.lock();
+                    refreshTokenCount--;
+                    connection.tryRefreshToken();
+                    lock.unlock();
+                    if(!url.contains("oauth/token")){
+                        headers = RequestOption.getApiCommonHeader(Connection.getConnection());
+                    }
             }
-
+//            2--
 //            sendRes = httpResponse.getStatusLine().getStatusCode();
 //
 //            if(Config.ALLOW_OUTPUT_LOG_FILE){
@@ -123,6 +126,7 @@ public class RequestClient {
 //                return httpResponse;
 //            }
         }
+
         return httpResponse;
     }
 

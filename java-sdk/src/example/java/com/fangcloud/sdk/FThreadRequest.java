@@ -21,11 +21,13 @@ public class FThreadRequest {
         }
 
         public static void main(String[] args) {
+            //获取授权码字符串：
+//https://oauth-server.fangcloud.net/oauth/authorize?client_id=bbe8e63d-89b0-4f31-ba07-5fd602d501d8&redirect_uri=http://121.41.52.18:8080/callback&response_type=code&state=
 //            connection.setApplyTokenDate(20000);
 //            connection.setExpiresIn(100000000L);
 //            connection.setAccessToken("684616b1-3d39-4c87-8ba9-b487488ed7df");
-            AuthApi.getTokenByAuthCode("rgsdXY");
-//            connection.setRefreshToken(TestRefreshToken);
+
+            AuthApi.getTokenByAuthCode("xjCcP4");
             Config.setAllowOutputJsonResult(true);
             Config.setOpenLogOutput(true);
             AT a=new AT("1号窗口");
