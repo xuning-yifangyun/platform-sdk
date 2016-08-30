@@ -1,8 +1,11 @@
 *.class
 .idea*
+.idea/*
 .iml
 *.war
 *.ear
 *.iml
 .idea
 workspace.xml
+target
+.DS_Store

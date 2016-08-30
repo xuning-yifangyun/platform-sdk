@@ -24,7 +24,7 @@ public class FThreadRequest {
 //            connection.setApplyTokenDate(20000);
 //            connection.setExpiresIn(100000000L);
 //            connection.setAccessToken("684616b1-3d39-4c87-8ba9-b487488ed7df");
-            AuthApi.getTokenByAuthCode("4ovSsz");
+            AuthApi.getTokenByAuthCode("rgsdXY");
 //            connection.setRefreshToken(TestRefreshToken);
             Config.setAllowOutputJsonResult(true);
             Config.setOpenLogOutput(true);
