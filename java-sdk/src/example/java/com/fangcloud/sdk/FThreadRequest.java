@@ -18,6 +18,8 @@ public class FThreadRequest {
 //            connection.setRefreshToken(TestRefreshToken);
             Config.setAllowOutputJsonResult(true);
             Config.setOpenLogOutput(true);
+            Config.setOpenLogPrint(true);
+//            AuthApi.getTokenByAuthCode("NrWpol");
         }
 
         public static void main(String[] args) {
@@ -27,12 +29,15 @@ public class FThreadRequest {
 //            connection.setExpiresIn(100000000L);
 //            connection.setAccessToken("684616b1-3d39-4c87-8ba9-b487488ed7df");
 
-            AuthApi.getTokenByAuthCode("xjCcP4");
+//            AuthApi.getTokenByAuthCode("NHRQjH");
+//            AuthApi.getTokenByAuthCode("z86lKE");
+            AuthApi.getTokenByAuthCode("NrWpol");
             Config.setAllowOutputJsonResult(true);
+            Config.setOpenLogPrint(true);
             Config.setOpenLogOutput(true);
-            AT a=new AT("1号窗口");
-            AT a1=new AT("2号窗口");
-            AT a2=new AT("3号窗口");
+            ATT a=new ATT("1号窗口");
+            ATT a1=new ATT("2号窗口");
+            ATT a2=new ATT("3号窗口");
             Thread thread=new Thread(a);
             Thread thread1=new Thread(a1);
             Thread thread2=new Thread(a2);

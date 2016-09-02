@@ -6,6 +6,8 @@ import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
 import org.junit.Test;
 
+import java.io.IOException;
+
 /**
  * Created by xuning on 2016/8/12.
  */
@@ -50,8 +52,28 @@ public class TUserApi {
     /**
      * 下载头像
      */
-    public void TDownloadProfilePic() {
-
+    @Test
+    public void TDownloadProfilePic() throws IOException {
+//        FileOutputStream fos=new FileOutputStream("1.png");
+//        InputStream fis = UserApi.getPrifilePicDowload(22149, "b3c69fcb4a2f95fceee21f16ced8a07c");
+//        InputStream is=fis;
+//        int ch = 0;
+//        try {
+//            while((ch=is.read()) != -1){
+//                fos.write(ch);
+//            }
+//        } catch (IOException e1) {
+//            e1.printStackTrace();
+//        } finally{
+//            //关闭输入流等（略）
+//
+//            if(fis!=null){
+//                fis.close();
+//            }
+//            is.close();
+//
+//            fos.close();
+//        }
     }
 
 }

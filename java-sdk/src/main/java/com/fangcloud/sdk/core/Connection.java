@@ -40,6 +40,7 @@ public class Connection {
     private long expiresIn;
     private long applyTokenDate;
     private static int refreshCount;
+
     private static Connection connection = new Connection();
     private static final UrlTemplate AUTH = new UrlTemplate("/token");
     private static Logger logger = LoggerFactory.getLogger(Connection.class);

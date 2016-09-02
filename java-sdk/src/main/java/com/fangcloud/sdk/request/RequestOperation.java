@@ -24,12 +24,15 @@ public abstract class RequestOperation {
     }
 
     public HttpResponse execute() {
+        HttpResponse httpResponse=null;
         openHttpClient();
 
-        requestClient.setHttpResponse(oper());
-
+//        requestClient.setHttpResponse(oper());
+        httpResponse=oper();
         closeHttpClient();
 
-        return requestClient.getHttpResponse();
+//        return requestClient.getHttpResponse();
+        return httpResponse;
     }
+
 }

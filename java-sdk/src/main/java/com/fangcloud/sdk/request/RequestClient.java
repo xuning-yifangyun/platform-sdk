@@ -21,7 +21,6 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class RequestClient {
     private Lock lock=new ReentrantLock();
-    private HttpResponse httpResponse;
     private HttpClient httpClient;
     private String url;
     private String method;
@@ -60,7 +59,7 @@ public class RequestClient {
     }
 
     public HttpResponse sendRequest(){
-
+        HttpResponse httpResponse = null;
         int refreshTokenCount=Config.REFRESH_TOKEN_COUNT;
         while (refreshTokenCount > 0) {
             switch (method) {
@@ -90,8 +89,17 @@ public class RequestClient {
             if(Config.ALLOW_OUTPUT_LOG_FILE){
                 logger.info(this.toString());
             }
-
-
+            
+//            if(sendRes==200){
+//                return httpResponse;
+//            }
+//            else {
+//              //401
+//              //有效时间
+//
+//
+//            }
+            
             //前者为已经验证，后者为授权码换token
             if((nowTime-applyTokenTime)<expirseIn*1000||(expirseIn==0&&applyTokenTime==0)){
                 if(sendRes==200){
@@ -102,31 +110,18 @@ public class RequestClient {
                 }
             }else{
                     lock.lock();
-                    refreshTokenCount--;
-                    connection.tryRefreshToken();
-                    lock.unlock();
+                    try{
+                        refreshTokenCount--;
+                        connection.tryRefreshToken();
+                    }finally {
+                        lock.unlock();
+                    }
+
                     if(!url.contains("oauth/token")){
                         headers = RequestOption.getApiCommonHeader(Connection.getConnection());
                     }
             }
-//            2--
-//            sendRes = httpResponse.getStatusLine().getStatusCode();
-//
-//            if(Config.ALLOW_OUTPUT_LOG_FILE){
-//                logger.info(this.toString());
-//            }
-//
-//            if (sendRes != 200) {
-//                RequestIntercept.ErrorInfoIntercept(httpResponse);
-//                refreshTokenCount--;
-//                connection.tryRefreshToken();
-//                headers = RequestOption.getApiCommonHeader(Connection.getConnection());
-//            }
-//            else {
-//                return httpResponse;
-//            }
         }
-
         return httpResponse;
     }
 
@@ -157,13 +152,13 @@ public class RequestClient {
 
 
 
-    public HttpResponse getHttpResponse() {
-        return httpResponse;
-    }
-
-    public void setHttpResponse(HttpResponse httpResponse) {
-        this.httpResponse = httpResponse;
-    }
+//    public HttpResponse getHttpResponse() {
+//        return httpResponse;
+//    }
+//
+//    public void setHttpResponse(HttpResponse httpResponse) {
+//        this.httpResponse = httpResponse;
+//    }
 
     public HttpClient getHttpClient() {
         return httpClient;

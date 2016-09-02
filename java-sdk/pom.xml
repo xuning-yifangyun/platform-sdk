@@ -6,7 +6,7 @@
     <groupId>com.fangcloud.sdk</groupId>
     <artifactId>java-sdk</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
     <!-- TODO project name  -->
     <name>java-sdk</name>
     <description>yifangyun open-api java-sdk</description>

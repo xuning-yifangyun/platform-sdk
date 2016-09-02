@@ -7,12 +7,12 @@ import com.fangcloud.sdk.bean.output.file.FileInfo;
 /**
  * Created by xuning on 2016/8/26.
  */
-class AT implements Runnable {
+public class ATT implements Runnable {
     public long testFileId = 501000511232L;
     public static long testfoldrenId = 501000031450L;
     public String str = null;
 
-    public AT(String str) {
+    public ATT(String str) {
         this.str = str;
     }
 
