@@ -35,7 +35,7 @@ public class TApiFile {
     //    public String clientId = Config.testClientID;
     //    public String clientSecret = Config.testClientSecret;
     //    public String rediectUrl = Config.testRediectUrl;
-    public long testFileId = 501000511232L;
+    public long testFileId = 501000483684L;
 
     public TApiFile() {
 //        AuthApi.getTokenByAuthCode("5KmOCG");
@@ -44,7 +44,7 @@ public class TApiFile {
         connection.setRefreshToken(TestRefreshToken);
         connection.setApplyTokenDate(1);
 
-//        connection.setAccessToken("9d11b455-9274-43cf-a042-539872a2729e");
+//        connection.setAccessToken("aefdbf75-32b2-46ff-9acf-386eda9d2ce0");
     }
 
     /**
@@ -55,7 +55,6 @@ public class TApiFile {
 
         Config.setOpenLogOutput(true);
         Config.setOpenLogPrint(true);
-
         FileApi fileApi = new FileApi();
         FileInfo fileInfo = fileApi.getFileInfo(testFileId);
         Assert.assertEquals("出现错误", "xuning", fileInfo.getOwnedBy().getName());

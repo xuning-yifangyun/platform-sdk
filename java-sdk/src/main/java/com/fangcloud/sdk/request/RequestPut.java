@@ -6,7 +6,6 @@ import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.util.TransformationUtil;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 
@@ -18,16 +17,12 @@ import java.util.Objects;
  * Created by xuning on 2016/8/10.
  */
 public class RequestPut extends RequestOperation {
-    private RequestClient requestClient;
-    private static HttpClient httpClient;
-    private HttpResponse httpResponse;
     private String url;
     private List<Header> headers;
     private List<NameValuePair> nameValuePairs;
     private String postBody;
 
-    public RequestPut() {
-        this.requestClient = RequestClient.getRequestClient();
+    public RequestPut(RequestClient requestClient) {
         this.url = requestClient.getUrl();
         this.headers = requestClient.getHeaders();
         this.nameValuePairs = requestClient.getNameValuePairs();
@@ -36,7 +31,6 @@ public class RequestPut extends RequestOperation {
 
     @Override
     protected HttpResponse oper() {
-        this.httpClient = this.requestClient.getHttpClient();
         HttpPut httpPut = new HttpPut(url);
         if (headers.size() > 0 && !Objects.equals(headers, null)) {
             for (Header header : headers) {
@@ -53,13 +47,14 @@ public class RequestPut extends RequestOperation {
             stringEntity.setContentEncoding(Config.DEFAULT_CHARSET);
             httpPut.setEntity(stringEntity);
         }
+        HttpResponse httpResponse=null;
         try {
-            this.httpResponse = this.httpClient.execute(httpPut);
+            httpResponse = httpClient.execute(httpPut);
         }
         catch (IOException e) {
             int sendRes = httpResponse.getStatusLine().getStatusCode();
             throw new OpenApiSDKException(ExternalErrorCode.EXTERNAL_LOGIN_PASSWORD_ERROR + " is:" + e, sendRes, httpResponse.toString());
         }
-        return this.httpResponse;
+        return httpResponse;
     }
 }

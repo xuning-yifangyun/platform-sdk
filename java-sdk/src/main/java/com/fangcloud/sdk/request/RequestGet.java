@@ -3,7 +3,6 @@ package com.fangcloud.sdk.request;
 import com.fangcloud.sdk.bean.exception.ExternalErrorCode;
 import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 
 import java.io.IOException;
@@ -14,35 +13,34 @@ import java.util.Objects;
  * Created by xuning on 2016/8/10.
  */
 public class RequestGet extends RequestOperation {
-    private RequestClient requestClient;
-    private HttpClient httpClient;
-    private HttpResponse httpResponse;
+    private String url;
     private List<Header> headers;
-    private int sendRes;
-    public RequestGet() {
-        this.requestClient = RequestClient.getRequestClient();
-        this.headers = requestClient.getHeaders();
+
+    public RequestGet(RequestClient requestClient) {
+        this.url = requestClient.getUrl();
+        this.headers =requestClient.getHeaders();
     }
 
     @Override
     protected HttpResponse oper() {
-        this.httpClient = requestClient.getHttpClient();
-        HttpGet httpGet = new HttpGet(requestClient.getUrl());
-        if (headers.size() > 0 && !Objects.equals(headers, null)) {
-            for (Header header : headers) {
+        HttpGet httpGet = new HttpGet(this.url);
+        if (this.headers.size() > 0 && !Objects.equals(this.headers, null)) {
+            for (Header header : this.headers) {
                 httpGet.setHeader(header.getKey(), header.getValue());
             }
         }
+        HttpResponse httpResponse=null;
         try {
-            this.httpResponse = this.httpClient.execute(httpGet);
-
-//            int sendRes = httpResponse.getStatusLine().getStatusCode();
+            httpResponse = httpClient.execute(httpGet);
         }
         catch (IOException e) {
+            int sendRes=0;
+            sendRes = httpResponse.getStatusLine().getStatusCode();
             throw new OpenApiSDKException(ExternalErrorCode.EXTERNAL_LOGIN_PASSWORD_ERROR + " is:", sendRes, null);
-        }catch (NullPointerException n){
-            System.out.println("空指针异常");
         }
-        return this.httpResponse;
+        finally {
+            httpClient.getConnectionManager().shutdown();
+        }
+        return httpResponse;
     }
 }

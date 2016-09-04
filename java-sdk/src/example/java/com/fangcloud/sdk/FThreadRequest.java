@@ -12,7 +12,7 @@ public class FThreadRequest {
         public static final String testRediectUrl = "http://121.41.52.18:8080/callback";
         public static final String TestRefreshToken = "bceecd8b-ba45-4aca-8c4e-a80ed253f9f2";
         private static Connection connection = Connection.buildConnection(testClientID, testClientSecret, testRediectUrl);
-        public long testFileId = 501000511232L;
+        public long testFileId = 501000483684L;
         public FThreadRequest(){
             Config.setAllowOutputJsonResult(true);
             Config.setOpenLogOutput(true);
@@ -35,7 +35,7 @@ public class FThreadRequest {
             Config.setOpenLogOutput(true);
 //            connection.setRefreshToken(TestRefreshToken);
             connection.setApplyTokenDate(1);
-            connection.setAccessToken("7b6ddd78-b3bd-4471-8fd9-25f28c432fc4");
+            connection.setAccessToken("ed759f65-a86f-47c4-8dc7-57e26e35bcbc");
             ATT a=new ATT("1号窗口");
             ATT a1=new ATT("2号窗口");
             ATT a2=new ATT("3号窗口");

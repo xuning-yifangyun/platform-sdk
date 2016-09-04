@@ -63,7 +63,8 @@ public class FileApi {
      */
     public static FileInfo getFileInfo(long id) {
         String url = INFO.build(Config.DEFAULT_API_URI, id);
-        RequestClient requestClient = RequestClient.buildRequest(url, "get", headers);
+//        RequestClient requestClient = RequestClient.buildRequest(url, "get", headers);
+        RequestClient requestClient=new RequestClient().openRequest(url,"get", headers, null, null);
         return (FileInfo) TransformationUtil.requestClientToOutputObject(requestClient, FileInfo.class);
     }
 
@@ -79,7 +80,7 @@ public class FileApi {
         String url = UPDATE.build(Config.DEFAULT_API_URI, id);
         UpdateFileBean updateFileBean = new UpdateFileBean(newName, newDescription);
         String postBodyJsonString = TransformationUtil.postBodyObjToJsonString(updateFileBean);
-        RequestClient requestClient = RequestClient.buildRequest(url, "put", headers, null, postBodyJsonString);
+        RequestClient requestClient = new RequestClient().openRequest(url, "put", headers, null, postBodyJsonString);
         return (FileInfo) TransformationUtil.requestClientToOutputObject(requestClient, FileInfo.class);
     }
 
@@ -94,7 +95,7 @@ public class FileApi {
         List<Long> idArrayList = TransformationUtil.ArrToArrayListpostBody(fileIds);
         DeleteFileBean deleteFileBody = new DeleteFileBean(idArrayList);
         String postBodyJsonString = TransformationUtil.postBodyObjToJsonString(deleteFileBody);
-        RequestClient requestClient = RequestClient.buildRequest(url, "delete", headers, null, postBodyJsonString);
+        RequestClient requestClient = new RequestClient().openRequest(url, "delete", headers, null, postBodyJsonString);
         return (Result) TransformationUtil.requestClientToOutputObject(requestClient, Result.class);
     }
 
@@ -109,7 +110,7 @@ public class FileApi {
         List<Long> idArrayList = TransformationUtil.ArrToArrayListpostBody(fileIds);
         DeleteFileFromTrashBean deleteFileBody = new DeleteFileFromTrashBean(idArrayList, clear_trash);
         String postBodyJsonString = TransformationUtil.postBodyObjToJsonString(deleteFileBody);
-        RequestClient requestClient = RequestClient.buildRequest(url, "delete", headers, null, postBodyJsonString);
+        RequestClient requestClient = new RequestClient().openRequest(url, "delete", headers, null, postBodyJsonString);
         return (Result) TransformationUtil.requestClientToOutputObject(requestClient, Result.class);
     }
 
@@ -124,7 +125,7 @@ public class FileApi {
         List<Long> idArrayList = TransformationUtil.ArrToArrayListpostBody(fileIds);
         RestoreFileFromTrashBean deleteFileBody = new RestoreFileFromTrashBean(restoreAll, idArrayList);
         String postBodyJsonString = TransformationUtil.postBodyObjToJsonString(deleteFileBody);
-        RequestClient requestClient = RequestClient.buildRequest(url, "post", headers, null, postBodyJsonString);
+        RequestClient requestClient = new RequestClient().openRequest(url, "post", headers, null, postBodyJsonString);
         return (Result) TransformationUtil.requestClientToOutputObject(requestClient, Result.class);
     }
 
@@ -139,7 +140,7 @@ public class FileApi {
         String url = MOVE.build(Config.DEFAULT_API_URI);
         MoveFileBean moveFileBean = new MoveFileBean(fileIds, target_folder_id);
         String postBodyJsonString = TransformationUtil.postBodyObjToJsonString(moveFileBean);
-        RequestClient requestClient = RequestClient.buildRequest(url, "post", headers, null, postBodyJsonString);
+        RequestClient requestClient = new RequestClient().openRequest(url, "post", headers, null, postBodyJsonString);
         return (Result) TransformationUtil.requestClientToOutputObject(requestClient, Result.class);
     }
 
@@ -154,7 +155,7 @@ public class FileApi {
         String url = UPLOAD.build(Config.DEFAULT_API_URI);
         UploadFileBean uploadFileBean = new UploadFileBean(parentId, name, UploadType.API);
         String postBodyJsonString = TransformationUtil.postBodyObjToJsonString(uploadFileBean);
-        RequestClient requestClient = RequestClient.buildRequest(url, "post", headers, null, postBodyJsonString);
+        RequestClient requestClient = new RequestClient().openRequest(url, "post", headers, null, postBodyJsonString);
         return (FilePresignUpload) TransformationUtil.requestClientToOutputObject(requestClient, FilePresignUpload.class);
     }
 
@@ -170,7 +171,7 @@ public class FileApi {
         String url = NEW_VERSION.build(Config.DEFAULT_API_URI, id);
         UploadNewVersionBean uploadNewVersionBean = new UploadNewVersionBean(id, name, UploadType.API, remark);
         String postBodyJsonString = TransformationUtil.postBodyObjToJsonString(uploadNewVersionBean);
-        RequestClient requestClient = RequestClient.buildRequest(url, "post", headers, null, postBodyJsonString);
+        RequestClient requestClient = new RequestClient().openRequest(url, "post", headers, null, postBodyJsonString);
         return (FilePresignUpload) TransformationUtil.requestClientToOutputObject(requestClient, FilePresignUpload.class);
     }
 
@@ -182,7 +183,7 @@ public class FileApi {
      */
     public static FilePresignDownload download(long id) {
         String url = DOWNLOAD.build(Config.DEFAULT_API_URI, id);
-        RequestClient requestClient = RequestClient.buildRequest(url, "get", headers, null, null);
+        RequestClient requestClient = new RequestClient().openRequest(url, "get", headers, null, null);
         return (FilePresignDownload) TransformationUtil.requestClientToOutputObject(requestClient, FilePresignDownload.class);
     }
 
@@ -198,7 +199,7 @@ public class FileApi {
         String url = PREVIEW.build(Config.DEFAULT_API_URI, id);
         FilePreviewBean filePreviewBean = new FilePreviewBean(kind, forceRegenerate);
         String postBodyJsonString = TransformationUtil.postBodyObjToJsonString(filePreviewBean);
-        RequestClient requestClient = RequestClient.buildRequest(url, "post", headers, null, postBodyJsonString);
+        RequestClient requestClient = new RequestClient().openRequest(url, "post", headers, null, postBodyJsonString);
         return (FilePreviewInfo) TransformationUtil.requestClientToOutputObject(requestClient, FilePreviewInfo.class);
     }
 
@@ -214,7 +215,7 @@ public class FileApi {
         String url = PREVIEW_DOWNLOAD.build(Config.DEFAULT_API_URI, id);
         FilePreviewDownloadBean filePreviewDownloadBean = new FilePreviewDownloadBean(kind, pageIndex);
         String postBodyJsonString = TransformationUtil.postBodyObjToJsonString(filePreviewDownloadBean);
-        RequestClient requestClient = RequestClient.buildRequest(url, "post", headers, null, postBodyJsonString);
+        RequestClient requestClient = new RequestClient().openRequest(url, "post", headers, null, postBodyJsonString);
         return (FilePreviewDownload) TransformationUtil.requestClientToOutputObject(requestClient, FilePreviewDownload.class);
     }
 
@@ -243,7 +244,7 @@ public class FileApi {
         String url = COPY.build(Config.DEFAULT_API_URI);
         CopyFileBean copyFileBean = new CopyFileBean(fileId, targetFolderId, checkConflict);
         String postBodyJsonString = TransformationUtil.postBodyObjToJsonString(copyFileBean);
-        RequestClient requestClient = RequestClient.buildRequest(url, "post", headers, null, postBodyJsonString);
+        RequestClient requestClient = new RequestClient().openRequest(url, "post", headers, null, postBodyJsonString);
         return (Create) TransformationUtil.requestClientToOutputObject(requestClient, Create.class);
     }
 

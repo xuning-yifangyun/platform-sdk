@@ -6,7 +6,6 @@ import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.util.TransformationUtil;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 
@@ -18,16 +17,12 @@ import java.util.Objects;
  * Created by xuning on 2016/8/10.
  */
 public class RequestPost extends RequestOperation {
-    private RequestClient requestClient;
-    private HttpResponse httpResponse;
-    private static HttpClient httpClient;
     private String url;
     private List<Header> headers;
     private List<NameValuePair> nameValuePairs;
     private String postBody;
 
-    public RequestPost() {
-        this.requestClient = RequestClient.getRequestClient();
+    public RequestPost(RequestClient requestClient) {
         this.url = requestClient.getUrl();
         this.headers = requestClient.getHeaders();
         this.nameValuePairs = requestClient.getNameValuePairs();
@@ -36,7 +31,6 @@ public class RequestPost extends RequestOperation {
 
     @Override
     protected HttpResponse oper() {
-        this.httpClient = this.requestClient.getHttpClient();
         HttpPost httpPost = new HttpPost(url);
         if (headers.size() > 0 && !Objects.equals(headers, null)) {
             for (Header header : headers) {
@@ -52,13 +46,14 @@ public class RequestPost extends RequestOperation {
             stringEntity.setContentEncoding(Config.DEFAULT_CHARSET);
             httpPost.setEntity(stringEntity);
         }
+        HttpResponse httpResponse = null;
         try {
-            this.httpResponse = this.httpClient.execute(httpPost);
+            httpResponse = httpClient.execute(httpPost);
         }
         catch (IOException e) {
             int sendRes = httpResponse.getStatusLine().getStatusCode();
             throw new OpenApiSDKException(ExternalErrorCode.EXTERNAL_LOGIN_PASSWORD_ERROR + " is:" + e, sendRes, httpResponse.toString());
         }
-        return this.httpResponse;
+        return httpResponse;
     }
 }

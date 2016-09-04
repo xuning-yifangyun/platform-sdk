@@ -4,6 +4,8 @@ import com.fangcloud.sdk.api.AuthApi;
 import com.fangcloud.sdk.bean.exception.ExternalErrorCode;
 import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
 import com.fangcloud.sdk.bean.output.auth.TokenInfo;
+import com.fangcloud.sdk.request.Header;
+import com.fangcloud.sdk.request.RequestOption;
 import com.fangcloud.sdk.util.RequestUtil;
 import com.fangcloud.sdk.util.TransformationUtil;
 import com.fangcloud.sdk.util.UrlTemplate;
@@ -33,14 +35,13 @@ public class Connection {
     private static String redirectUrl;
     private String accessToken;
     private String refreshToken;
-    private static String username;
-    private static String password;
-    private static String apiKey;
-    private boolean autoRefresh;
     private long expiresIn;
     private long applyTokenDate;
     private static int refreshCount;
-
+    private static String username;//*
+    private static String password;//*
+    private static String apiKey;//*
+    private boolean autoRefresh;//*
     private static Connection connection = new Connection();
     private static final UrlTemplate AUTH = new UrlTemplate("/token");
     private static Logger logger = LoggerFactory.getLogger(Connection.class);
@@ -52,7 +53,7 @@ public class Connection {
         return connection;
     }
 
-    public static Connection buildConnection(String clientId, String clientSecret, String redirectUrl) {
+    public static final Connection buildConnection(String clientId, String clientSecret, String redirectUrl) {
         refreshCount = Config.REFRESH_TOKEN_COUNT;
         connection.setAutoRefresh(Config.DELAULT_AUTO_REFRESH_TOKEN);
         connection.setClientId(clientId);
@@ -89,6 +90,8 @@ public class Connection {
             NameValuePair nameValuePair2 = new BasicNameValuePair("refresh_token", refreshToken);
             List<NameValuePair> nameValuePairs = RequestUtil.addToNameValuePairList(nameValuePair1, nameValuePair2);
             HttpPost httpPost = new HttpPost(url);
+
+            List<Header> headers = RequestOption.getApiCommonHeader(Connection.getConnection());
             httpPost.setHeader("Authorization", "Basic " + connection.getAuthorizationBase64());
             HttpEntity stringEntity = new UrlEncodedFormEntity(nameValuePairs, "UTF-8");
             httpPost.setEntity(stringEntity);

@@ -5,7 +5,6 @@ import com.fangcloud.sdk.core.Connection;
 import com.fangcloud.sdk.util.LogUtil;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
 import org.apache.http.entity.StringEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,18 +17,20 @@ import java.util.concurrent.locks.ReentrantLock;
  * Created by xuning on 2016/8/9.
  */
 public class RequestClient {
-    private Lock lock=new ReentrantLock();
-    private HttpClient httpClient;
+    private Lock lock = new ReentrantLock();
     private String url;
     private String method;
     private List<Header> headers;
     private List<NameValuePair> nameValuePairs;
     private String postBody;
     private StringEntity stringEntity;
-    private static Connection connection = Connection.getConnection();
+    private String accessToken;
+    private String refreshToken;
+    private Connection connection = Connection.getConnection();
     private static RequestClient requestClient = new RequestClient();
     private int sendRes;
-    private static Logger logger= LoggerFactory.getLogger(RequestClient.class);
+    private static Logger logger = LoggerFactory.getLogger(RequestClient.class);
+
     public static RequestClient getRequestClient() {
         return requestClient;
     }
@@ -55,47 +56,54 @@ public class RequestClient {
         return requestClient;
     }
 
-    public HttpResponse sendRequest(){
-        HttpResponse httpResponse = null;
-        int refreshTokenCount=Config.REFRESH_TOKEN_COUNT;
-        while (refreshTokenCount > 0) {
-            RequestOperation requestOperation=RequestFactory.getRequestMethod(method);
-            lock.lock();
-            httpResponse = requestOperation.execute();
-            lock.unlock();
-            long nowTime=System.currentTimeMillis();
-            long applyTokenTime=connection.getApplyTokenDate();
-            long expirseIn=connection.getExpiresIn();
+    public RequestClient openRequest(String url, String method, List<Header> headers, List<NameValuePair> nameValuePairs, String postBody) {
+        this.url = url;
+        this.method = method;
+        this.headers = headers;
+        this.nameValuePairs = nameValuePairs;
+        this.postBody = postBody;
 
+        return this;
+    }
+
+    public HttpResponse sendRequest() {
+        HttpResponse httpResponse = null;
+        int refreshTokenCount = Config.REFRESH_TOKEN_COUNT;
+        while ((refreshTokenCount--) > 0) {
+            RequestOperation requestOperation = RequestFactory.getRequestMethod(this);
+            httpResponse = requestOperation.execute();
+            long nowTime = System.currentTimeMillis();
+            long applyTokenTime = connection.getApplyTokenDate();
+            long expirseIn = connection.getExpiresIn();
             sendRes = httpResponse.getStatusLine().getStatusCode();
-            if(Config.ALLOW_OUTPUT_LOG_FILE){
+            if (Config.ALLOW_OUTPUT_LOG_FILE) {
                 logger.info(this.toString());
             }
-            
-            if(sendRes==200){
+            if (sendRes == 200) {
                 return httpResponse;
             }
-
-            
-            //前者为已经验证，后者为授权码换token
-            if((nowTime-applyTokenTime)<expirseIn*1000||(expirseIn==0&&applyTokenTime==0)){
-                if(sendRes==200){
-                    return httpResponse;
-                }else{
-                    //401???
-                    RequestIntercept.ErrorInfoIntercept(httpResponse);
+            else {
+                if(sendRes==401){
+                    //M
+                    if ((nowTime - applyTokenTime) < expirseIn * 1000 || (expirseIn == 0 && applyTokenTime == 0)) {
+                        RequestIntercept.ErrorInfoIntercept(httpResponse);
+                    }else{
+                        //Y
+                        lock.lock();
+                        try {
+                            connection.tryRefreshToken();
+//                            TokenInfo tokenInfo= AuthApi.getTokenByAuthCode(connection.getRefreshToken());
+//                            headers=RequestOption.reBuildAuthHeaders(tokenInfo);
+                        }
+                        finally {
+                            lock.unlock();
+//                            refreshTokenCount=0;
+                        }
+                        if (!url.contains("oauth/token")) {
+                            headers = RequestOption.getApiCommonHeader(Connection.getConnection());
+                        }
+                    }
                 }
-            }else{
-                    refreshTokenCount--;
-                    lock.lock();
-                    try{
-                        connection.tryRefreshToken();
-                    }finally {
-                        lock.unlock();
-                    }
-                    if(!url.contains("oauth/token")){
-                        headers = RequestOption.getApiCommonHeader(Connection.getConnection());
-                    }
             }
         }
         return httpResponse;
@@ -126,23 +134,6 @@ public class RequestClient {
         return null;
     }
 
-
-
-//    public HttpResponse getHttpResponse() {
-//        return httpResponse;
-//    }
-//
-//    public void setHttpResponse(HttpResponse httpResponse) {
-//        this.httpResponse = httpResponse;
-//    }
-
-    public HttpClient getHttpClient() {
-        return httpClient;
-    }
-
-    public void setHttpClient(HttpClient httpClient) {
-        this.httpClient = httpClient;
-    }
 
     public String getUrl() {
         return url;
