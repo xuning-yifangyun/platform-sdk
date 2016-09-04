@@ -39,7 +39,6 @@ public class RequestGet extends RequestOperation {
 //            int sendRes = httpResponse.getStatusLine().getStatusCode();
         }
         catch (IOException e) {
-            System.out.println(sendRes);
             throw new OpenApiSDKException(ExternalErrorCode.EXTERNAL_LOGIN_PASSWORD_ERROR + " is:", sendRes, null);
         }catch (NullPointerException n){
             System.out.println("空指针异常");

@@ -1,7 +1,5 @@
 package com.fangcloud.sdk.request;
 
-import com.fangcloud.sdk.bean.exception.ExternalErrorCode;
-import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
 import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
 import com.fangcloud.sdk.util.LogUtil;
@@ -28,7 +26,6 @@ public class RequestClient {
     private List<NameValuePair> nameValuePairs;
     private String postBody;
     private StringEntity stringEntity;
-    private RequestOperation requestOperation;
     private static Connection connection = Connection.getConnection();
     private static RequestClient requestClient = new RequestClient();
     private int sendRes;
@@ -62,22 +59,7 @@ public class RequestClient {
         HttpResponse httpResponse = null;
         int refreshTokenCount=Config.REFRESH_TOKEN_COUNT;
         while (refreshTokenCount > 0) {
-            switch (method) {
-            case Config.METHOD_GET:
-                requestOperation = new RequestGet();
-                break;
-            case Config.METHOD_POST:
-                requestOperation = new RequestPost();
-                break;
-            case Config.METHOD_PUT:
-                requestOperation = new RequestPut();
-                break;
-            case Config.METHOD_DELETE:
-                requestOperation = new RequestDelete();
-                break;
-            default:
-                throw new OpenApiSDKException(ExternalErrorCode.REQUEST_METHOD_ERROR);
-            }
+            RequestOperation requestOperation=RequestFactory.getRequestMethod(method);
             lock.lock();
             httpResponse = requestOperation.execute();
             lock.unlock();
@@ -90,15 +72,10 @@ public class RequestClient {
                 logger.info(this.toString());
             }
             
-//            if(sendRes==200){
-//                return httpResponse;
-//            }
-//            else {
-//              //401
-//              //有效时间
-//
-//
-//            }
+            if(sendRes==200){
+                return httpResponse;
+            }
+
             
             //前者为已经验证，后者为授权码换token
             if((nowTime-applyTokenTime)<expirseIn*1000||(expirseIn==0&&applyTokenTime==0)){
@@ -109,14 +86,13 @@ public class RequestClient {
                     RequestIntercept.ErrorInfoIntercept(httpResponse);
                 }
             }else{
+                    refreshTokenCount--;
                     lock.lock();
                     try{
-                        refreshTokenCount--;
                         connection.tryRefreshToken();
                     }finally {
                         lock.unlock();
                     }
-
                     if(!url.contains("oauth/token")){
                         headers = RequestOption.getApiCommonHeader(Connection.getConnection());
                     }
@@ -216,11 +192,4 @@ public class RequestClient {
         this.postBody = postBody;
     }
 
-    public RequestOperation getRequestOperation() {
-        return requestOperation;
-    }
-
-    public void setRequestOperation(RequestOperation requestOperation) {
-        this.requestOperation = requestOperation;
-    }
 }

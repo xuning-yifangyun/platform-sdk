@@ -8,3 +8,4 @@
 workspace.xml
 target
 .DS_Store
+.gitignore

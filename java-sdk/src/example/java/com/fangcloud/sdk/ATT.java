@@ -3,11 +3,12 @@ package com.fangcloud.sdk;
 import com.fangcloud.sdk.api.FileApi;
 import com.fangcloud.sdk.api.FolderApi;
 import com.fangcloud.sdk.bean.output.file.FileInfo;
+import com.fangcloud.sdk.bean.output.folder.FolderInfo;
 
 /**
  * Created by xuning on 2016/8/26.
  */
-public class ATT implements Runnable {
+class ATT implements Runnable {
     public long testFileId = 501000511232L;
     public static long testfoldrenId = 501000031450L;
     public String str = null;
@@ -26,7 +27,7 @@ public class ATT implements Runnable {
         while ((count--) > 0) {
             System.out.println(this.str + "发送第" + (5 - count) + "次：");
             FileInfo fileInfo1 = fileApi.getFileInfo(testFileId);
-//            FolderInfo folderInfoOutput = folderApi.getFolderInfo(testfoldrenId);
+            FolderInfo folderInfoOutput = folderApi.getFolderInfo(testfoldrenId);
         }
     }
 }
