@@ -29,8 +29,8 @@ import java.util.List;
  */
 public class Connection {
 
-    private static String ClientId;
-    private static String ClientSecret;
+    private static String clientId;
+    private static String clientSecret;
     private String authCode;
     private static String redirectUrl;
     private String accessToken;
@@ -123,23 +123,23 @@ public class Connection {
     }
 
     public String getAuthorizationBase64() {
-        return Base64.encodeBase64String((this.ClientId + ":" + this.ClientSecret).getBytes());
+        return Base64.encodeBase64String((this.clientId + ":" + this.clientSecret).getBytes());
     }
 
     public String getClientId() {
-        return ClientId;
+        return clientId;
     }
 
     public void setClientId(String clientId) {
-        ClientId = clientId;
+        Connection.clientId = clientId;
     }
 
     public String getClientSecret() {
-        return ClientSecret;
+        return clientSecret;
     }
 
     public void setClientSecret(String clientSecret) {
-        ClientSecret = clientSecret;
+        Connection.clientSecret = clientSecret;
     }
 
     public String getAuthCode() {

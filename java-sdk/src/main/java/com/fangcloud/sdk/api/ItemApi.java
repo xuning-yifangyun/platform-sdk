@@ -33,7 +33,7 @@ public class ItemApi {
     public static ItemList search(String queryWords, String type, int pageNumber, int searchInFolder) {
         String baseUrl = SEARCH.build(Config.DEFAULT_API_URI);
         String url = String.format(baseUrl + "?query_words=%s&type=%s&page_number=%s&search_in_folder=%s", queryWords, type, pageNumber, searchInFolder);
-        RequestClient requestClient = RequestClient.buildRequest(url, "get", headers, null, null);
+        RequestClient requestClient = new RequestClient().openRequest(url, "get", headers, null, null);
         return (ItemList) TransformationUtil.requestClientToOutputObject(requestClient, ItemList.class);
     }
 }

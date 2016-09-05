@@ -44,7 +44,7 @@ public class AuthApi {
         String queryPrame = String
                 .format("?client_id=%s&redirect_uri=%s&response_type=%s&state=", connection.getClientId(), connection.getRedirectUrl(), "code");
         String url = urlString + queryPrame;
-        RequestClient requestClient = RequestClient.buildRequest(url, "get");
+        RequestClient requestClient = new RequestClient().openRequest(url, "get");
         requestClient.sendRequest();
     }
 
@@ -66,7 +66,7 @@ public class AuthApi {
         NameValuePair nameValuePair3 = new BasicNameValuePair("redirect_uri", connection.getRedirectUrl());
         headers = RequestOption.getAuthHeaders(connection);
         nameValuePairs = RequestUtil.addToNameValuePairList(nameValuePair1, nameValuePair2, nameValuePair3);
-        RequestClient requestClient = RequestClient.buildRequest(url, "post", headers, nameValuePairs);
+        RequestClient requestClient = new RequestClient().openRequest(url, "post", headers, nameValuePairs);
         TokenInfo tokenInfo = (TokenInfo) TransformationUtil.requestClientToOutputObject(requestClient, TokenInfo.class);
         connection.setAccessToken(tokenInfo.getAccessToken());
         connection.setRefreshToken(tokenInfo.getRefreshToken());
@@ -90,7 +90,7 @@ public class AuthApi {
         NameValuePair nameValuePair2 = new BasicNameValuePair("refresh_token", refreshTokenRes);
         headers = RequestOption.getAuthHeaders(connection);
         nameValuePairs = RequestUtil.addToNameValuePairList(nameValuePair1, nameValuePair2);
-        RequestClient requestClient = RequestClient.buildRequest(url, "post", headers, nameValuePairs);
+        RequestClient requestClient = new RequestClient().openRequest(url, "post", headers, nameValuePairs);
         TokenInfo tokenInfo = (TokenInfo) TransformationUtil.requestClientToOutputObject(requestClient, TokenInfo.class);
         if (CommonUtil.checkObjectsInvoke(tokenInfo.getAccessToken())) {
             //已经成功获取了新的Token，需要放入Connection

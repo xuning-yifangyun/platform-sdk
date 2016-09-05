@@ -35,25 +35,16 @@ public class RequestClient {
         return requestClient;
     }
 
-    public static RequestClient buildRequest(String url, String method) {
-        return requestClient.buildRequest(url, method, null, null, null);
+    public RequestClient openRequest(String url, String method) {
+        return openRequest(url, method, null, null, null);
     }
 
-    public static RequestClient buildRequest(String url, String method, List<Header> headers) {
-        return requestClient.buildRequest(url, method, headers, null, null);
+    public RequestClient openRequest(String url, String method, List<Header> headers) {
+        return openRequest(url, method, headers, null, null);
     }
 
-    public static RequestClient buildRequest(String url, String method, List<Header> headers, List<NameValuePair> nameValuePairs) {
-        return requestClient.buildRequest(url, method, headers, nameValuePairs, null);
-    }
-
-    public static RequestClient buildRequest(String url, String method, List<Header> headers, List<NameValuePair> nameValuePairs, String postBody) {
-        requestClient.setUrl(url);
-        requestClient.setPostBody(postBody);
-        requestClient.setMethod(method);
-        requestClient.setHeaders(headers);
-        requestClient.setNameValuePairs(nameValuePairs);
-        return requestClient;
+    public RequestClient openRequest(String url, String method, List<Header> headers, List<NameValuePair> nameValuePairs) {
+        return openRequest(url, method, headers, nameValuePairs, null);
     }
 
     public RequestClient openRequest(String url, String method, List<Header> headers, List<NameValuePair> nameValuePairs, String postBody) {
@@ -62,7 +53,6 @@ public class RequestClient {
         this.headers = headers;
         this.nameValuePairs = nameValuePairs;
         this.postBody = postBody;
-
         return this;
     }
 
@@ -83,21 +73,22 @@ public class RequestClient {
                 return httpResponse;
             }
             else {
-                if(sendRes==401){
+                if (sendRes == 401) {
                     //M
                     if ((nowTime - applyTokenTime) < expirseIn * 1000 || (expirseIn == 0 && applyTokenTime == 0)) {
                         RequestIntercept.ErrorInfoIntercept(httpResponse);
-                    }else{
+                    }
+                    else {
                         //Y
                         lock.lock();
                         try {
                             connection.tryRefreshToken();
-//                            TokenInfo tokenInfo= AuthApi.getTokenByAuthCode(connection.getRefreshToken());
-//                            headers=RequestOption.reBuildAuthHeaders(tokenInfo);
+                            //                            TokenInfo tokenInfo= AuthApi.getTokenByAuthCode(connection.getRefreshToken());
+                            //                            headers=RequestOption.reBuildAuthHeaders(tokenInfo);
                         }
                         finally {
                             lock.unlock();
-//                            refreshTokenCount=0;
+                            //                            refreshTokenCount=0;
                         }
                         if (!url.contains("oauth/token")) {
                             headers = RequestOption.getApiCommonHeader(Connection.getConnection());
@@ -133,7 +124,6 @@ public class RequestClient {
         }
         return null;
     }
-
 
     public String getUrl() {
         return url;

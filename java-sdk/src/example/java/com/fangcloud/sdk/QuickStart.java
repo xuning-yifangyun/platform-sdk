@@ -7,6 +7,6 @@ public class QuickStart {
     public static void main(String[] args) {
         connection = Connection.getConnection().buildConnection("clientId", "clientSecret", "rediectUrl");
         AuthApi.getTokenByAuthCode("you authcode");
-        FileApi.getFileInfo(0);
+        FileApi.getFileInfo(0);//you resource id
     }
 }

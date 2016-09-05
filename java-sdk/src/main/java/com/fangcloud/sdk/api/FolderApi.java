@@ -52,7 +52,7 @@ public class FolderApi {
      */
     public static FolderInfo getFolderInfo(long id) {
         String url = INFO.build(Config.DEFAULT_API_URI, id);
-        RequestClient requestClient = RequestClient.buildRequest(url, "get", headers, null, null);
+        RequestClient requestClient = new RequestClient().openRequest(url, "get", headers, null, null);
         return (FolderInfo) TransformationUtil.requestClientToOutputObject(requestClient, FolderInfo.class);
     }
 
@@ -67,7 +67,7 @@ public class FolderApi {
         String url = CREATE.build(Config.DEFAULT_API_URI);
         CreateFolderBean createFolderBean = new CreateFolderBean(name, parentId);
         String postBodyJsonString = TransformationUtil.postBodyObjToJsonString(createFolderBean);
-        RequestClient requestClient = RequestClient.buildRequest(url, "post", headers, null, postBodyJsonString);
+        RequestClient requestClient = new RequestClient().openRequest(url, "post", headers, null, postBodyJsonString);
         return (CreateFolder) TransformationUtil.requestClientToOutputObject(requestClient, CreateFolder.class);
     }
 
@@ -82,7 +82,7 @@ public class FolderApi {
         String url = UPDATE.build(Config.DEFAULT_API_URI, id);
         UpdateFolderBean updateFolderBean = new UpdateFolderBean(newName);
         String postBodyJsonString = TransformationUtil.postBodyObjToJsonString(updateFolderBean);
-        RequestClient requestClient = RequestClient.buildRequest(url, "put", headers, null, postBodyJsonString);
+        RequestClient requestClient = new RequestClient().openRequest(url, "put", headers, null, postBodyJsonString);
         return (UpdateFolder) TransformationUtil.requestClientToOutputObject(requestClient, UpdateFolder.class);
     }
 
@@ -97,7 +97,7 @@ public class FolderApi {
         List<Long> idArrayList = TransformationUtil.ArrToArrayListpostBody(folderIds);
         DeleteFolderBean deleteFolderBean = new DeleteFolderBean(idArrayList);
         String postBodyJsonString = TransformationUtil.postBodyObjToJsonString(deleteFolderBean);
-        RequestClient requestClient = RequestClient.buildRequest(url, "delete", headers, null, postBodyJsonString);
+        RequestClient requestClient = new RequestClient().openRequest(url, "delete", headers, null, postBodyJsonString);
         return (DeleteFolder) TransformationUtil.requestClientToOutputObject(requestClient, DeleteFolder.class);
     }
 
@@ -112,7 +112,7 @@ public class FolderApi {
         String url = DELETE_FROM_TRASH.build(Config.DEFAULT_API_URI);
         DeleteFolderFromTrashBean deleteFolderFromTrashBean = new DeleteFolderFromTrashBean(folderIds, clearTrash);
         String postBodyJsonString = TransformationUtil.postBodyObjToJsonString(deleteFolderFromTrashBean);
-        RequestClient requestClient = RequestClient.buildRequest(url, "delete", headers, null, postBodyJsonString);
+        RequestClient requestClient = new RequestClient().openRequest(url, "delete", headers, null, postBodyJsonString);
         return (DeleteFolder) TransformationUtil.requestClientToOutputObject(requestClient, DeleteFolder.class);
     }
 
@@ -127,7 +127,7 @@ public class FolderApi {
         String url = DELETE_FROM_TRASH.build(Config.DEFAULT_API_URI);
         RestoreFolderFromTrashBean restoreFolderFromTrashBean = new RestoreFolderFromTrashBean(restoreAll, folderIds);
         String postBodyJsonString = TransformationUtil.postBodyObjToJsonString(restoreFolderFromTrashBean);
-        RequestClient requestClient = RequestClient.buildRequest(url, "post", headers, null, postBodyJsonString);
+        RequestClient requestClient = new RequestClient().openRequest(url, "post", headers, null, postBodyJsonString);
         return (RestoreFolderFromTrash) TransformationUtil.requestClientToOutputObject(requestClient, RestoreFolderFromTrash.class);
     }
 
@@ -142,7 +142,7 @@ public class FolderApi {
         String url = MOVE.build(Config.DEFAULT_API_URI);
         MoveFolderBean moveFolderBean = new MoveFolderBean(folderIds, targetFolderId);
         String postBodyJsonString = TransformationUtil.postBodyObjToJsonString(moveFolderBean);
-        RequestClient requestClient = RequestClient.buildRequest(url, "post", headers, null, postBodyJsonString);
+        RequestClient requestClient = new RequestClient().openRequest(url, "post", headers, null, postBodyJsonString);
         return (MoveFolder) TransformationUtil.requestClientToOutputObject(requestClient, MoveFolder.class);
     }
 
@@ -158,7 +158,7 @@ public class FolderApi {
     public static ItemList getChildren(long folderId, int pageId, int pageCapacity, String type) {
         String baseUrl = CHRLDREN.build(Config.DEFAULT_API_URI);
         String url = String.format(baseUrl + "?folder_id=%s&page_id=%s&page_capacity=%s&type=%s", folderId, pageId, pageCapacity, type);
-        RequestClient requestClient = RequestClient.buildRequest(url, "get", headers, null, null);
+        RequestClient requestClient = new RequestClient().openRequest(url, "get", headers, null, null);
         return (ItemList) TransformationUtil.requestClientToOutputObject(requestClient, ItemList.class);
     }
 

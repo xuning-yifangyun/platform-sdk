@@ -41,7 +41,7 @@ public class UserApi {
     public static AsUser getAsUserCode(String authUrl) {
         String baseUrl = AS_USER_CODE.build(Config.DEFAULT_API_URI);
         String url = String.format(baseUrl + "?url=%s", authUrl);
-        RequestClient requestClient = RequestClient.buildRequest(url, "get", headers, null, null);
+        RequestClient requestClient = new RequestClient().openRequest(url, "get", headers, null, null);
         return (AsUser) TransformationUtil.requestClientToOutputObject(requestClient, AsUser.class);
     }
 
@@ -53,7 +53,7 @@ public class UserApi {
      */
     public static GetUserInfo getOwnInfo() {
         String url = ME_INFO.build(Config.DEFAULT_API_URI);
-        RequestClient requestClient = RequestClient.buildRequest(url, "get", headers);
+        RequestClient requestClient = new RequestClient().openRequest(url, "get", headers);
         return (GetUserInfo) TransformationUtil.requestClientToOutputObject(requestClient, GetUserInfo.class);
     }
 
@@ -64,7 +64,7 @@ public class UserApi {
      */
     public static GetUserInfo getUserInfo(long id) {
         String url = USER_INFO.build(Config.DEFAULT_API_URI, id);
-        RequestClient requestClient = RequestClient.buildRequest(url, "get", headers, null, null);
+        RequestClient requestClient = new RequestClient().openRequest(url, "get", headers, null, null);
         return (GetUserInfo) TransformationUtil.requestClientToOutputObject(requestClient, GetUserInfo.class);
     }
 
@@ -77,7 +77,7 @@ public class UserApi {
     public static InputStream getPrifilePicDowload(long userId, String profilePicKey) {
         String baseUrl = DOWNLOAD_PROFILE_PIC.build(Config.DEFAULT_API_URI);
         String url = String.format(baseUrl + "?user_id=%s&profile_pic_key=%s", userId, profilePicKey);
-        RequestClient requestClient = RequestClient.buildRequest(url, "get", headers, null, null);
+        RequestClient requestClient = new RequestClient().openRequest(url, "get", headers, null, null);
         InputStream inputStream = null;
         try {
             inputStream = requestClient.sendRequest().getEntity().getContent();
