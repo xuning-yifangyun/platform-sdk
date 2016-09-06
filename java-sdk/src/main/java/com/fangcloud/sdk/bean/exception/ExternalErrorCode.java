@@ -16,6 +16,7 @@ public class ExternalErrorCode {
     public static final String REFRESH_TOKEN_INVALID="refresh token is invalid";
     public static final String UN_SUPPORT_ENCODING="no support encoding in entity transformation";
     public static final String HTTP_RESPONSE_IS_NULL="http response is null";
+    public static final String CONNECTION_REFUSED="connection refused";
 
 
     // permission denied

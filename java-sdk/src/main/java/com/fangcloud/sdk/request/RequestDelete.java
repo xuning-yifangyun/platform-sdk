@@ -51,8 +51,9 @@ public class RequestDelete extends RequestOperation {
             httpResponse = httpClient.execute(httpDelete);
         }
         catch (IOException e) {
-            int sendRes = httpResponse.getStatusLine().getStatusCode();
-            throw new OpenApiSDKException(ExternalErrorCode.EXTERNAL_LOGIN_PASSWORD_ERROR + " is:" + e, sendRes, httpResponse.toString());
+//            int sendRes = httpResponse.getStatusLine().getStatusCode();
+//            throw new OpenApiSDKException(ExternalErrorCode.EXTERNAL_LOGIN_PASSWORD_ERROR + " is:" + e, sendRes, httpResponse.toString());
+            throw new OpenApiSDKException(ExternalErrorCode.CONNECTION_REFUSED);
         }
         return httpResponse;
     }

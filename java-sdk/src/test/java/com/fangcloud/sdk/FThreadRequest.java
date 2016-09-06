@@ -20,7 +20,7 @@ public class FThreadRequest {
     public static void main(String[] args) {
 
         //AuthApi.getTokenByAuthCode("a93m7C");
-        connection.setAccessToken("21a393ad-f1ce-4bd9-a270-c9595f4fd184");
+//        connection.setAccessToken("05d766af-f2aa-45db-ab05-f9af2d966a72");
 //        connection.setApplyTokenDate(1);
 //        Config.setAllowOutputJsonResult(true);
         Config.setOpenLogPrint(true);
@@ -40,7 +40,7 @@ public class FThreadRequest {
 //        }
 //        fixedThreadPool.shutdownNow();
 //        测试线数目
-        final int threadSize=50;
+        int threadSize=10;
         List<ATT> attList=new ArrayList<>();
         for(int i=0; i < threadSize; i++){
             ATT att=new ATT((i+1)+"号线程：");

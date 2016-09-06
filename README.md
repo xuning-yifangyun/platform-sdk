@@ -7,29 +7,28 @@
 ###1：下载jar包，导入项目路径
 ```xml
 java-sdk1.0.jar
-
+需要以下依赖
 1: httpclient4.4.1.jar
 2: httpcore.4.4.1.jar
 3: gson2.2.4.jar
-4: org.json.jar
 ```
 ###2：maven配置，配置如下
 ```xml
 <dependency>
     <groupId>com.fangcloud.sdk</groupId>
     <artifactId>java-sdk</artifactId>
-    <version>0.0.2</version>
+    <version>0.1.5</version>
 </dependency>
 ```
 
 
 ##使用
-###最佳实践
+###获取资源只需以下几步
 	只需四步：
-    1：初始化自己的Client信息，构建Connection
-    2：发起授权请求
+    1：初始化自己的应用连接信息，构建Connection
+    2：发起授权请求，接收授权码
     3：获取到授权码之后获取Token
-    4：使用SDK操作
+    4：使用Token请求api资源
 *注意*
 建议Connection使用单例模式，发起授权请求之后，授权码回调给redirectURL，在这里需要调用AuthApi.getTokenByAuthCode("you's authcode")传入您获取到的授权码，会自动处理Connection的，无需手动添加，现在为止，connection已经已经具备了操作权限，直接使用SDK就可以了，下面是具体的代码示例：
 ```java

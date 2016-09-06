@@ -32,11 +32,14 @@ public class RequestGet extends RequestOperation {
         HttpResponse httpResponse=null;
         try {
             httpResponse = httpClient.execute(httpGet);
+
         }
         catch (IOException e) {
-            int sendRes=0;
-            sendRes = httpResponse.getStatusLine().getStatusCode();
-            throw new OpenApiSDKException(ExternalErrorCode.EXTERNAL_LOGIN_PASSWORD_ERROR + " is:", sendRes, null);
+            //int sendRes=0;
+//            sendRes = httpResponse.getStatusLine().getStatusCode();
+//            throw new OpenApiSDKException(ExternalErrorCode.EXTERNAL_LOGIN_PASSWORD_ERROR + " is:", sendRes, null);
+            throw new OpenApiSDKException(ExternalErrorCode.CONNECTION_REFUSED);
+
         }
         return httpResponse;
     }
