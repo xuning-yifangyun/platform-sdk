@@ -20,7 +20,7 @@ class ATT implements Runnable {
         FileApi fileApi = new FileApi();
         FolderApi folderApi = new FolderApi();
         int count = 0;
-        while ((count++) < 10) {
+        while ((count++) < 1) {
             System.out.println(this.str + "发送第" + (count) + "次：");
             FileInfo fileInfo1 = fileApi.getFileInfo(testFileId);
             //FolderInfo folderInfoOutput = folderApi.getFolderInfo(testfoldrenId);

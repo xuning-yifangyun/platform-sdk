@@ -38,9 +38,6 @@ public class RequestGet extends RequestOperation {
             sendRes = httpResponse.getStatusLine().getStatusCode();
             throw new OpenApiSDKException(ExternalErrorCode.EXTERNAL_LOGIN_PASSWORD_ERROR + " is:", sendRes, null);
         }
-        finally {
-            httpClient.getConnectionManager().shutdown();
-        }
         return httpResponse;
     }
 }

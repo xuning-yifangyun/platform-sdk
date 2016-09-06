@@ -1,8 +1,10 @@
 package com.fangcloud.sdk;
 
-import com.fangcloud.sdk.api.AuthApi;
 import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by xuning on 2016/8/26.
@@ -16,22 +18,39 @@ public class FThreadRequest {
     public long testFileId = 501000483684L;
 
     public static void main(String[] args) {
-        //connection.setAccessToken("684616b1-3d39-4c87-8ba9-b487488ed7df");
-        //connection.setRefreshToken(TestRefreshToken);
-        //connection.setApplyTokenDate(1);
-        AuthApi.getTokenByAuthCode("17WMQP");
-        Config.setAllowOutputJsonResult(true);
+
+        //AuthApi.getTokenByAuthCode("a93m7C");
+        connection.setAccessToken("21a393ad-f1ce-4bd9-a270-c9595f4fd184");
+//        connection.setApplyTokenDate(1);
+//        Config.setAllowOutputJsonResult(true);
         Config.setOpenLogPrint(true);
         Config.setOpenLogOutput(true);
-        ATT a = new ATT("1号窗口");
-        ATT a1 = new ATT("2号窗口");
-        ATT a2 = new ATT("3号窗口");
-        Thread thread = new Thread(a);
-        Thread thread1 = new Thread(a1);
-        Thread thread2 = new Thread(a2);
-        thread.start();
-        thread1.start();
-        thread2.start();
+
+
+//        final int threadPoolSize=10;
+//        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(threadPoolSize);
+//
+//        for (int i = 0; i < threadPoolSize; i++) {
+////            final int index = i;
+//            fixedThreadPool.execute(new Runnable() {
+//                public void run() {
+//                    FileInfo fileInfo1 = FileApi.getFileInfo(501000483684L);
+//                }
+//            });
+//        }
+//        fixedThreadPool.shutdownNow();
+//        测试线数目
+        final int threadSize=50;
+        List<ATT> attList=new ArrayList<>();
+        for(int i=0; i < threadSize; i++){
+            ATT att=new ATT((i+1)+"号线程：");
+            attList.add(att);
+        }
+
+        for(int i = 0; i < threadSize; i++){
+            Thread thread=new Thread(attList.get(i));
+            thread.start();
+        }
     }
 }
 

@@ -18,10 +18,7 @@ public class TApiItem {
     private static ItemApi itemApi=ItemApi.getItemApi();
 
     public TApiItem() {
-        connection.setRefreshToken(TestRefreshToken);
-        Config.setAllowOutputJsonResult(true);
-        connection.setAccessToken("f3d41c69-28c1-4981-9e20-336c58cc8111");
-        connection.setApplyTokenDate(1);
+
     }
 
     /**
@@ -29,6 +26,10 @@ public class TApiItem {
      */
     @Test
     public void Tsearch(){
+        connection.setRefreshToken(TestRefreshToken);
+        Config.setAllowOutputJsonResult(true);
+        //        connection.setAccessToken("f3d41c69-28c1-4981-9e20-336c58cc8111");
+        connection.setApplyTokenDate(1);
         ItemList fileInfo = itemApi.search("徐宁", "all", 0, 0);
         for(int i=0; i < fileInfo.getFiles().size(); i++){
             System.out.println("搜索到第"+(i)+"个文件："+fileInfo.getFiles().get(i).getName());

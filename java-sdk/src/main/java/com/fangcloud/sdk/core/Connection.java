@@ -97,9 +97,11 @@ public class Connection {
             httpPost.setEntity(stringEntity);
             HttpResponse httpResponse = null;
             httpResponse = httpClient.execute(httpPost);
+
             if (null == httpResponse) {
                 throw new OpenApiSDKException(ExternalErrorCode.REQUEST_NO_RESPONSE);
             }
+//            RequestIntercept.ErrorInfoIntercept(httpResponse);
             String jsonString = TransformationUtil.httpResponseToString(httpResponse);
             TokenInfo tokenInfo = new Gson().fromJson(jsonString, TokenInfo.class);
             connection.setAccessToken(tokenInfo.getAccessToken());
@@ -107,7 +109,9 @@ public class Connection {
             connection.setApplyTokenDate(System.currentTimeMillis());
         }
         catch (Exception e) {
-            throw new OpenApiSDKException(ExternalErrorCode.INVALID_TOKEN);
+            //这里需要修改
+//            throw new OpenApiSDKException(e.toString());
+            throw new OpenApiSDKException(ExternalErrorCode.INVALID_REFRESSH_TOKEN);
         }
         finally {
             httpClient.getConnectionManager().shutdown();

@@ -7,6 +7,7 @@ public class ExternalErrorCode {
     public static final String EXTERNAL_LOGIN_PASSWORD_ERROR = "external_login_password_error";
     public static final String REQUEST_DATA_INVALID = "request_data_invalid";
     public static final String INVALID_TOKEN="token is invalid";
+    public static final String INVALID_REFRESSH_TOKEN="refresh token is invalid";
     public static final String REFRESH_TOKEN_IS_NULL="refresh token is null";
     public static final String REQUEST_METHOD_ERROR = "request method is error";
     public static final String REQUEST_NO_RESPONSE="request is not response";

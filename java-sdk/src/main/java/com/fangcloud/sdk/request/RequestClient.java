@@ -83,12 +83,9 @@ public class RequestClient {
                         lock.lock();
                         try {
                             connection.tryRefreshToken();
-                            //                            TokenInfo tokenInfo= AuthApi.getTokenByAuthCode(connection.getRefreshToken());
-                            //                            headers=RequestOption.reBuildAuthHeaders(tokenInfo);
                         }
                         finally {
                             lock.unlock();
-                            //                            refreshTokenCount=0;
                         }
                         if (!url.contains("oauth/token")) {
                             headers = RequestOption.getApiCommonHeader(Connection.getConnection());
