@@ -33,7 +33,7 @@ public class TApiAuth {
      */
     @Test
     public void TGteToken() {
-        String authCode = "I8rIEh";
+        String authCode = "62etxC";
         connection= connection.getAccessTokenByAuthCode(authCode);
         System.out.println("获取的Token是："+connection.getAccessToken());
         System.out.println("获取的refreshToken是："+connection.getRefreshToken());

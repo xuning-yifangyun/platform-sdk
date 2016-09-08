@@ -31,8 +31,8 @@ public class Connection {
 
     private static String clientId;
     private static String clientSecret;
-    private String authCode;
     private static String redirectUrl;
+    private String authCode;
     private String accessToken;
     private String refreshToken;
     private long expiresIn;
