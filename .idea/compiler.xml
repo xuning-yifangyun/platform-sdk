@@ -29,6 +29,7 @@
     <bytecodeTargetLevel target="1.7">
       <module name="OpenPlaformDemo" target="1.5" />
       <module name="sdk" target="1.7" />
+      <module name="test" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
