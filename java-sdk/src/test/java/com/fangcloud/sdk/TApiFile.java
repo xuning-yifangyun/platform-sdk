@@ -42,7 +42,7 @@ public class TApiFile {
 //        connection.setRefreshToken(TestRefreshToken);
         Config.setAllowOutputJsonResult(true);
         connection.setRefreshToken(TestRefreshToken);
-        connection.setApplyTokenDate(1);
+//        connection.setApplyTokenDate(1);
 
 //        connection.setAccessToken("aefdbf75-32b2-46ff-9acf-386eda9d2ce0");
     }
@@ -52,7 +52,6 @@ public class TApiFile {
      */
     @Test
     public void TgetFileInfo() {
-
         Config.setOpenLogOutput(true);
         Config.setOpenLogPrint(true);
         FileApi fileApi = new FileApi();

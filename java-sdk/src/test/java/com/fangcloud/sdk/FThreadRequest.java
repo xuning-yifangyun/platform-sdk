@@ -18,15 +18,13 @@ public class FThreadRequest {
     public long testFileId = 501000483684L;
 
     public static void main(String[] args) {
-
-        //AuthApi.getTokenByAuthCode("a93m7C");
-        connection.setAccessToken("e039477f-a78b-428e-a0b1-f2dfcebbc172");
-//        connection.setApplyTokenDate(1);
+//        AuthApi.getTokenByAuthCode("2FOC2d");
+        connection.setAccessToken("8038b1d8-efd5-4b1f-812e-199deb656f23");
+//        connection.setExpiresIn(25000);
 //        Config.setAllowOutputJsonResult(true);
+        connection.setRefreshToken(TestRefreshToken);
         Config.setOpenLogPrint(true);
         Config.setOpenLogOutput(true);
-
-
 //        final int threadPoolSize=10;
 //        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(threadPoolSize);
 //
@@ -46,7 +44,6 @@ public class FThreadRequest {
             ATT att=new ATT((i+1)+"号线程：");
             attList.add(att);
         }
-
         for(int i = 0; i < threadSize; i++){
             Thread thread=new Thread(attList.get(i));
             thread.start();

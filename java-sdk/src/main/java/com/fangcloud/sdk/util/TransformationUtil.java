@@ -3,6 +3,7 @@ package com.fangcloud.sdk.util;
 import com.fangcloud.sdk.bean.exception.ExternalErrorCode;
 import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
 import com.fangcloud.sdk.core.Config;
+import com.fangcloud.sdk.core.Connection;
 import com.fangcloud.sdk.request.RequestClient;
 import com.google.gson.Gson;
 import org.apache.http.HttpEntity;
@@ -17,13 +18,17 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by xuning on 2016/8/9.
  * 数据转换
  */
 public class TransformationUtil {
+
 private static org.slf4j.Logger logger=LoggerFactory.getLogger(TransformationUtil.class);
+    private static Lock lock=new ReentrantLock();
     private TransformationUtil(){}
 
     /**
@@ -68,8 +73,9 @@ private static org.slf4j.Logger logger=LoggerFactory.getLogger(TransformationUti
         }
         catch (IOException e) {
             //Attempted read from closed stream
-            e.printStackTrace();
-            logger.error(e.getMessage());
+//            e.printStackTrace();
+//            logger.error(e.getMessage());
+            Connection.tryRefreshToken();
         }
         return res;
     }

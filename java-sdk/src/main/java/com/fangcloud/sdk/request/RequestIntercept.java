@@ -54,7 +54,7 @@ public class RequestIntercept {
         case 200:
             break;
         default:
-            throw new OpenApiSDKException(code);
+//            throw new OpenApiSDKException(code);
         }
     }
 

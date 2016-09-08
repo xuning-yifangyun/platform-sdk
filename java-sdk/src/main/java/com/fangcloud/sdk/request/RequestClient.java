@@ -17,7 +17,6 @@ import java.util.concurrent.locks.ReentrantLock;
  * Created by xuning on 2016/8/9.
  */
 public class RequestClient {
-    private Lock lock = new ReentrantLock();
     private String url;
     private String method;
     private List<Header> headers;
@@ -29,6 +28,7 @@ public class RequestClient {
     private Connection connection = Connection.getConnection();
     private static RequestClient requestClient = new RequestClient();
     private int sendRes;
+    private Lock lock = new ReentrantLock();
     private static Logger logger = LoggerFactory.getLogger(RequestClient.class);
 
     public static RequestClient getRequestClient() {
@@ -60,6 +60,7 @@ public class RequestClient {
         HttpResponse httpResponse = null;
         int refreshTokenCount = Config.REFRESH_TOKEN_COUNT;
         while ((refreshTokenCount--) > 0) {
+//            headers = RequestOption.getApiCommonHeader(Connection.getConnection());
             RequestOperation requestOperation = RequestFactory.getRequestMethod(this);
             httpResponse = requestOperation.execute();
             long nowTime = System.currentTimeMillis();
@@ -75,21 +76,22 @@ public class RequestClient {
             else {
                 if (sendRes == 401) {
                     //M
-                    if ((nowTime - applyTokenTime) < expirseIn * 1000 || (expirseIn == 0 && applyTokenTime == 0)) {
+                    if ((nowTime - applyTokenTime) < expirseIn * 1000) {
                         RequestIntercept.ErrorInfoIntercept(httpResponse);
                     }
                     else {
                         //Y
-                        lock.lock();
                         try {
+                            lock.lock();
                             connection.tryRefreshToken();
+                            headers = RequestOption.getApiCommonHeader(Connection.getConnection());
                         }
                         finally {
                             lock.unlock();
                         }
-                        if (!url.contains("oauth/token")) {
-                            headers = RequestOption.getApiCommonHeader(Connection.getConnection());
-                        }
+//                        if (!url.contains("oauth/token")) {
+//                            headers = RequestOption.getApiCommonHeader(Connection.getConnection());
+//                        }
                     }
                 }
             }
