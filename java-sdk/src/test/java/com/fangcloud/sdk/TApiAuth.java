@@ -37,7 +37,6 @@ public class TApiAuth {
         connection= connection.getAccessTokenByAuthCode(authCode);
         System.out.println("获取的Token是："+connection.getAccessToken());
         System.out.println("获取的refreshToken是："+connection.getRefreshToken());
-
     }
 
     /**

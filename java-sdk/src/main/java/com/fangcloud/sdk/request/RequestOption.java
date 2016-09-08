@@ -29,11 +29,13 @@ public class RequestOption {
         return headers;
     }
 
-    public static final ArrayList<Header> reBuildAuthHeaders(TokenInfo tokenInfo){
-        Header header1 = new Header("Authorization", "Bearer " + tokenInfo.getAccessToken());
-        Header header2 = new Header("Content-Type", Config.DEFAULT_CONTENT_TYPE);
-        headers = RequestUtil.addToHeaderList(header1, header2);
-        return headers;
+//    public static final ArrayList<Header> reBuildAuthHeaders(TokenInfo tokenInfo){
+//        Header header1 = new Header("Authorization", "Basic " + connection.getAuthorizationBase64());
+//        headers = RequestUtil.addToHeaderList(header1);
+//        return headers;
+//    }
+    public static final ArrayList<Header> reBuildHeader(TokenInfo tokenInfo){
+        Header header = new Header("Authorization", "Bearer " + tokenInfo.getAccessToken());
+        return RequestUtil.addToHeaderList(header);
     }
-
 }

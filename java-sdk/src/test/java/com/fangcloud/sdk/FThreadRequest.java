@@ -1,5 +1,6 @@
 package com.fangcloud.sdk;
 
+import com.fangcloud.sdk.api.AuthApi;
 import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
 
@@ -19,15 +20,15 @@ public class FThreadRequest {
 
     public static void main(String[] args) {
 //        AuthApi.getTokenByAuthCode("2FOC2d");
-        connection.setAccessToken("8038b1d8-efd5-4b1f-812e-199deb656f23");
+//        connection.setAccessToken("a2cbacec-2aaa-4d49-b752-d3d7483b256a");
 //        connection.setExpiresIn(25000);
 //        Config.setAllowOutputJsonResult(true);
-        connection.setRefreshToken(TestRefreshToken);
+//        connection.setRefreshToken(TestRefreshToken);
+        AuthApi.getTokenByRefreshToken(TestRefreshToken);
         Config.setOpenLogPrint(true);
         Config.setOpenLogOutput(true);
 //        final int threadPoolSize=10;
 //        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(threadPoolSize);
-//
 //        for (int i = 0; i < threadPoolSize; i++) {
 ////            final int index = i;
 //            fixedThreadPool.execute(new Runnable() {
@@ -38,7 +39,7 @@ public class FThreadRequest {
 //        }
 //        fixedThreadPool.shutdownNow();
 //        测试线数目
-        int threadSize=50;
+        int threadSize=10;
         List<ATT> attList=new ArrayList<>();
         for(int i=0; i < threadSize; i++){
             ATT att=new ATT((i+1)+"号线程：");

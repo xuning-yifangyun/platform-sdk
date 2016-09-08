@@ -46,7 +46,8 @@ public class Connection {
     private static final UrlTemplate AUTH = new UrlTemplate("/token");
     private static Logger logger = LoggerFactory.getLogger(Connection.class);
 
-    private Connection() {
+    public Connection() {
+
     }
 
     public static Connection getConnection() {
@@ -77,7 +78,7 @@ public class Connection {
      * 独立不为单例刷新Token，仅做Token失效刷新使用
      * 需要进一步优化此方法代码
      */
-    public synchronized static void tryRefreshToken() {
+    public static void tryRefreshToken() {
         HttpClient httpClient = null;
         try {
             httpClient = new DefaultHttpClient();
