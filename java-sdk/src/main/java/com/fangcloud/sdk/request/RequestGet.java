@@ -1,6 +1,5 @@
 package com.fangcloud.sdk.request;
 
-import com.fangcloud.sdk.bean.exception.ExternalErrorCode;
 import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -38,7 +37,8 @@ public class RequestGet extends RequestOperation {
             //int sendRes=0;
 //            sendRes = httpResponse.getStatusLine().getStatusCode();
 //            throw new OpenApiSDKException(ExternalErrorCode.EXTERNAL_LOGIN_PASSWORD_ERROR + " is:", sendRes, null);
-            throw new OpenApiSDKException(ExternalErrorCode.CONNECTION_REFUSED);
+//            throw new OpenApiSDKException(ExternalErrorCode.CONNECTION_REFUSED);
+            throw new OpenApiSDKException(e.getMessage());
 
         }
         return httpResponse;

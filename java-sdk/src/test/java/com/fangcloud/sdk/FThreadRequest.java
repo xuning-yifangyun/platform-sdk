@@ -1,7 +1,5 @@
 package com.fangcloud.sdk;
 
-import com.fangcloud.sdk.api.AuthApi;
-import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
 
 import java.util.ArrayList;
@@ -19,27 +17,14 @@ public class FThreadRequest {
     public long testFileId = 501000483684L;
 
     public static void main(String[] args) {
-//        AuthApi.getTokenByAuthCode("2FOC2d");
-//        connection.setAccessToken("a2cbacec-2aaa-4d49-b752-d3d7483b256a");
+
+//        connection.setAccessToken("1b670148-5481-4372-91c9-4772c3b7edda");
 //        connection.setExpiresIn(25000);
 //        Config.setAllowOutputJsonResult(true);
-//        connection.setRefreshToken(TestRefreshToken);
-        AuthApi.getTokenByRefreshToken(TestRefreshToken);
-        Config.setOpenLogPrint(true);
-        Config.setOpenLogOutput(true);
-//        final int threadPoolSize=10;
-//        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(threadPoolSize);
-//        for (int i = 0; i < threadPoolSize; i++) {
-////            final int index = i;
-//            fixedThreadPool.execute(new Runnable() {
-//                public void run() {
-//                    FileInfo fileInfo1 = FileApi.getFileInfo(501000483684L);
-//                }
-//            });
-//        }
-//        fixedThreadPool.shutdownNow();
-//        测试线数目
-        int threadSize=10;
+        connection.setRefreshToken(TestRefreshToken);
+//        AuthApi.getTokenByRefreshToken(TestRefreshToken);
+//        AuthApi.getTokenByRefreshToken(TestRefreshToken);
+        int threadSize=40;
         List<ATT> attList=new ArrayList<>();
         for(int i=0; i < threadSize; i++){
             ATT att=new ATT((i+1)+"号线程：");

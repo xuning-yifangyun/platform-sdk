@@ -7,6 +7,12 @@ public class AppConn {
     private String accessToken;
     private String refreshToken;
     private int expirseIn;
-    public AppConn(){
+    private static AppInfo appInfo;
+    public AppConn(AppInfo appInfo){
+        this.appInfo=appInfo;
     }
+
+
+
+
 }

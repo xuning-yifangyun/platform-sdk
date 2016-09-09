@@ -3,7 +3,6 @@ package com.fangcloud.sdk.request;
 import com.fangcloud.sdk.bean.exception.ExternalErrorCode;
 import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
 import com.fangcloud.sdk.bean.output.ErrorsInfo;
-import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.util.TransformationUtil;
 import com.google.gson.Gson;
 import org.apache.http.HttpResponse;
@@ -36,10 +35,10 @@ public class RequestIntercept {
 
         msg = reponseErrorInfos.get(0).getMsg();
 
-        if (Config.OPEN_LOG_OUTPUT) {
-            String errorLog ="[error_code:" + code + "][request_id: " + requestId + "]";
-            logger.error(errorLog);
-        }
+//        if (Config.OPEN_LOG_OUTPUT) {
+//            String errorLog ="[error_code:" + code + "][request_id: " + requestId + "]";
+//            logger.error(errorLog);
+//        }
 
         if (null == resJsonString) {
             throw new OpenApiSDKException(ExternalErrorCode.REQUEST_NO_RESPONSE);
@@ -49,12 +48,12 @@ public class RequestIntercept {
             throw new OpenApiSDKException(ExternalErrorCode.REQUEST_NO_RESPONSE);
         case 500:
             throw new OpenApiSDKException(ExternalErrorCode.NOT_KNOW_ERROR);
-//        case 401:
-//            break;
+        case 401:
+            break;
         case 200:
             break;
         default:
-//            throw new OpenApiSDKException(code);
+            throw new OpenApiSDKException(code);
         }
     }
 

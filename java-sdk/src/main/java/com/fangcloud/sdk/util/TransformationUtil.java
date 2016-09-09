@@ -3,7 +3,6 @@ package com.fangcloud.sdk.util;
 import com.fangcloud.sdk.bean.exception.ExternalErrorCode;
 import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
 import com.fangcloud.sdk.core.Config;
-import com.fangcloud.sdk.core.Connection;
 import com.fangcloud.sdk.request.RequestClient;
 import com.google.gson.Gson;
 import org.apache.http.HttpEntity;
@@ -27,9 +26,11 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class TransformationUtil {
 
-private static org.slf4j.Logger logger=LoggerFactory.getLogger(TransformationUtil.class);
-    private static Lock lock=new ReentrantLock();
-    private TransformationUtil(){}
+    private static org.slf4j.Logger logger = LoggerFactory.getLogger(TransformationUtil.class);
+    private static Lock lock = new ReentrantLock();
+
+    private TransformationUtil() {
+    }
 
     /**
      * 转换为HttpEntity
@@ -73,22 +74,25 @@ private static org.slf4j.Logger logger=LoggerFactory.getLogger(TransformationUti
         }
         catch (IOException e) {
             //Attempted read from closed stream
-//            e.printStackTrace();
-//            logger.error(e.getMessage());
-            Connection.tryRefreshToken();
+            //            e.printStackTrace();
+            //            logger.error(e.getMessage());
+
+//            Connection.tryRefreshToken();
+            throw new OpenApiSDKException(e.getMessage());
         }
         return res;
     }
 
     /**
      * httpresponse转换为Object
+     *
      * @param httpResponse
      * @param classes
      * @return
      */
-    public static final Object httpResponseToObject(HttpResponse httpResponse, Class classes){
-        String res=httpResponseToString(httpResponse);
-        if(null==res){
+    public static final Object httpResponseToObject(HttpResponse httpResponse, Class classes) {
+        String res = httpResponseToString(httpResponse);
+        if (null == res) {
             throw new OpenApiSDKException(ExternalErrorCode.HTTP_RESPONSE_IS_NULL);
         }
         return new Gson().fromJson(res, classes);
@@ -101,13 +105,19 @@ private static org.slf4j.Logger logger=LoggerFactory.getLogger(TransformationUti
      * @param classes
      * @return
      */
-    public static final Object requestClientToOutputObject(RequestClient requestClient, Class classes){
+    public static final Object requestClientToOutputObject(RequestClient requestClient, Class classes) {
         HttpResponse httpResponse = requestClient.sendRequest();
         String res = httpResponseToString(httpResponse);
-        if(Config.ALLOW_OUTPUT_JSON_RESULT){
+        if (Config.ALLOW_OUTPUT_JSON_RESULT) {
             logger.info(res);
         }
-        return new Gson().fromJson(res, classes);
+        Object o=null;
+        try{
+            o = new Gson().fromJson(res, classes);
+        }catch (Exception e){
+            throw new OpenApiSDKException(ExternalErrorCode.HTTP_RESPONSE_IS_NULL);
+        }
+        return o;
     }
 
     /**
@@ -130,10 +140,9 @@ private static org.slf4j.Logger logger=LoggerFactory.getLogger(TransformationUti
      * @param ids
      * @return
      */
-
     public static final List<Long> ArrToArrayListpostBody(long... ids) {
         List<Long> idsList = new ArrayList<>();
-        if(null==ids){
+        if (null == ids) {
             return null;
         }
         for (long id : ids) {

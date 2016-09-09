@@ -66,7 +66,6 @@ public class TApiFile {
     @Test
     public void TUpdateFile() {
         connection.setRefreshToken(TestRefreshToken);
-        connection.setApplyTokenDate(1);
         FileInfo fileInfoOutput1 = FileApi.updateFile(testFileId, "dog.jpg", "ning update");
         System.out.println(fileInfoOutput1.getName());
         System.out.println(fileInfoOutput1.getModifiedAt());

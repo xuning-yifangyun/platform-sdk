@@ -18,22 +18,15 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class RequestClient {
     private String url;
+    private int sendRes;
     private String method;
-    private List<Header> headers;
-    private List<NameValuePair> nameValuePairs;
     private String postBody;
     private StringEntity stringEntity;
-    private String accessToken;
-    private String refreshToken;
-    private Connection connection = Connection.getConnection();
-    private static RequestClient requestClient = new RequestClient();
-    private int sendRes;
-    private Lock lock = new ReentrantLock();
+    private static List<Header> headers;
+    private List<NameValuePair> nameValuePairs;
+    private static Lock lock = new ReentrantLock();
+    private static Connection connection = Connection.getConnection();
     private static Logger logger = LoggerFactory.getLogger(RequestClient.class);
-
-    public static RequestClient getRequestClient() {
-        return requestClient;
-    }
 
     public RequestClient openRequest(String url, String method) {
         return openRequest(url, method, null, null, null);
@@ -60,38 +53,28 @@ public class RequestClient {
         HttpResponse httpResponse = null;
         int refreshTokenCount = Config.REFRESH_TOKEN_COUNT;
         while ((refreshTokenCount--) > 0) {
-//            headers = RequestOption.getApiCommonHeader(Connection.getConnection());
             RequestOperation requestOperation = RequestFactory.getRequestMethod(this);
             httpResponse = requestOperation.execute();
             long nowTime = System.currentTimeMillis();
-            long applyTokenTime = connection.getApplyTokenDate();
-            long expirseIn = connection.getExpiresIn();
             sendRes = httpResponse.getStatusLine().getStatusCode();
-            if (Config.ALLOW_OUTPUT_LOG_FILE) {
-                logger.info(this.toString());
-            }
             if (sendRes == 200) {
+                logger.info(this.toString());
                 return httpResponse;
             }
             else {
+//                RequestIntercept.ErrorInfoIntercept(httpResponse);
                 if (sendRes == 401) {
-                    //M
-                    if ((nowTime - applyTokenTime) < expirseIn * 1000) {
-                        RequestIntercept.ErrorInfoIntercept(httpResponse);
-                    }
-                    else {
-                        //Y
-                        try {
-                            lock.lock();
+                    try {
+                        lock.lock();
+                        if (!((nowTime - connection.getApplyTokenDate()) < connection.getExpiresIn() * 1000)) {
                             connection.tryRefreshToken();
-                            headers = RequestOption.getApiCommonHeader(Connection.getConnection());
+                            if (!url.contains("oauth/token")) {
+                                headers = RequestOption.getApiCommonHeader(Connection.getConnection());
+                            }
                         }
-                        finally {
-                            lock.unlock();
-                        }
-//                        if (!url.contains("oauth/token")) {
-//                            headers = RequestOption.getApiCommonHeader(Connection.getConnection());
-//                        }
+                    }
+                    finally {
+                        lock.unlock();
                     }
                 }
             }
