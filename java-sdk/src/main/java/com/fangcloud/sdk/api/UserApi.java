@@ -22,14 +22,7 @@ public class UserApi {
     private static final UrlTemplate DOWNLOAD_PROFILE_PIC = new UrlTemplate("/user/profile_pic_download");
     private static Connection connection = Connection.getConnection();
     private static ArrayList<Header> headers = RequestOption.getApiCommonHeader(connection);
-    private static UserApi userApi = new UserApi();
 
-    public static UserApi getUserApi() {
-        return userApi;
-    }
-
-    public UserApi() {
-    }
 
     /**
      * 获取用户的as_user码

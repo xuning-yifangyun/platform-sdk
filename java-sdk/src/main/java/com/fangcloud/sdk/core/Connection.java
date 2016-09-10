@@ -4,23 +4,22 @@ import com.fangcloud.sdk.api.AuthApi;
 import com.fangcloud.sdk.bean.exception.ExternalErrorCode;
 import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
 import com.fangcloud.sdk.bean.output.auth.TokenInfo;
-import com.fangcloud.sdk.request.Header;
-import com.fangcloud.sdk.request.RequestOption;
 import com.fangcloud.sdk.util.Base64;
 import com.fangcloud.sdk.util.RequestUtil;
 import com.fangcloud.sdk.util.TransformationUtil;
 import com.fangcloud.sdk.util.UrlTemplate;
 import com.google.gson.Gson;
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Objects;
 
@@ -44,11 +43,9 @@ public class Connection {
     private boolean autoRefresh;//*
     private static Connection connection = new Connection();
     private static final UrlTemplate AUTH = new UrlTemplate("/token");
-//    private static Logger logger = LoggerFactory.getLogger(Connection.class);
+    private static Logger logger = LoggerFactory.getLogger(Connection.class);
 
-    private Connection() {
-
-    }
+    private Connection() {}
 
     public static Connection getConnection() {
         return connection;
@@ -80,40 +77,42 @@ public class Connection {
      * 需要进一步优化此方法代码
      */
     public static void tryRefreshToken() {
-        HttpClient httpClient = new DefaultHttpClient();
+        // TODO: 2016/9/10 可以考虑使用request client发送
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        String jsonString=null;
+        CloseableHttpResponse httpResponse;
         String url = AUTH.build(Config.DEFAULT_AUTH_URL);
         HttpPost httpPost = new HttpPost(url);
-        NameValuePair nameValuePair1 = new BasicNameValuePair("grant_type", "refresh_token");
+
         String refreshToken = connection.getRefreshToken();
         if (refreshToken == null) {
-            throw new OpenApiSDKException(ExternalErrorCode.REFRESH_TOKEN_IS_NULL);
+            throw new OpenApiSDKException(ExternalErrorCode.REFRESH_TOKEN_IS_NULL_OR_INVALID);
         }
+        NameValuePair nameValuePair1 = new BasicNameValuePair("grant_type", "refresh_token");
         NameValuePair nameValuePair2 = new BasicNameValuePair("refresh_token", refreshToken);
         List<NameValuePair> nameValuePairs = RequestUtil.addToNameValuePairList(nameValuePair1, nameValuePair2);
-        List<Header> headers = RequestOption.getApiCommonHeader(Connection.getConnection());
         httpPost.setHeader("Authorization", "Basic " + connection.getAuthorizationBase64());
         try {
             HttpEntity stringEntity = new UrlEncodedFormEntity(nameValuePairs, "UTF-8");
             httpPost.setEntity(stringEntity);
         }
-        catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+        catch (Exception e) {
+            throw new OpenApiSDKException(ExternalErrorCode.REQUEST_OPTION_ERROR);
         }
-
-        String jsonString = null;
         try {
-            HttpResponse httpResponse = httpClient.execute(httpPost);
+            httpResponse = httpClient.execute(httpPost);
             if (null == httpResponse) {
                 throw new OpenApiSDKException(ExternalErrorCode.REQUEST_NO_RESPONSE);
+            }
+            else {
+                httpResponse.close();
             }
             jsonString = TransformationUtil.httpResponseToString(httpResponse);
         }
         catch (Exception e) {
-
+            e.printStackTrace();
         }
-
         TokenInfo tokenInfo = new Gson().fromJson(jsonString, TokenInfo.class);
-
         if (!Objects.equals(null, tokenInfo)) {
             connection.setAccessToken(tokenInfo.getAccessToken());
             connection.setRefreshToken(tokenInfo.getRefreshToken());
@@ -123,13 +122,13 @@ public class Connection {
         else {
             throw new OpenApiSDKException(ExternalErrorCode.TOKEN_IS_NULL);
         }
-        if (!Objects.equals(null, httpClient)) {
-            try {
-                httpClient.getConnectionManager().shutdown();
+        try {
+            if (!Objects.equals(null, httpClient)) {
+                httpClient.close();
             }
-            catch (Exception e) {
-                throw new OpenApiSDKException(ExternalErrorCode.HTTP_CLIENT_CLOSE_EXCEPTION);
-            }
+        }
+        catch (Exception e) {
+            throw new OpenApiSDKException(ExternalErrorCode.HTTP_CLIENT_CLOSE_EXCEPTION);
         }
     }
 
@@ -142,7 +141,7 @@ public class Connection {
     }
 
     public String getAuthorizationBase64() {
-//        return Base64.encodeBase64String((this.clientId + ":" + this.clientSecret).getBytes());
+        //        return Base64.encodeBase64String((this.clientId + ":" + this.clientSecret).getBytes());
         return Base64.encode((this.clientId + ":" + this.clientSecret).getBytes());
     }
 

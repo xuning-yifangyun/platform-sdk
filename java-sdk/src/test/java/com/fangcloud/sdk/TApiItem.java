@@ -15,7 +15,7 @@ public class TApiItem {
     public static final String testRediectUrl = "http://121.41.52.18:8080/callback";
     public static final String TestRefreshToken = "bceecd8b-ba45-4aca-8c4e-a80ed253f9f2";
     private static Connection connection = Connection.buildConnection(testClientID, testClientSecret, testRediectUrl);
-    private static ItemApi itemApi=ItemApi.getItemApi();
+    private static ItemApi itemApi=new ItemApi();
 
     public TApiItem() {
 
@@ -28,7 +28,6 @@ public class TApiItem {
     public void Tsearch(){
         connection.setRefreshToken(TestRefreshToken);
         Config.setAllowOutputJsonResult(true);
-        //        connection.setAccessToken("f3d41c69-28c1-4981-9e20-336c58cc8111");
         connection.setApplyTokenDate(1);
         ItemList fileInfo = itemApi.search("徐宁", "all", 0, 0);
         for(int i=0; i < fileInfo.getFiles().size(); i++){

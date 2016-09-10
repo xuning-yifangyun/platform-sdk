@@ -2,6 +2,8 @@ package com.fangcloud.sdk.request;
 
 import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
+import com.fangcloud.sdk.request.factory.RequestFactory;
+import com.fangcloud.sdk.request.intercept.RequestIntercept;
 import com.fangcloud.sdk.util.LogUtil;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -24,8 +26,7 @@ public class RequestClient {
     private StringEntity stringEntity;
     private static List<Header> headers;
     private List<NameValuePair> nameValuePairs;
-    private static Lock lock = new ReentrantLock();
-    private static Connection connection = Connection.getConnection();
+    private static final Lock lock = new ReentrantLock();
     private static Logger logger = LoggerFactory.getLogger(RequestClient.class);
 
     public RequestClient openRequest(String url, String method) {
@@ -50,6 +51,7 @@ public class RequestClient {
     }
 
     public HttpResponse sendRequest() {
+        Connection connection = Connection.getConnection();
         HttpResponse httpResponse = null;
         int refreshTokenCount = Config.REFRESH_TOKEN_COUNT;
         while ((refreshTokenCount--) > 0) {
@@ -57,12 +59,13 @@ public class RequestClient {
             httpResponse = requestOperation.execute();
             long nowTime = System.currentTimeMillis();
             sendRes = httpResponse.getStatusLine().getStatusCode();
+
             if (sendRes == 200) {
                 logger.info(this.toString());
                 return httpResponse;
             }
             else {
-//                RequestIntercept.ErrorInfoIntercept(httpResponse);
+                RequestIntercept.ErrorInfoIntercept(httpResponse);
                 if (sendRes == 401) {
                     try {
                         lock.lock();
@@ -84,27 +87,6 @@ public class RequestClient {
 
     public static void logRequest(String str) {
         LogUtil.getLogUtil().printLog(str);
-    }
-
-    @Override
-    public String toString() {
-        if (Config.OPEN_LOG_OUTPUT || Config.OPEN_LOG_PRINT) {
-            String requestTime = LogUtil.formateTime(System.currentTimeMillis(), "yyyy_MM_dd HH:mm:ss");
-            String hRes = "";
-            for (Header h : headers) {
-                hRes += (h.getKey() + ":" + h.getValue() + " ");
-            }
-            String nRes = "";
-            if (null != nameValuePairs) {
-                for (NameValuePair nameValuePair : nameValuePairs) {
-                    nRes += (nameValuePair.getName() + ":" + " ");
-                }
-            }
-            return ("[" + "response code：" + sendRes + "] request info: [url: " + this.getUrl() +
-                    "] [method:" + this.getMethod() + "] [header：" + hRes + "] [request option:" +
-                    nRes + "] [postbody :" + postBody + "]" + "---");
-        }
-        return null;
     }
 
     public String getUrl() {
@@ -153,6 +135,27 @@ public class RequestClient {
 
     public void setPostBody(String postBody) {
         this.postBody = postBody;
+    }
+
+    @Override
+    public String toString() {
+        if (Config.OPEN_LOG_OUTPUT || Config.OPEN_LOG_PRINT) {
+            String requestTime = LogUtil.formateTime(System.currentTimeMillis(), "yyyy_MM_dd HH:mm:ss");
+            String hRes = "";
+            for (Header h : headers) {
+                hRes += (h.getKey() + ":" + h.getValue() + " ");
+            }
+            String nRes = "";
+            if (null != nameValuePairs) {
+                for (NameValuePair nameValuePair : nameValuePairs) {
+                    nRes += (nameValuePair.getName() + ":" + " ");
+                }
+            }
+            return ("[" + "response code：" + sendRes + "] request info: [url: " + this.getUrl() +
+                    "] [method:" + this.getMethod() + "] [header：" + hRes + "] [request option:" +
+                    nRes + "] [postbody :" + postBody + "]" + "---");
+        }
+        return null;
     }
 
 }

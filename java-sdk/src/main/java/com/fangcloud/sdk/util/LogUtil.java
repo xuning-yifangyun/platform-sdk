@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
-import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Formatter;
 import java.util.logging.Level;
@@ -18,14 +17,12 @@ import java.util.logging.Logger;
 /**
  * Created by xuning on 2016/8/17.
  */
-public class LogUtil {
-    public static final int NUM_LINES = 100000;
+public final class LogUtil {
     private static LogUtil logUtil = new LogUtil();
     public FileHandler fileHeandler;
-    ConsoleHandler consoleHandler;
     Logger logger;
-    private LogUtil() {
 
+    private LogUtil() {
     }
 
     public static LogUtil getLogUtil() {
@@ -33,14 +30,14 @@ public class LogUtil {
     }
 
     public void createLogFolder(String log) {
-        if (!Config.LOG_PATH.equals("")&&null!=Config.LOG_PATH&&(!(Config.OPEN_LOG_OUTPUT==false))) {
+        if (!Config.LOG_PATH.equals("") && null != Config.LOG_PATH && (!(Config.OPEN_LOG_OUTPUT == false))) {
             File file = new File(Config.LOG_PATH);
             if (!file.exists()) {
                 file.mkdirs();
             }
         }
         try {
-            fileHeandler = new FileHandler(Config.LOG_PATH  + LogUtil.formateTime(System.currentTimeMillis(), "yyyy_MM_dd") + ".log", true);
+            fileHeandler = new FileHandler(Config.LOG_PATH + LogUtil.formateTime(System.currentTimeMillis(), "yyyy_MM_dd") + ".log", true);
             fileHeandler.setLevel(Level.INFO);
             fileHeandler.setFormatter(new MyLogHander());
             logger = Logger.getLogger("requestClient");
@@ -50,12 +47,13 @@ public class LogUtil {
         }
         catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        }
+        finally {
             fileHeandler.close();
         }
     }
 
-    public void printLog(String log) {
+    public final void printLog(String log) {
         Logger logger = Logger.getLogger(RequestClient.class.getName());
         if (Config.OPEN_LOG_PRINT) {
             logger.info(log);
@@ -66,7 +64,7 @@ public class LogUtil {
 
     }
 
-    public static String formateTime(long milliseconds, String timeFormat) {
+    public static final String formateTime(long milliseconds, String timeFormat) {
         SimpleDateFormat formatter = new SimpleDateFormat(timeFormat);
         Date date = new Date(milliseconds);
         formatter.setTimeZone(TimeZone.getTimeZone("GMT+8"));
@@ -74,11 +72,10 @@ public class LogUtil {
         return time;
     }
 
-
     class MyLogHander extends Formatter {
         @Override
         public String format(LogRecord record) {
-            return record.getLevel() + ":" + record.getMessage()+"\r\n";
+            return record.getLevel() + ":" + record.getMessage() + "\r\n";
         }
     }
 }

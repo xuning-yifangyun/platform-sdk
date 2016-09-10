@@ -1,11 +1,11 @@
 package com.fangcloud.sdk.request;
 
-import com.fangcloud.sdk.bean.exception.ExternalErrorCode;
 import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
 import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.util.TransformationUtil;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.entity.StringEntity;
 
 import java.io.IOException;
@@ -29,7 +29,8 @@ public class RequestDelete extends RequestOperation {
     }
 
     @Override
-    protected HttpResponse oper() {
+    protected CloseableHttpResponse oper() {
+        CloseableHttpResponse httpResponse;
         HttpDelete httpDelete = new HttpDelete(this.url);
         //设置header
         if (this.headers.size() > 0 && !Objects.equals(this.headers, null)) {
@@ -46,14 +47,20 @@ public class RequestDelete extends RequestOperation {
             stringEntity.setContentEncoding(Config.DEFAULT_CHARSET);
             httpDelete.setEntity(stringEntity);
         }
-        HttpResponse httpResponse=null;
+        RequestConfig requestConfig = RequestConfig
+                .custom()
+                .setSocketTimeout(Config.DEFAULT_SOCKET_TIMOUT_CHARSET)
+                .setConnectTimeout(Config.DEFAULT_CONNECTION_TIMOUT)
+                .build();
+        httpDelete.setConfig(requestConfig);
         try {
             httpResponse = httpClient.execute(httpDelete);
+            if(!Objects.equals(null, httpResponse)){
+                httpResponse.close();
+            }
         }
         catch (IOException e) {
-//            int sendRes = httpResponse.getStatusLine().getStatusCode();
-//            throw new OpenApiSDKException(ExternalErrorCode.EXTERNAL_LOGIN_PASSWORD_ERROR + " is:" + e, sendRes, httpResponse.toString());
-            throw new OpenApiSDKException(ExternalErrorCode.CONNECTION_REFUSED);
+            throw new OpenApiSDKException(e.getMessage());
         }
         return httpResponse;
     }

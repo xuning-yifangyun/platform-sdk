@@ -7,7 +7,6 @@
     <artifactId>java-sdk</artifactId>
     <packaging>jar</packaging>
     <version>0.1.5</version>
-    <!-- TODO project name  -->
     <name>java-sdk</name>
     <description>yifangyun open-api java-sdk</description>
 

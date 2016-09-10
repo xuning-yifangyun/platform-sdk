@@ -6,8 +6,10 @@ import java.util.Objects;
  * Created by xuning on 2016/8/11.
  * 通用
  */
-public class CommonUtil {
-    private CommonUtil(){}
+public final class CommonUtil {
+    private CommonUtil() {
+    }
+
     /**
      * 验证对象是不是有效值
      *

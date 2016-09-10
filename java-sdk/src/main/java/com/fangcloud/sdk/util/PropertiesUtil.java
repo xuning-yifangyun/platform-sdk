@@ -5,26 +5,21 @@ import java.util.Properties;
 /**
  * Created by xuning on 2016/8/17.
  */
-public class PropertiesUtil {
+public final class PropertiesUtil {
 
-    private static PropertiesUtil propertiesUtil = new PropertiesUtil();
-    private static Properties properties = System.getProperties();
+    private static final PropertiesUtil propertiesUtil = new PropertiesUtil();
+    private static final Properties properties = System.getProperties();
 
     private PropertiesUtil() {
-
     }
 
-    public static PropertiesUtil getPropertiesUtil() {
+    public static final PropertiesUtil getPropertiesUtil() {
         return propertiesUtil;
     }
 
-    public static boolean isLinux() {
+    public static final boolean isLinux() {
         String osName = properties.get("os.name").toString();
         return !(osName.startsWith("Win") || osName.startsWith("win"));
-    }
-
-    public static void main(String[] args) {
-        System.out.println(PropertiesUtil.isLinux());
     }
 
 }

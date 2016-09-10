@@ -1,6 +1,6 @@
 package com.fangcloud.sdk.util;
 
-public class UrlTemplate {
+public final class UrlTemplate {
 
     private String template;
     private String urlString;

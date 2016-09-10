@@ -24,17 +24,12 @@ import java.util.Map;
  * 文件预览返回的URL报404
  */
 public class TApiFile {
-    //
     //Test
     public static final String testClientID = "bbe8e63d-89b0-4f31-ba07-5fd602d501d8";
     public static final String testClientSecret = "5c179dfe-0f5a-4124-9690-42b69ec3aef7";
     public static final String testRediectUrl = "http://121.41.52.18:8080/callback";
     public static final String TestRefreshToken = "bceecd8b-ba45-4aca-8c4e-a80ed253f9f2";
     private static Connection connection = Connection.buildConnection(testClientID, testClientSecret, testRediectUrl);
-
-    //    public String clientId = Config.testClientID;
-    //    public String clientSecret = Config.testClientSecret;
-    //    public String rediectUrl = Config.testRediectUrl;
     public long testFileId = 501000483684L;
 
     public TApiFile() {
@@ -43,7 +38,6 @@ public class TApiFile {
         Config.setAllowOutputJsonResult(true);
         connection.setRefreshToken(TestRefreshToken);
 //        connection.setApplyTokenDate(1);
-
 //        connection.setAccessToken("aefdbf75-32b2-46ff-9acf-386eda9d2ce0");
     }
 

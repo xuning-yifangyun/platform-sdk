@@ -21,10 +21,12 @@
     </layout>
   </appender>
 
-  <logger name="com.fangcloud.sdk">
-    <level value="debug"/>
+  <logger name="com.fangcloud.sdk.request.RequestClient">
+    <level value="info"/>
   </logger>
-
+  <logger name="com.fangcloud.sdk.request.intercept.RequestIntercept">
+    <level value="info"/>
+  </logger>
   <root>
     <level value="info" />
     <appender-ref ref="STDOUT" />

@@ -44,14 +44,8 @@ public class FileApi {
     private static final UrlTemplate PREVIEW_DOWNLOAD = new UrlTemplate("/file/%s/preview_download");
     private static final UrlTemplate PREVIEW_IFRAME = new UrlTemplate("/preview/preview.html");
     private static final UrlTemplate COPY = new UrlTemplate("/file/copy");
-
     private static Connection connection = Connection.getConnection();
     private static ArrayList<Header> headers = RequestOption.getApiCommonHeader(connection);
-    private static FileApi fileApi = new FileApi();
-
-    public static FileApi getFileApi() {
-        return fileApi;
-    }
 
     /**
      * 获取文件信息
@@ -61,7 +55,7 @@ public class FileApi {
      */
     public static FileInfo getFileInfo(long id) {
         String url = INFO.build(Config.DEFAULT_API_URI, id);
-        RequestClient requestClient = new RequestClient().openRequest(url,"get", headers, null, null);
+        RequestClient requestClient = new RequestClient().openRequest(url, "get", headers, null, null);
         return (FileInfo) TransformationUtil.requestClientToOutputObject(requestClient, FileInfo.class);
     }
 

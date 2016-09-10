@@ -1,5 +1,6 @@
 package com.fangcloud.sdk;
 
+import com.fangcloud.sdk.api.AuthApi;
 import com.fangcloud.sdk.core.Connection;
 
 import java.util.ArrayList;
@@ -21,10 +22,10 @@ public class FThreadRequest {
 //        connection.setAccessToken("1b670148-5481-4372-91c9-4772c3b7edda");
 //        connection.setExpiresIn(25000);
 //        Config.setAllowOutputJsonResult(true);
-        connection.setRefreshToken(TestRefreshToken);
+//        connection.setRefreshToken(TestRefreshToken);
 //        AuthApi.getTokenByRefreshToken(TestRefreshToken);
-//        AuthApi.getTokenByRefreshToken(TestRefreshToken);
-        int threadSize=40;
+        AuthApi.getTokenByRefreshToken(TestRefreshToken);
+        int threadSize=1000;
         List<ATT> attList=new ArrayList<>();
         for(int i=0; i < threadSize; i++){
             ATT att=new ATT((i+1)+"号线程：");

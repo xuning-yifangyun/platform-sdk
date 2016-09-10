@@ -17,18 +17,13 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by xuning on 2016/8/9.
  * 数据转换
  */
-public class TransformationUtil {
-
+public final class TransformationUtil {
     private static org.slf4j.Logger logger = LoggerFactory.getLogger(TransformationUtil.class);
-    private static Lock lock = new ReentrantLock();
-
     private TransformationUtil() {
     }
 
@@ -39,7 +34,7 @@ public class TransformationUtil {
      * @return
      */
     public static final HttpEntity toHttpEntity(List<NameValuePair> valuePairs) {
-        HttpEntity httpEntity = null;
+        HttpEntity httpEntity;
         try {
             httpEntity = new UrlEncodedFormEntity(valuePairs, "UTF-8");
         }
@@ -56,8 +51,7 @@ public class TransformationUtil {
      * @return
      */
     public static final StringEntity toStringEntity(String jsonStrintg) {
-        StringEntity stringEntity = null;
-        stringEntity = new StringEntity(jsonStrintg, Config.DEFAULT_CHARSET_TYPE);
+        StringEntity stringEntity = new StringEntity(jsonStrintg, Config.DEFAULT_CHARSET_TYPE);
         return stringEntity;
     }
 
@@ -73,11 +67,6 @@ public class TransformationUtil {
             res = EntityUtils.toString(httpResponse.getEntity());
         }
         catch (IOException e) {
-            //Attempted read from closed stream
-            //            e.printStackTrace();
-            //            logger.error(e.getMessage());
-
-//            Connection.tryRefreshToken();
             throw new OpenApiSDKException(e.getMessage());
         }
         return res;
@@ -111,10 +100,11 @@ public class TransformationUtil {
         if (Config.ALLOW_OUTPUT_JSON_RESULT) {
             logger.info(res);
         }
-        Object o=null;
-        try{
+        Object o = null;
+        try {
             o = new Gson().fromJson(res, classes);
-        }catch (Exception e){
+        }
+        catch (Exception e) {
             throw new OpenApiSDKException(ExternalErrorCode.HTTP_RESPONSE_IS_NULL);
         }
         return o;
@@ -130,18 +120,14 @@ public class TransformationUtil {
         return new Gson().toJson(o);
     }
 
-    public static final String postBodyObjToJsonString(Object... o) {
-        return new Gson().toJson(o);
-    }
-
     /**
      * 数组转化为List
      *
      * @param ids
      * @return
      */
-    public static final List<Long> ArrToArrayListpostBody(long... ids) {
-        List<Long> idsList = new ArrayList<>();
+    public static List<Long> ArrToArrayListpostBody(long... ids) {
+        List<Long> idsList = new ArrayList<Long>();
         if (null == ids) {
             return null;
         }

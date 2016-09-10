@@ -17,10 +17,7 @@ public class ItemApi {
     private static final UrlTemplate SEARCH = new UrlTemplate("/item/search");
     private static Connection connection=Connection.getConnection();
     private static List<Header> headers=RequestOption.getApiCommonHeader(connection);
-    private static ItemApi itemApi=new ItemApi();
-    public static ItemApi getItemApi(){
-        return itemApi;
-    }
+
     /**
      * 搜索
      *

@@ -27,11 +27,6 @@ public class AuthApi {
     private static final UrlTemplate TOKEN_URL = new UrlTemplate("/token");
     private static ArrayList<Header> headers;
     private static ArrayList<NameValuePair> nameValuePairs = new ArrayList<>();
-    private AuthApi authApi = new AuthApi();
-
-    public AuthApi getAuthApi() {
-        return authApi;
-    }
 
     /**
      * 发起授权请求
@@ -40,6 +35,7 @@ public class AuthApi {
      */
 
     public static void Authorize() {
+
         String urlString = GET_AUTH_URI.build(Config.DEFAULT_AUTH_URL);
         String queryPrame = String
                 .format("?client_id=%s&redirect_uri=%s&response_type=%s&state=", connection.getClientId(), connection.getRedirectUrl(), "code");
@@ -54,10 +50,10 @@ public class AuthApi {
      * @param
      * @return
      */
-    public static TokenInfo getTokenByAuthCode(String... authCodes) {
+    public static TokenInfo getTokenByAuthCode(String authCodes) {
         String authCodeRes = connection.getAuthCode();
         if (!CommonUtil.checkObjectsInvoke(authCodeRes)) {
-            authCodeRes = CommonUtil.checkObjectsInvoke(authCodes) ? authCodes[0] : null;
+            authCodeRes = CommonUtil.checkObjectsInvoke(authCodes) ? authCodes : null;
         }
         connection.setAuthCode(authCodeRes);
         String url = TOKEN_URL.build(Config.DEFAULT_AUTH_URL);
@@ -113,7 +109,7 @@ public class AuthApi {
             getTokenByRefreshToken(reRefreshToken);
         }
         else {
-            throw new OpenApiSDKException(ExternalErrorCode.REFRESH_TOKEN_IS_NULL);
+            throw new OpenApiSDKException(ExternalErrorCode.REFRESH_TOKEN_IS_NULL_OR_INVALID);
         }
     }
 

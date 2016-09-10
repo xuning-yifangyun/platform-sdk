@@ -6,7 +6,9 @@ import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
 import org.junit.Test;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Created by xuning on 2016/8/12.
@@ -18,17 +20,12 @@ public class TUserApi {
     public static final String testRediectUrl = "http://121.41.52.18:8080/callback";
     public static final String TestRefreshToken = "bceecd8b-ba45-4aca-8c4e-a80ed253f9f2";
     private static Connection connection = Connection.buildConnection(testClientID, testClientSecret, testRediectUrl);
-    private UserApi userApi = UserApi.getUserApi();//保证修改后的兼容性
+    private UserApi userApi = new UserApi();
 
     public TUserApi() {
         connection.setRefreshToken(TestRefreshToken);
         Config.setAllowOutputJsonResult(true);
         connection.setApplyTokenDate(1);
-    }
-
-    @Test
-    public void TgetAsUserCode() {
-        System.out.println("需要申请url，无法测试");
     }
 
     /**
@@ -54,26 +51,26 @@ public class TUserApi {
      */
     @Test
     public void TDownloadProfilePic() throws IOException {
-//        FileOutputStream fos=new FileOutputStream("1.png");
-//        InputStream fis = UserApi.getPrifilePicDowload(22149, "b3c69fcb4a2f95fceee21f16ced8a07c");
-//        InputStream is=fis;
-//        int ch = 0;
-//        try {
-//            while((ch=is.read()) != -1){
-//                fos.write(ch);
-//            }
-//        } catch (IOException e1) {
-//            e1.printStackTrace();
-//        } finally{
-//            //关闭输入流等（略）
-//
-//            if(fis!=null){
-//                fis.close();
-//            }
-//            is.close();
-//
-//            fos.close();
-//        }
+        //下载的图片位于项目当前目录
+        FileOutputStream fos = new FileOutputStream("1.png");
+        InputStream fis = UserApi.getPrifilePicDowload(22149, "b3c69fcb4a2f95fceee21f16ced8a07c");
+        InputStream is = fis;
+        int ch = 0;
+        try {
+            while ((ch = is.read()) != -1) {
+                fos.write(ch);
+            }
+        }
+        catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        finally {
+            if (fis != null) {
+                fis.close();
+            }
+            is.close();
+            fos.close();
+        }
     }
 
 }

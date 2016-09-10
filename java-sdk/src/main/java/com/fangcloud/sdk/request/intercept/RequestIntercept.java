@@ -1,4 +1,4 @@
-package com.fangcloud.sdk.request;
+package com.fangcloud.sdk.request.intercept;
 
 import com.fangcloud.sdk.bean.exception.ExternalErrorCode;
 import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
@@ -19,42 +19,42 @@ public class RequestIntercept {
     private static String requestId;
     private static String code;
     private static String msg;
-    private static Logger logger= LoggerFactory.getLogger(RequestIntercept.class);
+    private static Logger logger = LoggerFactory.getLogger(RequestIntercept.class);
+
     public static void ErrorInfoIntercept(HttpResponse httpResponse) {
         sendRes = httpResponse.getStatusLine().getStatusCode();
-
         String resJsonString = TransformationUtil.httpResponseToString(httpResponse);
+        ErrorsInfo errorsInfo=null;
+        try{
+            errorsInfo = new Gson().fromJson(resJsonString, ErrorsInfo.class);
+        }catch (Exception e){
+            throw new OpenApiSDKException(ExternalErrorCode.RESPONSE_BAD_GATEWAY);
+        }
 
-        ErrorsInfo errorsInfo = new Gson().fromJson(resJsonString, ErrorsInfo.class);
 
         List<ErrorsInfo.ReponseErrorInfo> reponseErrorInfos = errorsInfo.getErrors();
-
         requestId = errorsInfo.getRequestId();
-
         code = reponseErrorInfos.get(0).getCode();
-
         msg = reponseErrorInfos.get(0).getMsg();
-
-//        if (Config.OPEN_LOG_OUTPUT) {
-//            String errorLog ="[error_code:" + code + "][request_id: " + requestId + "]";
-//            logger.error(errorLog);
-//        }
-
+        String errorLog = "[error_code:" + code + "][request_id: " + requestId + "]";
         if (null == resJsonString) {
             throw new OpenApiSDKException(ExternalErrorCode.REQUEST_NO_RESPONSE);
         }
         switch (sendRes) {
         case 0:
+            logger.error(errorLog);
             throw new OpenApiSDKException(ExternalErrorCode.REQUEST_NO_RESPONSE);
         case 500:
+            logger.error(errorLog);
             throw new OpenApiSDKException(ExternalErrorCode.NOT_KNOW_ERROR);
         case 401:
+            logger.info(errorLog);
             break;
         case 200:
             break;
         default:
+            logger.error(errorLog);
             throw new OpenApiSDKException(code);
         }
     }
-
 }

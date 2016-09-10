@@ -4,6 +4,7 @@ package com.fangcloud.sdk.core;
  * Created by xuning on 2016/9/8.
  */
 public final class AppInfo {
+    // TODO: 2016/9/11 考虑将第三方应用信息分离出来 
     private static String clientId;
     private static String clientSecret;
     private static String redirectUrl;

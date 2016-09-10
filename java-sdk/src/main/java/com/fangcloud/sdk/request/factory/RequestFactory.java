@@ -1,8 +1,14 @@
-package com.fangcloud.sdk.request;
+package com.fangcloud.sdk.request.factory;
 
 import com.fangcloud.sdk.bean.exception.ExternalErrorCode;
 import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
 import com.fangcloud.sdk.core.Config;
+import com.fangcloud.sdk.request.RequestClient;
+import com.fangcloud.sdk.request.RequestDelete;
+import com.fangcloud.sdk.request.RequestGet;
+import com.fangcloud.sdk.request.RequestOperation;
+import com.fangcloud.sdk.request.RequestPost;
+import com.fangcloud.sdk.request.RequestPut;
 
 /**
  * Created by xuning on 2016/9/2.

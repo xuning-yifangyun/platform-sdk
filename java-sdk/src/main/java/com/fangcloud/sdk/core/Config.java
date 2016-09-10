@@ -45,7 +45,9 @@ public class Config {
 
     //request
     public static final HttpVersion HTTP_VERSION = HttpVersion.HTTP_1_1;
-    public static final int DEFAULT_TIMOUT_CHARSET = 30000;
+    public static final int DEFAULT_TIMOUT_CHARSET = 60000;
+    public static final int DEFAULT_SOCKET_TIMOUT_CHARSET = 60000;
+    public static final int DEFAULT_CONNECTION_TIMOUT = 60000;
     public static final String DEFAULT_REQUEST_CHARSET = "UTF-8";
     public static final String DEFAULT_CONTENT_TYPE = "application/json";
     public static final String DEFAULT_CONTENT_VERSION_TYPE = "application/v1+json";

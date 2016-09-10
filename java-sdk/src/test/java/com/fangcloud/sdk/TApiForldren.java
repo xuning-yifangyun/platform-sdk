@@ -25,7 +25,7 @@ public class TApiForldren {
     public static final String testRediectUrl = "http://121.41.52.18:8080/callback";
     public static final String TestRefreshToken = "bceecd8b-ba45-4aca-8c4e-a80ed253f9f2";
     public static long testfoldrenId=501000031450L;
-    private FolderApi folderApi=FolderApi.getFolderApi();
+    private FolderApi folderApi=new FolderApi();
 
     public TApiForldren() {
         Connection connection = Connection.buildConnection(testClientID, testClientSecret, testRediectUrl);

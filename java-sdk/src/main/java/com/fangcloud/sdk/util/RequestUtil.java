@@ -13,15 +13,17 @@ import java.util.ArrayList;
 /**
  * 请求Util
  */
-public class RequestUtil {
-    private RequestUtil(){}
+public final class RequestUtil {
+    private RequestUtil() {
+    }
+
     /**
      * 添加Query参数
      *
      * @param valuePairs
      * @return
      */
-    public static ArrayList<NameValuePair> addToNameValuePairList(NameValuePair... valuePairs) {
+    public static final ArrayList<NameValuePair> addToNameValuePairList(NameValuePair... valuePairs) {
         if (valuePairs.length <= 0) {
             throw new OpenApiSDKException("query header is null");
         }
@@ -38,7 +40,7 @@ public class RequestUtil {
      * @param headers
      * @return
      */
-    public static ArrayList<Header> addToHeaderList(Header... headers) {
+    public static final ArrayList<Header> addToHeaderList(Header... headers) {
         if (headers.length <= 0) {
             throw new OpenApiSDKException("request header is null");
         }

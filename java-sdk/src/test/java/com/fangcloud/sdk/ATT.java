@@ -1,9 +1,7 @@
 package com.fangcloud.sdk;
 
 import com.fangcloud.sdk.api.FileApi;
-import com.fangcloud.sdk.api.FolderApi;
 import com.fangcloud.sdk.bean.output.file.FileInfo;
-import com.fangcloud.sdk.bean.output.folder.FolderInfo;
 
 /**
  * Created by xuning on 2016/8/26.
@@ -20,11 +18,12 @@ class ATT implements Runnable {
     public void run() {
         FileApi fileApi = new FileApi();
 //        FolderApi folderApi = new FolderApi();
+        int reSize=2;
         int count = 0;
-        while ((count++) < 2) {
+        while ((count++) < reSize) {
             System.out.println(this.str + "发送第" + (count) + "次：");
             FileInfo fileInfo1 = FileApi.getFileInfo(testFileId);
-            FolderInfo folderInfoOutput = FolderApi.getFolderInfo(testfoldrenId);
+//            FolderInfo folderInfoOutput = FolderApi.getFolderInfo(testfoldrenId);
         }
     }
 }

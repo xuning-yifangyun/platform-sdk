@@ -1,7 +1,9 @@
 package com.fangcloud.sdk.request;
 
 import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
-import org.apache.http.HttpResponse;
+import com.fangcloud.sdk.core.Config;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 
 import java.io.IOException;
@@ -17,27 +19,31 @@ public class RequestGet extends RequestOperation {
 
     public RequestGet(RequestClient requestClient) {
         this.url = requestClient.getUrl();
-        this.headers =requestClient.getHeaders();
+        this.headers = requestClient.getHeaders();
     }
 
     @Override
-    protected HttpResponse oper() {
+    protected CloseableHttpResponse oper() {
+        CloseableHttpResponse httpResponse;
         HttpGet httpGet = new HttpGet(this.url);
         if (this.headers.size() > 0 && !Objects.equals(this.headers, null)) {
             for (Header header : this.headers) {
                 httpGet.setHeader(header.getKey(), header.getValue());
             }
         }
-        HttpResponse httpResponse=null;
+        RequestConfig requestConfig = RequestConfig
+                .custom()
+                .setSocketTimeout(Config.DEFAULT_SOCKET_TIMOUT_CHARSET)
+                .setConnectTimeout(Config.DEFAULT_CONNECTION_TIMOUT)
+                .build();
+        httpGet.setConfig(requestConfig);
         try {
             httpResponse = httpClient.execute(httpGet);
-
+            if (!Objects.equals(null, httpResponse)) {
+                httpResponse.close();
+            }
         }
         catch (IOException e) {
-            //int sendRes=0;
-//            sendRes = httpResponse.getStatusLine().getStatusCode();
-//            throw new OpenApiSDKException(ExternalErrorCode.EXTERNAL_LOGIN_PASSWORD_ERROR + " is:", sendRes, null);
-//            throw new OpenApiSDKException(ExternalErrorCode.CONNECTION_REFUSED);
             throw new OpenApiSDKException(e.getMessage());
 
         }
