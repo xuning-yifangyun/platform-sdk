@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
+
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <layout class="ch.qos.logback.classic.PatternLayout">
       <pattern>%d [%thread] %-5level [%logger{35}] - [%X{uuid}] %msg%n----%n%ex{full}</pattern>
@@ -26,6 +27,9 @@
   </logger>
   <logger name="com.fangcloud.sdk.request.intercept.RequestIntercept">
     <level value="info"/>
+  </logger>
+  <logger name="com.fangcloud.sdk.util.TransformationUtil">
+    <level value="off"/>
   </logger>
   <root>
     <level value="info" />

@@ -21,7 +21,6 @@ public final class LogUtil {
     private static LogUtil logUtil = new LogUtil();
     public FileHandler fileHeandler;
     Logger logger;
-
     private LogUtil() {
     }
 

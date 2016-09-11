@@ -19,13 +19,14 @@ public class FThreadRequest {
 
     public static void main(String[] args) {
 
-//        connection.setAccessToken("1b670148-5481-4372-91c9-4772c3b7edda");
+//        connection.setAccessToken("69d74ca1-4fb2-4874-98fd-ef82ce0e3b7e");
 //        connection.setExpiresIn(25000);
 //        Config.setAllowOutputJsonResult(true);
 //        connection.setRefreshToken(TestRefreshToken);
-//        AuthApi.getTokenByRefreshToken(TestRefreshToken);
         AuthApi.getTokenByRefreshToken(TestRefreshToken);
-        int threadSize=1000;
+//        AuthApi.getTokenByRefreshToken(TestRefreshToken);
+//        AuthApi.getTokenByAuthCode("SyDfdS");
+        int threadSize=10;
         List<ATT> attList=new ArrayList<>();
         for(int i=0; i < threadSize; i++){
             ATT att=new ATT((i+1)+"号线程：");

@@ -29,18 +29,6 @@ public class RequestClient {
     private static final Lock lock = new ReentrantLock();
     private static Logger logger = LoggerFactory.getLogger(RequestClient.class);
 
-    public RequestClient openRequest(String url, String method) {
-        return openRequest(url, method, null, null, null);
-    }
-
-    public RequestClient openRequest(String url, String method, List<Header> headers) {
-        return openRequest(url, method, headers, null, null);
-    }
-
-    public RequestClient openRequest(String url, String method, List<Header> headers, List<NameValuePair> nameValuePairs) {
-        return openRequest(url, method, headers, nameValuePairs, null);
-    }
-
     public RequestClient openRequest(String url, String method, List<Header> headers, List<NameValuePair> nameValuePairs, String postBody) {
         this.url = url;
         this.method = method;
@@ -59,18 +47,18 @@ public class RequestClient {
             httpResponse = requestOperation.execute();
             long nowTime = System.currentTimeMillis();
             sendRes = httpResponse.getStatusLine().getStatusCode();
-
             if (sendRes == 200) {
                 logger.info(this.toString());
                 return httpResponse;
             }
             else {
                 RequestIntercept.ErrorInfoIntercept(httpResponse);
-                if (sendRes == 401) {
+                    if (sendRes == 401) {
                     try {
                         lock.lock();
                         if (!((nowTime - connection.getApplyTokenDate()) < connection.getExpiresIn() * 1000)) {
                             connection.tryRefreshToken();
+//                            AuthApi.rebuildAccessToken();
                             if (!url.contains("oauth/token")) {
                                 headers = RequestOption.getApiCommonHeader(Connection.getConnection());
                             }
@@ -135,6 +123,18 @@ public class RequestClient {
 
     public void setPostBody(String postBody) {
         this.postBody = postBody;
+    }
+
+    public RequestClient openRequest(String url, String method) {
+        return openRequest(url, method, null, null, null);
+    }
+
+    public RequestClient openRequest(String url, String method, List<Header> headers) {
+        return openRequest(url, method, headers, null, null);
+    }
+
+    public RequestClient openRequest(String url, String method, List<Header> headers, List<NameValuePair> nameValuePairs) {
+        return openRequest(url, method, headers, nameValuePairs, null);
     }
 
     @Override

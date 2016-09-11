@@ -38,7 +38,7 @@ public class TApiFile {
         Config.setAllowOutputJsonResult(true);
         connection.setRefreshToken(TestRefreshToken);
 //        connection.setApplyTokenDate(1);
-//        connection.setAccessToken("aefdbf75-32b2-46ff-9acf-386eda9d2ce0");
+//        connection.setAccessToken("36120348-06f8-46dc-a7ea-8e204b23990d");
     }
 
     /**
@@ -61,9 +61,6 @@ public class TApiFile {
     public void TUpdateFile() {
         connection.setRefreshToken(TestRefreshToken);
         FileInfo fileInfoOutput1 = FileApi.updateFile(testFileId, "dog.jpg", "ning update");
-        System.out.println(fileInfoOutput1.getName());
-        System.out.println(fileInfoOutput1.getModifiedAt());
-        System.out.println("测试结果：" + fileInfoOutput1.getSuccess());
         Assert.assertEquals("xuning", fileInfoOutput1.getOwnedBy().getName());
     }
 
@@ -74,7 +71,7 @@ public class TApiFile {
     @Test
     public void TDeleteFile() {
         Result resultOutput = FileApi.deleteFile(testFileId);
-        System.out.println(resultOutput.getSuccess());
+        Assert.assertTrue(resultOutput.getSuccess());
     }
 
     /**
@@ -83,7 +80,7 @@ public class TApiFile {
     @Test
     public void TDeleteFileFromTrash() {
         Result resultOutput = FileApi.deleteFileFromTrash(false, testFileId);
-        System.out.println(resultOutput.getSuccess());
+        Assert.assertTrue(resultOutput.getSuccess());
     }
 
     /**
@@ -93,7 +90,7 @@ public class TApiFile {
     @Test
     public void TrecoveryFileFromTrash() {
         Result resultOutput = FileApi.recoveryFileFromTrash(true);
-        System.out.println(resultOutput.getSuccess());
+        Assert.assertTrue(resultOutput.getSuccess());
     }
 
     /**
@@ -104,7 +101,7 @@ public class TApiFile {
         List<Long> longs = new ArrayList<>();
         longs.add(testFileId);
         Result resultOutput = FileApi.moveFile(longs, 501000031450L);
-        System.out.println(resultOutput.getSuccess());
+        Assert.assertTrue(resultOutput.getSuccess());
     }
 
     /**
@@ -113,7 +110,7 @@ public class TApiFile {
     @Test
     public void TuploadFile() {
         FilePresignUpload filePresignUploadOutput = FileApi.uploadFile(501000031450L, "xuning的上传");
-        System.out.println(filePresignUploadOutput.getSuccess());
+        Assert.assertTrue(filePresignUploadOutput.getSuccess());
         System.out.println(filePresignUploadOutput.getPresignUrl());
     }
 

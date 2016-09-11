@@ -18,7 +18,7 @@ class ATT implements Runnable {
     public void run() {
         FileApi fileApi = new FileApi();
 //        FolderApi folderApi = new FolderApi();
-        int reSize=2;
+        int reSize=1;
         int count = 0;
         while ((count++) < reSize) {
             System.out.println(this.str + "发送第" + (count) + "次：");

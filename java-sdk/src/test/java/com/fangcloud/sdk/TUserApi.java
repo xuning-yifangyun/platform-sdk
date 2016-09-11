@@ -2,7 +2,6 @@ package com.fangcloud.sdk;
 
 import com.fangcloud.sdk.api.UserApi;
 import com.fangcloud.sdk.bean.output.user.GetUserInfo;
-import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
 import org.junit.Test;
 
@@ -20,19 +19,19 @@ public class TUserApi {
     public static final String testRediectUrl = "http://121.41.52.18:8080/callback";
     public static final String TestRefreshToken = "bceecd8b-ba45-4aca-8c4e-a80ed253f9f2";
     private static Connection connection = Connection.buildConnection(testClientID, testClientSecret, testRediectUrl);
-    private UserApi userApi = new UserApi();
+
 
     public TUserApi() {
         connection.setRefreshToken(TestRefreshToken);
-        Config.setAllowOutputJsonResult(true);
-        connection.setApplyTokenDate(1);
+//        connection.setAccessToken("36120348-06f8-46dc-a7ea-8e204b23990d");
     }
-
-    /**
+        /*
      * 获取自己的信息
      */
+
     @Test
     public void TgetMeInfo() {
+
         GetUserInfo getUserInfoOutput = UserApi.getOwnInfo();
         System.out.println(getUserInfoOutput.getName());
     }
@@ -42,7 +41,7 @@ public class TUserApi {
      */
     @Test
     public void TgetMUserInfo() {
-        GetUserInfo getUserInfoOutput = userApi.getUserInfo(22149);
+        GetUserInfo getUserInfoOutput =UserApi.getUserInfo(22149);
         System.out.println(getUserInfoOutput.getName());
     }
 
@@ -53,8 +52,7 @@ public class TUserApi {
     public void TDownloadProfilePic() throws IOException {
         //下载的图片位于项目当前目录
         FileOutputStream fos = new FileOutputStream("1.png");
-        InputStream fis = UserApi.getPrifilePicDowload(22149, "b3c69fcb4a2f95fceee21f16ced8a07c");
-        InputStream is = fis;
+        InputStream is = UserApi.getPrifilePicDowload(22149, "b3c69fcb4a2f95fceee21f16ced8a07c");
         int ch = 0;
         try {
             while ((ch = is.read()) != -1) {
@@ -65,11 +63,11 @@ public class TUserApi {
             e1.printStackTrace();
         }
         finally {
-            if (fis != null) {
-                fis.close();
+            if(null!=is){
+                is.close();
+            }else if (null!=fos){
+                fos.close();
             }
-            is.close();
-            fos.close();
         }
     }
 

@@ -33,10 +33,11 @@ public abstract class RequestOperation {
     }
 
     public HttpResponse execute() {
-        HttpResponse httpResponse = null;
         openHttpClient();
-        httpResponse = oper();
-        closeHttpClient();
+        HttpResponse httpResponse = oper();
+        if(!httpResponse.getEntity().getContentType().getValue().split(";")[0].equals("image/jpeg")){
+            closeHttpClient();
+        }
         return httpResponse;
     }
 

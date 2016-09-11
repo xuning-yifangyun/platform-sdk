@@ -40,7 +40,10 @@ public class RequestGet extends RequestOperation {
         try {
             httpResponse = httpClient.execute(httpGet);
             if (!Objects.equals(null, httpResponse)) {
-                httpResponse.close();
+                if(!httpResponse.getEntity().getContentType().getValue().split(";")[0].equals("image/jpeg")){
+                      httpResponse.close();
+                }
+
             }
         }
         catch (IOException e) {

@@ -83,7 +83,6 @@ public class Connection {
         CloseableHttpResponse httpResponse;
         String url = AUTH.build(Config.DEFAULT_AUTH_URL);
         HttpPost httpPost = new HttpPost(url);
-
         String refreshToken = connection.getRefreshToken();
         if (refreshToken == null) {
             throw new OpenApiSDKException(ExternalErrorCode.REFRESH_TOKEN_IS_NULL_OR_INVALID);
