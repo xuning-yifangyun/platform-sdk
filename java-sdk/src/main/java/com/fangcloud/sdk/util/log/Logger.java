@@ -1,5 +1,6 @@
 package com.fangcloud.sdk.util.log;
 
+import com.fangcloud.sdk.core.Config;
 import org.slf4j.helpers.MessageFormatter;
 
 /**
@@ -69,28 +70,28 @@ public class Logger {
     }
 
     public void debug(String message) {
-        if (this.isDebugEnabled()) {
+        if (this.isDebugEnabled() && Config.OPEN_DEBUG) {
             this.myLogger.debug(this.getMessage(message));
         }
 
     }
 
     public void debug(String message, Throwable e) {
-        if (this.isDebugEnabled()) {
+        if (this.isDebugEnabled() && Config.OPEN_DEBUG) {
             this.myLogger.debug(this.getMessage(message), e);
         }
 
     }
 
     public void debug(String format, Object... args) {
-        if (this.isDebugEnabled()) {
+        if (this.isDebugEnabled() && Config.OPEN_DEBUG) {
             this.myLogger.debug(this.getMessage(format, args));
         }
 
     }
 
     public void debug(Throwable e, String format, Object... args) {
-        if (this.isDebugEnabled()) {
+        if (this.isDebugEnabled() && Config.OPEN_DEBUG) {
             this.myLogger.debug(this.getMessage(format, args), e);
         }
 

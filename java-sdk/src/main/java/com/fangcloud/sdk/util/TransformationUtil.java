@@ -99,7 +99,7 @@ public final class TransformationUtil {
     public static final Object requestClientToOutputObject(RequestClient requestClient, Class classes) {
         HttpResponse httpResponse = requestClient.sendRequest();
         String res = httpResponseToString(httpResponse);
-        logger.info(res);
+        logger.debug(res);
         Object o = null;
         try {
             o = new Gson().fromJson(res, classes);

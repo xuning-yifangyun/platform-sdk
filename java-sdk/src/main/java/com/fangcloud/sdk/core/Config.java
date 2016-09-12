@@ -5,15 +5,9 @@ import org.apache.http.HttpVersion;
 
 import java.nio.charset.Charset;
 
-/**
- * OpenApi-Java--SDK配置文件
- * 注意：部署到生产环境需要修改DEFAULT_AUTH_URL和DEFAULT_API_URI
- * 删除TestAccessToken
- * 生产获取修改log配置
- * 删除Test属性
- */
 public class Config {
     private Config() {
+
     }
 
     private static Config config = new Config();
@@ -37,11 +31,11 @@ public class Config {
     //simple log
     public static boolean OPEN_LOG_PRINT = true;
     public static boolean OPEN_LOG_OUTPUT = true;
-    public static boolean ALLOW_OUTPUT_JSON_RESULT = false;
+    public static boolean OPEN_DEBUG = false;
+
     public static String WIN_LOG_DIR = "/var/open-api-sdk/log/";
     public static String LINUX_LOG_DIR = "C:/var/open-api-sdk/log/";
     public static final String LOG_PATH = PropertiesUtil.isLinux() ? LINUX_LOG_DIR : WIN_LOG_DIR;
-    public static boolean ALLOW_OUTPUT_LOG_FILE = true;
 
     //request
     public static final HttpVersion HTTP_VERSION = HttpVersion.HTTP_1_1;
@@ -77,7 +71,7 @@ public class Config {
         LINUX_LOG_DIR = linuxLogDir;
     }
 
-    public static void setAllowOutputJsonResult(boolean allowOutputJsonResult) {
-        ALLOW_OUTPUT_JSON_RESULT = allowOutputJsonResult;
+    public static void setOpenDebug(boolean openDebug) {
+        OPEN_DEBUG = openDebug;
     }
 }

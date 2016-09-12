@@ -2,7 +2,6 @@ package com.fangcloud.sdk;
 
 import com.fangcloud.sdk.api.ItemApi;
 import com.fangcloud.sdk.bean.output.item.ItemList;
-import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
 import org.junit.Test;
 
@@ -27,7 +26,6 @@ public class TApiItem {
     @Test
     public void Tsearch(){
         connection.setRefreshToken(TestRefreshToken);
-        Config.setAllowOutputJsonResult(true);
         connection.setApplyTokenDate(1);
         ItemList fileInfo = itemApi.search("徐宁", "all", 0, 0);
         for(int i=0; i < fileInfo.getFiles().size(); i++){

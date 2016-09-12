@@ -29,6 +29,7 @@ public final class LogUtil {
     }
 
     public void createLogFolder(String log) {
+        hashCode();
         if (!Config.LOG_PATH.equals("") && null != Config.LOG_PATH && (!(Config.OPEN_LOG_OUTPUT == false))) {
             File file = new File(Config.LOG_PATH);
             if (!file.exists()) {

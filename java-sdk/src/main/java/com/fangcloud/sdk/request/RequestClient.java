@@ -141,7 +141,6 @@ public class RequestClient {
     @Override
     public String toString() {
         if (Config.OPEN_LOG_OUTPUT || Config.OPEN_LOG_PRINT) {
-            String requestTime = LogUtil.formateTime(System.currentTimeMillis(), "yyyy_MM_dd HH:mm:ss");
             String hRes = "";
             for (Header h : headers) {
                 hRes += (h.getKey() + ":" + h.getValue() + " ");
