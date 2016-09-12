@@ -4,6 +4,8 @@ import com.fangcloud.sdk.bean.exception.ExternalErrorCode;
 import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
 import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.request.RequestClient;
+import com.fangcloud.sdk.util.log.Logger;
+import com.fangcloud.sdk.util.log.LoggerFactory;
 import com.google.gson.Gson;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -11,7 +13,6 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -23,7 +24,8 @@ import java.util.List;
  * 数据转换
  */
 public final class TransformationUtil {
-    private static org.slf4j.Logger logger = LoggerFactory.getLogger(TransformationUtil.class);
+    private static Logger logger = LoggerFactory.getLogger(TransformationUtil.class);
+
     private TransformationUtil() {
     }
 

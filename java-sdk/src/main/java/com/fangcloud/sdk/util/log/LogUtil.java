@@ -1,4 +1,4 @@
-package com.fangcloud.sdk.util;
+package com.fangcloud.sdk.util.log;
 
 import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.request.RequestClient;
@@ -60,7 +60,6 @@ public final class LogUtil {
         if (Config.OPEN_LOG_OUTPUT) {
             createLogFolder(log);
         }
-
     }
 
     public static final String formateTime(long milliseconds, String timeFormat) {

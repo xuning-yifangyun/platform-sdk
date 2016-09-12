@@ -1,7 +1,6 @@
 package com.fangcloud.sdk;
 
 import com.fangcloud.sdk.api.AuthApi;
-import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
 import org.junit.Test;
 
@@ -16,7 +15,6 @@ public class TApiAuth {
     private static Connection connection = Connection.buildConnection(testClientID, testClientSecret, testRediectUrl);
 
     public  TApiAuth(){
-        Config.setAllowOutputJsonResult(true);
     }
     /**
      * 获取Auth URL

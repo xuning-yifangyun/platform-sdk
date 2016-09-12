@@ -4,12 +4,12 @@ import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
 import com.fangcloud.sdk.request.factory.RequestFactory;
 import com.fangcloud.sdk.request.intercept.RequestIntercept;
-import com.fangcloud.sdk.util.LogUtil;
+import com.fangcloud.sdk.util.log.LogUtil;
+import com.fangcloud.sdk.util.log.Logger;
+import com.fangcloud.sdk.util.log.LoggerFactory;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.entity.StringEntity;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.concurrent.locks.Lock;
@@ -48,6 +48,7 @@ public class RequestClient {
             long nowTime = System.currentTimeMillis();
             sendRes = httpResponse.getStatusLine().getStatusCode();
             if (sendRes == 200) {
+
                 logger.info(this.toString());
                 return httpResponse;
             }

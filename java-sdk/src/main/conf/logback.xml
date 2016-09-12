@@ -29,7 +29,7 @@
     <level value="info"/>
   </logger>
   <logger name="com.fangcloud.sdk.util.TransformationUtil">
-    <level value="off"/>
+    <level value="info"/>
   </logger>
   <root>
     <level value="info" />

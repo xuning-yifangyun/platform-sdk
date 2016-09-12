@@ -9,7 +9,6 @@ import com.fangcloud.sdk.bean.output.file.FilePresignDownload;
 import com.fangcloud.sdk.bean.output.file.FilePresignUpload;
 import com.fangcloud.sdk.bean.output.file.FilePreviewDownload;
 import com.fangcloud.sdk.bean.output.file.FilePreviewInfo;
-import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
 import org.junit.Assert;
 import org.junit.Test;
@@ -35,7 +34,6 @@ public class TApiFile {
     public TApiFile() {
 //        AuthApi.getTokenByAuthCode("5KmOCG");
 //        connection.setRefreshToken(TestRefreshToken);
-        Config.setAllowOutputJsonResult(true);
         connection.setRefreshToken(TestRefreshToken);
 //        connection.setApplyTokenDate(1);
 //        connection.setAccessToken("36120348-06f8-46dc-a7ea-8e204b23990d");
@@ -46,8 +44,6 @@ public class TApiFile {
      */
     @Test
     public void TgetFileInfo() {
-        Config.setOpenLogOutput(true);
-        Config.setOpenLogPrint(true);
         FileApi fileApi = new FileApi();
         FileInfo fileInfo = fileApi.getFileInfo(testFileId);
         Assert.assertEquals("出现错误", "xuning", fileInfo.getOwnedBy().getName());

@@ -41,11 +41,10 @@ public class Config {
     public static String WIN_LOG_DIR = "/var/open-api-sdk/log/";
     public static String LINUX_LOG_DIR = "C:/var/open-api-sdk/log/";
     public static final String LOG_PATH = PropertiesUtil.isLinux() ? LINUX_LOG_DIR : WIN_LOG_DIR;
-    public static boolean ALLOW_OUTPUT_LOG_FILE=true;
+    public static boolean ALLOW_OUTPUT_LOG_FILE = true;
 
     //request
     public static final HttpVersion HTTP_VERSION = HttpVersion.HTTP_1_1;
-    public static final int DEFAULT_TIMOUT_CHARSET = 60000;
     public static final int DEFAULT_SOCKET_TIMOUT_CHARSET = 60000;
     public static final int DEFAULT_CONNECTION_TIMOUT = 60000;
     public static final String DEFAULT_REQUEST_CHARSET = "UTF-8";
