@@ -5,7 +5,7 @@ public class ExternalErrorCode {
     public static final String REFRESH_TOKEN_IS_NULL_OR_INVALID = "token is null or invalid";
     public static final String REQUEST_METHOD_ERROR = "request method is error";
     public static final String REQUEST_NO_RESPONSE = "request is not response";
-    public static final String NOT_KNOW_ERROR = "not know this exception's reasion, server exception";
+    public static final String SERVER_ERROR = "server error";
     public static final String REFRESH_TOKEN_INVALID = "refresh token is invalid";
     public static final String UN_SUPPORT_ENCODING = "no support encoding in entity transformation";
     public static final String HTTP_RESPONSE_IS_NULL = "http response is null";

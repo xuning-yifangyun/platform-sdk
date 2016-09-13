@@ -1,5 +1,6 @@
 package com.fangcloud.sdk.request;
 
+import com.fangcloud.sdk.api.AuthApi;
 import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
 import com.fangcloud.sdk.request.factory.RequestFactory;
@@ -48,18 +49,17 @@ public class RequestClient {
             long nowTime = System.currentTimeMillis();
             sendRes = httpResponse.getStatusLine().getStatusCode();
             if (sendRes == 200) {
-
                 logger.info(this.toString());
                 return httpResponse;
             }
             else {
                 RequestIntercept.ErrorInfoIntercept(httpResponse);
-                    if (sendRes == 401) {
+                if (sendRes == 401) {
                     try {
                         lock.lock();
                         if (!((nowTime - connection.getApplyTokenDate()) < connection.getExpiresIn() * 1000)) {
-                            connection.tryRefreshToken();
-//                            AuthApi.rebuildAccessToken();
+                            //connection.tryRefreshToken();
+                            AuthApi.rebuildAccessToken();
                             if (!url.contains("oauth/token")) {
                                 headers = RequestOption.getApiCommonHeader(Connection.getConnection());
                             }

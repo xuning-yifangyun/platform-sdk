@@ -825,7 +825,14 @@ InputStream
 | enterprise_id | long   | 用户所在的企业id |
 
 
-
+###日志
+######配置
+	
+    用户可以进行自定义配置，如果用户不自定义指定配置文件，那么会默认使用sdk包下的conf/logback.xml文件作为日志配置文件，
+    自定义指定的java代码如下,配置可以参考logback.xml配置文件:
+```java
+Config.customLogPath("your log config path");
+```
 
 ### 异常错误码
 

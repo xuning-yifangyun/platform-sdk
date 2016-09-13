@@ -30,8 +30,6 @@ public class RequestIntercept {
         }catch (Exception e){
             throw new OpenApiSDKException(ExternalErrorCode.RESPONSE_BAD_GATEWAY);
         }
-
-
         List<ErrorsInfo.ReponseErrorInfo> reponseErrorInfos = errorsInfo.getErrors();
         requestId = errorsInfo.getRequestId();
         code = reponseErrorInfos.get(0).getCode();
@@ -46,7 +44,7 @@ public class RequestIntercept {
             throw new OpenApiSDKException(ExternalErrorCode.REQUEST_NO_RESPONSE);
         case 500:
             logger.error(errorLog);
-            throw new OpenApiSDKException(ExternalErrorCode.NOT_KNOW_ERROR);
+            throw new OpenApiSDKException(ExternalErrorCode.SERVER_ERROR);
         case 401:
             logger.info(errorLog);
             break;

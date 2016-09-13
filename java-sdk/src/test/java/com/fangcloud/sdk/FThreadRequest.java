@@ -1,6 +1,7 @@
 package com.fangcloud.sdk;
 
 import com.fangcloud.sdk.api.AuthApi;
+import com.fangcloud.sdk.core.Config;
 import com.fangcloud.sdk.core.Connection;
 
 import java.util.ArrayList;
@@ -19,13 +20,14 @@ public class FThreadRequest {
 
     public static void main(String[] args) {
 
-//        connection.setAccessToken("69d74ca1-4fb2-4874-98fd-ef82ce0e3b7e");
+//        connection.setAccessToken("2351585f-1107-43e9-a9fb-0ab75fa18211");
 //        connection.setExpiresIn(25000);
 //        Config.setAllowOutputJsonResult(true);
-//        connection.setRefreshToken(TestRefreshToken);
-        AuthApi.getTokenByRefreshToken(TestRefreshToken);
+        connection.setRefreshToken(TestRefreshToken);
+//        AuthApi.getTokenByRefreshToken(TestRefreshToken);
 //        AuthApi.getTokenByRefreshToken(TestRefreshToken);
 //        AuthApi.getTokenByAuthCode("SyDfdS");
+        Config.openDebug();
         int threadSize=10;
         List<ATT> attList=new ArrayList<>();
         for(int i=0; i < threadSize; i++){

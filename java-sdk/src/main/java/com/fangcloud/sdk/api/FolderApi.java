@@ -36,7 +36,6 @@ public class FolderApi {
     private static Connection connection = Connection.getConnection();
     private static List<Header> headers = RequestOption.getApiCommonHeader(connection);
 
-
     /**
      * 获取文件夹信息
      *
@@ -117,7 +116,7 @@ public class FolderApi {
      * @return
      */
     public static RestoreFolderFromTrash recoveryFolderFromTrash(List<Long> folderIds, boolean restoreAll) {
-        String url = DELETE_FROM_TRASH.build(Config.DEFAULT_API_URI);
+        String url = RESTORE_FROM_TRASH.build(Config.DEFAULT_API_URI);
         RestoreFolderFromTrashBean restoreFolderFromTrashBean = new RestoreFolderFromTrashBean(restoreAll, folderIds);
         String postBodyJsonString = TransformationUtil.postBodyObjToJsonString(restoreFolderFromTrashBean);
         RequestClient requestClient = new RequestClient().openRequest(url, "post", headers, null, postBodyJsonString);
@@ -154,5 +153,4 @@ public class FolderApi {
         RequestClient requestClient = new RequestClient().openRequest(url, "get", headers, null, null);
         return (ItemList) TransformationUtil.requestClientToOutputObject(requestClient, ItemList.class);
     }
-
 }

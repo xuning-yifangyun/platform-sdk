@@ -47,6 +47,5 @@ public class TApiAuth {
         AuthApi.rebuildAccessToken();
         System.out.println("获取到最新的Token是：" + connection.getAccessToken());
     }
-
 }
 

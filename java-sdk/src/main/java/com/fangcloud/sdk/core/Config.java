@@ -1,8 +1,14 @@
 package com.fangcloud.sdk.core;
 
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.joran.JoranConfigurator;
+import ch.qos.logback.core.joran.spi.JoranException;
+import com.fangcloud.sdk.bean.exception.OpenApiSDKException;
 import com.fangcloud.sdk.util.PropertiesUtil;
 import org.apache.http.HttpVersion;
+import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.nio.charset.Charset;
 
 public class Config {
@@ -51,27 +57,24 @@ public class Config {
     public static final String METHOD_PUT = "put";
     public static final String METHOD_DELETE = "delete";
 
-    //response
 
-    //set method
-
-    public static void setOpenLogPrint(boolean openLogPrint) {
-        OPEN_LOG_PRINT = openLogPrint;
+    public static void openDebug(){
+        OPEN_DEBUG=true;
     }
 
-    public static void setOpenLogOutput(boolean openLogOutput) {
-        OPEN_LOG_OUTPUT = openLogOutput;
-    }
-
-    public static void setWinLogDir(String winLogDir) {
-        WIN_LOG_DIR = winLogDir;
-    }
-
-    public static void setLinuxLogDir(String linuxLogDir) {
-        LINUX_LOG_DIR = linuxLogDir;
-    }
-
-    public static void setOpenDebug(boolean openDebug) {
-        OPEN_DEBUG = openDebug;
+    public static void customLogPath(String path){
+        File logbackFile = new File(path);
+        if (logbackFile.exists()) {
+            LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+            JoranConfigurator configurator = new JoranConfigurator();
+            configurator.setContext(lc);
+            lc.reset();
+            try {
+                configurator.doConfigure(logbackFile);
+            }
+            catch (JoranException e) {
+                throw new OpenApiSDKException(e.getMessage());
+            }
+        }
     }
 }
