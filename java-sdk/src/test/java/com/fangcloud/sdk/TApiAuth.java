@@ -37,7 +37,7 @@ public class TApiAuth {
         System.out.println("获取的refreshToken是："+connection.getRefreshToken());
     }
 
-    /**
+    /**q
      * 刷新Token
      * 需要setResreshToken
      */
