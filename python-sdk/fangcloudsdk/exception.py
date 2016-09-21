@@ -43,9 +43,6 @@ class DatabaseException(ServerInternalException):
     def __init__(self, error_message="数据库操作异常"):
         ServerInternalException.__init__(self, error_message)
 
-class UrlPathOptionTypeError(ServerBaseException):
-    def __init__(self, error_message="url路径参数类型不正确"):
-        ServerBaseException.__init__(self, error_message)
 
 class HttpQueryParameterError(ServerExternalException):
 
@@ -58,3 +55,6 @@ class JsonParserException(ServerExternalException):
     def __init__(self, error_message="数据解析异常"):
         ServerBaseException.__init__(self, error_message)
 
+class UrlPathOptionTypeError(Exception):
+    def __init__(self, error_message="url路径参数异常"):
+        ServerBaseException.__init__(self, error_message)

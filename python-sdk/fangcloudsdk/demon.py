@@ -1,5 +1,6 @@
-from package.com.fangcloud import HttpBaseClient
-
+from fangcloudsdk.base_httpclient import client
+import sys
+print(sys.path)
 # headers={
 #     "Authorization" : "Bearer 033104df-4eb4-4412-a53c-abe484e2ae1f"
 # }
@@ -12,7 +13,7 @@ from package.com.fangcloud import HttpBaseClient
 # # print(query_option)
 # url=HttpBaseClient.get_url_with_query("http://www.networklab.cn/test/parm.php",query_option)
 # url="http://www.networklab.cn/test/parm.php";
-httpBaseClient = HttpBaseClient()
+httpBaseClient = client()
 #
 # res=httpBaseClient.get(url=url, queries=query_option, headers=None)
 # # print(url)
@@ -27,7 +28,7 @@ path_option = [
     501000483684
 ]
 headers = {
-    "Authorization": "Bearer 4425bc01-e4ab-462b-9d98-f678ef062bed"
+    "Authorization": "Bearer 9b9bf782-2d48-408e-bb8e-856d1b842dd3"
 }
 json_body = {
     "name": "abc.jpg",

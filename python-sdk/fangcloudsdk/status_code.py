@@ -1,5 +1,3 @@
-
-
 class StatusCode(object):
     Success = 200
     Created = 201
