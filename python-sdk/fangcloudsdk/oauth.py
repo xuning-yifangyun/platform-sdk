@@ -1,8 +1,10 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
 from threading import Lock
-from fangcloudsdk.url_template import url_template as url_tp
-
-
+import base64
+from fangcloudsdk.urltemplate import UrlTemplate as url_tp
+from fangcloudsdk.request_client import RequestClient
+from fangcloudsdk.config import Config
+from requests.auth import HTTPBasicAuth
 class OAuth(object):
     def __init__(
             self,
@@ -22,6 +24,7 @@ class OAuth(object):
         self._access_token = access_token
         self._refresh_token = refresh_token
         self._expires_in = expires_in
+        self._request_session = RequestClient()
         self._refresh_lock = refresh_lock or Lock()
         self.get_auth_url = url_tp("/authorize")
 
@@ -33,19 +36,39 @@ class OAuth(object):
 
     def authenticate(self, auth_code):
         # 接受授权码，设置token信息
+
         pass
 
-    def refresh(self):
-        # 刷新token
-        pass
+    def update_token(self):
+        params = {
+            "grant_type": "refresh_token",
+            "refresh_token": self._refresh_token
+        }
+        response= self.token_request(params=params)
+        if response.ok:
+            new_token=response.json()
+            self.access_token, self.refresh_token = new_token['access_token'], new_token['refresh_token']
+            return new_token
+        else:
+            raise "refresh token is expired or involid"
 
-    def send_token_request(self, data, access_token, expect_refresh_token=True):
+    def token_request(self, params):
         # 发送token请求
-        pass
-
+        url = "https://oauth-server.fangcloud.net/oauth/token"
+        auth = HTTPBasicAuth(
+            self._client_id,
+            self._client_secret
+        )
+        response = self._request_session.send(url=url, method="post", params=params, auth=auth)
+        return response
+    # 撤销Token
     def revoke(self):
-        # 撤销授权，token为null
-        pass
+        self.access_token=None
+        self.refresh_token=None
+        if self.access_token is None and self.refresh_token is None:
+            return True
+        else:
+            return False
 
     @property
     def access_token(self):
@@ -54,3 +77,11 @@ class OAuth(object):
     @property
     def refresh_token(self):
         return self._refresh_token
+
+    @access_token.setter
+    def access_token(self, value):
+        self._access_token = value
+
+    @refresh_token.setter
+    def refresh_token(self, value):
+        self._refresh_token = value

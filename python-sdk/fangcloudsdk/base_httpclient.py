@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import requests
 
 
@@ -21,7 +22,7 @@ class BaseHttpClient(object):
             **kwargs
     ):
         response = requests.post(url=url, headers=headers, params=kwargs.get("params"), data=kwargs.get("data"),
-                                 json=kwargs.get("postbody"))
+                                 json=kwargs.get("postbody"), auth=kwargs.get("auth"))
         return response
 
     def put(

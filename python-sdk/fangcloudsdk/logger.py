@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import logging
 import threading
 
@@ -14,7 +15,8 @@ class LoggerFactory(object):
                 if LoggerFactory.Logger is None:
                     LoggerFactory.Logger = logging.getLogger("open_platform")
                     LoggerFactory.Logger.setLevel(logging.DEBUG)
-                    formatter = logging.Formatter("%(asctime)s - %(thread)d - %(levelname)s - %(filename)s[line:%(lineno)d] - %(message)s")
+                    formatter = logging.Formatter(
+                        "%(asctime)s - %(thread)d - %(levelname)s - %(filename)s[line:%(lineno)d] - %(message)s")
                     console_handler = logging.StreamHandler()
                     console_handler.setLevel(logging.DEBUG)
                     console_handler.setFormatter(formatter)
@@ -23,5 +25,5 @@ class LoggerFactory(object):
                 LoggerFactory.LoggerLock.release()
         return LoggerFactory.Logger
 
-Logger = LoggerFactory.get_logger_instance()
 
+Logger = LoggerFactory.get_logger_instance()

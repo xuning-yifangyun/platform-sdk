@@ -1,6 +1,7 @@
 import requests as req
 from fangcloudsdk.base_httpclient import BaseHttpClient
-from fangcloudsdk.url_template import url_template
+from fangcloudsdk.urltemplate import UrlTemplate
+
 # params={
 #     "username" : "徐宁"
 # }
@@ -67,3 +68,6 @@ from fangcloudsdk.url_template import url_template
 #     raise "request method not error"
 # res=request_client.send(method="get", url="http://www.baidu.com")
 # print(res)
+ss={}
+ss.setdefault("aaa", "1111")
+print(ss.get())

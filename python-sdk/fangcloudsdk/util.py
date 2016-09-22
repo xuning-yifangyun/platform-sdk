@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class request_util:
     @staticmethod
     def build_headers(headers=None):
@@ -9,5 +10,5 @@ class request_util:
 
     @staticmethod
     def quick_build_url(uri):
-        from fangcloudsdk.url_template import url_template
-        return url_template(uri).build_url
+        from fangcloudsdk.urltemplate import UrlTemplate
+        return UrlTemplate(uri).build_url

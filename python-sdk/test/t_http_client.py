@@ -1,13 +1,13 @@
 import unittest
 import pickle
 from fangcloudsdk.base_httpclient import BaseHttpClient
-from fangcloudsdk.url_template import url_template
+from fangcloudsdk.urltemplate import UrlTemplate
 from fangcloudsdk.request_client import request_client
-from fangcloudsdk.config import config
+from fangcloudsdk.config import Config
 class T_http_client(unittest.TestCase):
-    config1=config()
+    config1=Config()
     def test_http_client(self):
-        net_url_tem = url_template("/test/parm.php").build_url(options=None, base_url="http://www.networklab.cn")
+        net_url_tem = UrlTemplate("/test/parm.php").build_url(options=None, base_url="http://www.networklab.cn")
         print(net_url_tem)
         params = {
             "username": "徐宁"
@@ -23,8 +23,8 @@ class T_http_client(unittest.TestCase):
 
     def test_refresh_token(self):
         rt = request_client("aaa")
-        net_url_tem = url_template("/file/%s/preview").build_url(options=(501000483683),
-                                                                 base_url="https://platform.fangcloud.net/api")
+        net_url_tem = UrlTemplate("/file/%s/preview").build_url(options=(501000483683),
+                                                                base_url="https://platform.fangcloud.net/api")
         print(net_url_tem)
         headers = {
             "Authorization": "Bearer ac190592-cfaf-4435-a531-f051438422c3",
@@ -40,7 +40,7 @@ class T_http_client(unittest.TestCase):
 
     def test_request_client(self):
         rt = request_client("aaa")
-        net_url_tem = url_template("/test/parm.php").build_url(base_url=self.config1.test_url)
+        net_url_tem = UrlTemplate("/test/parm.php").build_url(base_url=self.config1.test_url)
         print(net_url_tem)
         params = {
             "username": "徐宁"

@@ -12,5 +12,5 @@ class testOauth(unittest.TestCase):
         }
         res = request_client.send(url="https://oauth-server.fangcloud.net/oauth/token", headers=headers, params=params,
                                   method="post")
-        print(res)
+        print(res.json())
 

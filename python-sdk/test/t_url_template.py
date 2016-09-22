@@ -1,4 +1,4 @@
-from fangcloudsdk.url_template import url_template as url_t
+from fangcloudsdk.urltemplate import UrlTemplate as url_t
 
 
 # baidu_url=url_t("/num1/%s/num2/%s")

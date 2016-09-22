@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class StatusCode(object):
     Success = 200
     Created = 201

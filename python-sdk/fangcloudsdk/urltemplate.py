@@ -1,4 +1,7 @@
-class url_template(object):
+# -*- coding: utf-8 -*-
+class UrlTemplate(object):
+    def __init__(self):
+        pass
     def __init__(self, uri=None):
         self.__uri = uri
         self.__target_url = None

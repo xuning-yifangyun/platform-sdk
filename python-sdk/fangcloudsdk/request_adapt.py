@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class Singleton(object):
     def __new__(cls, *args, **kw):
         if not hasattr(cls, '_instance'):
