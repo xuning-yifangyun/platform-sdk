@@ -24,6 +24,3 @@ class LoggerFactory(object):
             finally:
                 LoggerFactory.LoggerLock.release()
         return LoggerFactory.Logger
-
-
-Logger = LoggerFactory.get_logger_instance()

@@ -5,6 +5,8 @@ from fangcloudsdk.urltemplate import UrlTemplate as url_tp
 from fangcloudsdk.request_client import RequestClient
 from fangcloudsdk.config import Config
 from requests.auth import HTTPBasicAuth
+
+
 class OAuth(object):
     def __init__(
             self,
@@ -19,7 +21,7 @@ class OAuth(object):
     ):
         self._client_id = client_id
         self._client_secret = client_secret
-        self._redirecturl = redirect_url
+        self._redirect_url = redirect_url
         self._store_tokens_callback = store_tokens
         self._access_token = access_token
         self._refresh_token = refresh_token
@@ -28,30 +30,43 @@ class OAuth(object):
         self._refresh_lock = refresh_lock or Lock()
         self.get_auth_url = url_tp("/authorize")
 
+    # 获取授权url
     def get_authorization_url(self):
         url = self.get_auth_url.build_url(base_url="https://oauth-server.fangcloud.net/oauth")
         taget_url = url + "?client_id={}&redirect_uri={}&response_type={}&state={}" \
-            .format(self._client_id, self._redirecturl, "code", None)
+            .format(self._client_id, self._redirect_url, "code", None)
         return taget_url
 
+    # 接受授权码，设置token信息
     def authenticate(self, auth_code):
-        # 接受授权码，设置token信息
+        params = {
+            "grant_type": "authorization_code",
+            "code": auth_code,
+            "redirect_uri": self._redirect_url
+        }
+        response = self.token_request(params=params)
+        if response.ok:
+            new_token = response.json()
+            self.access_token, self.refresh_token = new_token['access_token'], new_token['refresh_token']
+            return new_token
+        else:
+            raise "auth code involid"
 
-        pass
-
+    # 更新token
     def update_token(self):
         params = {
             "grant_type": "refresh_token",
             "refresh_token": self._refresh_token
         }
-        response= self.token_request(params=params)
+        response = self.token_request(params=params)
         if response.ok:
-            new_token=response.json()
+            new_token = response.json()
             self.access_token, self.refresh_token = new_token['access_token'], new_token['refresh_token']
             return new_token
         else:
             raise "refresh token is expired or involid"
 
+    # 封装token请求
     def token_request(self, params):
         # 发送token请求
         url = "https://oauth-server.fangcloud.net/oauth/token"
@@ -61,10 +76,11 @@ class OAuth(object):
         )
         response = self._request_session.send(url=url, method="post", params=params, auth=auth)
         return response
+
     # 撤销Token
     def revoke(self):
-        self.access_token=None
-        self.refresh_token=None
+        self.access_token = None
+        self.refresh_token = None
         if self.access_token is None and self.refresh_token is None:
             return True
         else:

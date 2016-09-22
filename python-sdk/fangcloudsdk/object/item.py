@@ -9,3 +9,7 @@ class Item(BaseObject):
     def __init__(self):
         BaseObject.__init__(self)
         pass
+
+    # 查询操作
+    def research(self):
+        pass

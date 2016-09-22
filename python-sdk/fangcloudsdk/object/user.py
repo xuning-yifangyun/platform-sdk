@@ -17,7 +17,7 @@ class User(Item):
             "Authorization" : "Bearer "+self._oauth.access_token
         }
         return headers
-    @api_call(oauth=None)
+    @api_call
     def info(self):
         url = UrlTemplate("/user/info").build_url(base_url=self._config.api_base_url)
         headers=self.add_oauth_header()
@@ -27,3 +27,6 @@ class User(Item):
             params=None
         response = self._request.send(url=url, method="get", headers=headers, params=params)
         return response
+    @property
+    def oauth(self):
+        return self._oauth
