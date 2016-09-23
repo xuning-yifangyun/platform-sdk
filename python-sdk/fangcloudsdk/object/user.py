@@ -9,9 +9,11 @@ class User(Item):
         self._user_id=user_id
         self._oauth=oauth
 
-
-    @api_call()
     def info(self):
+        """
+        获取用户信息
+        :return:
+        """
         url = UrlTemplate("/user/info").build_url(base_url=self._config.api_base_url)
         headers=self.add_oauth_header(self.oauth.access_token)
         if self._user_id is not None:
@@ -20,6 +22,14 @@ class User(Item):
             params=None
         response = self._request.send(url=url, method="get", headers=headers, params=params)
         return response
+
+    def get_prifile_pic(self, profile_pic_key=None):
+        """
+        获取用户头像
+        :param profile_pic_key:
+        :return:
+        """
+        pass
 
     @property
     def oauth(self):

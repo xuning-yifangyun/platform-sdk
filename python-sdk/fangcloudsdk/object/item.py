@@ -10,6 +10,13 @@ class Item(BaseObject):
         BaseObject.__init__(self)
         pass
 
-    # 查询操作
-    def research(self):
+    def search(self, query_words=None, type=None, page_number=None, search_in_folder=None):
+        """
+        搜索
+        :param query_words:
+        :param type:
+        :param page_number:
+        :param search_in_folder:
+        :return:
+        """
         pass
