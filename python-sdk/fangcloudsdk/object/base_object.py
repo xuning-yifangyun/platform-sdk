@@ -9,3 +9,10 @@ class BaseObject(object):
         self._config = Config()
         self._request = RequestClient()
         self._logger = LoggerFactory.get_logger_instance()
+
+    def add_oauth_header(self, access_token=None):
+        headers={
+            "Content-Type" : "application/json",
+            "Authorization" : "Bearer "+access_token
+        }
+        return headers

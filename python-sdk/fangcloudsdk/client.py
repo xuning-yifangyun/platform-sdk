@@ -11,7 +11,7 @@ import json
 
 
 class Client(object):
-    def __init__(self, oauth):
+    def __init__(self, oauth=None):
         self._oauth = oauth
         self._request = RequestClient()
         self._logger = LoggerFactory.get_logger_instance()
@@ -30,19 +30,9 @@ class Client(object):
         return Item(self.oauth)
 
     def test(self):
-        res = self._request.send(url="http://www,baidu.com")
-        print()
+        res = self._request.send(url="http://www.baidu.com", method="get")
+        print(res.text)
 
     @property
     def oauth(self):
         return self._oauth
-
-    @property
-    def headers(self):
-        headers = {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + self._oauth.access_token
-        }
-        return headers;
-
-
