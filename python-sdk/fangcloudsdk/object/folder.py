@@ -6,8 +6,11 @@ except:
 
 
 class Folder(Item):
-    def __init__(self):
-        pass
+    def __init__(self, folder_id, oauth):
+        Item.__init__(self)
+        self._folder_id = folder_id
+        self._oauth = oauth
+        self.headers = self.add_oauth_header
 
     def info(self):
         """
@@ -77,3 +80,7 @@ class Folder(Item):
         :return:
         """
         pass
+
+    @property
+    def oauth(self):
+        return self._oauth

@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+from fangcloudsdk.urltemplate import UrlTemplate
+from fangcloudsdk.status_code import StatusCode
+from fangcloudsdk.config import Config
 try:
     from .item import Item
 except:
@@ -6,15 +9,24 @@ except:
 
 
 class File(Item):
-    def __init__(self, file_id=None):
-        pass
+    def __init__(self, file_id=None, oauth=None):
+        Item.__init__(self)
+        self._file_id = file_id
+        self._oauth = oauth
+        self.headers = self.add_oauth_header
 
     def info(self):
         """
         获取文件信息
         :return:
         """
-        pass
+        url = UrlTemplate("/file/%s/info").build_url(options=(self._file_id), base_url=self._config.api_base_url)
+        response = self._request.send(url=url, method="get", headers=self.headers(self.oauth))
+        if response.status_code == StatusCode.Success:
+            return response.json()
+        if response.status_code == StatusCode.UnAuthorized:
+            self.real_response(self.oauth)
+            return self.info()
 
     def update(self0, new_name=None, new_descript=None):
         """
@@ -118,3 +130,6 @@ class File(Item):
         :return:
         """
         pass
+    @property
+    def oauth(self):
+        return self._oauth
