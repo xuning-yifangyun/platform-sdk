@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 try:
-    from .item import Item
+    from fangcloudsdk.item import Item
 except:
-    from fangcloudsdk.object.item import Item
+    from fangcloudsdk.item import Item
 
 
 class Folder(Item):

@@ -45,5 +45,9 @@ class RequestClient(object):
         self.logger.debug(
             "request log: url => %s, method => %s, header => %s, params => %s, data => %s, postbody => %s",
                           url, method, headers, params, data, postbody)
-        self.logger.debug("response log: status code=> %s, json => %s", response.status_code, response.json())
+        if str(response.headers['Content-Type']) == "image/jpeg;charset=utf-8":
+            response_json="is image"
+        else:
+            response_json=response.json()
+        self.logger.debug("response log: status code=> %s, json => %s", response.status_code, response_json)
         return response

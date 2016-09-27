@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-from fangcloudsdk.object.item import Item
-from fangcloudsdk.urltemplate import UrlTemplate
+from fangcloudsdk.item import Item
 from fangcloudsdk.status_code import StatusCode
-from fangcloudsdk.api_call import api_call
+from fangcloudsdk.urltemplate import UrlTemplate
 
 
 class User(Item):
@@ -22,12 +21,12 @@ class User(Item):
             params = {"id": self._user_id}
         else:
             params = None
-        response = self._request.send(url=url, method="get", headers=self.headers(self.oauth),
-                                      params=params)
+        headers = self.headers(self.oauth)
+        response = self._request.send(url=url, method="get", headers=headers, params=params)
         if response.status_code == StatusCode.Success:
             return response.json()
-        if response.status_code == StatusCode.UnAuthorized:
-            self.real_response(self.oauth)
+        else:
+            self.deal_response(response, self.oauth)
             return self.info()
 
     def get_prifile_pic(self, profile_pic_key=None):
@@ -36,7 +35,15 @@ class User(Item):
         :param profile_pic_key:
         :return:
         """
-        pass
+        url = UrlTemplate("/user/profile_pic_download").build_url(base_url=self._config.api_base_url)
+        params = {"user_id": self._user_id, "profile_pic_key": profile_pic_key}
+        headers = self.headers(self.oauth)
+        response = self._request.send(url=url, method="get", headers=headers, params=params)
+        if response.status_code == StatusCode.Success:
+            return response
+        else:
+            self.deal_response(response, self.oauth)
+            return self.get_prifile_pic(profile_pic_key)
 
     @property
     def oauth(self):

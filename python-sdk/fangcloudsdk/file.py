@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-from fangcloudsdk.urltemplate import UrlTemplate
 from fangcloudsdk.status_code import StatusCode
-from fangcloudsdk.config import Config
+from fangcloudsdk.urltemplate import UrlTemplate
+
 try:
-    from .item import Item
+    from fangcloudsdk.item import Item
 except:
-    from fangcloudsdk.object.item import Item
+    from fangcloudsdk.item import Item
 
 
 class File(Item):
@@ -24,18 +24,29 @@ class File(Item):
         response = self._request.send(url=url, method="get", headers=self.headers(self.oauth))
         if response.status_code == StatusCode.Success:
             return response.json()
-        if response.status_code == StatusCode.UnAuthorized:
-            self.real_response(self.oauth)
+        else:
+            self.deal_response(response, self.oauth)
             return self.info()
 
-    def update(self0, new_name=None, new_descript=None):
+    def update(self, new_name=None, new_descript=None):
         """
         更新文件信息
         :param new_name:
         :param new_descript:
         :return:
         """
-        pass
+        url = UrlTemplate("/file/%s/update").build_url(options=(self._file_id), base_url=self._config.api_base_url)
+        headers=self.headers(self.oauth)
+        postbody={
+            "name": new_name,
+            "description": new_descript
+        }
+        response = self._request.send(url=url, method="put", headers=headers, postbody=postbody)
+        if response.status_code == StatusCode.Success:
+            return response.json()
+        else:
+            self.deal_response(response, self.oauth)
+            return self.update(new_name, new_descript)
 
     def delete(self, file_ids=None):
         """

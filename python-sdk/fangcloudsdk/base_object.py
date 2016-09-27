@@ -3,6 +3,7 @@ from fangcloudsdk.config import Config
 from fangcloudsdk.request_client import RequestClient
 from fangcloudsdk.logger import LoggerFactory
 from fangcloudsdk.status_code import StatusCode
+from fangcloudsdk.exception import UnAuthorizedException
 import time
 import threading
 
@@ -24,10 +25,17 @@ class BaseObject(object):
         }
         return headers
 
-    def real_response(self, oauth):
-        count=2
-        REF_LOCK.acquire()
-        if float(time.time() - oauth.apply_time) > float(oauth.expires_in * 1000):
-            oauth.update_token()
-            print(str(time.time()) + " " + str(oauth.apply_time))
-        REF_LOCK.release()
+    def deal_response(self, response, oauth):
+        status_code=response.status_code
+        if status_code == StatusCode.UnAuthorized:
+            REF_LOCK.acquire()
+            if float(time.time() - oauth.apply_time) > float(oauth.expires_in * 1000):
+                oauth.update_token()
+            REF_LOCK.release()
+        elif status_code == StatusCode.InternalServerError:
+            raise "server error"
+        else:
+            error_ison=response.json()
+            raise error_ison['errors']['msg']
+
+

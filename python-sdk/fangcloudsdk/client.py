@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
+from fangcloudsdk.config import Config
+from fangcloudsdk.file import File
+from fangcloudsdk.folder import Folder
+from fangcloudsdk.item import Item
 from fangcloudsdk.logger import LoggerFactory
 from fangcloudsdk.request_client import RequestClient
-from fangcloudsdk.config import Config
-from fangcloudsdk.object.user import User
-from fangcloudsdk.object.file import File
-from fangcloudsdk.object.folder import Folder
-from fangcloudsdk.object.item import Item
-
-import json
+from fangcloudsdk.user import User
 
 
 class Client(object):
@@ -28,10 +26,6 @@ class Client(object):
 
     def item(self):
         return Item(self.oauth)
-
-    def test(self):
-        res = self._request.send(url="http://www.baidu.com", method="get")
-        print(res.text)
 
     @property
     def oauth(self):

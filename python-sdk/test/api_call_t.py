@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 import threading
 
+REF_LOCK = threading.Lock()
 class api_call(object):
     def __init__(self, func):
         self.func = func
-        self._lock = threading.Lock()
-
     def __call__(
             self,
             *args,
@@ -15,15 +14,13 @@ class api_call(object):
         response = self.func(*args, **kwargs)
         print("after")
         if response.ok:
-            return response.json()
+            return response
         elif response.status_code == 401:
             # 同步锁定
-            self._lock.acquire()
-            oauth=oauth=kwargs.get("oauth")
-            print(oauth)
-            # oauth = kwargs.get("oauth").update_token()
-            self._lock.release()
-            # 解硕
-            # self.func(*args, **kwargs)
+            REF_LOCK._lock.acquire()
+            s = kwargs.get("oauth")
+            print()
+            REF_LOCK._lock.release()
+            return response
         else:
             raise "refresh token is expirsed or involid"

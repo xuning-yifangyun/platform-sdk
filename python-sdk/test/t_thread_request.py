@@ -15,8 +15,10 @@ class T_Thread(threading.Thread):
         client1 = Client(oauth)
         # user1 = client1.user(user_id=22149).info()
         # print(user1)
-        file = client1.file(file_id="501000483684").info()
+        file = client1.file(501000483684).info()
         print(file)
+        user1 = client1.user(22149).info()
+        print(user1)
 
 t1=T_Thread()
 t2=T_Thread()

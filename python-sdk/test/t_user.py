@@ -4,11 +4,21 @@ from fangcloudsdk.client import Client
 
 
 class T_User(unittest.TestCase):
-    def test_get_user_info(self):
-        # oauth.access_token = "94a39c41-25c8-4096-92d9-5c3af3d10138"
+    def setUp(self):
         oauth.refresh_token = "bceecd8b-ba45-4aca-8c4e-a80ed253f9f2"
-        client1 = Client(oauth)
-        user1 = client1.user(user_id=22149).info()
-        print(user1)
-        file = client1.file(file_id="501000483684").info()
-        print(file)
+        # oauth.access_token = "94a39c41-25c8-4096-92d9-5c3af3d10138"
+        self.client = Client(oauth)
+
+    def test_get_user_info(self):
+        user = self.client.user(user_id=22149).info()
+        self.assertTrue(user['success'])
+
+    def test_get_profile_pic(self):
+        img = self.client.user(user_id=22149).get_prifile_pic("b3c69fcb4a2f95fceee21f16ced8a07c")
+        self.assertEquals(img.headers['Content-Type'], "image/jpeg;charset=utf-8")
+        with open("dog.png", "wb") as f:
+            f.write(img.content)
+            # 图片在当前文件目录下，为dog.jpg
+
+    def tearDown(self):
+        pass

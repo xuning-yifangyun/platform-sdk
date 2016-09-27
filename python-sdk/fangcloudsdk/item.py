@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 try:
-    from .base_object import BaseObject
+    from fangcloudsdk.base_object import BaseObject
 except:
-    from fangcloudsdk.object.base_object import BaseObject
+    from fangcloudsdk.base_object import BaseObject
 
 
 class Item(BaseObject):
-    def __init__(self):
+    def __init__(self, oauth=None):
         BaseObject.__init__(self)
-        pass
+        self._oauth=oauth
+        self.headers = self.add_oauth_header
 
     def search(self, query_words=None, type=None, page_number=None, search_in_folder=None):
         """
@@ -19,4 +20,8 @@ class Item(BaseObject):
         :param search_in_folder:
         :return:
         """
-        pass
+
+
+    @property
+    def oauth(self):
+        return self._oauth

@@ -4,13 +4,15 @@ import unittest
 
 
 class T_Oauth(unittest.TestCase):
+    def setUp(self):
+        pass
+
     @staticmethod
     def test_url():
         print(oauth.get_authorization_url())
 
     @staticmethod
-    def test_get_token_by_auth_code():
-        auth_code = "Kw07Ed"
+    def test_get_token_by_auth_code(auth_code="EnF9oA"):
         token = oauth.authenticate(auth_code=auth_code)
         print(token)
 
@@ -23,3 +25,6 @@ class T_Oauth(unittest.TestCase):
     @staticmethod
     def test_revoke():
         oauth.revoke()
+
+    def tearDown(self):
+        print("-----Oauth单元测试结束------")

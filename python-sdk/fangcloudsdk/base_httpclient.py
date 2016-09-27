@@ -31,7 +31,7 @@ class BaseHttpClient(object):
             headers=None,
             **kwargs
     ):
-        response = requests.post(url=url, headers=headers, data=kwargs.get("data"), json=kwargs.get("postbody"))
+        response = requests.put(url=url, headers=headers, data=kwargs.get("data"), json=kwargs.get("postbody"))
         return response
 
     def delete(
@@ -40,5 +40,5 @@ class BaseHttpClient(object):
             headers=None,
             **kwargs
     ):
-        response = requests.post(url=url, headers=headers, data=kwargs.get("data"), json=kwargs.get("postbody"))
+        response = requests.delete(url=url, headers=headers, data=kwargs.get("data"), json=kwargs.get("postbody"))
         return response
