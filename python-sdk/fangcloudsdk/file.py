@@ -4,6 +4,7 @@ from fangcloudsdk.urltemplate import UrlTemplate
 
 try:
     from fangcloudsdk.item import Item
+    from fangcloudsdk.request_route import FileRoute
 except:
     from fangcloudsdk.item import Item
 
@@ -20,7 +21,7 @@ class File(Item):
         获取文件信息
         :return:
         """
-        url = UrlTemplate("/file/%s/info").build_url(options=(self._file_id), base_url=self._config.api_base_url)
+        url = FileRoute.info.build_url(options=(self._file_id), base_url=self._config.api_base_url)
         response = self._request.send(url=url, method="get", headers=self.headers(self.oauth))
         if response.status_code == StatusCode.Success:
             return response.json()
@@ -35,9 +36,9 @@ class File(Item):
         :param new_descript:
         :return:
         """
-        url = UrlTemplate("/file/%s/update").build_url(options=(self._file_id), base_url=self._config.api_base_url)
-        headers=self.headers(self.oauth)
-        postbody={
+        url = FileRoute.update.build_url(options=(self._file_id), base_url=self._config.api_base_url)
+        headers = self.headers(self.oauth)
+        postbody = {
             "name": new_name,
             "description": new_descript
         }
@@ -54,16 +55,37 @@ class File(Item):
         :param file_ids:
         :return:
         """
-        pass
+        url = FileRoute.delete.build_url(base_url=self._config.api_base_url)
+        headers = self.headers(self.oauth)
+        postbody = {
+            "file_ids": file_ids
+        }
+        response = self._request.send(url=url, method="delete", headers=headers, postbody=postbody)
+        if response.status_code == StatusCode.Success:
+            return response.json()
+        else:
+            self.deal_response(response, self.oauth)
+            return self.delete(file_ids)
 
-    def delete_from_trash(self, file_ids=None, clear_trash=None):
+    def delete_from_trash(self, file_ids=None, clear_trash=False):
         """
         从回收站删除文件
         :param file_ids:
         :param clear_trash:
         :return:
         """
-        pass
+        url = FileRoute.delete_from_trash.build_url(base_url=self._config.api_base_url)
+        headers = self.headers(self.oauth)
+        postbody = {
+            "clear_trash": clear_trash,
+            "file_ids": file_ids
+        }
+        response = self._request.send(url=url, method="delete", headers=headers, postbody=postbody)
+        if response.status_code == StatusCode.Success:
+            return response.json()
+        else:
+            self.deal_response(response, self.oauth)
+            return self.delete_from_trash(file_ids, clear_trash)
 
     def recovery_from_trash(self, file_ids=None, recovery_all=None):
         """
@@ -72,7 +94,18 @@ class File(Item):
         :param recovery_all:
         :return:
         """
-        pass
+        url = FileRoute.restore_from_trash.build_url(base_url=self._config.api_base_url)
+        headers = self.headers(self.oauth)
+        postbody = {
+            "restore_all": recovery_all,
+            "file_ids": file_ids
+        }
+        response = self._request.send(url=url, method="post", headers=headers, postbody=postbody)
+        if response.status_code == StatusCode.Success:
+            return response.json()
+        else:
+            self.deal_response(response, self.oauth)
+            return self.recovery_from_trash(file_ids, recovery_all)
 
     def move(self, file_ids=None, target_folder_id=None):
         """
@@ -81,7 +114,18 @@ class File(Item):
         :param target_folder_id:
         :return:
         """
-        pass
+        url = FileRoute.move.build_url(base_url=self._config.api_base_url)
+        headers = self.headers(self.oauth)
+        postbody = {
+            "target_folder_id": target_folder_id,
+            "file_ids": file_ids
+        }
+        response = self._request.send(url=url, method="post", headers=headers, postbody=postbody)
+        if response.status_code == StatusCode.Success:
+            return response.json()
+        else:
+            self.deal_response(response, self.oauth)
+            return self.move(file_ids, target_folder_id)
 
     def upload(self, parent_id=None, name=None):
         """
@@ -90,7 +134,19 @@ class File(Item):
         :param name:
         :return:
         """
-        pass
+        url = FileRoute.upload.build_url(base_url=self._config.api_base_url)
+        headers = self.headers(self.oauth)
+        postbody = {
+            "parent_id": parent_id,
+            "name": name,
+            "upload_type": "api"
+        }
+        response = self._request.send(url=url, method="post", headers=headers, postbody=postbody)
+        if response.status_code == StatusCode.Success:
+            return response.json()
+        else:
+            self.deal_response(response, self.oauth)
+            return self.upload(parent_id, name)
 
     def new_version(self, name=None, remark=None):
         """
@@ -99,22 +155,52 @@ class File(Item):
         :param remark:
         :return:
         """
-        pass
+        url = FileRoute.new_version.build_url(options=(self.file_id), base_url=self._config.api_base_url)
+        headers = self.headers(self.oauth)
+        postbody = {
+            "name": name,
+            "upload_type": "api",
+            "remark": remark
+        }
+        response = self._request.send(url=url, method="post", headers=headers, postbody=postbody)
+        if response.status_code == StatusCode.Success:
+            return response.json()
+        else:
+            self.deal_response(response, self.oauth)
+            return self.new_version(name, remark)
 
     def download(self):
         """"
         获取文件的下载地址
         """
-        pass
+        url = FileRoute.download.build_url(options=(self.file_id), base_url=self._config.api_base_url)
+        headers = self.headers(self.oauth)
+        response = self._request.send(url=url, method="get", headers=headers)
+        if response.status_code == StatusCode.Success:
+            return response.json()
+        else:
+            self.deal_response(response, self.oauth)
+            return self.download()
 
-    def preview(self, force_regenerate=None, kind=None):
+    def preview(self, force_regenerate=False, kind=None):
         """
         预览文件
         :param force_regenerate:
         :param kind:
         :return:
         """
-        pass
+        url = FileRoute.preview.build_url(options=(self.file_id), base_url=self._config.api_base_url)
+        headers = self.headers(self.oauth)
+        postbody = {
+            "force_regenerate": force_regenerate,
+            "kind": kind
+        }
+        response = self._request.send(url=url, method="post", headers=headers, postbody=postbody)
+        if response.status_code == StatusCode.Success:
+            return response.json()
+        else:
+            self.deal_response(response, self.oauth)
+            return self.preview(force_regenerate, kind)
 
     def preview_download(self, page_index=None, kind=None):
         """
@@ -123,7 +209,18 @@ class File(Item):
         :param kind:
         :return:
         """
-        pass
+        url = FileRoute.preview_download.build_url(options=(self.file_id), base_url=self._config.api_base_url)
+        headers = self.headers(self.oauth)
+        postbody = {
+            "page_index": page_index,
+            "kind": kind
+        }
+        response = self._request.send(url=url, method="post", headers=headers, postbody=postbody)
+        if response.status_code == StatusCode.Success:
+            return response.json()
+        else:
+            self.deal_response(response, self.oauth)
+            return self.preview_download(page_index, kind)
 
     def get_preview_frame_url(self, file_name=None):
         """
@@ -131,16 +228,33 @@ class File(Item):
         :param file_name:
         :return:
         """
-        pass
+        # 反回url
 
-    def copy(self, target_folder_id=None, check_conflict=None):
+    def copy(self, target_folder_id=None, check_conflict=False):
         """
         复制文件
         :param target_folder_id:
         :param check_conflict:
         :return:
         """
-        pass
+        url = FileRoute.copy.build_url(base_url=self._config.api_base_url)
+        headers = self.headers(self.oauth)
+        postbody = {
+            "file_id": self.file_id,
+            "target_folder_id": target_folder_id,
+            "is_check_conflict": check_conflict
+        }
+        response = self._request.send(url=url, method="post", headers=headers, postbody=postbody)
+        if response.status_code == StatusCode.Success:
+            return response.json()
+        else:
+            self.deal_response(response, self.oauth)
+            return self.copy(target_folder_id, check_conflict)
+
     @property
     def oauth(self):
         return self._oauth
+
+    @property
+    def file_id(self):
+        return self._file_id

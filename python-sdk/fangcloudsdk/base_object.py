@@ -3,7 +3,7 @@ from fangcloudsdk.config import Config
 from fangcloudsdk.request_client import RequestClient
 from fangcloudsdk.logger import LoggerFactory
 from fangcloudsdk.status_code import StatusCode
-from fangcloudsdk.exception import UnAuthorizedException
+from fangcloudsdk.exception import UnAuthorizedException, ResponseErrorException
 import time
 import threading
 
@@ -35,7 +35,7 @@ class BaseObject(object):
         elif status_code == StatusCode.InternalServerError:
             raise "server error"
         else:
-            error_ison=response.json()
-            raise error_ison['errors']['msg']
+            error_info=response.json()
+            raise ResponseErrorException(error_message=error_info)
 
 

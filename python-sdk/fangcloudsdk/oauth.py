@@ -4,7 +4,7 @@ from fangcloudsdk.urltemplate import UrlTemplate as url_tp
 from fangcloudsdk.request_client import RequestClient
 from requests.auth import HTTPBasicAuth
 from fangcloudsdk.config import Config
-from fangcloudsdk.status_code import StatusCode
+from fangcloudsdk.exception import OauthException
 import time
 import threading
 
@@ -28,11 +28,7 @@ class OAuth(object):
         self._request_session = RequestClient()
         self.get_auth_url = url_tp("/authorize")
         self.get_token_url = url_tp("/token")
-    # def __new__(cls, *args, **kwargs):
-    #     if not hasattr(cls, '_instance'):
-    #         orig = super(OAuth, cls)
-    #         cls._instance = orig.__new__(cls, *args)
-    #         return cls._instance
+
     # 获取授权url
     def get_authorization_url(self):
         """
@@ -63,7 +59,7 @@ class OAuth(object):
                 = new_token['access_token'], new_token['refresh_token'], new_token['expires_in'], time.time()
             return new_token
         else:
-            raise "auth code involid or is null"
+            raise OauthException(error_message="auth code involid or is null")
 
     # 更新token
     def update_token(self):
@@ -82,7 +78,7 @@ class OAuth(object):
                 = new_token['access_token'], new_token['refresh_token'], new_token['expires_in'], time.time()
             return new_token
         else:
-            raise BaseException
+            raise OauthException(error_message="refresh token is involid or null")
 
     # 封装token请求
     def token_request(self, params):

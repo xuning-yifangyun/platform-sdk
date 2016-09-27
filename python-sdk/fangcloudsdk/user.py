@@ -2,6 +2,7 @@
 from fangcloudsdk.item import Item
 from fangcloudsdk.status_code import StatusCode
 from fangcloudsdk.urltemplate import UrlTemplate
+from fangcloudsdk.request_route import UserRoute
 
 
 class User(Item):
@@ -16,13 +17,12 @@ class User(Item):
         获取用户信息
         :return:
         """
-        url = UrlTemplate("/user/info").build_url(base_url=self._config.api_base_url)
         if self._user_id is not None:
-            params = {"id": self._user_id}
+            url = UserRoute.info.build_url(self._user_id, base_url=self._config.api_base_url)
         else:
-            params = None
+            url = UserRoute.me_info.build_url(base_url=self._config.api_base_url)
         headers = self.headers(self.oauth)
-        response = self._request.send(url=url, method="get", headers=headers, params=params)
+        response = self._request.send(url=url, method="get", headers=headers)
         if response.status_code == StatusCode.Success:
             return response.json()
         else:
@@ -35,7 +35,7 @@ class User(Item):
         :param profile_pic_key:
         :return:
         """
-        url = UrlTemplate("/user/profile_pic_download").build_url(base_url=self._config.api_base_url)
+        url = UserRoute.get_profile_pic.build_url(base_url=self._config.api_base_url)
         params = {"user_id": self._user_id, "profile_pic_key": profile_pic_key}
         headers = self.headers(self.oauth)
         response = self._request.send(url=url, method="get", headers=headers, params=params)
