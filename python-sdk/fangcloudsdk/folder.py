@@ -78,7 +78,7 @@ class Folder(Item):
             return response.json()
         else:
             self.deal_response(response, self.oauth)
-            return self.delete()
+            return self.delete(folder_ids)
 
     def delete_from_trash(self, folder_ids=None, clear_trash=False):
         """
@@ -127,7 +127,7 @@ class Folder(Item):
         """
         url = FolderRoute.move.build_url(base_url=self._config.api_base_url)
         postbody = {
-            "target_folder": target_folder_id,
+            "target_folder_id": target_folder_id,
             "folder_ids": folder_ids
         }
         response = self._request.send(url=url, method="post", headers=self.headers(self.oauth), postbody=postbody)
@@ -152,7 +152,7 @@ class Folder(Item):
             "page_capacity": page_capacity,
             "type": type
         }
-        response = self._request.send(url=url, method="post", headers=self.headers(self.oauth), params=params)
+        response = self._request.send(url=url, method="get", headers=self.headers(self.oauth), params=params)
         if response.status_code == StatusCode.Success:
             return response.json()
         else:

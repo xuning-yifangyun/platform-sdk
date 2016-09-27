@@ -27,4 +27,4 @@ class T_Oauth(unittest.TestCase):
         oauth.revoke()
 
     def tearDown(self):
-        print("-----Oauth单元测试结束------")
+        pass
