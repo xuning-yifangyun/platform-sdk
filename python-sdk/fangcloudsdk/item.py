@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 try:
+    from .base_object import BaseObject
+    from .config import Config
+    from .status_code import StatusCode
+    from .request_route import ItemRoute
+except:
     from fangcloudsdk.base_object import BaseObject
     from fangcloudsdk.config import Config
     from fangcloudsdk.status_code import StatusCode
     from fangcloudsdk.request_route import ItemRoute
-except:
-    from fangcloudsdk.base_object import BaseObject
 
 
 class Item(BaseObject):

@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
-from fangcloudsdk.item import Item
-from fangcloudsdk.status_code import StatusCode
-from fangcloudsdk.urltemplate import UrlTemplate
-from fangcloudsdk.request_route import UserRoute
+try:
+    from fangcloudsdk.item import Item
+    from fangcloudsdk.status_code import StatusCode
+    from fangcloudsdk.request_route import UserRoute
+except Exception:
+    from fangcloudsdk.item import Item
+    from fangcloudsdk.status_code import StatusCode
+    from fangcloudsdk.request_route import UserRoute
 
 
 class User(Item):

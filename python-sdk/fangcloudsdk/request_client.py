@@ -1,5 +1,10 @@
-from fangcloudsdk.base_httpclient import BaseHttpClient
-from fangcloudsdk.logger import LoggerFactory
+# -*- coding: utf-8 -*-
+try:
+    from .base_httpclient import BaseHttpClient
+    from .logger import LoggerFactory
+except Exception:
+    from fangcloudsdk.base_httpclient import BaseHttpClient
+    from fangcloudsdk.logger import LoggerFactory
 
 
 class RequestClient(object):

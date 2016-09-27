@@ -1,4 +1,4 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
 
 class BaseException(Exception):
     def __init__(self, error_message):

@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
-from fangcloudsdk.config import Config
-from fangcloudsdk.request_client import RequestClient
-from fangcloudsdk.logger import LoggerFactory
-from fangcloudsdk.status_code import StatusCode
-from fangcloudsdk.exception import UnAuthorizedException, ResponseErrorException
+try:
+    from .config import Config
+    from .request_client import RequestClient
+    from .logger import LoggerFactory
+    from .status_code import StatusCode
+    from .exception import UnAuthorizedException, ResponseErrorException
+except Exception:
+    from fangcloudsdk.config import Config
+    from fangcloudsdk.request_client import RequestClient
+    from fangcloudsdk.logger import LoggerFactory
+    from fangcloudsdk.status_code import StatusCode
+    from fangcloudsdk.exception import UnAuthorizedException, ResponseErrorException
 import time
 import threading
 

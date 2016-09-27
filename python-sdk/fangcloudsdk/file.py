@@ -3,10 +3,11 @@ from fangcloudsdk.status_code import StatusCode
 from fangcloudsdk.urltemplate import UrlTemplate
 
 try:
-    from fangcloudsdk.item import Item
-    from fangcloudsdk.request_route import FileRoute
+    from .item import Item
+    from .request_route import FileRoute
 except:
     from fangcloudsdk.item import Item
+    from fangcloudsdk.request_route import FileRoute
 
 
 class File(Item):

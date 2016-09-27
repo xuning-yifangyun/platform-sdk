@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from test.t_file import T_File
 from test.t_folder import T_Folder
 from test.t_item import T_Item

@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
-from threading import Lock
-from fangcloudsdk.urltemplate import UrlTemplate as url_tp
-from fangcloudsdk.request_client import RequestClient
-from requests.auth import HTTPBasicAuth
-from fangcloudsdk.config import Config
-from fangcloudsdk.exception import OauthException
+try:
+    from .urltemplate import UrlTemplate as url_tp
+    from .request_client import RequestClient
+    from .auth import HTTPBasicAuth
+    from .config import Config
+    from .exception import OauthException
+except Exception:
+    from fangcloudsdk.urltemplate import UrlTemplate as url_tp
+    from fangcloudsdk.request_client import RequestClient
+    from requests.auth import HTTPBasicAuth
+    from fangcloudsdk.config import Config
+    from fangcloudsdk.exception import OauthException
 import time
 import threading
 
@@ -29,7 +35,6 @@ class OAuth(object):
         self.get_auth_url = url_tp("/authorize")
         self.get_token_url = url_tp("/token")
 
-    # 获取授权url
     def get_authorization_url(self):
         """
         获取授权url
@@ -40,7 +45,6 @@ class OAuth(object):
             .format(self._client_id, self._redirect_url, "code", None)
         return taget_url
 
-    # 接受授权码，设置token信息
     def authenticate(self, auth_code=None):
         """
         根据授权码获取token
@@ -61,7 +65,6 @@ class OAuth(object):
         else:
             raise OauthException(error_message="auth code involid or is null")
 
-    # 更新token
     def update_token(self):
         """
         刷新token
@@ -80,7 +83,6 @@ class OAuth(object):
         else:
             raise OauthException(error_message="refresh token is involid or null")
 
-    # 封装token请求
     def token_request(self, params):
         """
         token request
@@ -95,7 +97,6 @@ class OAuth(object):
         response = self._request_session.send(url=url, method="post", params=params, auth=auth)
         return response
 
-    # 撤销授权
     def revoke(self):
         """
         撤销授权
@@ -103,9 +104,9 @@ class OAuth(object):
         """
         self.access_token = None
         self.refresh_token = None
-        self.expires_in = None
-        self.apply_time = None
-        if self.access_token is None and self.refresh_token is None:
+        self.expires_in = 0
+        self.apply_time = 0
+        if self.access_token is None:
             return True
         else:
             return False

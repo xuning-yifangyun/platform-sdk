@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import unittest
 from test.global_test_config import oauth
 from fangcloudsdk.client import Client
@@ -16,7 +17,7 @@ class T_File(unittest.TestCase):
         self.assertTrue(res['success'])
 
     def test_file_update(self):
-        res = self.client.file(self.test_file_id).update("dog.png", "xuning‘s update")
+        res = self.client.file(self.test_file_id).update("dog.png", "xuning's update")
         self.assertTrue(res['success'])
 
     def test_delete_file(self):

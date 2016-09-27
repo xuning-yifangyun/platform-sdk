@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from fangcloudsdk.oauth import OAuth
 
 oauth = OAuth(

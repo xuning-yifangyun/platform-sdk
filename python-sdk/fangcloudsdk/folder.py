@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 try:
+    from .item import Item
+    from .request_route import FolderRoute
+    from .status_code import StatusCode
+except Exception:
     from fangcloudsdk.item import Item
     from fangcloudsdk.request_route import FolderRoute
     from fangcloudsdk.status_code import StatusCode
-except:
-    from fangcloudsdk.item import Item
-
 
 class Folder(Item):
     def __init__(self, folder_id, oauth):

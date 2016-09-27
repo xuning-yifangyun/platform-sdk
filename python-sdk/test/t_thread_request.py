@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import threading
 from test.global_test_config import oauth
 from fangcloudsdk.client import Client

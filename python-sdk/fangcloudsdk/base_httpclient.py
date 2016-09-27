@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import requests
 
-
 class BaseHttpClient(object):
     def __init__(self):
         pass

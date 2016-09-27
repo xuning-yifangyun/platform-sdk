@@ -1,11 +1,20 @@
 # -*- coding: utf-8 -*-
-from fangcloudsdk.config import Config
-from fangcloudsdk.file import File
-from fangcloudsdk.folder import Folder
-from fangcloudsdk.item import Item
-from fangcloudsdk.logger import LoggerFactory
-from fangcloudsdk.request_client import RequestClient
-from fangcloudsdk.user import User
+try:
+    from .config import Config
+    from .file import File
+    from .folder import Folder
+    from .item import Item
+    from .logger import LoggerFactory
+    from .request_client import RequestClient
+    from .user import User
+except Exception:
+    from fangcloudsdk.config import Config
+    from fangcloudsdk.file import File
+    from fangcloudsdk.folder import Folder
+    from fangcloudsdk.item import Item
+    from fangcloudsdk.logger import LoggerFactory
+    from fangcloudsdk.request_client import RequestClient
+    from fangcloudsdk.user import User
 
 
 class Client(object):

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from fangcloudsdk.oauth import OAuth
 from test.global_test_config import oauth
 import unittest

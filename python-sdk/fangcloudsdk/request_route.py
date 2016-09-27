@@ -1,5 +1,8 @@
-from fangcloudsdk.urltemplate import UrlTemplate as url_tp
-
+# -*- coding: utf-8 -*-
+try:
+    from .urltemplate import UrlTemplate as url_tp
+except Exception:
+    from fangcloudsdk.urltemplate import UrlTemplate as url_tp
 
 class RequestRoute(object):
     pass
