@@ -38,7 +38,6 @@ class T_Folder(unittest.TestCase):
         res = self.client.folder().recovery_from_trash(recovery_all=True)
         self.assertTrue(res['success'])
 
-    # TODO: 文档错误，不应为是target_folder
     def test_move_folder(self):
         res = self.client.folder().move(folder_ids=[self.test_target_folder_id], target_folder_id=self.test_folder_id)
         self.assertTrue(res['success'])

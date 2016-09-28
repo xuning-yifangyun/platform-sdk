@@ -29,9 +29,6 @@ class T_File(unittest.TestCase):
         self.assertTrue(res['success'])
 
     def test_recovery_file_from_trash(self):
-        # TODO: 测试出现500错误， 结果如下, 可重现：
-        # {'errors': [{'code': 'default_server_internal_error', 'msg': '服务器内部错误'}],
-        #  'request_id': '5ea94a27-6fb7-4132-a372-579c75fb0ae1'}
         res = self.client.file().recovery_from_trash(recovery_all=True)
         self.assertTrue(res['success'])
 
@@ -52,8 +49,7 @@ class T_File(unittest.TestCase):
         self.assertTrue(res['success'])
 
     def test_preview_file(self):
-        # TODO: 修改为type会出先500错误, 否则400非法输入
-        res = self.client.file(self.test_file_id).preview(kind="image_g64")
+        res = self.client.file(self.test_file_id).preview(kind="image_64")
         self.assertTrue(res['success'])
 
     def test_preview_download(self):

@@ -13,14 +13,13 @@ pip安装pip install fangcloudsdk
 ```
 
 ##使用
-###:建议参考广方文档
+###:建议参考官方文档
 ###获取资源只需以下几步
 	只需三步：
     1：初始化自己的应用Oauth信息，即实例化Oauth
     2：接收授权码,获取token
     3：使用Token请求api资源
-*注意*
-建议oauth使用单例模式，发起授权请求之后，授权码回调给redirectURL，在这里需要调用AuthApi.getTokenByAuthCode("you's authcode")传入您获取到的授权码，会自动处理Connection的，无需手动添加，现在为止，connection已经已经具备了操作权限，直接使用SDK就可以了，下面是具体的代码示例：
+###最佳实践
 ```python
 from fangcloudsdk.oauth import OAuth
 from fangcloudsdk.client import Client
@@ -70,7 +69,7 @@ authenticate(self, auth_code=None):
 **返回类型**
 json
 
-| TokenInfo字段 |  字段类型  |           字段说明            |
+| Key 名称|  字段类型  |           字段说明            |
 | :-----------: | :----: | :-----------------------: |
 | access_oken  | string |          接口访问标识           |
 |  token_type   | string |        目前固定为bearer        |
@@ -94,23 +93,21 @@ update_token(self):
 **返回类型**
 json
 
-|     TokenInfo字段 |  字段类型  |           字段说明            |
+|     Key 名称 |  字段类型  |           字段说明            |
 | :-----------: | :----: | :-----------------------: |
 | accessToken  | string |          接口访问标识           |
 |  tokenType   | string |        目前固定为bearer        |
 | refreshToken | string | 用来刷新access_token，有效时间为30天 |
 |  expiresIn   |  int   |  access_token的有效时间，单位为s   |
 |     scope     | string |        目前固定为"all"         |
-*注意：这里仅仅调用本方法就自动完成了Token刷新，无需set，
-另外提供了：rebuildAccessToken()方法进行自动刷新。都可使用*
-<hr/>
+
 
 
 
 ###File操作
 #####获取文件信息
-```java
-getFileInfo(long id)
+```python
+test_get_file_info(self):
 ```
 **参数**
 
@@ -119,9 +116,9 @@ getFileInfo(long id)
 |id|int|文件ID|
 
 **返回类型**
-FileInfo
+json
 
-|FileInfo成员变量|   类型    |      字段说明       |
+|Key 名称|   类型    |      字段说明       |
 | :----------------: | :-------: | :-------------: |
 |   comments_count   |    int    |    评论数，目前都为0    |
 |        type        |  string   |    固定为"file"    |
@@ -154,7 +151,7 @@ updateFile(long id, String newName, String newDescription)
 **返回类型**
 FileInfo
 
-|FileInfo成员变量|   类型    |      字段说明       |
+|Key 名称|   类型    |      字段说明       |
 | :----------------: | :-------: | :-------------: |
 |   comments_count   |    int    |    评论数，目前都为0    |
 |        type        |  string   |    固定为"file"    |
@@ -191,7 +188,7 @@ deleteFile(long... fileIds)
 **返回类型**
 Result
 
-|FileInfo成员变量| 类型 |字段说明  |
+|Key 名称| 类型 |字段说明  |
 | :----------------: | :-------: | :-------------: |
 |   success   |    boolean   |    删除是否成功    |
 
@@ -213,7 +210,7 @@ deleteFileFromTrash(boolean clear_trash, long... fileIds)
 **返回类型**
 Result
 
-|Result成员变量|   类型    |      字段说明       |
+|ResultKey 名称|   类型    |      字段说明       |
 | :----------------: | :-------: | :-------------: |
 |   success   |    boolean   |    删除是否成功    |
 
@@ -236,7 +233,7 @@ recoveryFileFromTrash(boolean restoreAll, long... fileIds)
 **返回类型**
 Result
 
-|Result成员变量|   类型    |      字段说明       |
+|Key 名称|   类型    |      字段说明       |
 | :----------------: | :-------: | :-------------: |
 |   success   |    boolean   |    删除是否成功    |
 
@@ -277,7 +274,7 @@ uploadFile(long parentId, String name)
 **返回类型**
 FilePresignUpload
 
-|    成员     |  字段类型  |                   字段说明                   |
+|    Key 名称     |  字段类型  |                   字段说明                   |
 | :---------: | :----: | :--------------------------------------: |
 | presign_url | string | 上传链接，接下来往该链接上传即可上传文件，上传链接的有效时间为1个小时
 
@@ -299,7 +296,7 @@ newVersion(long id, String name, String remark)
 **返回类型**
 FilePresignUpload
 
-|    成员     |  字段类型  |                   字段说明                   |
+|    Key 名称     |  字段类型  |                   字段说明                   |
 | :---------: | :----: | :--------------------------------------: |
 | presign_url | string | 上传链接，接下来往该链接上传即可上传文件，上传链接的有效时间为1个小时
 
@@ -323,7 +320,7 @@ download(long id)
 FilePresignDownload
 
 
-|     返回字段      |             字段类型             |                   字段说明                   |
+|     Key 名称      |             字段类型             |                   字段说明                   |
 | :-----------: | :--------------------------: | :--------------------------------------: |
 | download_urls | key为file_id, value为url组成的map | 下载链接，访问该下载链接即可下载文件，下载链接的有效时间为1个小时，且只能被使用一次 |
 
@@ -347,7 +344,7 @@ FilePreviewInfo
 
 若预览图未生成：
 
-|     返回字段   |  字段类型   |            字段说明                   |
+|     Key 名称   |  字段类型   |            字段说明                   |
 | :-----------: | :-----: | :--------------------------------------: |
 |   category    | string  |                  预览图的分类                  |
 | exif_rotation |   int   | 表示图片的旋转，具体可参考https://beradrian.wordpress.com/2008/11/14/rotate-exif-images/ |
