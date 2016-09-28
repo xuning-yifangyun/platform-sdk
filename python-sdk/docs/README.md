@@ -6,7 +6,6 @@
 
 ##部署
 部署SDK提供两种部署方案：
-###1：下载jar包，导入项目路径
 ```text
 pip安装pip install fangcloudsdk
 或者：python3 setup.py
@@ -24,14 +23,14 @@ pip安装pip install fangcloudsdk
 from fangcloudsdk.oauth import OAuth
 from fangcloudsdk.client import Client
 oauth = OAuth(
-    client_id="bbe8e63d-89b0-4f31-ba07-5fd602d501d8",
-    client_secret="5c179dfe-0f5a-4124-9690-42b69ec3aef7",
-    redirect_url="http://121.41.52.18:8080/callback"
+    client_id="you client id",
+    client_secret="you client secret",
+    redirect_url="you redirect url"
 )
 # 需要获取到请求授权的url，需要交给用户去和授权服务器去交互，如下：
 # auth_url=oauth.get_authorization_url()
 # 接收授权码, 获取token
-oauth.authenticate(auth_code="lS92LP")
+oauth.authenticate(auth_code="you auth code")
 # 实例化client
 client = Client(oauth)
 # 请求api资源
@@ -42,7 +41,7 @@ print(s)
 
 #####获取授权url
 ```python
-get_authorization_url(self):
+oauth.get_authorization_url(self):
 ```
 **参数**
 
@@ -58,7 +57,7 @@ get_authorization_url(self):
 <br>
 #####获取Token
 ```python
-authenticate(self, auth_code=None):
+oauth.authenticate(self, auth_code=None):
 ```
 **参数**
 
@@ -82,7 +81,7 @@ json
 
 #####刷新token
 ```python
-update_token(self):
+oauth.update_token(self):
 ```
 **参数**
 
@@ -93,13 +92,13 @@ update_token(self):
 **返回类型**
 json
 
-|     Key 名称 |  字段类型  |           字段说明            |
+| Key 名称|  字段类型  |           字段说明            |
 | :-----------: | :----: | :-----------------------: |
-| accessToken  | string |          接口访问标识           |
-|  tokenType   | string |        目前固定为bearer        |
-| refreshToken | string | 用来刷新access_token，有效时间为30天 |
-|  expiresIn   |  int   |  access_token的有效时间，单位为s   |
-|     scope     | string |        目前固定为"all"         |
+| access_oken  | string |          接口访问标识           |
+|  token_type   | string |        目前固定为bearer        |
+| refresh_token | string | 用来刷新access_token，有效时间为30天 |
+|  expires_in   |  int   |  access_token的有效时间，单位为s   |
+|    scope     | string |        目前固定为"all"         |
 
 
 
@@ -107,7 +106,7 @@ json
 ###File操作
 #####获取文件信息
 ```python
-test_get_file_info(self):
+client.file(file_id).info(self):
 ```
 **参数**
 
@@ -139,8 +138,8 @@ json
 
 <hr>
 #####更新文件信息
-```java
-updateFile(long id, String newName, String newDescription)
+```python
+client.file(file_id).update(name, desc)
 ```
 **参数**
 
@@ -149,7 +148,7 @@ updateFile(long id, String newName, String newDescription)
 |id|int|文件ID|
 
 **返回类型**
-FileInfo
+json
 
 |Key 名称|   类型    |      字段说明       |
 | :----------------: | :-------: | :-------------: |
@@ -175,8 +174,8 @@ FileInfo
 ##### 删除文件至回收站
 
 支持批量操作
-```java
-deleteFile(long... fileIds)
+```python
+client.file().delete(file_ids=[file_id])
 ```
 **参数**
 
@@ -186,18 +185,18 @@ deleteFile(long... fileIds)
 | fileIds | List |文件id集合 |
 
 **返回类型**
-Result
+json
 
 |Key 名称| 类型 |字段说明  |
 | :----------------: | :-------: | :-------------: |
-|   success   |    boolean   |    删除是否成功    |
+|   success   |    boolean   |删除是否成功|
 
 <hr>
 ##### 从回收站删除文件
 
 支持批量操作
-```java
-deleteFileFromTrash(boolean clear_trash, long... fileIds)
+```python
+client.file().delete_from_trash(fileids=None)
 ```
 **参数**
 
@@ -208,7 +207,7 @@ deleteFileFromTrash(boolean clear_trash, long... fileIds)
 | clear_trash | boolean |  否   | 清空回收站 |
 
 **返回类型**
-Result
+json
 
 |ResultKey 名称|   类型    |      字段说明       |
 | :----------------: | :-------: | :-------------: |
@@ -219,8 +218,8 @@ Result
 
 ##### 从回收站恢复文件
 支持批量操作
-```java
-recoveryFileFromTrash(boolean restoreAll, long... fileIds)
+```python
+client.file().recovery_from_trash(recovery_all=True)
 ```
 **参数**
 
@@ -228,10 +227,10 @@ recoveryFileFromTrash(boolean restoreAll, long... fileIds)
 |  参数字段   |  字段类型  | 是否必须 | 字段说明 |
 | :------: | :----: | :--: | :--: |
 | fileIds | List |  是   | 文件id集合 |
-| restoreAllh | boolean |  否   | 全部恢复|
+| restore_all| boolean |  否   | 全部恢复|
 
 **返回类型**
-Result
+json
 
 |Key 名称|   类型    |      字段说明       |
 | :----------------: | :-------: | :-------------: |
@@ -241,8 +240,8 @@ Result
 
 
 ##### 移动文件
-```java
-moveFile(List<Long> fileIds, long target_folder_id)
+```python
+client.file().move(file_ids=[self.test_file_id], target_folder_id=self.test_target_folder_id)
 ```
 **参数**
 
@@ -252,7 +251,7 @@ moveFile(List<Long> fileIds, long target_folder_id)
 | target_folder_id |  long  |  是   | 移动至的文件夹id |
 
 **返回类型**
-Result
+json
 
 |Result成员变量|   类型    |      字段说明       |
 | :----------------: | :-------: | :-------------: |
@@ -261,8 +260,8 @@ Result
 <hr>
 
 ##### 获取新文件上传地址
-```java
-uploadFile(long parentId, String name)
+```python
+client.file().upload(parent_id=self.test_target_folder_id, name="dog.png")
 ```
 **参数**
 
@@ -272,7 +271,7 @@ uploadFile(long parentId, String name)
 |    name     | string |  是   | 文件名称，文件名称必须是1到222个字符，并且不能含有/ ? : * |
 
 **返回类型**
-FilePresignUpload
+json
 
 |    Key 名称     |  字段类型  |                   字段说明                   |
 | :---------: | :----: | :--------------------------------------: |
@@ -282,8 +281,8 @@ FilePresignUpload
 
 ##### 获取文件上传新版本地址
 
-```java
-newVersion(long id, String name, String remark)
+```python
+client.file(self.test_file_id).new_version(name="dog.png", remark="xuning, new version test")
 ```
 **参数**
 
@@ -294,7 +293,7 @@ newVersion(long id, String name, String remark)
 |   remark    | string |  否   |                上传新版本的备注。                 |
 
 **返回类型**
-FilePresignUpload
+json
 
 |    Key 名称     |  字段类型  |                   字段说明                   |
 | :---------: | :----: | :--------------------------------------: |
@@ -305,8 +304,8 @@ FilePresignUpload
 
 ##### 获取文件的下载地址
 
-```java
-download(long id)
+```python
+client.file(self.test_file_id).download()
 ```
 **参数**
 
@@ -317,8 +316,7 @@ download(long id)
 |   remark    | string |  否   |                上传新版本的备注。                 |
 
 **返回类型**
-FilePresignDownload
-
+json
 
 |     Key 名称      |             字段类型             |                   字段说明                   |
 | :-----------: | :--------------------------: | :--------------------------------------: |
@@ -328,8 +326,8 @@ FilePresignDownload
 
 
 ##### 预览文件
-```java
-preview(long id, boolean forceRegenerate, String kind)
+```python
+client.file(self.test_file_id).preview(kind="image_64")
 ```
 **参数**
 
@@ -340,7 +338,7 @@ preview(long id, boolean forceRegenerate, String kind)
 |       kind       | string  |  是   | 生成的预览图类型，具体类型见该接口的描述 |
 
 **返回类型**
-FilePreviewInfo
+json
 
 若预览图未生成：
 
@@ -371,8 +369,8 @@ FilePreviewInfo
 
 ##### 获取文件预览转换后的下载地址
 
-```java
-previewDownload(long id, int pageIndex, String kind)
+```python
+client.file(self.test_file_id).preview_download(page_index=0, kind="image_64")
 ```
 **参数**
 
@@ -383,7 +381,7 @@ previewDownload(long id, int pageIndex, String kind)
 |  id  | long | 是|文件id |
 
 **返回类型**
-FilePreviewDownload
+json
 若预览图未生成：
 
 |  返回字段   |  字段类型   |   字段说明   |
@@ -404,25 +402,12 @@ FilePreviewDownload
 | representation_fail_reason | string | 预览生成失败的原因 |
 
 
-##### 预览嵌入
-```java
-getPreviewFrameUrl(long fileId, String fileName)
-```
-**参数**
-
-|     参数字段     |  字段类型  | 是否必须 |字段说明    |
-| :----------: | :----: | :--: | :---------------: |
-| access_token | string |  是   | 当前用户的access_token |
-|   file_id    |  long  |  是   |    需要预览的文件的id     |
-
-**返回类型**
-返回Url：String 类型，如“`<iframe src="https://open.fangcloud.com/preview/preview.html?access_token=xxx&file_id=1"></iframe>`”；
 
 ##### 复制文件
 
 
-```java
-copyFile(long fileId, long targetFolderId, boolean checkConflict)
+```python
+client.file(self.test_file_id).copy(target_folder_id=self.test_target_folder_id)
 ```
 
 **参数**
@@ -434,6 +419,7 @@ copyFile(long fileId, long targetFolderId, boolean checkConflict)
 
 
 **返回类型**
+json
 
 |   返回字段   | 字段类型 |    字段说明     |
 | :------: | :--: | :---------: |
@@ -446,8 +432,8 @@ copyFile(long fileId, long targetFolderId, boolean checkConflict)
 ### 文件夹（FOLDER）操作
 
 ##### 获取文件夹信息
-```java
-getFolderInfo(long id)
+```python
+client.folder(id).info()
 ```
 
 **参数**
@@ -459,7 +445,7 @@ getFolderInfo(long id)
 
 **返回类型**
 **返回字段说明**
-FolderInfo
+json
 
 |    返回字段     |   字段类型    |      字段说明       |
 | :---------: | :-------: | :-------------: |
@@ -483,7 +469,7 @@ FolderInfo
 <hr>
 ##### 创建文件夹
 ```java
-createFolder(String name, long parentId)
+client.folder().create("test_create", self.test_folder_id)
 ```
 
 **参数**
@@ -494,7 +480,7 @@ createFolder(String name, long parentId)
 | parentId |  long  |  是   | 父文件夹id |
 
 **返回类型**
-CreateFolder
+json
 
 |    返回字段     |   字段类型    |      字段说明       |
 | :---------: | :-------: | :-------------: |
@@ -518,8 +504,8 @@ CreateFolder
 
 <hr>
 ##### 更新文件夹
-```java
-updateFolder(long id, String newName)
+```python
+client.folder(self.test_folder_id).update("testapi")
 ```
 
 **参数**
@@ -530,7 +516,7 @@ updateFolder(long id, String newName)
 | name | string |  是   | 文件夹名 |
 
 **返回类型**
-UpdateFolder
+json
 
 |    返回字段     |   字段类型    |      字段说明       |
 | :---------: | :-------: | :-------------: |
@@ -556,8 +542,8 @@ UpdateFolder
 
 支持批量操作
 
-```java
-deleteFolder(long... folderIds)
+```python
+client.folder().delete(folder_ids=[self.test_folder_id])
 ```
 
 **参数**
@@ -567,7 +553,7 @@ deleteFolder(long... folderIds)
 | folderIds | list |  是   | 文件夹id列表 |
 
 **返回参数**
-DeleteFolder
+json
 
 |    返回字段     |   字段类型    |      字段说明       |
 | :---------: | :-------: | :-------------: |
@@ -577,8 +563,8 @@ DeleteFolder
 ##### 从回收站删除文件夹
 支持批量操作
 
-```java
-deleteFolderFromTrash(List<Long> folderIds, boolean clearTrash)
+```python
+client.folder().delete_from_trash(folder_ids=[self.test_create_folder_id])
 ```
 
 **参数**
@@ -590,7 +576,7 @@ deleteFolderFromTrash(List<Long> folderIds, boolean clearTrash)
 
 **返回参数**
 
-DeleteFolder
+json
 
 |    返回字段     |   字段类型    |      字段说明       |
 | :---------: | :-------: | :-------------: |
@@ -600,8 +586,8 @@ DeleteFolder
 ##### 从回收站恢复文件夹
 
 支持批量操作
-```java
-recoveryFolderFromTrash(List<Long> folderIds, boolean restoreAll)
+```python
+client.folder().recovery_from_trash(recovery_all=True)
 ```
 
 **参数**
@@ -612,7 +598,7 @@ recoveryFolderFromTrash(List<Long> folderIds, boolean restoreAll)
 | restoreAll | boolean |  否   | 是否恢复所有文件 |
 
 **返回参数**
-RestoreFolderFromTrash
+json
 
 |    返回字段     |   字段类型    |      字段说明       |
 | :---------: | :-------: | :-------------: |
@@ -624,8 +610,8 @@ RestoreFolderFromTrash
 
 支持批量操作
 
-```java
-moveFolder(List<Long> folderIds, long targetFolderId)
+```python
+client.folder().move(folder_ids=[self.test_target_folder_id], target_folder_id=self.test_folder_id)
 ```
 
 **参数**
@@ -636,7 +622,7 @@ moveFolder(List<Long> folderIds, long targetFolderId)
 | targetFolderId | long |  是   | 目标文件夹id |
 
 **返回参数**
-MoveFolder
+json
 
 |    返回字段     |   字段类型    |      字段说明       |
 | :---------: | :-------: | :-------------: |
@@ -646,8 +632,8 @@ MoveFolder
 <hr>
 ##### 获取单层子文件和文件夹列表
 
-```java
-getChildren(long folderId, int pageId, int pageCapacity, String type)
+```python
+client.folder().get_children(folder_id=self.test_folder_id, page_id=0, page_capacity=10, type="file")
 ```
 
 **参数**
@@ -660,7 +646,7 @@ getChildren(long folderId, int pageId, int pageCapacity, String type)
 |     type      | string | item类型 |
 
 **返回参数**
-ItemList
+json
 
 |     返回字段      | 字段类型 |      字段说明      |
 | :-----------: | :--: | :------------: |
@@ -678,8 +664,13 @@ ItemList
 
 ##### 搜索
 
-```java
-search(String queryWords, String type, int pageNumber, int searchInFolder)
+```python
+client.item().search(
+            query_words="新手",
+            type="all",
+            page_number=0,
+            search_in_folder=None
+        )
 ```
 
 **参数**
@@ -692,7 +683,7 @@ search(String queryWords, String type, int pageNumber, int searchInFolder)
 | search_in_folder |  int   |  否   |   指定父文件夹，匹配的结果都是该文件夹的子文件或子文件夹   |
 
 **返回参数**
-ItemList
+json
 
 |     返回字段      | 字段类型 |      字段说明      |
 | :-----------: | :--: | :------------: |
@@ -714,14 +705,14 @@ ItemList
 <hr>
 
 #####获取自己的信息
-```java
-getOwnInfo()
+```python
+client.user(self.test_user_id).info()
 ```
 
 **参数**
 无
 **返回类型**
-GetUserInfo
+json
 
 |参数字段  |  字段类型  |   字段说明   |
 | :--------------: | :----: | :----------------: |
@@ -736,8 +727,8 @@ GetUserInfo
 |pinyin_first_letters|string|用户姓名的拼音首字母|
 
 #####获取他人的信息
-```java
-getUserInfo(long id)
+```python
+client.user(self.test_user_id).info()
 ```
 
 **参数**
@@ -747,7 +738,7 @@ getUserInfo(long id)
 | id |long|用户ID|
 
 **返回类型**
-GetUserInfo
+json
 
 
 |参数字段  |  字段类型  |   字段说明   |
@@ -765,7 +756,7 @@ GetUserInfo
 
 ##### 获取用户头像
 ```java
-getPrifilePicDowload(long userId, String profilePicKey)
+client.user(self.test_user_id).get_profile_pic("key")
 ```
 **参数**
 
@@ -775,8 +766,27 @@ getPrifilePicDowload(long userId, String profilePicKey)
 | profilePicKey |String|用户头像的Key|
 
 **返回类型**
-InputStream
+InputStream(image_64)
 
+###常见异常
+共计4类
+1，BaseException
+
+	1.暂无
+2，UnAuthorizedException
+
+3， RequestErrorException
+
+	1.request method is not support":请求的method是错误的或者不支持的
+
+3，ResponseErrorException
+
+	1."server error":服务器500错误
+	2.参考api异常错误列表
+4，OauthException
+
+	1."auth code involid or is null"：授权码获取token失败
+	2."refresh token is involid or null"：refresh是无效的
 
 
 ### 通用对象

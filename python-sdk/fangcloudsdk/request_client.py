@@ -2,9 +2,11 @@
 try:
     from .base_httpclient import BaseHttpClient
     from .logger import LoggerFactory
+    from .exception import RequestErrorException
 except Exception:
     from fangcloudsdk.base_httpclient import BaseHttpClient
     from fangcloudsdk.logger import LoggerFactory
+    from fangcloudsdk.exception import RequestErrorException
 
 
 class RequestClient(object):
@@ -44,7 +46,7 @@ class RequestClient(object):
                 url=url, headers=headers, data=data, postbody=postbody
             )
         else:
-            raise "request method is not support"
+            raise RequestErrorException("request method is not support")
         # self.logger.debug("request log:\nurl => %s\nmethod => %s\nheader => %s\nparams => %s\ndata => %s\npostbody => %s",
         #                   url, method, headers, params, data, postbody)
         self.logger.debug(
