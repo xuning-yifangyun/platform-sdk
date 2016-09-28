@@ -52,7 +52,7 @@ class T_File(unittest.TestCase):
         self.assertTrue(res['success'])
 
     def test_preview_file(self):
-        # TODO: 修改类型会出先500错误, 否则400非法输入
+        # TODO: 修改为type会出先500错误, 否则400非法输入
         res = self.client.file(self.test_file_id).preview(kind="image_g64")
         self.assertTrue(res['success'])
 
