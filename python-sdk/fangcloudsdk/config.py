@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 class Config(object):
+
+    # todo: 单例化
+
     def __init__(self):
         self.__OAUTH_REQUEST_BASE_URL = "https://oauth-server.fangcloud.net/oauth"
         self.__API_REQUEST_BASE_URL = "https://platform.fangcloud.net/api"
@@ -11,3 +14,5 @@ class Config(object):
     @property
     def api_base_url(self):
         return self.__API_REQUEST_BASE_URL
+
+

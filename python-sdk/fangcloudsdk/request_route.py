@@ -9,6 +9,7 @@ class RequestRoute(object):
 
 
 class UserRoute(object):
+    # todo: 改成UrlTemplate
     info = url_tp("/user/%s/info")
     me_info = url_tp("/user/info")
     get_profile_pic = url_tp("/user/profile_pic_download")

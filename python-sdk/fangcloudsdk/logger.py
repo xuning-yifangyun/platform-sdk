@@ -9,6 +9,7 @@ class LoggerFactory(object):
 
     @staticmethod
     def get_logger_instance():
+        # todo: 增加文件存储, 传参数制定文件路径, 记录在config中
         if LoggerFactory.Logger is None:
             try:
                 LoggerFactory.LoggerLock.acquire()

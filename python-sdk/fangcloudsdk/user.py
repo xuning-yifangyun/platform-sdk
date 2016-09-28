@@ -33,6 +33,7 @@ class User(Item):
             self.deal_response(response, self.oauth)
             return self.info()
 
+    # todo: 拼写错误
     def get_prifile_pic(self, profile_pic_key=None):
         """
         获取用户头像

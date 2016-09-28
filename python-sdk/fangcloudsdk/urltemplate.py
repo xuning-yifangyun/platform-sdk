@@ -5,6 +5,7 @@ class UrlTemplate(object):
     def __init__(self, uri=None):
         self.__uri = uri
         self.__target_url = None
+        # todo: 直接从config中读取, 不需要每次build的时候传入
         self.__base_url = None
 
     def build_url(self, options=None, base_url=None):
@@ -18,6 +19,7 @@ class UrlTemplate(object):
             self.__target_url = self.__base_url + self.__url
         return self.__target_url
 
+    # todo: 转化prama, 不要用下面这个函数
     def get_url_with_query(url, query=None):
         if query is None:
             return url

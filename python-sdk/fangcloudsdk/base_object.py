@@ -33,16 +33,17 @@ class BaseObject(object):
         return headers
 
     def deal_response(self, response, oauth):
-        status_code=response.status_code
+        status_code = response.status_code
         if status_code == StatusCode.UnAuthorized:
             REF_LOCK.acquire()
             if float(time.time() - oauth.apply_time) > float(oauth.expires_in * 1000):
                 oauth.update_token()
             REF_LOCK.release()
         elif status_code == StatusCode.InternalServerError:
+            # todo: raise 一个String? 定义成类
             raise "server error"
         else:
-            error_info=response.json()
+            error_info = response.json()
             raise ResponseErrorException(error_message=error_info)
 
 

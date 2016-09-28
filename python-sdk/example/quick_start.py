@@ -1,3 +1,4 @@
+from fangcloudsdk.exception import OauthException
 from fangcloudsdk.oauth import OAuth
 from fangcloudsdk.client import Client
 
@@ -10,7 +11,11 @@ oauth = OAuth(
 # auth_url=oauth.get_authorization_url()
 
 # 接收授权码, 获取token
-oauth.authenticate(auth_code="lS92LP")
+try:
+    oauth.authenticate(auth_code="lS92LP")
+except OauthException as exception:
+    # 用户处理异常
+    pass
 
 # 实例化client
 client = Client(oauth)
