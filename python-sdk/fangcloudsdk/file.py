@@ -22,7 +22,7 @@ class File(Item):
         获取文件信息
         :return:
         """
-        url = FileRoute.info.build_url(options=(self._file_id), base_url=self._config.api_base_url)
+        url = FileRoute.info.build_url(options=(self._file_id))
         response = self._request.send(url=url, method="get", headers=self.headers(self.oauth))
         if response.status_code == StatusCode.Success:
             return response.json()
@@ -37,7 +37,7 @@ class File(Item):
         :param new_descript:
         :return:
         """
-        url = FileRoute.update.build_url(options=(self._file_id), base_url=self._config.api_base_url)
+        url = FileRoute.update.build_url(options=(self._file_id))
         headers = self.headers(self.oauth)
         postbody = {
             "name": new_name,
@@ -56,7 +56,7 @@ class File(Item):
         :param file_ids:
         :return:
         """
-        url = FileRoute.delete.build_url(base_url=self._config.api_base_url)
+        url = FileRoute.delete.build_url()
         headers = self.headers(self.oauth)
         postbody = {
             "file_ids": file_ids
@@ -75,7 +75,7 @@ class File(Item):
         :param clear_trash:
         :return:
         """
-        url = FileRoute.delete_from_trash.build_url(base_url=self._config.api_base_url)
+        url = FileRoute.delete_from_trash.build_url()
         headers = self.headers(self.oauth)
         postbody = {
             "clear_trash": clear_trash,
@@ -95,7 +95,7 @@ class File(Item):
         :param recovery_all:
         :return:
         """
-        url = FileRoute.restore_from_trash.build_url(base_url=self._config.api_base_url)
+        url = FileRoute.restore_from_trash.build_url()
         headers = self.headers(self.oauth)
         postbody = {
             "restore_all": recovery_all,
@@ -115,7 +115,7 @@ class File(Item):
         :param target_folder_id:
         :return:
         """
-        url = FileRoute.move.build_url(base_url=self._config.api_base_url)
+        url = FileRoute.move.build_url()
         headers = self.headers(self.oauth)
         postbody = {
             "target_folder_id": target_folder_id,
@@ -135,7 +135,7 @@ class File(Item):
         :param name:
         :return:
         """
-        url = FileRoute.upload.build_url(base_url=self._config.api_base_url)
+        url = FileRoute.upload.build_url()
         headers = self.headers(self.oauth)
         postbody = {
             "parent_id": parent_id,
@@ -156,7 +156,7 @@ class File(Item):
         :param remark:
         :return:
         """
-        url = FileRoute.new_version.build_url(options=(self.file_id), base_url=self._config.api_base_url)
+        url = FileRoute.new_version.build_url(options=(self.file_id))
         headers = self.headers(self.oauth)
         postbody = {
             "name": name,
@@ -174,7 +174,7 @@ class File(Item):
         """"
         获取文件的下载地址
         """
-        url = FileRoute.download.build_url(options=(self.file_id), base_url=self._config.api_base_url)
+        url = FileRoute.download.build_url(options=(self.file_id))
         headers = self.headers(self.oauth)
         response = self._request.send(url=url, method="get", headers=headers)
         if response.status_code == StatusCode.Success:
@@ -190,7 +190,7 @@ class File(Item):
         :param kind:
         :return:
         """
-        url = FileRoute.preview.build_url(options=(self.file_id), base_url=self._config.api_base_url)
+        url = FileRoute.preview.build_url(options=(self.file_id))
         headers = self.headers(self.oauth)
         postbody = {
             "force_regenerate": force_regenerate,
@@ -210,7 +210,7 @@ class File(Item):
         :param kind:
         :return:
         """
-        url = FileRoute.preview_download.build_url(options=(self.file_id), base_url=self._config.api_base_url)
+        url = FileRoute.preview_download.build_url(options=(self.file_id))
         headers = self.headers(self.oauth)
         postbody = {
             "page_index": page_index,
@@ -238,7 +238,7 @@ class File(Item):
         :param check_conflict:
         :return:
         """
-        url = FileRoute.copy.build_url(base_url=self._config.api_base_url)
+        url = FileRoute.copy.build_url()
         headers = self.headers(self.oauth)
         postbody = {
             "file_id": self.file_id,

@@ -21,3 +21,8 @@ class OauthException(BaseException):
     def __init__(self, error_message="default refresh token error"):
         BaseException.__init__(self, error_message)
         self.error_message = error_message
+
+class LogException(BaseException):
+    def __init__(self, error_message="default log error"):
+        BaseException.__init__(self, error_message)
+        self.error_message = error_message

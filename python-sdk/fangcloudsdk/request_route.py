@@ -1,45 +1,44 @@
 # -*- coding: utf-8 -*-
 try:
-    from .urltemplate import UrlTemplate as url_tp
+    from .urltemplate import UrlTemplate
 except Exception:
-    from fangcloudsdk.urltemplate import UrlTemplate as url_tp
+    from fangcloudsdk.urltemplate import UrlTemplate as UrlTemplate
 
 class RequestRoute(object):
     pass
 
 
 class UserRoute(object):
-    # todo: 改成UrlTemplate
-    info = url_tp("/user/%s/info")
-    me_info = url_tp("/user/info")
-    get_profile_pic = url_tp("/user/profile_pic_download")
+    info = UrlTemplate("/user/%s/info")
+    me_info = UrlTemplate("/user/info")
+    get_profile_pic = UrlTemplate("/user/profile_pic_download")
 
 
 class FileRoute(object):
-    info = url_tp("/file/%s/info")
-    update = url_tp("/file/%s/update")
-    delete = url_tp("/file/delete")
-    delete_from_trash = url_tp("/file/delete_from_trash")
-    restore_from_trash = url_tp("/file/restore_from_trash")
-    move = url_tp("/file/move")
-    upload = url_tp("/file/upload")
-    new_version = url_tp("/file/%s/new_version")
-    download = url_tp("/file/%s/download")
-    preview = url_tp("/file/%s/preview")
-    preview_download = url_tp("/file/%s/preview_download")
-    copy = url_tp("/file/copy")
+    info = UrlTemplate("/file/%s/info")
+    update = UrlTemplate("/file/%s/update")
+    delete = UrlTemplate("/file/delete")
+    delete_from_trash = UrlTemplate("/file/delete_from_trash")
+    restore_from_trash = UrlTemplate("/file/restore_from_trash")
+    move = UrlTemplate("/file/move")
+    upload = UrlTemplate("/file/upload")
+    new_version = UrlTemplate("/file/%s/new_version")
+    download = UrlTemplate("/file/%s/download")
+    preview = UrlTemplate("/file/%s/preview")
+    preview_download = UrlTemplate("/file/%s/preview_download")
+    copy = UrlTemplate("/file/copy")
 
 
 class FolderRoute(object):
-    info = url_tp("/folder/%s/info")
-    create = url_tp("/folder/create")
-    update = url_tp("/folder/%s/update")
-    delete = url_tp("/folder/delete")
-    delete_from_trash = url_tp("/folder/delete_from_trash")
-    restore_from_trash = url_tp("/folder/restore_from_trash")
-    move = url_tp("/folder/move")
-    children = url_tp("/folder/children")
+    info = UrlTemplate("/folder/%s/info")
+    create = UrlTemplate("/folder/create")
+    update = UrlTemplate("/folder/%s/update")
+    delete = UrlTemplate("/folder/delete")
+    delete_from_trash = UrlTemplate("/folder/delete_from_trash")
+    restore_from_trash = UrlTemplate("/folder/restore_from_trash")
+    move = UrlTemplate("/folder/move")
+    children = UrlTemplate("/folder/children")
 
 
 class ItemRoute(object):
-    search = url_tp("/item/search")
+    search = UrlTemplate("/item/search")

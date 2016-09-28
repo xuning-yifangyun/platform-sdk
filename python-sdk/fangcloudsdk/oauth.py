@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 try:
-    from .urltemplate import UrlTemplate as url_tp
     from .request_client import RequestClient
     from .auth import HTTPBasicAuth
     from .config import Config
     from .exception import OauthException
 except Exception:
-    from fangcloudsdk.urltemplate import UrlTemplate as url_tp
     from fangcloudsdk.request_client import RequestClient
     from requests.auth import HTTPBasicAuth
     from fangcloudsdk.config import Config
@@ -30,17 +28,16 @@ class OAuth(object):
         self._refresh_token = None
         self._expires_in = 0
         self._apply_time = 0
-        self._config = Config()
         self._request_session = RequestClient()
-        self.get_auth_url = url_tp("/authorize")
-        self.get_token_url = url_tp("/token")
+        self.get_auth_url = Config.get_oauth_base_url()+"/authorize"
+        self.get_token_url = Config.get_oauth_base_url()+"/token"
 
     def get_authorization_url(self):
         """
         获取授权url
         :return:
         """
-        url = self.get_auth_url.build_url(base_url=self._config.oauth_base_url)
+        url = self.get_auth_url
         taget_url = url + "?client_id={}&redirect_uri={}&response_type={}&state={}" \
             .format(self._client_id, self._redirect_url, "code", None)
         return taget_url
@@ -89,7 +86,7 @@ class OAuth(object):
         :param params:
         :return:
         """
-        url = self.get_token_url.build_url(base_url=self._config.oauth_base_url)
+        url = self.get_token_url
         auth = HTTPBasicAuth(
             self._client_id,
             self._client_secret

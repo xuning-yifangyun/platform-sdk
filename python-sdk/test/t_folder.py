@@ -11,14 +11,13 @@ class T_Folder(unittest.TestCase):
         self.client = Client(oauth)
         self.test_folder_id = 501000031450
         self.test_target_folder_id = 501000005400
-
+        self.test_create_folder_id=None
     def test_get_folder_info(self):
         file = self.client.folder(self.test_folder_id).info()
         self.assertTrue(file['success'])
 
-    def test_create_folder(self):
-        # 由于开放平台文件夹相关字段修改，无法进行测试
-        res = self.client.folder().create("test_create", self.test_folder_id)
+    def test_get_folder_childer(self):
+        res = self.client.folder().get_children(folder_id=self.test_folder_id, page_id=0, page_capacity=10, type="file")
         self.assertTrue(res['success'])
 
     def test_update_folder(self):
@@ -29,21 +28,27 @@ class T_Folder(unittest.TestCase):
         res = self.client.folder().delete(folder_ids=[self.test_folder_id])
         self.assertTrue(res['success'])
 
-    def test_delete_folder_from_trash(self):
-        # 不安全不等幂，注意测试顺序，去掉+1
-        res = self.client.folder().delete_from_trash(folder_ids=[self.test_folder_id + 1])
-        self.assertTrue(res['success'])
-
     def test_restart_folder_from_trash(self):
         res = self.client.folder().recovery_from_trash(recovery_all=True)
+        self.assertTrue(res['success'])
+
+    def test_create_folder(self):
+        res = self.client.folder().create("test_create", self.test_folder_id)
+        self.test_create_folder_id = res['id']
+        self.assertTrue(res['success'])
+
+    def test_re_create_folder(self):
+        res = self.client.folder().delete(folder_ids=[self.test_create_folder_id])
+        self.assertTrue(res['success'])
+        res = self.client.folder().delete_from_trash(folder_ids=[self.test_create_folder_id])
         self.assertTrue(res['success'])
 
     def test_move_folder(self):
         res = self.client.folder().move(folder_ids=[self.test_target_folder_id], target_folder_id=self.test_folder_id)
         self.assertTrue(res['success'])
 
-    def test_get_folder_childer(self):
-        res = self.client.folder().get_children(folder_id=self.test_folder_id, page_id=0, page_capacity=10, type="file")
+    def test_re_move_folder(self):
+        res = self.client.folder().move(folder_ids=[self.test_target_folder_id], target_folder_id=0)
         self.assertTrue(res['success'])
 
     def tearDown(self):

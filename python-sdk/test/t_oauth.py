@@ -12,10 +12,11 @@ class T_Oauth(unittest.TestCase):
     def test_url():
         print(oauth.get_authorization_url())
 
-    @staticmethod
-    def test_get_token_by_auth_code(auth_code="EnF9oA"):
-        token = oauth.authenticate(auth_code=auth_code)
-        print(token)
+    # 不参与代码覆盖率测试
+    # @staticmethod
+    # def test_get_token_by_auth_code(auth_code="EnF9oA"):
+    #     token = oauth.authenticate(auth_code=auth_code)
+    #     print(token)
 
     @staticmethod
     def test_get_token_by_refresh_token():

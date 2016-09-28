@@ -20,7 +20,7 @@ class Folder(Item):
         获取文件旧爱信息
         :return:
         """
-        url = FolderRoute.info.build_url(options=self._folder_id, base_url=self._config.api_base_url)
+        url = FolderRoute.info.build_url(options=self._folder_id)
         response = self._request.send(url=url, method="get", headers=self.headers(self.oauth))
         if response.status_code == StatusCode.Success:
             return response.json()
@@ -35,7 +35,7 @@ class Folder(Item):
         :param parent_id:
         :return:
         """
-        url = FolderRoute.create.build_url(base_url=self._config.api_base_url)
+        url = FolderRoute.create.build_url()
         postbody = {
             "name": name,
             "parent_id": parent_id
@@ -53,7 +53,7 @@ class Folder(Item):
         :param new_name:
         :return:
         """
-        url = FolderRoute.update.build_url(options=self._folder_id, base_url=self._config.api_base_url)
+        url = FolderRoute.update.build_url(options=self._folder_id)
         postbody = {
             "name": new_name
         }
@@ -70,7 +70,7 @@ class Folder(Item):
         :param folder_id:
         :return:
         """
-        url = FolderRoute.delete.build_url(base_url=self._config.api_base_url)
+        url = FolderRoute.delete.build_url()
         postbody = {
             "folder_ids": folder_ids
         }
@@ -88,7 +88,7 @@ class Folder(Item):
         :param clear_trash:
         :return:
         """
-        url = FolderRoute.delete_from_trash.build_url(base_url=self._config.api_base_url)
+        url = FolderRoute.delete_from_trash.build_url()
         postbody = {
             "clear_trash": clear_trash,
             "folder_ids": folder_ids
@@ -107,7 +107,7 @@ class Folder(Item):
         :param recovery_all:
         :return:
         """
-        url = FolderRoute.restore_from_trash.build_url(base_url=self._config.api_base_url)
+        url = FolderRoute.restore_from_trash.build_url()
         postbody = {
             "restore_all": recovery_all,
             "folder_ids": folder_ids
@@ -126,7 +126,7 @@ class Folder(Item):
         :param target_folder_id:
         :return:
         """
-        url = FolderRoute.move.build_url(base_url=self._config.api_base_url)
+        url = FolderRoute.move.build_url()
         postbody = {
             "target_folder_id": target_folder_id,
             "folder_ids": folder_ids
@@ -146,7 +146,7 @@ class Folder(Item):
         :param type:
         :return:
         """
-        url = FolderRoute.children.build_url(base_url=self._config.api_base_url)
+        url = FolderRoute.children.build_url()
         params = {
             "folder_id": folder_id,
             "page_id": page_id,

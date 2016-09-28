@@ -26,7 +26,7 @@ class Item(BaseObject):
         :param search_in_folder:
         :return:
         """
-        url = ItemRoute.search.build_url(base_url=self._config.api_base_url)
+        url = ItemRoute.search.build_url()
         params = {
             "query_words": query_words,
             "type": type,

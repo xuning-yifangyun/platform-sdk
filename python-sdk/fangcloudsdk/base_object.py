@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 try:
-    from .config import Config
     from .request_client import RequestClient
     from .logger import LoggerFactory
     from .status_code import StatusCode
     from .exception import UnAuthorizedException, ResponseErrorException
 except Exception:
-    from fangcloudsdk.config import Config
     from fangcloudsdk.request_client import RequestClient
     from fangcloudsdk.logger import LoggerFactory
     from fangcloudsdk.status_code import StatusCode
@@ -18,9 +16,7 @@ REF_LOCK = threading.Lock()
 
 class BaseObject(object):
     _lock = threading.Lock()
-
     def __init__(self):
-        self._config = Config()
         self._request = RequestClient()
         self._logger = LoggerFactory.get_logger_instance()
 
@@ -40,8 +36,7 @@ class BaseObject(object):
                 oauth.update_token()
             REF_LOCK.release()
         elif status_code == StatusCode.InternalServerError:
-            # todo: raise 一个String? 定义成类
-            raise "server error"
+            raise ResponseErrorException(error_message="server error")
         else:
             error_info = response.json()
             raise ResponseErrorException(error_message=error_info)

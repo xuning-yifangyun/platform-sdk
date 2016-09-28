@@ -22,7 +22,7 @@ class User(Item):
         :return:
         """
         if self._user_id is not None:
-            url = UserRoute.info.build_url(self._user_id, base_url=self._config.api_base_url)
+            url = UserRoute.info.build_url(self._user_id)
         else:
             url = UserRoute.me_info.build_url(base_url=self._config.api_base_url)
         headers = self.headers(self.oauth)
@@ -33,14 +33,13 @@ class User(Item):
             self.deal_response(response, self.oauth)
             return self.info()
 
-    # todo: 拼写错误
-    def get_prifile_pic(self, profile_pic_key=None):
+    def get_profile_pic(self, profile_pic_key=None):
         """
         获取用户头像
         :param profile_pic_key:
         :return:
         """
-        url = UserRoute.get_profile_pic.build_url(base_url=self._config.api_base_url)
+        url = UserRoute.get_profile_pic.build_url()
         params = {"user_id": self._user_id, "profile_pic_key": profile_pic_key}
         headers = self.headers(self.oauth)
         response = self._request.send(url=url, method="get", headers=headers, params=params)
@@ -48,7 +47,7 @@ class User(Item):
             return response
         else:
             self.deal_response(response, self.oauth)
-            return self.get_prifile_pic(profile_pic_key)
+            return self.get_profile_pic(profile_pic_key)
 
     @property
     def oauth(self):

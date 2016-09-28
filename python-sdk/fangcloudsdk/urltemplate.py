@@ -1,44 +1,26 @@
 # -*- coding: utf-8 -*-
+try:
+    from .config import Config
+except Exception:
+    from fangcloudsdk.config import Config
+
+
 class UrlTemplate(object):
     def __init__(self):
         pass
+
     def __init__(self, uri=None):
         self.__uri = uri
         self.__target_url = None
-        # todo: 直接从config中读取, 不需要每次build的时候传入
-        self.__base_url = None
+        self.__base_url = Config.get_api_base_url()
 
-    def build_url(self, options=None, base_url=None):
-        self.__base_url = base_url
-        if self.__base_url is None:
-            raise "base url can't is null"
+    def build_url(self, options=None):
         if options is None:
             self.__target_url = self.__base_url + self.__uri
         else:
             self.__url = self.__uri % options
             self.__target_url = self.__base_url + self.__url
         return self.__target_url
-
-    # todo: 转化prama, 不要用下面这个函数
-    def get_url_with_query(url, query=None):
-        if query is None:
-            return url
-        if type(query) != dict:
-            raise "request option must is dict"
-        i = 0
-        for key in query.keys():
-            value = query[key]
-            if type(value) == bool:
-                value = "1" if value else "0"
-            elif type(value) != str:
-                value = str(value)
-            if i == 0:
-                url += '?'
-            else:
-                url += '&'
-            url += (key + "=" + value)
-            i += 1
-        return url
 
     @property
     def target_url(self):
