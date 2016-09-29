@@ -6,4 +6,5 @@
 *.iml
 .idea
 workspace.xml
+*.png
 ./idea/workspace.xml

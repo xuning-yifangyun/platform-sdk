@@ -3,7 +3,7 @@ try:
     from .request_client import RequestClient
     from .logger import LoggerFactory
     from .status_code import StatusCode
-    from .exception import UnAuthorizedException, ResponseErrorException
+    from .exception import UnAuthorizedException, ResponseErrorException, OauthException
 except Exception:
     from fangcloudsdk.request_client import RequestClient
     from fangcloudsdk.logger import LoggerFactory
@@ -31,10 +31,14 @@ class BaseObject(object):
     def deal_response(self, response, oauth):
         status_code = response.status_code
         if status_code == StatusCode.UnAuthorized:
-            REF_LOCK.acquire()
-            if float(time.time() - oauth.apply_time) > float(oauth.expires_in * 1000):
-                oauth.update_token()
-            REF_LOCK.release()
+            try:
+                REF_LOCK.acquire()
+                if float(time.time() - oauth.apply_time) > float(oauth.expires_in * 1000):
+                    oauth.update_token()
+            except Exception:
+                raise OauthException("update token is exception")
+            finally:
+                REF_LOCK.release()
         elif status_code == StatusCode.InternalServerError:
             raise ResponseErrorException(error_message="server error")
         else:
