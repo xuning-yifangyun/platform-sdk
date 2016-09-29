@@ -1,0 +1,10 @@
+*.class
+.idea*
+*.iml
+*.war
+*.ear
+*.iml
+.idea
+workspace.xml
+*.png
+./idea/workspace.xml

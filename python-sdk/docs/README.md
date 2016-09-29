@@ -1,18 +1,17 @@
 
 #亿方云开放平台Python-SDK使用说明
 ##目录
-###*暂未全部完成*
 [TOC]
 
 ##部署
 部署SDK提供两种部署方案：
 ```text
-pip安装pip install fangcloud_sdk
-或者：python3 setup.py install
+1,pip安装, pip install fangcloud_sdk
+2,python3 setup.py install
 ```
 
 ##使用
-###:建议参考官方文档
+
 ###获取资源只需以下几步
 	只需三步：
     1：初始化自己的应用Oauth信息，即实例化Oauth
@@ -99,6 +98,23 @@ json
 | refresh_token | string | 用来刷新access_token，有效时间为30天 |
 |  expires_in   |  int   |  access_token的有效时间，单位为s   |
 |    scope     | string |        目前固定为"all"         |
+
+<hr/>
+
+
+#####撤销授权token
+```python
+oauth.revoke(self):
+```
+**参数**
+
+| 参数 | 类型|说明|
+|:----:|:----:|:--------:|
+|无|
+
+**返回类型**
+Boolen
+如果反回True：撤销授权成功反之失败
 
 
 
@@ -787,7 +803,7 @@ InputStream(image_64)
 
 	1."auth code involid or is null"：授权码获取token失败
 	2."refresh token is involid or null"：refresh是无效的
-
+	3.”update token is exception“： 更新token异常
 
 ### 通用对象
 
