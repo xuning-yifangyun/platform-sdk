@@ -15,7 +15,7 @@ class T_Thread(threading.Thread):
         oauth.access_token = "6212a5b7-038e-4b53-886a-045767dab3c91"
         oauth.refresh_token = "bceecd8b-ba45-4aca-8c4e-a80ed253f9f2"
         client1 = Client(oauth)
-        file = client1.file(501000483684).info()
+        file = client1.file(501000524950).info()
         print(file)
         user1 = client1.user(22149).info()
         print(user1)

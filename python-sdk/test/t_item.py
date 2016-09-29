@@ -10,9 +10,9 @@ class T_Item(unittest.TestCase):
         # oauth.access_token = "94a39c41-25c8-4096-92d9-5c3af3d10138"
         self.client = Client(oauth)
 
-    def test_search(self):
+    def test_01_search(self):
         search_res=self.client.item().search(
-            query_words="新手",
+            query_words="徐宁",
             type="all",
             page_number=0,
             search_in_folder=None

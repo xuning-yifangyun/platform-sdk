@@ -88,7 +88,7 @@ class File(Item):
             self.deal_response(response, self.oauth)
             return self.delete_from_trash(file_ids, clear_trash)
 
-    def recovery_from_trash(self, file_ids=None, recovery_all=None):
+    def recovery_from_trash(self, file_ids=None, recovery_all=False):
         """
         从回收站恢复文文件
         :param file_ids:

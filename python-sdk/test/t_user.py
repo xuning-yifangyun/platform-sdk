@@ -13,11 +13,11 @@ class T_User(unittest.TestCase):
         self.test_user_id = 22149
         Config.set_logger_level(level="DEBUG")
 
-    def test_get_user_info(self):
+    def test_01_get_user_info(self):
         user = self.client.user(self.test_user_id).info()
         self.assertTrue(user['success'])
 
-    def test_get_profile_pic(self):
+    def test_02_get_profile_pic(self):
         img = self.client.user(self.test_user_id).get_profile_pic("b3c69fcb4a2f95fceee21f16ced8a07c")
         self.assertEquals(img.headers['Content-Type'], "image/jpeg;charset=utf-8")
         with open("dog.png", "wb") as f:

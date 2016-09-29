@@ -7,8 +7,8 @@
 ##部署
 部署SDK提供两种部署方案：
 ```text
-pip安装pip install fangcloudsdk
-或者：python3 setup.py
+pip安装pip install fangcloud_sdk
+或者：python3 setup.py install
 ```
 
 ##使用
