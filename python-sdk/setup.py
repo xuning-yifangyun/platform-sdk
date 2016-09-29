@@ -11,13 +11,15 @@ CLASSIFIERS = [
     'Programming Language :: Python :: Implementation :: PyPy',
     'Operating System :: OS Independent',
     'Operating System :: POSIX',
-    'Operating System :: Microsoft :: Windows :: Mac',
+    'Operating System :: Microsoft :: Windows',
     'Operating System :: MacOS :: MacOS X',
+    'Operating System :: LinuxOS :: Linux',
+    'Operating System :: UnixOS :: Unix',
     'Topic :: Software Development :: Libraries :: Python Modules',
 ]
 setup(
     name='fangcloud_sdk',
-    version='0.0.1',
+    version='0.0.3',
     keywords=('fangcloud', 'sdk', 'open', 'platform'),
     description='This is fangcloud open platform python sdk',
     url='http://www.fangcloud.com',
