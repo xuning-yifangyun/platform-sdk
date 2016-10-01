@@ -5,7 +5,8 @@ from fangcloudsdk.client import Client
 
 
 class T_File(unittest.TestCase):
-    test_copy_id=None
+    test_copy_id = None
+
     def setUp(self):
         oauth.refresh_token = "bceecd8b-ba45-4aca-8c4e-a80ed253f9f2"
         # oauth.access_token = "94a39c41-25c8-4096-92d9-5c3af3d10138"
@@ -59,11 +60,10 @@ class T_File(unittest.TestCase):
 
     def test_11_preview_download(self):
         res = self.client.file(self.test_file_id).preview_download(page_index=0, kind="image_64")
-        self.assertTrue(res['success'])
 
     def test_12_copy(self):
         res = self.client.file(self.test_file_id).copy(target_folder_id=self.test_target_folder_id)
-        T_File.test_copy_id=res['new_file']['id']
+        T_File.test_copy_id = res['new_file']['id']
         self.assertTrue(res['success'])
 
     def test_13_re_copy(self):
@@ -89,5 +89,6 @@ class T_File(unittest.TestCase):
     def test_18_preview_download(self):
         res = self.client.file(self.test_file_id).preview_download(page_index=0, kind="image_64")
         self.assertTrue(res['success'])
+
     def tearDown(self):
         pass
