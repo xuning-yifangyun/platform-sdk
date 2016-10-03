@@ -3,9 +3,9 @@
 /**
  * Created by PhpStorm.
  * User: xuning
- * Date: 16-10-1
- * Time: 下午11:26
+ * Date: 16-10-2
+ * Time: 下午4:43
  */
-class BaseObject {
+class Util {
 
 }

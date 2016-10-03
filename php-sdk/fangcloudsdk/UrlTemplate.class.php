@@ -1,4 +1,5 @@
 <?php
+require_once "Config.class.php";
 
 /**
  * Created by PhpStorm.
@@ -6,12 +7,10 @@
  * Date: 16-10-1
  * Time: 下午9:27
  */
-require_once "Config.php";
-
 class UrlTemplate {
     private $target_url;
 
-    public function __construct($uri) {
+    public function __construct($uri = null) {
         $base_url = Config::getBaseApiUrl();
         $this->target_url = $base_url . $uri;
     }

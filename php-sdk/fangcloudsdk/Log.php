@@ -3,9 +3,9 @@
 /**
  * Created by PhpStorm.
  * User: xuning
- * Date: 16-10-1
- * Time: 下午11:26
+ * Date: 16-10-2
+ * Time: 下午10:43
  */
-class Folder {
+class Log{
 
 }

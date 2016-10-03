@@ -15,7 +15,6 @@ class Oauth {
     private $expirse_in;
     private $apply_time;
 
-
     /**
      * Oauth constructor.
      * @param $client_id
@@ -47,7 +46,7 @@ class Oauth {
      * /刷新token
      * @param $this
      */
-    public function update_token($this) {
+    public function update_token() {
 
     }
 
@@ -113,7 +112,4 @@ class Oauth {
     public function setApplyTime($apply_time) {
         $this->apply_time = $apply_time;
     }
-
-
-
 }

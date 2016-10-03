@@ -8,3 +8,6 @@
 workspace.xml
 *.png
 ./idea/workspace.xml
+将删除 fangcloudsdk/Route.php
+将删除 fangcloudsdk/object/FileImpl.php
+将删除 lib/
