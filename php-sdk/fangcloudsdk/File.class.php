@@ -1,7 +1,6 @@
 <?php
 require_once "Item.class.php";
-require_once "../Route.php";
-require_once "../Request.class.php";
+require_once "Request.class.php";
 /**
  * Created by PhpStorm.
  * User: xuning
@@ -13,21 +12,20 @@ class File extends Item {
     private $file_id;
     private $oauth;
     private $file_route;
-    private $req;
+    private $request_session;
     /**
      * File constructor.
      */
     public function __construct($file_id = null, $oauth = null) {
+        global $file_route;
         $this->file_id=$file_id;
         $this->oauth=$oauth;
-        global $file_route;
         $this->file_route=$file_route;
-        $this->req=new Request($this->oauth);
+        $this->request_session=new Request($this->oauth);
     }
 
     public function info() {
-
-        $response=$this->req->send("http://www.baidu.com","GET");
+        $response=$this->request_session->send($url="http://www.baidu.com",$method="get");
         echo $response->body;
     }
 
@@ -45,5 +43,5 @@ class File extends Item {
 
 }
 
-$file=new File("");
+$file=new File("", "");
 $file->info();

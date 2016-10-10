@@ -1,4 +1,7 @@
 <?php
+require_once "Request.class.php";
+require_once "Route.php";
+
 /**
  * Created by PhpStorm.
  * User: xuning
@@ -10,13 +13,12 @@ class BaseObject {
     /**
      * BaseObject constructor.
      */
-    protected $request_session = null;
 
     public function __construct() {
 
     }
 
     public function show_error($var) {
-        var_dump($var);
+        print_r(var_dump($var));
     }
 }

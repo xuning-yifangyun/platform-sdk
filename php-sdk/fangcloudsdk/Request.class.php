@@ -19,7 +19,13 @@ class Request {
         $this->oauth = $oauth;
     }
 
-    public function send($url, $method, $headers = array(), $postbody = array()) {
+    public function send(
+        $url,
+        $method,
+        $headers = array(),
+        $postbody = array(),
+        $oauth=null
+    ) {
         $method = strtoupper($method);
         $response = null;
         switch ($method) {
@@ -47,11 +53,9 @@ class Request {
                     $this->oauth->update_token();
                     $this->send($url, $method, $headers = array(), $postbody = array());
                 }else{
-                    throw new Exception("反悔错误码：".$status);
+                    throw new Exception("反回错误码：".$status);
                 }
             }
         }
     }
 }
-
-
