@@ -799,6 +799,7 @@ InputStream(image_64)
 
 	1."server error":服务器500错误
 	2.参考api异常错误列表
+	3.连接错误（未联网，中断）
 4，OauthException
 
 	1."auth code involid or is null"：授权码获取token失败

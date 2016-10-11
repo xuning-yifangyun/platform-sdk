@@ -24,7 +24,7 @@ class Request {
         $method,
         $headers = array(),
         $postbody = array(),
-        $oauth=null
+        $oauth = null
     ) {
         $method = strtoupper($method);
         $response = null;
@@ -48,12 +48,12 @@ class Request {
         if ($status == 200) {
             return $response;
         } else {
-            if($status == 401){
-                if((time()-($this->oauth->getApplyTime()))>($this->oauth->getExpirseIn())){
+            if ($status == 401) {
+                if ((time() - ($this->oauth->getApplyTime())) > ($this->oauth->getExpirseIn())) {
                     $this->oauth->update_token();
                     $this->send($url, $method, $headers = array(), $postbody = array());
-                }else{
-                    throw new Exception("反回错误码：".$status);
+                } else {
+                    throw new Exception("反回错误码：" . $status);
                 }
             }
         }
