@@ -2,7 +2,7 @@
 
 require_once "Network.class.php";
 require_once "LoggerFactory.class.php";
-
+require_once "Interceptor.class.php";
 /**
  * Created by PhpStorm.
  * User: xuning
@@ -55,15 +55,13 @@ class Request {
         $status = $response->status_code;
         $request_log_msg = "[url: $url] [method: $method]" . " [headers: " . implode($headers) . "] ['postbody: " . implode($postbody) . "]";
         self::$logger->addInfo($request_log_msg);
-        $response_log_msg = "[]";
-        if(!$response->headers['content-type'] == "image/jpeg;charset=utf-8"){
-
-        }
+        Interceptor::deal_response_err($response);
         if ($status == 200) {
             if ($response->headers['content-type'] == "image/jpeg;charset=utf-8") {
                 $response = $response->raw;
+            }else{
+                $response = json_decode($response->body, true);
             }
-            $response = json_decode($response->body, true);
             return $response;
         } else {
             if ($status == 401) {

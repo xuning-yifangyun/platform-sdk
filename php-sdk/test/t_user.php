@@ -11,6 +11,7 @@ require_once "../fangcloudsdk/Client.class.php";
 class t_user extends TestCase{
     public $oauth;
     public $client;
+    public $test_user_id=22149;
     public $test_access_token="e35d4382-4d89-4f64-b34f-707fa18248c1";
     public $test_refresh_token = "bceecd8b-ba45-4aca-8c4e-a80ed253f9f2";
 
@@ -25,6 +26,11 @@ class t_user extends TestCase{
      * 获取用户信息
      */
     public function test_get_user_info(){
+        $res=$this->client->User($this->test_user_id)->info();
+        TestCase::assertEquals(true, $res['success']);
+    }
+
+    public function test_get_user_profile_pic(){
 
     }
 }
