@@ -11,7 +11,11 @@ class UrlTemplate {
     private $target_url;
 
     public function __construct($uri = null) {
-        $base_url = Config::getBaseApiUrl();
+        if ($uri == "/authorize" || $uri == "/token") {
+            $base_url = Config::getBaseOauthUrl();
+        } else {
+            $base_url = Config::getBaseApiUrl();
+        }
         $this->target_url = $base_url . $uri;
     }
 

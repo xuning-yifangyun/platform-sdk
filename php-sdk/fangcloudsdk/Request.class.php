@@ -1,7 +1,6 @@
 <?php
 
 require_once "Network.class.php";
-
 /**
  * Created by PhpStorm.
  * User: xuning
@@ -22,12 +21,10 @@ class Request {
     public function send(
         $url,
         $method,
-        $headers = array(),
-        $postbody = array(),
-        $oauth = null
+        $postbody = array()
     ) {
         $method = strtoupper($method);
-        $response = null;
+        $headers=$this->oauth->getApiTokenHeader();
         switch ($method) {
             case "GET":
                 $response = Network::get($url, $headers);
@@ -45,17 +42,20 @@ class Request {
                 $response = null;
         }
         $status = $response->status_code;
+        var_dump($url, $method, $headers, $postbody);
         if ($status == 200) {
             return $response;
         } else {
-            if ($status == 401) {
-                if ((time() - ($this->oauth->getApplyTime())) > ($this->oauth->getExpirseIn())) {
-                    $this->oauth->update_token();
-                    $this->send($url, $method, $headers = array(), $postbody = array());
-                } else {
-                    throw new Exception("反回错误码：" . $status);
-                }
-            }
+//            if ($status == 401) {
+//                if ((time() - ($this->oauth->getApplyTime())) > ($this->oauth->getExpirseIn())) {
+//                    $this->oauth->update_token();
+//                    $this->send($url, $method, $postbody = array());
+//                } else {
+//                    throw new Exception("反回错误码：" . $status);
+//                }
+//            }
+            return $response;
         }
+
     }
 }

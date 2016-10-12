@@ -1,8 +1,8 @@
 <?php
-require_once "./object/File.class.php";
-require_once "./object/Folder.class.php";
-require_once "./object/Item.class.php";
-require_once "./object/User.class.php";
+require_once "File.class.php";
+require_once "Folder.class.php";
+require_once "Item.class.php";
+require_once "User.class.php";
 
 /**
  * Created by PhpStorm.
@@ -11,7 +11,7 @@ require_once "./object/User.class.php";
  * Time: 下午4:51
  */
 class Client {
-    private $oauth = null;
+    private $oauth;
 
     public function __construct($oauth) {
         $this->oauth = $oauth;
@@ -32,6 +32,5 @@ class Client {
     public function Item() {
         return new Item($this->oauth);
     }
-
 
 }

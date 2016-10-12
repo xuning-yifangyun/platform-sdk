@@ -6,8 +6,8 @@
  * Time: 下午9:28
  */
 class Config {
-    private static $base_api_url = "https://oauth-server.fangcloud.net/oauth";
-    private static $base_oauth_url = "https://platform.fangcloud.net/api";
+    private static $base_api_url = "https://platform.fangcloud.net/api";
+    private static $base_oauth_url = "https://oauth-server.fangcloud.net/oauth";
     private $log_level = "INFO";
     private $log_out_path = "/home/xuning/log/fangcloud/sdk.log";
 

@@ -1,4 +1,6 @@
 <?php
+require_once "Network.class.php";
+require_once "Route.php";
 
 /**
  * Created by PhpStorm.
@@ -14,6 +16,8 @@ class Oauth {
     private $refresh_token;
     private $expirse_in;
     private $apply_time;
+    private $oauth_route;
+    private $request_session;
 
     /**
      * Oauth constructor.
@@ -22,6 +26,8 @@ class Oauth {
      * @param $client_redirect_url
      */
     public function __construct($client_id, $client_secret, $client_redirect_url) {
+        global $oauth_route;
+        $this->oauth_route = $oauth_route;
         $this->client_id = $client_id;
         $this->client_secret = $client_secret;
         $this->client_redirect_url = $client_redirect_url;
@@ -31,7 +37,12 @@ class Oauth {
      * 获取授权url
      */
     public function get_authorization_url() {
-
+        return $this->oauth_route['authorize']->query(array(
+            "client_id" => $this->client_id,
+            "redirect_uri" => $this->client_redirect_url,
+            "response_type" => "code",
+            "state" => ""
+        ))->get_url();
     }
 
     /**
@@ -48,6 +59,7 @@ class Oauth {
      */
     public function update_token() {
 
+        $this->send_oauth_request();
     }
 
     /**
@@ -111,5 +123,30 @@ class Oauth {
      */
     public function setApplyTime($apply_time) {
         $this->apply_time = $apply_time;
+    }
+
+    public function getApiTokenHeader() {
+        $arr = array(
+            "Content-Type" => "application/json",
+            "Authorization" => "Bearer " . $this->getAccessToken()
+        );
+        return $arr;
+    }
+
+    public function getOauthHeader() {
+        return array(
+            "Authorization" => "Basic " . base64_encode($this->client_id . ":" . $this->client_secret)
+        );
+    }
+
+    public function send_oauth_request($url) {
+        $headers = $this->getOauthHeader();
+        $response = Network::post($url = $url, $headers = $headers);
+        if ($response->status_code == 200) {
+            return json_decode($response->body);
+        } else {
+            //异常
+            throw new Exception($message = "update token is error , response status code is :" . $response->status_code);
+        }
     }
 }

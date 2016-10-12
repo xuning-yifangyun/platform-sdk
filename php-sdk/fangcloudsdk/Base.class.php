@@ -14,6 +14,9 @@ class BaseObject {
      * BaseObject constructor.
      */
 
+    protected $request_session;
+    protected $oauth;
+
     public function __construct() {
 
     }
@@ -21,4 +24,5 @@ class BaseObject {
     public function show_error($var) {
         print_r(var_dump($var));
     }
+
 }

@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Requests' => array($vendorDir . '/rmccue/requests/library'),
+    'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
 );

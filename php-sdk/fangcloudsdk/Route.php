@@ -1,5 +1,11 @@
 <?php
 require_once "UrlTemplate.class.php";
+
+$oauth_route = array(
+    "authorize" => new UrlTemplate("/authorize"),
+    "token" => new UrlTemplate("/token")
+);
+
 $file_route = array(
     "info" => new UrlTemplate("/file/%s/info"),
     "update" => new UrlTemplate("/file/update"),
@@ -14,6 +20,7 @@ $file_route = array(
     "preview_download" => new UrlTemplate("/file/%s/preview_download"),
     "copy" => new UrlTemplate("/file/copy")
 );
+
 $folder_route = array(
     "create" => new UrlTemplate("/folder/create"),
     "update" => new UrlTemplate("/folder/%s/update"),
