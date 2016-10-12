@@ -15,7 +15,7 @@ class BaseObject {
      */
 
     protected $request_session;
-    protected $oauth;
+
 
     public function __construct() {
 

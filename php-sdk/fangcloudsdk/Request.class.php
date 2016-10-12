@@ -1,6 +1,8 @@
 <?php
 
 require_once "Network.class.php";
+require_once "LoggerFactory.class.php";
+
 /**
  * Created by PhpStorm.
  * User: xuning
@@ -10,21 +12,30 @@ require_once "Network.class.php";
 class Request {
 
     private $oauth;
+    private static $logger = null;
 
     /**
      * Request constructor.
      */
     public function __construct($oauth) {
         $this->oauth = $oauth;
+        self::$logger = LoggerFactory::getLogger("Request");
     }
 
+    /**
+     * @param $url
+     * @param $method
+     * @param array $postbody
+     * @return mixed|null|Requests_Response|string
+     * @throws Exception
+     */
     public function send(
         $url,
         $method,
         $postbody = array()
     ) {
         $method = strtoupper($method);
-        $headers=$this->oauth->getApiTokenHeader();
+        $headers = $this->oauth->getApiTokenHeader();
         switch ($method) {
             case "GET":
                 $response = Network::get($url, $headers);
@@ -42,20 +53,28 @@ class Request {
                 $response = null;
         }
         $status = $response->status_code;
-        var_dump($url, $method, $headers, $postbody);
+        $request_log_msg = "[url: $url] [method: $method]" . " [headers: " . implode($headers) . "] ['postbody: " . implode($postbody) . "]";
+        self::$logger->addInfo($request_log_msg);
+        $response_log_msg = "[]";
+        if(!$response->headers['content-type'] == "image/jpeg;charset=utf-8"){
+
+        }
         if ($status == 200) {
+            if ($response->headers['content-type'] == "image/jpeg;charset=utf-8") {
+                $response = $response->raw;
+            }
+            $response = json_decode($response->body, true);
             return $response;
         } else {
-//            if ($status == 401) {
-//                if ((time() - ($this->oauth->getApplyTime())) > ($this->oauth->getExpirseIn())) {
-//                    $this->oauth->update_token();
-//                    $this->send($url, $method, $postbody = array());
-//                } else {
-//                    throw new Exception("反回错误码：" . $status);
-//                }
-//            }
-            return $response;
+            if ($status == 401) {
+                if ((time() - $this->oauth->getApplyTime()) > $this->oauth->getExpiresIn() * 1000) {
+                    $this->oauth->refresh();
+                    $response = $this->send($url, $method, $postbody);
+                } else {
+                    throw new Exception("反回错误码：" . $status);
+                }
+            }
         }
-
+        return $response;
     }
 }

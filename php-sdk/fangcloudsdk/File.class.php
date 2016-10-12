@@ -1,7 +1,6 @@
 <?php
 require_once "Item.class.php";
 
-
 class File extends Item {
 
     private $file_id;
@@ -14,15 +13,14 @@ class File extends Item {
     public function __construct($file_id, $oauth) {
         global $file_route;
         $this->file_id = $file_id;
-        $this->oauth = $oauth;
         $this->file_route = $file_route;
-        $this->request_session = new Request($this->oauth);
+        $this->request_session = new Request($oauth);
     }
 
     public function info() {
         $url = $this->file_route['info']->path(array($this->file_id))->get_url();
         $response = $this->request_session->send($url = $url, $method = "GET");
-        return $response->body;
+        return $response;
     }
 
     public function update() {

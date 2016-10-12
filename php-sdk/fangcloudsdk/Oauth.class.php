@@ -14,10 +14,9 @@ class Oauth {
     private $client_redirect_url;
     private $access_token;
     private $refresh_token;
-    private $expirse_in;
+    private $expires_in;
     private $apply_time;
     private $oauth_route;
-    private $request_session;
 
     /**
      * Oauth constructor.
@@ -37,12 +36,14 @@ class Oauth {
      * 获取授权url
      */
     public function get_authorization_url() {
-        return $this->oauth_route['authorize']->query(array(
-            "client_id" => $this->client_id,
-            "redirect_uri" => $this->client_redirect_url,
-            "response_type" => "code",
-            "state" => ""
-        ))->get_url();
+        return $this->oauth_route['authorize']->query(
+            array(
+                "client_id" => $this->client_id,
+                "redirect_uri" => $this->client_redirect_url,
+                "response_type" => "code",
+                "state" => ""
+            )
+        )->get_url();
     }
 
     /**
@@ -50,23 +51,51 @@ class Oauth {
      * @param null $auth_code
      */
     public function authenticate($auth_code = null) {
-
+        $url = $this->oauth_route['token']->query(
+            array(
+                "grant_type" => "authorization_code",
+                "code" => $auth_code,
+                "redirect_uri" => $this->client_redirect_url
+            )
+        )->get_url();
+        $headers = $this->getOauthHeader();
+        $token = $this->send_oauth_request($url, $headers);
+        $this->update_token($token);
     }
 
     /**
      * /刷新token
      * @param $this
      */
-    public function update_token() {
+    public function refresh() {
+        $url = $this->oauth_route['token']->query(
+            array(
+                "grant_type" => "refresh_token",
+                "refresh_token" => $this->refresh_token
+            )
+        )->get_url();
+        $headers = $this->getOauthHeader();
+        $token = $this->send_oauth_request($url, $headers);
+        $this->update_token($token);
+        return $token;
+    }
 
-        $this->send_oauth_request();
+    /**
+     * 更新token数据
+     * @param $token
+     */
+    public function update_token($token) {
+        $this->access_token = $token['access_token'];
+        $this->refresh_token = $token['refresh_token'];
+        $this->expires_in = $token['expires_in'];
+        $this->apply_time = time();
     }
 
     /**
      * 撤销token认证
      */
     public function revoke() {
-
+        $this->access_token = null;
     }
 
     /**
@@ -100,15 +129,15 @@ class Oauth {
     /**
      * @return mixed
      */
-    public function getExpirseIn() {
-        return $this->expirse_in;
+    public function getExpiresIn() {
+        return $this->expires_in;
     }
 
     /**
-     * @param mixed $expirse_in
+     * @param mixed $expires_in
      */
-    public function setExpirseIn($expirse_in) {
-        $this->expirse_in = $expirse_in;
+    public function setExpiresIn($expires_in) {
+        $this->expires_in = $expires_in;
     }
 
     /**
@@ -143,7 +172,7 @@ class Oauth {
         $headers = $this->getOauthHeader();
         $response = Network::post($url = $url, $headers = $headers);
         if ($response->status_code == 200) {
-            return json_decode($response->body);
+            return json_decode($response->body, true);
         } else {
             //异常
             throw new Exception($message = "update token is error , response status code is :" . $response->status_code);
