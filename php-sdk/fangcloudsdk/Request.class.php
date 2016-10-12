@@ -3,6 +3,7 @@
 require_once "Network.class.php";
 require_once "LoggerFactory.class.php";
 require_once "Interceptor.class.php";
+require_once "OpenApiException.php";
 /**
  * Created by PhpStorm.
  * User: xuning
@@ -41,13 +42,13 @@ class Request {
                 $response = Network::get($url, $headers);
                 break;
             case "POST":
-                $response = Network::post($url, $headers, $postbody);
+                $response = Network::post($url, $headers, json_encode($postbody));
                 break;
             case "PUT":
-                $response = Network::put($url, $headers, $postbody);
+                $response = Network::put($url, $headers, json_encode($postbody));
                 break;
             case "DELETE":
-                $response = Network::delete($url, $headers, $postbody);
+                $response = Network::delete($url, $headers, json_encode($postbody));
                 break;
             default:
                 $response = null;
@@ -58,7 +59,7 @@ class Request {
         Interceptor::deal_response_err($response);
         if ($status == 200) {
             if ($response->headers['content-type'] == "image/jpeg;charset=utf-8") {
-                $response = $response->raw;
+                $response = $response->body;
             }else{
                 $response = json_decode($response->body, true);
             }
@@ -69,7 +70,7 @@ class Request {
                     $this->oauth->refresh();
                     $response = $this->send($url, $method, $postbody);
                 } else {
-                    throw new Exception("反回错误码：" . $status);
+                    throw new OpenApiException("反回错误码：" . $status);
                 }
             }
         }

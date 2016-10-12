@@ -1,7 +1,7 @@
 <?php
 require_once "Network.class.php";
 require_once "Route.php";
-
+require_once "OpenApiException.php";
 /**
  * Created by PhpStorm.
  * User: xuning
@@ -175,7 +175,7 @@ class Oauth {
             return json_decode($response->body, true);
         } else {
             //异常
-            throw new Exception($message = "update token is error , response status code is :" . $response->status_code);
+            throw new OpenApiException("update token is error , response status code is :" . $response->status_code);
         }
     }
 }

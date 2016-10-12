@@ -22,6 +22,7 @@ $file_route = array(
 );
 
 $folder_route = array(
+    "info" => new UrlTemplate("/folder/%s/info"),
     "create" => new UrlTemplate("/folder/create"),
     "update" => new UrlTemplate("/folder/%s/update"),
     "delete" => new UrlTemplate("/folder/delete"),

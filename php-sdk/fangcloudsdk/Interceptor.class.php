@@ -1,6 +1,6 @@
 <?php
 require_once "LoggerFactory.class.php";
-
+require_once "OpenApiException.php";
 /**
  * Created by PhpStorm.
  * User: xuning
@@ -15,7 +15,7 @@ class Interceptor {
             $status_code = $response->status_code;
             switch ($status_code) {
                 case 500:
-                    throw new Exception("server error");
+                    throw new OpenApiException("server error");
                     break;
                 case 401:
                     null;
@@ -24,7 +24,7 @@ class Interceptor {
                     null;
                     break;
                 default:
-                    throw new Exception("error code:" + $status_code);
+                    throw new OpenApiException("error code:" + $status_code);
             }
             if (!($response->headers['content-type'] == "image/jpeg;charset=utf-8")) {
                 $con=array(" ","　","\t","\n","\r");

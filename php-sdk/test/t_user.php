@@ -30,7 +30,13 @@ class t_user extends TestCase{
         TestCase::assertEquals(true, $res['success']);
     }
 
+    /**
+     * 获取用户头像
+     */
     public function test_get_user_profile_pic(){
-
+        $res=$this->client->User($this->test_user_id)->get_profile_pic("b3c69fcb4a2f95fceee21f16ced8a07c");
+        $test_file=fopen("dog.png", "wr");
+        fwrite($test_file, $res);
+        fclose($test_file);
     }
 }

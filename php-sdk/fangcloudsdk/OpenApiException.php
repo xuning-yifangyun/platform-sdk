@@ -11,8 +11,7 @@ class OpenApiException extends Exception {
     /**
      * OpenApiException constructor.
      */
-    public function __construct() {
-
+    public function __construct($message) {
+        parent::__construct($message);
     }
-
 }

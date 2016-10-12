@@ -15,6 +15,7 @@ class t_item extends TestCase {
     public $client;
 
     public function __construct() {
+
         $this->oauth = test_global_var::get_test_oauth();
         $this->client = new Client($this->oauth);
     }
