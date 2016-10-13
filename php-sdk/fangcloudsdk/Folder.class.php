@@ -34,7 +34,13 @@ class Folder extends Item {
     }
 
     public function create($name = null, $parent_id = null) {
-
+        $url = $this->folder_route['create']->get_url();
+        $postbody = array(
+            "name" => $name,
+            "parent_id" => $parent_id
+        );
+        $response = $this->request_session->send($url, "post", $postbody);
+        return $response;
     }
 
     public function update($new_name = null) {

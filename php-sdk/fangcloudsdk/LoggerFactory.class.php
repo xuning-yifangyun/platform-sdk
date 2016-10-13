@@ -22,8 +22,8 @@ class LoggerFactory {
             return self::$logger;
         } else {
             self::$logger = new Logger($logger_name);
-            if(!Config::isLogDisplayConsole()){
-                $stream_handler=new StreamHandler(self::$log_path, self::$log_level);
+            if (!Config::isLogDisplayConsole()) {
+                $stream_handler = new StreamHandler(self::$log_path, self::$log_level);
                 $dateFormat = "Y-n-j g:i:s";
                 $output = "[%datetime%] %level_name% %message% \n";
                 $formatter = new LineFormatter($output, $dateFormat);

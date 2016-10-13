@@ -24,10 +24,10 @@ class Interceptor {
                     null;
                     break;
                 default:
-                    throw new OpenApiException("error code:" + $status_code);
+                    throw new OpenApiException("error: \n[status code " . $status_code . "] \n[msg " . json_decode($response->body, true)['errors'][0]['code']."]");
             }
             if (!($response->headers['content-type'] == "image/jpeg;charset=utf-8")) {
-                $con=array(" ","　","\t","\n","\r");
+                $con= array(" ", "　", "\t", "\n", "\r");
                 $response_log_msg = "[status code: $status_code] [content: " . str_replace($con, null, $response->body) . "]";
             } else {
                 $response_log_msg = "[status code: $status_code] [content: is stream]";

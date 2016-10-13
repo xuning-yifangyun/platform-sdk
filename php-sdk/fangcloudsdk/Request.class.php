@@ -4,6 +4,7 @@ require_once "Network.class.php";
 require_once "LoggerFactory.class.php";
 require_once "Interceptor.class.php";
 require_once "OpenApiException.php";
+
 /**
  * Created by PhpStorm.
  * User: xuning
@@ -60,12 +61,13 @@ class Request {
         if ($status == 200) {
             if ($response->headers['content-type'] == "image/jpeg;charset=utf-8") {
                 $response = $response->body;
-            }else{
+            } else {
                 $response = json_decode($response->body, true);
             }
             return $response;
         } else {
             if ($status == 401) {
+                //TODO: 找到多线程方案后这个范围同步加锁
                 if ((time() - $this->oauth->getApplyTime()) > $this->oauth->getExpiresIn() * 1000) {
                     $this->oauth->refresh();
                     $response = $this->send($url, $method, $postbody);

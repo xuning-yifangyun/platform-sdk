@@ -2,6 +2,8 @@
 require_once "Network.class.php";
 require_once "Route.php";
 require_once "OpenApiException.php";
+require_once "LoggerFactory.class.php";
+
 /**
  * Created by PhpStorm.
  * User: xuning
@@ -17,6 +19,7 @@ class Oauth {
     private $expires_in;
     private $apply_time;
     private $oauth_route;
+    private $logger = null;
 
     /**
      * Oauth constructor.
@@ -30,7 +33,9 @@ class Oauth {
         $this->client_id = $client_id;
         $this->client_secret = $client_secret;
         $this->client_redirect_url = $client_redirect_url;
+        $this->logger = LoggerFactory::getLogger("Oauth");
     }
+
 
     /**
      * 获取授权url
@@ -170,12 +175,15 @@ class Oauth {
 
     public function send_oauth_request($url) {
         $headers = $this->getOauthHeader();
+        $this->logger->addInfo("[url: $url] [method: POST] [headers:" . implode($headers) . " ]");
         $response = Network::post($url = $url, $headers = $headers);
+        $con= array(" ", "　", "\t", "\n", "\r");
+        $response_log_msg = "[status code: $response->status_code] [content: " . str_replace($con, null, $response->body) . "]";
+        $this->logger->addInfo($response_log_msg);
         if ($response->status_code == 200) {
             return json_decode($response->body, true);
         } else {
-            //异常
-            throw new OpenApiException("update token is error , response status code is :" . $response->status_code);
+            throw new OpenApiException("update token is error ,status code is :" . $response->status_code);
         }
     }
 }

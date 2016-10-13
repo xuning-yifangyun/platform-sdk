@@ -17,7 +17,7 @@ class Network {
         return Requests::request($url, $headers, $data, "POST", array());
     }
 
-    public static function delete($url, $headers = array(), $data=array()) {
+    public static function delete($url, $headers = array(), $data = array()) {
         return Requests::request($url, $headers, $data, "DELETE", array());
     }
 

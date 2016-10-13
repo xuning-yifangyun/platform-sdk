@@ -1,5 +1,6 @@
 <?php
 use Monolog\Logger;
+
 /**
  * Created by PhpStorm.
  * User: xuning
@@ -11,21 +12,23 @@ class Config {
     private static $base_oauth_url = "https://oauth-server.fangcloud.net/oauth";
     private static $log_level = Logger::INFO;
     private static $log_out_path = "sdk.log";
-    private static $log_display_console=true;
-    private static $config=null;
+    private static $log_display_console = true;
+    private static $config = null;
+
     /**
      * Config constructor.
      */
     private function __construct() {
     }
 
-    public static function get_config(){
-        if(self::$config==null){
+    public static function get_config() {
+        if (self::$config == null) {
             return new Config();
-        }else{
+        } else {
             return self::$config;
         }
     }
+
     /**
      * @return string
      */

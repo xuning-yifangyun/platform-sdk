@@ -23,16 +23,51 @@ class File extends Item {
         return $response;
     }
 
-    public function update() {
+    public function update($new_name = null, $new_descript = null) {
 
     }
 
-    public function delete() {
+    public function delete($file_ids = null) {
 
     }
 
-    public function preview() {
+    public function delete_from_trash($file_ids = null, $clear_trash = false) {
 
     }
 
+    public function recovery_from_trash($file_ids = null, $recovery_all = false) {
+
+    }
+
+    public function move($file_ids = null, $target_folder_id = null) {
+
+    }
+
+    public function upload($parent = null, $name = null) {
+
+    }
+
+    public function new_version($name = null, $remark = null) {
+
+    }
+
+    public function download() {
+
+    }
+
+    public function preview($force_regenerate = null, $kind = null) {
+
+    }
+
+    public function preview_download($page_index = null, $kind = null) {
+
+    }
+
+    public function get_preview_frame_url($file_name = null) {
+
+    }
+
+    public function copy($target_folder_id = null, $check_conflict = null) {
+
+    }
 }
