@@ -52,7 +52,6 @@ class Folder extends Item {
         return $response;
     }
 
-
     public function delete($folder_ids = null) {
         $url = $this->folder_route['delete']->get_url();
         $postbody = array(
@@ -85,8 +84,8 @@ class Folder extends Item {
     public function move($folder_ids = null, $target_folder_id = null) {
         $url = $this->folder_route['move']->get_url();
         $postbody = array(
-            "target_folder" => $target_folder_id,
-            "folder_ids" => $folder_ids
+            "folder_ids" => $folder_ids,
+            "target_folder_id" => $target_folder_id
         );
         $response = $this->request_session->send($url, "post", $postbody);
         return $response;

@@ -21,8 +21,10 @@ class LoggerFactory {
         if (self::$logger != null) {
             return self::$logger;
         } else {
+            //TODO: logger只有一个？
             self::$logger = new Logger($logger_name);
             if (!Config::isLogDisplayConsole()) {
+                //TODO: 日志打印到文件和控制台只能只能一个，可能monolog的bug？
                 $stream_handler = new StreamHandler(self::$log_path, self::$log_level);
                 $dateFormat = "Y-n-j g:i:s";
                 $output = "[%datetime%] %level_name% %message% \n";

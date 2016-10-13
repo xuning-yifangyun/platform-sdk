@@ -54,8 +54,9 @@ class Request {
             default:
                 $response = null;
         }
+
         $status = $response->status_code;
-        $request_log_msg = "[url: $url] [method: $method]" . " [headers: " . implode($headers) . "] ['postbody: " . implode($postbody) . "]";
+        $request_log_msg = "[url: $url] [method: $method]" . " [headers: " . implode($headers) . "] ['postbody: " . json_encode($postbody) . "]";
         self::$logger->addInfo($request_log_msg);
         Interceptor::deal_response_err($response);
         if ($status == 200) {
@@ -67,8 +68,8 @@ class Request {
             return $response;
         } else {
             if ($status == 401) {
-                //TODO: 找到多线程方案后这个范围同步加锁
                 if ((time() - $this->oauth->getApplyTime()) > $this->oauth->getExpiresIn() * 1000) {
+                    //TODO: 如果有多线程方案后这个范围同步加锁
                     $this->oauth->refresh();
                     $response = $this->send($url, $method, $postbody);
                 } else {

@@ -27,7 +27,7 @@ class Interceptor {
                     throw new OpenApiException(
                         "error: \n[status code "
                         . $status_code . "] \n[msg "
-                        . json_decode($response->body, true)['errors'][0]['code']
+                        . json_decode($response->body, true)['errors'][0]['msg']
                         ."]"
                     );
             }

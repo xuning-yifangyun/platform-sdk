@@ -1,6 +1,6 @@
 <?php
 require_once "../vendor/autoload.php";
-
+require_once "CustomRequest.php";
 /**
  * Created by PhpStorm.
  * User: xuning
@@ -18,8 +18,11 @@ class Network {
     }
 
     public static function delete($url, $headers = array(), $data = array()) {
-        return Requests::request($url, $headers, $data, "DELETE", array());
+        //TODO: 这里由于request框架的
+        //return Requests::request($url, $headers, $data, "DELETE", array());
+        return CustomRequest::delete($url, $headers, $data);
     }
+
 
     public static function put($url, $headers = array(), $data = array()) {
         return Requests::request($url, $headers, $data, "PUT", array());

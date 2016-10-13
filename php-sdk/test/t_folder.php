@@ -35,8 +35,18 @@ class t_folder extends TestCase {
         TestCase::assertEquals(true, $res['success']);
     }
 
-    public function test_folder_update() {
+    public function test_update() {
         $res = $this->client->Folder($this->test_folder_id)->update("testapi");
+        TestCase::assertEquals(true, $res['success']);
+    }
+
+    //TODO: requests delete方法不支持传输postbody
+    public function test_delete() {
+        $res = $this->client->Folder()->delete(array($this->test_folder_id));
+    }
+
+    public function test_move() {
+        $res = $this->client->Folder()->move(array($this->test_folder_id), $this->test_target_folder_id);
         TestCase::assertEquals(true, $res['success']);
     }
 }
