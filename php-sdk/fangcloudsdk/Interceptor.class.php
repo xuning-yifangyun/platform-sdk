@@ -24,7 +24,12 @@ class Interceptor {
                     null;
                     break;
                 default:
-                    throw new OpenApiException("error: \n[status code " . $status_code . "] \n[msg " . json_decode($response->body, true)['errors'][0]['code']."]");
+                    throw new OpenApiException(
+                        "error: \n[status code "
+                        . $status_code . "] \n[msg "
+                        . json_decode($response->body, true)['errors'][0]['code']
+                        ."]"
+                    );
             }
             if (!($response->headers['content-type'] == "image/jpeg;charset=utf-8")) {
                 $con= array(" ", "　", "\t", "\n", "\r");
