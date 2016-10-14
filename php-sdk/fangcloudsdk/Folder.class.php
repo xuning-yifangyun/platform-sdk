@@ -74,7 +74,7 @@ class Folder extends Item {
     public function recovery_from_trash($folder_ids = null, $recovery_all = false) {
         $url = $this->folder_route['restore_from_trash']->get_url();
         $postbody = array(
-            "clear_trash" => $recovery_all,
+            "restore_all" => $recovery_all,
             "folder_ids" => $folder_ids
         );
         $response = $this->request_session->send($url, "post", $postbody);

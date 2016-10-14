@@ -8,7 +8,7 @@ $oauth_route = array(
 
 $file_route = array(
     "info" => new UrlTemplate("/file/%s/info"),
-    "update" => new UrlTemplate("/file/update"),
+    "update" => new UrlTemplate("/file/%s/update"),
     "delete" => new UrlTemplate("/file/delete"),
     "delete_from_trash" => new UrlTemplate("/file/delete_from_trash"),
     "restore_from_trash" => new UrlTemplate("/file/restore_from_trash"),

@@ -121,15 +121,14 @@ class File extends Item {
     }
 
 
-    public function copy($target_folder_id = null, $check_conflict = false) {
+    public function copy($file_id, $target_folder_id = null, $check_conflict = false) {
         $url = $this->file_route['copy']->get_url();
         $postbody = array(
-            "file_id" => $this->file_id,
+            "file_id" => $file_id,
             "target_folder_id" => $target_folder_id,
             "is_check_conflict" => $check_conflict
         );
         $response = $this->request_session->send($url, "post", $postbody);
         return $response;
     }
-
 }

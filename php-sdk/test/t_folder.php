@@ -40,13 +40,29 @@ class t_folder extends TestCase {
         TestCase::assertEquals(true, $res['success']);
     }
 
-    //TODO: requests delete方法不支持传输postbody
+
     public function test_delete() {
         $res = $this->client->Folder()->delete(array($this->test_folder_id));
+        TestCase::assertEquals(true, $res['success']);
     }
 
+    public function test_delete_from_trash() {
+        $res = $this->client->Folder()->delete_from_trash(array($this->test_folder_id));
+        TestCase::assertEquals(true, $res['success']);
+    }
+
+    public function test_recovery_folder_from_trash() {
+        $res = $this->client->Folder()->recovery_from_trash(array($this->test_folder_id));
+        TestCase::assertEquals(true, $res['success']);
+    }
+    //TODO: 文档描述错误，不应该是target_folder
     public function test_move() {
         $res = $this->client->Folder()->move(array($this->test_folder_id), $this->test_target_folder_id);
+        TestCase::assertEquals(true, $res['success']);
+    }
+
+    public function test_children(){
+        $res = $this->client->Folder()->get_children($this->test_folder_id, 0, 10, "file");
         TestCase::assertEquals(true, $res['success']);
     }
 }
