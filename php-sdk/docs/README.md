@@ -1,13 +1,13 @@
 
-#亿方云开放平台Python-SDK使用说明
+#亿方云开放平台PHP-SDK使用说明
 ##目录
 [TOC]
 
 ##部署
-部署SDK提供两种部署方案：
 ```text
-1,pip安装, pip install fangcloud_sdk
-2,python3 setup.py install
+1,需要先安装composer
+2,在项目目录下执行composer install
+获取直接复制到您的项目目录里面引用也可以
 ```
 
 ##使用
@@ -16,31 +16,33 @@
 	只需三步：
     1：初始化自己的应用Oauth信息，即实例化Oauth
     2：接收授权码,获取token
-    3：使用Token请求api资源
+    3：请求api资源
 ###最佳实践
-```python
-from fangcloudsdk.oauth import OAuth
-from fangcloudsdk.client import Client
-oauth = OAuth(
-    client_id="you client id",
-    client_secret="you client secret",
-    redirect_url="you redirect url"
-)
-# 需要获取到请求授权的url，需要交给用户去和授权服务器去交互，如下：
-# auth_url=oauth.get_authorization_url()
-# 接收授权码, 获取token
-oauth.authenticate(auth_code="you auth code")
-# 实例化client
-client = Client(oauth)
-# 请求api资源
-s = client.user().info()
-print(s)
+```php
+<?php
+require_once "../fangcloudsdk/Oauth.class.php";
+require_once "../fangcloudsdk/Client.class.php";
+
+$oauth=new Oauth(
+    "you client_id",
+    "you client_secret",
+    "you client_rediect_url"
+);
+
+$oauth->authenticate("you auth code");
+
+$client=new Client($oauth);
+
+$res=$client->File("you file_id")->info();
+$res=$client->Folder()->move("you option");
+...
+?>
 ```
 ###Authorize操作
 
 #####获取授权url
-```python
-oauth.get_authorization_url(self):
+```php
+$oauth->get_authorization_url():
 ```
 **参数**
 
@@ -55,8 +57,8 @@ oauth.get_authorization_url(self):
 <hr>
 <br>
 #####获取Token
-```python
-oauth.authenticate(self, auth_code=None):
+```php
+$oauth->authenticate($auth_code):
 ```
 **参数**
 
@@ -79,8 +81,8 @@ json
 
 
 #####刷新token
-```python
-oauth.update_token(self):
+```php
+$oauth->update_token():
 ```
 **参数**
 
@@ -103,8 +105,8 @@ json
 
 
 #####撤销授权token
-```python
-oauth.revoke(self):
+```php
+$oauth->revoke():
 ```
 **参数**
 
@@ -121,8 +123,8 @@ Boolen
 
 ###File操作
 #####获取文件信息
-```python
-client.file(file_id).info(self):
+```php
+$client->file(file_id)->info():
 ```
 **参数**
 
@@ -154,8 +156,8 @@ json
 
 <hr>
 #####更新文件信息
-```python
-client.file(file_id).update(name, desc)
+```php
+$client->file(file_id)->update($name, $desc)
 ```
 **参数**
 
@@ -190,8 +192,8 @@ json
 ##### 删除文件至回收站
 
 支持批量操作
-```python
-client.file().delete(file_ids=[file_id])
+```php
+$client->file()->delete(file_ids=[file_id])
 ```
 **参数**
 
@@ -211,8 +213,8 @@ json
 ##### 从回收站删除文件
 
 支持批量操作
-```python
-client.file().delete_from_trash(fileids=None)
+```php
+$client->file()->delete_from_trash($fileids=None)
 ```
 **参数**
 
@@ -234,8 +236,8 @@ json
 
 ##### 从回收站恢复文件
 支持批量操作
-```python
-client.file().recovery_from_trash(recovery_all=True)
+```php
+$client->file()->recovery_from_trash($recovery_all=True)
 ```
 **参数**
 
@@ -256,8 +258,8 @@ json
 
 
 ##### 移动文件
-```python
-client.file().move(file_ids=[self.test_file_id], target_folder_id=self.test_target_folder_id)
+```php
+$client->file()->move(file_ids=[self.test_file_id], $target_folder_id=self.test_target_folder_id)
 ```
 **参数**
 
@@ -276,8 +278,8 @@ json
 <hr>
 
 ##### 获取新文件上传地址
-```python
-client.file().upload(parent_id=self.test_target_folder_id, name="dog.png")
+```php
+$client->file()->upload($parent_id=self.test_target_folder_id, $name="dog.png")
 ```
 **参数**
 
@@ -297,8 +299,8 @@ json
 
 ##### 获取文件上传新版本地址
 
-```python
-client.file(self.test_file_id).new_version(name="dog.png", remark="xuning, new version test")
+```php
+$client->file(self.test_file_id)->new_version(name="dog.png", remark="xuning, new version test")
 ```
 **参数**
 
@@ -320,8 +322,8 @@ json
 
 ##### 获取文件的下载地址
 
-```python
-client.file(self.test_file_id).download()
+```php
+$client->file(self.test_file_id)->download()
 ```
 **参数**
 
@@ -342,8 +344,8 @@ json
 
 
 ##### 预览文件
-```python
-client.file(self.test_file_id).preview(kind="image_64")
+```php
+$client->file(self.test_file_id)->preview($kind="image_64")
 ```
 **参数**
 
@@ -385,8 +387,8 @@ json
 
 ##### 获取文件预览转换后的下载地址
 
-```python
-client.file(self.test_file_id).preview_download(page_index=0, kind="image_64")
+```php
+$client->file(self.test_file_id)->preview_download($page_index=0, $kind="image_64")
 ```
 **参数**
 
@@ -422,8 +424,8 @@ json
 ##### 复制文件
 
 
-```python
-client.file(self.test_file_id).copy(target_folder_id=self.test_target_folder_id)
+```php
+$client->file(self.test_file_id)->copy($target_folder_id=self.test_target_folder_id)
 ```
 
 **参数**
@@ -448,8 +450,8 @@ json
 ### 文件夹（FOLDER）操作
 
 ##### 获取文件夹信息
-```python
-client.folder(id).info()
+```php
+$client->folder(id)->info()
 ```
 
 **参数**
@@ -485,7 +487,7 @@ json
 <hr>
 ##### 创建文件夹
 ```java
-client.folder().create("test_create", self.test_folder_id)
+$client->folder()->create("test_create", self.test_folder_id)
 ```
 
 **参数**
@@ -520,8 +522,8 @@ json
 
 <hr>
 ##### 更新文件夹
-```python
-client.folder(self.test_folder_id).update("testapi")
+```php
+$client->folder(self.test_folder_id)->update("testapi")
 ```
 
 **参数**
@@ -558,8 +560,8 @@ json
 
 支持批量操作
 
-```python
-client.folder().delete(folder_ids=[self.test_folder_id])
+```php
+$client->folder()->delete($folder_ids=[self.test_folder_id])
 ```
 
 **参数**
@@ -579,8 +581,8 @@ json
 ##### 从回收站删除文件夹
 支持批量操作
 
-```python
-client.folder().delete_from_trash(folder_ids=[self.test_create_folder_id])
+```php
+$client->folder()->delete_from_trash(folder_ids=[self.test_create_folder_id])
 ```
 
 **参数**
@@ -602,8 +604,8 @@ json
 ##### 从回收站恢复文件夹
 
 支持批量操作
-```python
-client.folder().recovery_from_trash(recovery_all=True)
+```php
+$client->folder()->recovery_from_trash(recovery_all=True)
 ```
 
 **参数**
@@ -626,8 +628,8 @@ json
 
 支持批量操作
 
-```python
-client.folder().move(folder_ids=[self.test_target_folder_id], target_folder_id=self.test_folder_id)
+```php
+$client->folder()->move($folder_ids=[self.test_target_folder_id], $target_folder_id=self.test_folder_id)
 ```
 
 **参数**
@@ -648,8 +650,8 @@ json
 <hr>
 ##### 获取单层子文件和文件夹列表
 
-```python
-client.folder().get_children(folder_id=self.test_folder_id, page_id=0, page_capacity=10, type="file")
+```php
+$client->folder()->get_children($folder_id=self.test_folder_id, $page_id=0, $page_capacity=10, $type="file")
 ```
 
 **参数**
@@ -680,12 +682,12 @@ json
 
 ##### 搜索
 
-```python
-client.item().search(
-            query_words="新手",
-            type="all",
-            page_number=0,
-            search_in_folder=None
+```php
+$client->item()->search(
+            $query_words="新手",
+            $type="all",
+            $page_number=0,
+            $search_in_folder=None
         )
 ```
 
@@ -721,8 +723,8 @@ json
 <hr>
 
 #####获取自己的信息
-```python
-client.user(self.test_user_id).info()
+```php
+$client->user(self.test_user_id)->info()
 ```
 
 **参数**
@@ -743,8 +745,8 @@ json
 |pinyin_first_letters|string|用户姓名的拼音首字母|
 
 #####获取他人的信息
-```python
-client.user(self.test_user_id).info()
+```php
+$client->user(self.test_user_id)->info()
 ```
 
 **参数**
@@ -772,7 +774,7 @@ json
 
 ##### 获取用户头像
 ```java
-client.user(self.test_user_id).get_profile_pic("key")
+$client->user(self.test_user_id)->get_profile_pic("key")
 ```
 **参数**
 
@@ -784,27 +786,6 @@ client.user(self.test_user_id).get_profile_pic("key")
 **返回类型**
 InputStream(image_64)
 
-###常见异常
-共计4类
-1，BaseException
-
-	1.暂无
-2，UnAuthorizedException
-
-3， RequestErrorException
-
-	1.request method is not support":请求的method是错误的或者不支持的
-
-3，ResponseErrorException
-
-	1."server error":服务器500错误
-	2.参考api异常错误列表
-	3.连接错误（未联网，中断）
-4，OauthException
-
-	1."auth code involid or is null"：授权码获取token失败
-	2."refresh token is involid or null"：refresh是无效的
-	3.”update token is exception“： 更新token异常
 
 ### 通用对象
 
@@ -849,11 +830,9 @@ InputStream(image_64)
 
 ###日志
 ######配置
-	
-    用户可以进行自定义配置，如果用户不自定义指定配置文件，那么会默认使用sdk包下的conf/logback.xml文件作为日志配置文件，
-    自定义指定的java代码如下,配置可以参考logback.xml配置文件:
-```java
-Config.customLogPath("your log config path");
+	这里展示由于monolog问题，控制台log和文件log不同同事输出，默认开发模式控制台输出，如果需要文件输出，那么需要您执行以下的代码
+```php
+Config::setLogOutPath("you log path")
 ```
 
 ### 异常错误码
