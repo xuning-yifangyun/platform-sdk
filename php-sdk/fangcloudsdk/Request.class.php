@@ -49,6 +49,7 @@ class Request {
                 $response = Network::put($url, $headers, json_encode($postbody));
                 break;
             case "DELETE":
+                $headers = $this->get_delete_headers();
                 $response = Network::delete($url, $headers, json_encode($postbody));
                 break;
             default:
@@ -73,10 +74,17 @@ class Request {
                     $this->oauth->refresh();
                     $response = $this->send($url, $method, $postbody);
                 } else {
-                    throw new OpenApiException("反回错误码：" . $status);
+                    throw new OpenApiException("request error, status code:" . $status);
                 }
             }
         }
         return $response;
+    }
+
+    public function get_delete_headers() {
+        return array(
+            "authorization: Bearer " . $this->oauth->getAccessToken(),
+            "content-type: application/json"
+        );
     }
 }

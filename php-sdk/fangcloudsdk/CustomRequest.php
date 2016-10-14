@@ -17,7 +17,7 @@ class CustomRequest {
             array(
                 CURLOPT_URL => $url,
                 CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => "",
+                CURLOPT_ENCODING => "utf-8",
                 CURLOPT_MAXREDIRS => 10,
                 CURLOPT_TIMEOUT => 30,
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
@@ -35,18 +35,3 @@ class CustomRequest {
         return $response;
     }
 }
-//
-//$url = "https://platform.fangcloud.net/api/folder/delete";
-//$headers = array(
-//    "authorization: Bearer 7409ef2e-b109-4df2-af66-024b886def36",
-//    "cache-control: no-cache",
-//    "content-type: application/json"
-//);
-//
-//$postbody = array(
-//    "folder_ids" => array(
-//        501000031450
-//    )
-//);
-//$s = CustomRequest::delete($url, $headers, json_encode($postbody));
-//var_dump($s);

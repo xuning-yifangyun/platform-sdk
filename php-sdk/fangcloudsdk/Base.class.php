@@ -20,9 +20,4 @@ class BaseObject {
     public function __construct() {
 
     }
-
-    public function show_error($var) {
-        print_r(var_dump($var));
-    }
-
 }
