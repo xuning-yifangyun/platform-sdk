@@ -18,7 +18,7 @@ class Network {
     }
 
     public static function delete($url, $headers = array(), $data = array()) {
-        //TODO: 这里由于request框架的
+        //TODO: 这里由于request框架过滤掉了delete方法，只能自定义delete方法
         //return Requests::request($url, $headers, $data, "DELETE", array());
         return CustomRequest::delete($url, $headers, $data);
     }

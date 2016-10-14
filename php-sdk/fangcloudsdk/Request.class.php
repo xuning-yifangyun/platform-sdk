@@ -70,7 +70,7 @@ class Request {
         } else {
             if ($status == 401) {
                 if ((time() - $this->oauth->getApplyTime()) > $this->oauth->getExpiresIn() * 1000) {
-                    //TODO: 如果有多线程方案后这个范围同步加锁
+                    //TODO: 如果有多线程方案后这个范围同步加锁，但php本身不支持多线程
                     $this->oauth->refresh();
                     $response = $this->send($url, $method, $postbody);
                 } else {
