@@ -10,7 +10,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/icomoon-social.css">
 
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
@@ -19,6 +19,7 @@
 		    <link rel="stylesheet" href="css/leaflet.ie.css" />
 		<![endif]-->
 		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/master/devicon.min.css">
 
         <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
@@ -36,7 +37,7 @@
 							<a href="index.html">首页</a>
 						</li>
 						<li>
-							<a href="#???">API参考</a>
+							<a href="https://open.fangcloud.com/wiki/index.html" target="_self">API参考</a>
 						</li>
 						<li>
 							<a href="#???">更新日志</a>
@@ -46,27 +47,13 @@
 							<div class="mainmenu-submenu">
 								<div class="mainmenu-submenu-inner"> 
 									<div>
-										<h4>Java SDK</h4>
+										<h4 class="devicon-java-plain language language-sdk"> Java SDK</h4>
 										<ul>
-											<li><a class="glyphicon glyphicon-star-empty" href="index.html">github</a></li>
+											<li><a class="glyphicon glyphicon-star-empty" href="https://github.com/xuning-yifangyun/platform-sdk/tree/xuning/java-sdk">github</a></li>
 											<li><a class="glyphicon glyphicon-book" href="index.html">文档</a></li>
 											<li><a class="glyphicon glyphicon-cloud-download" href="#???">下载</a></li>
 										</ul>
-										<h4>NodeJs SDK</h4>
-										<ul>
-											<li><a class="glyphicon glyphicon-star-empty" href="index.html">github</a></li>
-											<li><a class="glyphicon glyphicon-book" href="index.html">文档</a></li>
-											<li><a class="glyphicon glyphicon-cloud-download" href="#???">下载</a></li>
-										</ul>
-									</div>
-									<div>
-										<h4>PHP SDK</h4>
-										<ul>
-											<li><a class="glyphicon glyphicon-star-empty" href="index.html">github</a></li>
-											<li><a class="glyphicon glyphicon-book" href="index.html">文档</a></li>
-											<li><a class="glyphicon glyphicon-cloud-download" href="#???">下载</a></li>
-										</ul>
-										<h4>.NET</h4>
+										<h4 class="devicon-nodejs-plain language language-sdk"> NodeJs SDK</h4>
 										<ul>
 											<li><a class="glyphicon glyphicon-star-empty" href="index.html">github</a></li>
 											<li><a class="glyphicon glyphicon-book" href="index.html">文档</a></li>
@@ -74,13 +61,28 @@
 										</ul>
 									</div>
 									<div>
-										<h4>Python SDK</h4>
+										<h4 class="devicon-php-plain language language-sdk"> PHP SDK</h4>
 										<ul>
 											<li><a class="glyphicon glyphicon-star-empty" href="index.html">github</a></li>
 											<li><a class="glyphicon glyphicon-book" href="index.html">文档</a></li>
 											<li><a class="glyphicon glyphicon-cloud-download" href="#???">下载</a></li>
 										</ul>
-										<h4>Ruby</h4>
+										<h4 class="devicon-dot-net-plain language language-sdk"> .NET</h4>
+										<ul>
+											<li><a class="glyphicon glyphicon-star-empty" href="index.html">github</a></li>
+											<li><a class="glyphicon glyphicon-book" href="index.html">文档</a></li>
+											<li><a class="glyphicon glyphicon-cloud-download" href="#???">下载</a></li>
+										</ul>
+									</div>
+									<div>
+										<h4 class="devicon-python-plain language language-sdk"> Python SDK</h4>
+
+										<ul>
+											<li><a class="glyphicon glyphicon-star-empty" href="index.html">github</a></li>
+											<li><a class="glyphicon glyphicon-book" href="index.html">文档</a></li>
+											<li><a class="glyphicon glyphicon-cloud-download" href="#???">下载</a></li>
+										</ul>
+										<h4 class="devicon-ruby-plain language language-sdk"> Ruby</h4>
 										<ul>
 											<li><a class="glyphicon glyphicon-star-empty" href="index.html">github</a></li>
 											<li><a class="glyphicon glyphicon-book" href="index.html">文档</a></li>
@@ -91,10 +93,10 @@
 							</div><!-- /mainmenu-submenu -->
 					  </li>
 						<li>
-							<a href="credits.html">支持</a>
+							<a href="#???">支持</a>
 						</li>
 						<li>
-							<a href="credits.html">关于</a>
+							<a href="#???">关于</a>
 						</li>
 					</ul>
 				</nav>
@@ -108,7 +110,7 @@
 					<!-- Slide 1 -->
 					<li class="bg4">
 						<!-- Slide Title -->
-						<h2 class="title">亿方云， 不只是网盘</h2>
+						<h2 class="title">欢迎使用亿方云开放平台</h2>
 						<!-- Slide Text -->
 						<h3 class="subtitle">硅谷团队打造 -- 更懂企业文件管理</h3>
 						<!-- Slide Image -->
@@ -158,7 +160,7 @@
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-6">
-						<center><h3>第二步： 找到对应需求</h3></center>
+						<center><h3>第二步： 查看文档</h3></center>
 						<div class="in-press press-mashable">
 							<a>根据自己的应用需求找到相对应的SDK，如果您是仅仅使用REST API接口，那么，您直接查看其api查考文档即可</a>
 						</div>
@@ -172,56 +174,7 @@
 				</div>
 			</div>
 		</div>
-
-
-		<!-- Services -->
-        <!--<div class="section">-->
-	        <!--<div class="container">-->
-	        	<!--<div class="row">-->
-	        		<!--<div class="col-md-4 col-sm-6">-->
-	        			<!--<div class="service-wrapper">-->
-		        			<!--<img src="img/service-icon/diamond.png" alt="Service 1">-->
-		        			<!--<h3>Aliquam in adipiscing</h3>-->
-		        			<!--<p>Praesent rhoncus mauris ac sollicitudin vehicula. Nam fringilla turpis turpis, at posuere turpis aliquet sit amet condimentum</p>-->
-		        			<!--<a href="#" class="btn">Read more</a>-->
-		        		<!--</div>-->
-	        		<!--</div>-->
-	        		<!--<div class="col-md-4 col-sm-6">-->
-	        			<!--<div class="service-wrapper">-->
-		        			<!--<img src="img/service-icon/ruler.png" alt="Service 2">-->
-		        			<!--<h3>Curabitur mollis</h3>-->
-		        			<!--<p>Suspendisse eget libero mi. Fusce ligula orci, vulputate nec elit ultrices, ornare faucibus orci. Aenean lectus sapien, vehicula</p>-->
-		        			<!--<a href="#" class="btn">Read more</a>-->
-		        		<!--</div>-->
-	        		<!--</div>-->
-	        		<!--<div class="col-md-4 col-sm-6">-->
-	        			<!--<div class="service-wrapper">-->
-		        			<!--<img src="img/service-icon/box.png" alt="Service 3">-->
-		        			<!--<h3>Vivamus mattis</h3>-->
-		        			<!--<p>Phasellus posuere et nisl ac commodo. Nulla facilisi. Sed tincidunt bibendum cursus. Aenean vulputate aliquam risus rutrum scelerisque</p>-->
-		        			<!--<a href="#" class="btn">Read more</a>-->
-		        		<!--</div>-->
-	        		<!--</div>-->
-	        	<!--</div>-->
-	        <!--</div>-->
-	    <!--</div>-->
-	    <!-- End Services -->
-
-		<!--&lt;!&ndash; Call to Action Bar &ndash;&gt;-->
-	    <!--<div class="section section-white">-->
-			<!--<div class="container">-->
-				<!--<div class="row">-->
-					<!--<div class="col-md-12">-->
-						<!--<div class="calltoaction-wrapper">-->
-							<!--<h3>It's a free multipurpose Bootstrap 3 template!</h3> <a href="http://www.dragdropsite.com" class="btn btn-orange">Download here!</a>-->
-						<!--</div>-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</div>-->
-		<!--</div>-->
-		<!--&lt;!&ndash; End Call to Action Bar &ndash;&gt;-->
-
-
+		<!--End Press Coverage -->
 
 	    <!-- Footer -->
 	    <div class="footer">
@@ -267,8 +220,8 @@
 	    </div>
 
         <!-- Javascripts -->
-        <script src="js/jquery-1.9.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
         <script src="js/leaflet.js"></script>
         <script src="js/jquery.fitvids.js"></script>
         <script src="js/jquery.sequence-min.js"></script>
