@@ -1,0 +1,2314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>java-README.html</title>
+  <meta name="generator" content="Haroopad 0.13.1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>div.oembedall-githubrepos{border:1px solid #DDD;border-radius:4px;list-style-type:none;margin:0 0 10px;padding:8px 10px 0;font:13.34px/1.4 helvetica,arial,freesans,clean,sans-serif;width:452px;background-color:#fff}div.oembedall-githubrepos .oembedall-body{background:-moz-linear-gradient(center top,#FAFAFA,#EFEFEF);background:-webkit-gradient(linear,left top,left bottom,from(#FAFAFA),to(#EFEFEF));border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-top:1px solid #EEE;margin-left:-10px;margin-top:8px;padding:5px 10px;width:100%}div.oembedall-githubrepos h3{font-size:14px;margin:0;padding-left:18px;white-space:nowrap}div.oembedall-githubrepos p.oembedall-description{color:#444;font-size:12px;margin:0 0 3px}div.oembedall-githubrepos p.oembedall-updated-at{color:#888;font-size:11px;margin:0}div.oembedall-githubrepos ul.oembedall-repo-stats{border:none;float:right;font-size:11px;font-weight:700;padding-left:15px;position:relative;z-index:5;margin:0}div.oembedall-githubrepos ul.oembedall-repo-stats li{border:none;color:#666;display:inline-block;list-style-type:none;margin:0!important}div.oembedall-githubrepos ul.oembedall-repo-stats li a{background-color:transparent;border:none;color:#666!important;background-position:5px -2px;background-repeat:no-repeat;border-left:1px solid #DDD;display:inline-block;height:21px;line-height:21px;padding:0 5px 0 23px}div.oembedall-githubrepos ul.oembedall-repo-stats li:first-child a{border-left:medium none;margin-right:-3px}div.oembedall-githubrepos ul.oembedall-repo-stats li a:hover{background:5px -27px no-repeat #4183C4;color:#FFF!important;text-decoration:none}div.oembedall-githubrepos ul.oembedall-repo-stats li:first-child a:hover{border-bottom-left-radius:3px;border-top-left-radius:3px}ul.oembedall-repo-stats li:last-child a:hover{border-bottom-right-radius:3px;border-top-right-radius:3px}span.oembedall-closehide{background-color:#aaa;border-radius:2px;cursor:pointer;margin-right:3px}div.oembedall-container{margin-top:5px;text-align:left}.oembedall-ljuser{font-weight:700}.oembedall-ljuser img{vertical-align:bottom;border:0;padding-right:1px}.oembedall-stoqembed{border-bottom:1px dotted #999;float:left;overflow:hidden;width:730px;line-height:1;background:#FFF;color:#000;font-family:Arial,Liberation Sans,DejaVu Sans,sans-serif;font-size:80%;text-align:left;margin:0;padding:0}.oembedall-stoqembed a{color:#07C;text-decoration:none;margin:0;padding:0}.oembedall-stoqembed a:hover{text-decoration:underline}.oembedall-stoqembed a:visited{color:#4A6B82}.oembedall-stoqembed h3{font-family:Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;font-size:130%;font-weight:700;margin:0;padding:0}.oembedall-stoqembed .oembedall-reputation-score{color:#444;font-size:120%;font-weight:700;margin-right:2px}.oembedall-stoqembed .oembedall-user-info{height:35px;width:185px}.oembedall-stoqembed .oembedall-user-info .oembedall-user-gravatar32{float:left;height:32px;width:32px}.oembedall-stoqembed .oembedall-user-info .oembedall-user-details{float:left;margin-left:5px;overflow:hidden;white-space:nowrap;width:145px}.oembedall-stoqembed .oembedall-question-hyperlink{font-weight:700}.oembedall-stoqembed .oembedall-stats{background:#EEE;margin:0 0 0 7px;padding:4px 7px 6px;width:58px}.oembedall-stoqembed .oembedall-statscontainer{float:left;margin-right:8px;width:86px}.oembedall-stoqembed .oembedall-votes{color:#555;padding:0 0 7px;text-align:center}.oembedall-stoqembed .oembedall-vote-count-post{font-size:240%;color:#808185;display:block;font-weight:700}.oembedall-stoqembed .oembedall-views{color:#999;padding-top:4px;text-align:center}.oembedall-stoqembed .oembedall-status{margin-top:-3px;padding:4px 0;text-align:center;background:#75845C;color:#FFF}.oembedall-stoqembed .oembedall-status strong{color:#FFF;display:block;font-size:140%}.oembedall-stoqembed .oembedall-summary{float:left;width:635px}.oembedall-stoqembed .oembedall-excerpt{line-height:1.2;margin:0;padding:0 0 5px}.oembedall-stoqembed .oembedall-tags{float:left;line-height:18px}.oembedall-stoqembed .oembedall-tags a:hover{text-decoration:none}.oembedall-stoqembed .oembedall-post-tag{background-color:#E0EAF1;border-bottom:1px solid #3E6D8E;border-right:1px solid #7F9FB6;color:#3E6D8E;font-size:90%;line-height:2.4;margin:2px 2px 2px 0;padding:3px 4px;text-decoration:none;white-space:nowrap}.oembedall-stoqembed .oembedall-post-tag:hover{background-color:#3E6D8E;border-bottom:1px solid #37607D;border-right:1px solid #37607D;color:#E0EAF1}.oembedall-stoqembed .oembedall-fr{float:right}.oembedall-stoqembed .oembedall-statsarrow{background-image:url(http://cdn.sstatic.net/stackoverflow/img/sprites.png?v=3);background-repeat:no-repeat;overflow:hidden;background-position:0 -435px;float:right;height:13px;margin-top:12px;width:7px}.oembedall-facebook1{border:1px solid #1A3C6C;padding:0;font:13.34px/1.4 verdana;width:500px}.oembedall-facebook2{background-color:#627add}.oembedall-facebook2 a{color:#e8e8e8;text-decoration:none}.oembedall-facebookBody{background-color:#fff;vertical-align:top;padding:5px}.oembedall-facebookBody .contents{display:inline-block;width:100%}.oembedall-facebookBody div img{float:left;margin-right:5px}div.oembedall-lanyard{-webkit-box-shadow:none;-webkit-transition-delay:0s;-webkit-transition-duration:.4000000059604645s;-webkit-transition-property:width;-webkit-transition-timing-function:cubic-bezier(0.42,0,.58,1);background-attachment:scroll;background-clip:border-box;background-color:transparent;background-image:none;background-origin:padding-box;border-width:0;box-shadow:none;color:#112644;display:block;float:left;font-family:'Trebuchet MS',Trebuchet,sans-serif;font-size:16px;height:253px;line-height:19px;margin:0;max-width:none;min-height:0;outline:#112644 0;overflow-x:visible;overflow-y:visible;padding:0;position:relative;text-align:left;vertical-align:baseline;width:804px}div.oembedall-lanyard .tagline{font-size:1.5em}div.oembedall-lanyard .wrapper{overflow:hidden;clear:both}div.oembedall-lanyard .split{float:left;display:inline}div.oembedall-lanyard .prominent-place .flag:active,div.oembedall-lanyard .prominent-place .flag:focus,div.oembedall-lanyard .prominent-place .flag:hover,div.oembedall-lanyard .prominent-place .flag:link,div.oembedall-lanyard .prominent-place .flag:visited{float:left;display:block;width:48px;height:48px;position:relative;top:-5px;margin-right:10px}div.oembedall-lanyard .place-context{font-size:.889em}div.oembedall-lanyard .prominent-place .sub-place{display:block}div.oembedall-lanyard .prominent-place{font-size:1.125em;line-height:1.1em;font-weight:400}div.oembedall-lanyard .main-date{color:#8CB4E0;font-weight:700;line-height:1.1}div.oembedall-lanyard .first{width:48.57%;margin:0 0 0 2.857%}.mermaid .label{color:#333}.node circle,.node polygon,.node rect{fill:#cde498;stroke:#13540c;stroke-width:1px}.edgePath .path{stroke:green;stroke-width:1.5px}.cluster rect{fill:#cdffb2;rx:40;stroke:#6eaa49;stroke-width:1px}.cluster text{fill:#333}.actor{stroke:#13540c;fill:#cde498}text.actor{fill:#000;stroke:none}.actor-line{stroke:grey}.messageLine0{stroke-width:1.5;stroke-dasharray:"2 2";marker-end:"url(#arrowhead)";stroke:#333}.messageLine1{stroke-width:1.5;stroke-dasharray:"2 2";stroke:#333}#arrowhead{fill:#333}#crosshead path{fill:#333!important;stroke:#333!important}.messageText{fill:#333;stroke:none}.labelBox{stroke:#326932;fill:#cde498}.labelText,.loopText{fill:#000;stroke:none}.loopLine{stroke-width:2;stroke-dasharray:"2 2";marker-end:"url(#arrowhead)";stroke:#326932}.note{stroke:#6eaa49;fill:#fff5ad}.noteText{fill:#000;stroke:none;font-family:'trebuchet ms',verdana,arial;font-size:14px}.section{stroke:none;opacity:.2}.section0,.section2{fill:#6eaa49}.section1,.section3{fill:#fff;opacity:.2}.sectionTitle0,.sectionTitle1,.sectionTitle2,.sectionTitle3{fill:#333}.sectionTitle{text-anchor:start;font-size:11px;text-height:14px}.grid .tick{stroke:lightgrey;opacity:.3;shape-rendering:crispEdges}.grid path{stroke-width:0}.today{fill:none;stroke:red;stroke-width:2px}.task{stroke-width:2}.taskText{text-anchor:middle;font-size:11px}.taskTextOutsideRight{fill:#000;text-anchor:start;font-size:11px}.taskTextOutsideLeft{fill:#000;text-anchor:end;font-size:11px}.taskText0,.taskText1,.taskText2,.taskText3{fill:#fff}.task0,.task1,.task2,.task3{fill:#487e3a;stroke:#13540c}.taskTextOutside0,.taskTextOutside1,.taskTextOutside2,.taskTextOutside3{fill:#000}.active0,.active1,.active2,.active3{fill:#cde498;stroke:#13540c}.activeText0,.activeText1,.activeText2,.activeText3{fill:#000!important}.done0,.done1,.done2,.done3{stroke:grey;fill:lightgrey;stroke-width:2}.doneText0,.doneText1,.doneText2,.doneText3{fill:#000!important}.crit0,.crit1,.crit2,.crit3{stroke:#f88;fill:red;stroke-width:2}.activeCrit0,.activeCrit1,.activeCrit2,.activeCrit3{stroke:#f88;fill:#cde498;stroke-width:2}.doneCrit0,.doneCrit1,.doneCrit2,.doneCrit3{stroke:#f88;fill:lightgrey;stroke-width:2;cursor:pointer;shape-rendering:crispEdges}.activeCritText0,.activeCritText1,.activeCritText2,.activeCritText3,.doneCritText0,.doneCritText1,.doneCritText2,.doneCritText3{fill:#000!important}.titleText{text-anchor:middle;font-size:18px;fill:#000}text{font-family:'trebuchet ms',verdana,arial;font-size:14px}html{height:100%}body{margin:0!important;padding:5px 20px 26px!important;background-color:#fff;font-family:"Lucida Grande","Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Lucida Sans Unicode",Helvetica,Arial,sans-serif;font-size:.9em;overflow-x:hidden;overflow-y:auto}br,h1,h2,h3,h4,h5,h6{clear:both}hr.page{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x;border:0;height:3px;padding:0}hr.underscore{border-top-style:dashed!important}body >:first-child{margin-top:0!important}img.plugin{box-shadow:0 1px 3px rgba(0,0,0,.1);border-radius:3px}iframe{border:0}figure{-webkit-margin-before:0;-webkit-margin-after:0;-webkit-margin-start:0;-webkit-margin-end:0}kbd{border:1px solid #aaa;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;-moz-box-shadow:1px 2px 2px #ddd;-webkit-box-shadow:1px 2px 2px #ddd;box-shadow:1px 2px 2px #ddd;background-color:#f9f9f9;background-image:-moz-linear-gradient(top,#eee,#f9f9f9,#eee);background-image:-o-linear-gradient(top,#eee,#f9f9f9,#eee);background-image:-webkit-linear-gradient(top,#eee,#f9f9f9,#eee);background-image:linear-gradient(top,#eee,#f9f9f9,#eee);padding:1px 3px;font-family:inherit;font-size:.85em}.oembeded .oembed_photo{display:inline-block}img[data-echo]{margin:25px 0;width:100px;height:100px;background:url(../img/ajax.gif) center center no-repeat #fff}.spinner{display:inline-block;width:10px;height:10px;margin-bottom:-.1em;border:2px solid rgba(0,0,0,.5);border-top-color:transparent;border-radius:100%;-webkit-animation:spin 1s infinite linear;animation:spin 1s infinite linear}.spinner:after{content:'';display:block;width:0;height:0;position:absolute;top:-6px;left:0;border:4px solid transparent;border-bottom-color:rgba(0,0,0,.5);-webkit-transform:rotate(45deg);transform:rotate(45deg)}@-webkit-keyframes spin{to{-webkit-transform:rotate(360deg)}}@keyframes spin{to{transform:rotate(360deg)}}p.toc{margin:0!important}p.toc ul{padding-left:10px}p.toc>ul{padding:10px;margin:0 10px;display:inline-block;border:1px solid #ededed;border-radius:5px}p.toc li,p.toc ul{list-style-type:none}p.toc li{width:100%;padding:0;overflow:hidden}p.toc li a::after{content:"."}p.toc li a:before{content:"• "}p.toc h5{text-transform:uppercase}p.toc .title{float:left;padding-right:3px}p.toc .number{margin:0;float:right;padding-left:3px;background:#fff;display:none}input.task-list-item{margin-left:-1.62em}.markdown{font-family:"Hiragino Sans GB","Microsoft YaHei",STHeiti,SimSun,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",'Segoe UI',AppleSDGothicNeo-Medium,'Malgun Gothic',Verdana,Tahoma,sans-serif;padding:20px}.markdown a{text-decoration:none;vertical-align:baseline}.markdown a:hover{text-decoration:underline}.markdown h1{font-size:2.2em;font-weight:700;margin:1.5em 0 1em}.markdown h2{font-size:1.8em;font-weight:700;margin:1.275em 0 .85em}.markdown h3{font-size:1.6em;font-weight:700;margin:1.125em 0 .75em}.markdown h4{font-size:1.4em;font-weight:700;margin:.99em 0 .66em}.markdown h5{font-size:1.2em;font-weight:700;margin:.855em 0 .57em}.markdown h6{font-size:1em;font-weight:700;margin:.75em 0 .5em}.markdown h1+p,.markdown h1:first-child,.markdown h2+p,.markdown h2:first-child,.markdown h3+p,.markdown h3:first-child,.markdown h4+p,.markdown h4:first-child,.markdown h5+p,.markdown h5:first-child,.markdown h6+p,.markdown h6:first-child{margin-top:0}.markdown hr{border:1px solid #ccc}.markdown p{margin:1em 0;word-wrap:break-word}.markdown ol{list-style-type:decimal}.markdown li{display:list-item;line-height:1.4em}.markdown blockquote{margin:1em 20px}.markdown blockquote>:first-child{margin-top:0}.markdown blockquote>:last-child{margin-bottom:0}.markdown blockquote cite:before{content:'\2014 \00A0'}.markdown .code{border-radius:3px;word-wrap:break-word}.markdown pre{border-radius:3px;word-wrap:break-word;border:1px solid #ccc;overflow:auto;padding:.5em}.markdown pre code{border:0;display:block}.markdown pre>code{font-family:Consolas,Inconsolata,Courier,monospace;font-weight:700;white-space:pre;margin:0}.markdown code{border-radius:3px;word-wrap:break-word;border:1px solid #ccc;padding:0 5px;margin:0 2px}.markdown img{max-width:100%}.markdown mark{color:#000;background-color:#fcf8e3}.markdown table{padding:0;border-collapse:collapse;border-spacing:0;margin-bottom:16px}.markdown table tr td,.markdown table tr th{border:1px solid #ccc;margin:0;padding:6px 13px}.markdown table tr th{font-weight:700}.markdown table tr th>:first-child{margin-top:0}.markdown table tr th>:last-child{margin-bottom:0}.markdown table tr td>:first-child{margin-top:0}.markdown table tr td>:last-child{margin-bottom:0}@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700);.haroopad{padding:20px;color:#222;font-size:15px;font-family:"Roboto Condensed",Tauri,"Hiragino Sans GB","Microsoft YaHei",STHeiti,SimSun,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",'Segoe UI',AppleSDGothicNeo-Medium,'Malgun Gothic',Verdana,Tahoma,sans-serif;background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}.haroopad a{color:#3269a0}.haroopad a:hover{color:#4183c4}.haroopad h2{border-bottom:1px solid #e6e6e6}.haroopad h6{color:#777}.haroopad hr{border:1px solid #e6e6e6}.haroopad blockquote>code,.haroopad h1>code,.haroopad h2>code,.haroopad h3>code,.haroopad h4>code,.haroopad h5>code,.haroopad h6>code,.haroopad li>code,.haroopad p>code,.haroopad td>code{font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;font-size:85%;background-color:rgba(0,0,0,.02);padding:.2em .5em;border:1px solid #efefef}.haroopad pre>code{font-size:1em;letter-spacing:-1px;font-weight:700}.haroopad blockquote{border-left:4px solid #e6e6e6;padding:0 15px;color:#777}.haroopad table{background-color:#fafafa}.haroopad table tr td,.haroopad table tr th{border:1px solid #e6e6e6}.haroopad table tr:nth-child(2n){background-color:#f2f2f2}.hljs{display:block;overflow-x:auto;padding:.5em;background:#fdf6e3;color:#657b83;-webkit-text-size-adjust:none}.diff .hljs-header,.hljs-comment,.hljs-doctype,.hljs-javadoc,.hljs-pi,.lisp .hljs-string{color:#93a1a1}.css .hljs-tag,.hljs-addition,.hljs-keyword,.hljs-request,.hljs-status,.hljs-winutils,.method,.nginx .hljs-title{color:#859900}.hljs-command,.hljs-dartdoc,.hljs-hexcolor,.hljs-link_url,.hljs-number,.hljs-phpdoc,.hljs-regexp,.hljs-rules .hljs-value,.hljs-string,.hljs-tag .hljs-value,.tex .hljs-formula{color:#2aa198}.css .hljs-function,.hljs-built_in,.hljs-chunk,.hljs-decorator,.hljs-id,.hljs-identifier,.hljs-localvars,.hljs-title,.vhdl .hljs-literal{color:#268bd2}.hljs-attribute,.hljs-class .hljs-title,.hljs-constant,.hljs-link_reference,.hljs-parent,.hljs-type,.hljs-variable,.lisp .hljs-body,.smalltalk .hljs-number{color:#b58900}.css .hljs-pseudo,.diff .hljs-change,.hljs-attr_selector,.hljs-cdata,.hljs-header,.hljs-pragma,.hljs-preprocessor,.hljs-preprocessor .hljs-keyword,.hljs-shebang,.hljs-special,.hljs-subst,.hljs-symbol,.hljs-symbol .hljs-string{color:#cb4b16}.hljs-deletion,.hljs-important{color:#dc322f}.hljs-link_label{color:#6c71c4}.tex .hljs-formula{background:#eee8d5}.MathJax_Hover_Frame{border-radius:.25em;-webkit-border-radius:.25em;-moz-border-radius:.25em;-khtml-border-radius:.25em;box-shadow:0 0 15px #83A;-webkit-box-shadow:0 0 15px #83A;-moz-box-shadow:0 0 15px #83A;-khtml-box-shadow:0 0 15px #83A;border:1px solid #A6D!important;display:inline-block;position:absolute}.MathJax_Hover_Arrow{position:absolute;width:15px;height:11px;cursor:pointer}#MathJax_About{position:fixed;left:50%;width:auto;text-align:center;border:3px outset;padding:1em 2em;background-color:#DDD;color:#000;cursor:default;font-family:message-box;font-size:120%;font-style:normal;text-indent:0;text-transform:none;line-height:normal;letter-spacing:normal;word-spacing:normal;word-wrap:normal;white-space:nowrap;float:none;z-index:201;border-radius:15px;-webkit-border-radius:15px;-moz-border-radius:15px;-khtml-border-radius:15px;box-shadow:0 10px 20px gray;-webkit-box-shadow:0 10px 20px gray;-moz-box-shadow:0 10px 20px gray;-khtml-box-shadow:0 10px 20px gray;filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}.MathJax_Menu{position:absolute;background-color:#fff;color:#000;width:auto;padding:5px 0;border:1px solid #CCC;margin:0;cursor:default;font:menu;text-align:left;text-indent:0;text-transform:none;line-height:normal;letter-spacing:normal;word-spacing:normal;word-wrap:normal;white-space:nowrap;float:none;z-index:201;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;-khtml-border-radius:5px;box-shadow:0 10px 20px gray;-webkit-box-shadow:0 10px 20px gray;-moz-box-shadow:0 10px 20px gray;-khtml-box-shadow:0 10px 20px gray;filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}.MathJax_MenuItem{padding:1px 2em;background:0 0}.MathJax_MenuArrow{position:absolute;right:.5em;color:#666}.MathJax_MenuActive .MathJax_MenuArrow{color:#fff}.MathJax_MenuArrow.RTL{left:.5em;right:auto}.MathJax_MenuCheck{position:absolute;left:.7em}.MathJax_MenuCheck.RTL{right:.7em;left:auto}.MathJax_MenuRadioCheck{position:absolute;left:.7em}.MathJax_MenuRadioCheck.RTL{right:.7em;left:auto}.MathJax_MenuLabel{padding:1px 2em 3px 1.33em;font-style:italic}.MathJax_MenuRule{border-top:1px solid #DDD;margin:4px 3px}.MathJax_MenuDisabled{color:GrayText}.MathJax_MenuActive{background-color:#606872;color:#fff}.MathJax_Menu_Close{position:absolute;width:31px;height:31px;top:-15px;left:-15px}#MathJax_Zoom{position:absolute;background-color:#F0F0F0;overflow:auto;display:block;z-index:301;padding:.5em;border:1px solid #000;margin:0;font-weight:400;font-style:normal;text-align:left;text-indent:0;text-transform:none;line-height:normal;letter-spacing:normal;word-spacing:normal;word-wrap:normal;white-space:nowrap;float:none;box-shadow:5px 5px 15px #AAA;-webkit-box-shadow:5px 5px 15px #AAA;-moz-box-shadow:5px 5px 15px #AAA;-khtml-box-shadow:5px 5px 15px #AAA;filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}#MathJax_ZoomOverlay{position:absolute;left:0;top:0;z-index:300;display:inline-block;width:100%;height:100%;border:0;padding:0;margin:0;background-color:#fff;opacity:0;filter:alpha(opacity=0)}#MathJax_ZoomFrame{position:relative;display:inline-block;height:0;width:0}#MathJax_ZoomEventTrap{position:absolute;left:0;top:0;z-index:302;display:inline-block;border:0;padding:0;margin:0;background-color:#fff;opacity:0;filter:alpha(opacity=0)}.MathJax_Preview{color:#888}#MathJax_Message{position:fixed;left:1px;bottom:2px;background-color:#E6E6E6;border:1px solid #959595;margin:0;padding:2px 8px;z-index:102;color:#000;font-size:80%;width:auto;white-space:nowrap}#MathJax_MSIE_Frame{position:absolute;top:0;left:0;width:0;z-index:101;border:0;margin:0;padding:0}.MathJax_Error{color:#C00;font-style:italic}footer{position:fixed;font-size:.8em;text-align:right;bottom:0;margin-left:-25px;height:20px;width:100%}</style>
+</head>
+<body class="markdown haroopad">
+<h1 id="亿方云开放平台java-sdk使用说明"><a name="亿方云开放平台java-sdk使用说明" href="#亿方云开放平台java-sdk使用说明"></a>亿方云开放平台JAVA-SDK使用说明</h1><h2 id="目录"><a name="目录" href="#目录"></a>目录</h2><p class="toc" style="undefined"></p><ul>
+<li><ul>
+<li><span class="title">
+<a href="#目录" title="目录">目录</a>
+</span>
+<!--span class="number">
+0
+</span-->
+</li>
+<li><span class="title">
+<a href="#部署" title="部署">部署</a>
+</span>
+<!--span class="number">
+1
+</span-->
+<ul>
+<li><span class="title">
+<a href="#1：下载jar包，导入项目路径" title="1：下载jar包，导入项目路径">1：下载jar包，导入项目路径</a>
+</span>
+<!--span class="number">
+2
+</span-->
+</li>
+<li><span class="title">
+<a href="#2：maven配置，配置如下" title="2：maven配置，配置如下">2：maven配置，配置如下</a>
+</span>
+<!--span class="number">
+3
+</span-->
+</li>
+</ul>
+</li>
+<li><span class="title">
+<a href="#使用" title="使用">使用</a>
+</span>
+<!--span class="number">
+4
+</span-->
+<ul>
+<li><span class="title">
+<a href="#获取资源只需以下几步" title="获取资源只需以下几步">获取资源只需以下几步</a>
+</span>
+<!--span class="number">
+5
+</span-->
+</li>
+<li><span class="title">
+<a href="#authorize操作" title="Authorize操作">Authorize操作</a>
+</span>
+<!--span class="number">
+6
+</span-->
+<ul>
+<li><ul>
+<li><span class="title">
+<a href="#发起授权请求" title="发起授权请求">发起授权请求</a>
+</span>
+<!--span class="number">
+7
+</span-->
+</li>
+<li><span class="title">
+<a href="#获取token" title="获取Token">获取Token</a>
+</span>
+<!--span class="number">
+8
+</span-->
+</li>
+<li><span class="title">
+<a href="#刷新token" title="刷新token">刷新token</a>
+</span>
+<!--span class="number">
+9
+</span-->
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><span class="title">
+<a href="#file操作" title="File操作">File操作</a>
+</span>
+<!--span class="number">
+10
+</span-->
+<ul>
+<li><ul>
+<li><span class="title">
+<a href="#获取文件信息" title="获取文件信息">获取文件信息</a>
+</span>
+<!--span class="number">
+11
+</span-->
+</li>
+<li><span class="title">
+<a href="#更新文件信息" title="更新文件信息">更新文件信息</a>
+</span>
+<!--span class="number">
+12
+</span-->
+</li>
+<li><span class="title">
+<a href="#删除文件至回收站" title="删除文件至回收站">删除文件至回收站</a>
+</span>
+<!--span class="number">
+13
+</span-->
+</li>
+<li><span class="title">
+<a href="#从回收站删除文件" title="从回收站删除文件">从回收站删除文件</a>
+</span>
+<!--span class="number">
+14
+</span-->
+</li>
+<li><span class="title">
+<a href="#从回收站恢复文件" title="从回收站恢复文件">从回收站恢复文件</a>
+</span>
+<!--span class="number">
+15
+</span-->
+</li>
+<li><span class="title">
+<a href="#移动文件" title="移动文件">移动文件</a>
+</span>
+<!--span class="number">
+16
+</span-->
+</li>
+<li><span class="title">
+<a href="#获取新文件上传地址" title="获取新文件上传地址">获取新文件上传地址</a>
+</span>
+<!--span class="number">
+17
+</span-->
+</li>
+<li><span class="title">
+<a href="#获取文件上传新版本地址" title="获取文件上传新版本地址">获取文件上传新版本地址</a>
+</span>
+<!--span class="number">
+18
+</span-->
+</li>
+<li><span class="title">
+<a href="#获取文件的下载地址" title="获取文件的下载地址">获取文件的下载地址</a>
+</span>
+<!--span class="number">
+19
+</span-->
+</li>
+<li><span class="title">
+<a href="#预览文件" title="预览文件">预览文件</a>
+</span>
+<!--span class="number">
+20
+</span-->
+</li>
+<li><span class="title">
+<a href="#获取文件预览转换后的下载地址" title="获取文件预览转换后的下载地址">获取文件预览转换后的下载地址</a>
+</span>
+<!--span class="number">
+21
+</span-->
+</li>
+<li><span class="title">
+<a href="#预览嵌入" title="预览嵌入">预览嵌入</a>
+</span>
+<!--span class="number">
+22
+</span-->
+</li>
+<li><span class="title">
+<a href="#复制文件" title="复制文件">复制文件</a>
+</span>
+<!--span class="number">
+23
+</span-->
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><span class="title">
+<a href="#文件夹（folder）操作" title="文件夹（FOLDER）操作">文件夹（FOLDER）操作</a>
+</span>
+<!--span class="number">
+24
+</span-->
+<ul>
+<li><ul>
+<li><span class="title">
+<a href="#获取文件夹信息" title="获取文件夹信息">获取文件夹信息</a>
+</span>
+<!--span class="number">
+25
+</span-->
+</li>
+<li><span class="title">
+<a href="#创建文件夹" title="创建文件夹">创建文件夹</a>
+</span>
+<!--span class="number">
+26
+</span-->
+</li>
+<li><span class="title">
+<a href="#更新文件夹" title="更新文件夹">更新文件夹</a>
+</span>
+<!--span class="number">
+27
+</span-->
+</li>
+<li><span class="title">
+<a href="#删除文件夹至回收站" title="删除文件夹至回收站">删除文件夹至回收站</a>
+</span>
+<!--span class="number">
+28
+</span-->
+</li>
+<li><span class="title">
+<a href="#从回收站删除文件夹" title="从回收站删除文件夹">从回收站删除文件夹</a>
+</span>
+<!--span class="number">
+29
+</span-->
+</li>
+<li><span class="title">
+<a href="#从回收站恢复文件夹" title="从回收站恢复文件夹">从回收站恢复文件夹</a>
+</span>
+<!--span class="number">
+30
+</span-->
+</li>
+<li><span class="title">
+<a href="#移动文件夹" title="移动文件夹">移动文件夹</a>
+</span>
+<!--span class="number">
+31
+</span-->
+</li>
+<li><span class="title">
+<a href="#获取单层子文件和文件夹列表" title="获取单层子文件和文件夹列表">获取单层子文件和文件夹列表</a>
+</span>
+<!--span class="number">
+32
+</span-->
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><span class="title">
+<a href="#文件或文件夹（item）操作" title="文件或文件夹（ITEM）操作">文件或文件夹（ITEM）操作</a>
+</span>
+<!--span class="number">
+33
+</span-->
+<ul>
+<li><ul>
+<li><span class="title">
+<a href="#搜索" title="搜索">搜索</a>
+</span>
+<!--span class="number">
+34
+</span-->
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><span class="title">
+<a href="#用户（user）操作" title="用户（User）操作">用户（User）操作</a>
+</span>
+<!--span class="number">
+35
+</span-->
+<ul>
+<li><ul>
+<li><span class="title">
+<a href="#获取用户的as_user码" title="获取用户的as_user码">获取用户的as_user码</a>
+</span>
+<!--span class="number">
+36
+</span-->
+</li>
+<li><span class="title">
+<a href="#获取自己的信息" title="获取自己的信息">获取自己的信息</a>
+</span>
+<!--span class="number">
+37
+</span-->
+</li>
+<li><span class="title">
+<a href="#获取他人的信息" title="获取他人的信息">获取他人的信息</a>
+</span>
+<!--span class="number">
+38
+</span-->
+</li>
+<li><span class="title">
+<a href="#获取用户头像" title="获取用户头像">获取用户头像</a>
+</span>
+<!--span class="number">
+39
+</span-->
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><span class="title">
+<a href="#通用对象" title="通用对象">通用对象</a>
+</span>
+<!--span class="number">
+40
+</span-->
+<ul>
+<li><span class="title">
+<a href="#file" title="File">File</a>
+</span>
+<!--span class="number">
+41
+</span-->
+</li>
+<li><span class="title">
+<a href="#folder" title="Folder">Folder</a>
+</span>
+<!--span class="number">
+42
+</span-->
+</li>
+<li><span class="title">
+<a href="#user" title="User">User</a>
+</span>
+<!--span class="number">
+43
+</span-->
+</li>
+</ul>
+</li>
+<li><span class="title">
+<a href="#日志" title="日志">日志</a>
+</span>
+<!--span class="number">
+44
+</span-->
+<ul>
+<li><ul>
+<li><ul>
+<li><span class="title">
+<a href="#配置" title="配置">配置</a>
+</span>
+<!--span class="number">
+45
+</span-->
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><span class="title">
+<a href="#异常错误码" title="异常错误码">异常错误码</a>
+</span>
+<!--span class="number">
+46
+</span-->
+</li>
+</ul>
+</li>
+</ul>
+</li>
+
+</ul>
+<p></p><h2 id="部署"><a name="部署" href="#部署"></a>部署</h2><p>部署SDK提供两种部署方案：</p><h3 id="1：下载jar包，导入项目路径"><a name="1：下载jar包，导入项目路径" href="#1：下载jar包，导入项目路径"></a>1：下载jar包，导入项目路径</h3><pre class="xml hljs"><code class="xml" data-origin="<pre><code class=&quot;xml&quot;>java-sdk1.0.jar
+需要以下依赖
+1: httpclient4.4.1.jar
+2: httpcore.4.4.1.jar
+3: gson2.2.4.jar
+</code></pre>">java-sdk1.0.jar
+需要以下依赖
+1: httpclient4.4.1.jar
+2: httpcore.4.4.1.jar
+3: gson2.2.4.jar
+</code></pre><h3 id="2：maven配置，配置如下"><a name="2：maven配置，配置如下" href="#2：maven配置，配置如下"></a>2：maven配置，配置如下</h3><pre class="xml hljs"><code class="xml" data-origin="<pre><code class=&quot;xml&quot;>&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;com.fangcloud.sdk&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;java-sdk&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;0.1.5&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+</code></pre>"><span class="hljs-tag">&lt;<span class="hljs-title">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">groupId</span>&gt;</span>com.fangcloud.sdk<span class="hljs-tag">&lt;/<span class="hljs-title">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">artifactId</span>&gt;</span>java-sdk<span class="hljs-tag">&lt;/<span class="hljs-title">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">version</span>&gt;</span>0.1.5<span class="hljs-tag">&lt;/<span class="hljs-title">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">dependency</span>&gt;</span>
+</code></pre><h2 id="使用"><a name="使用" href="#使用"></a>使用</h2><h3 id="获取资源只需以下几步"><a name="获取资源只需以下几步" href="#获取资源只需以下几步"></a>获取资源只需以下几步</h3><pre><code data-origin="<pre><code>只需四步：
+1：初始化自己的应用连接信息，构建Connection
+2：发起授权请求，接收授权码
+3：获取到授权码之后获取Token
+4：使用Token请求api资源
+</code></pre>">只需四步：
+1：初始化自己的应用连接信息，构建Connection
+2：发起授权请求，接收授权码
+3：获取到授权码之后获取Token
+4：使用Token请求api资源
+</code></pre><p><em>注意</em><br>建议Connection使用单例模式，发起授权请求之后，授权码回调给redirectURL，在这里需要调用AuthApi.getTokenByAuthCode(“you’s authcode”)传入您获取到的授权码，会自动处理Connection的，无需手动添加，现在为止，connection已经已经具备了操作权限，直接使用SDK就可以了，下面是具体的代码示例：</p><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>public class QuickStart {
+    public static Connection connection=null;
+    public static void main(String[] args) {
+        connection = Connection.getConnection().buildConnection(&quot;clientId&quot;, &quot;clientSecret&quot;, &quot;rediectUrl&quot;);
+        AuthApi.getTokenByAuthCode(&quot;you authcode&quot;);
+        FileApi.getFileInfo(0);
+    }
+}
+</code></pre>"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QuickStart</span> </span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Connection connection=<span class="hljs-keyword">null</span>;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        connection = Connection.getConnection().buildConnection(<span class="hljs-string">"clientId"</span>, <span class="hljs-string">"clientSecret"</span>, <span class="hljs-string">"rediectUrl"</span>);
+        AuthApi.getTokenByAuthCode(<span class="hljs-string">"you authcode"</span>);
+        FileApi.getFileInfo(<span class="hljs-number">0</span>);
+    }
+}
+</code></pre><h3 id="authorize操作"><a name="authorize操作" href="#authorize操作"></a>Authorize操作</h3><h5 id="发起授权请求"><a name="发起授权请求" href="#发起授权请求"></a>发起授权请求</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>Authorize()
+</code></pre>">Authorize()
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">无</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong>      ：Void</p><p></p><hr><br><br><p></p><h5 id="获取token"><a name="获取token" href="#获取token"></a>获取Token</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>getTokenByAuthCode(String... authCode)
+</code></pre>">getTokenByAuthCode(String... authCode)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">authCode</td>
+<td style="text-align:center">String</td>
+<td style="text-align:center">授权码</td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong><br>TokenInfo</p><table>
+<thead>
+<tr>
+<th style="text-align:center">TokenInfo字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">accessToken</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">接口访问标识</td>
+</tr>
+<tr>
+<td style="text-align:center">tokenType</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">目前固定为bearer</td>
+</tr>
+<tr>
+<td style="text-align:center">refreshToken</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">用来刷新access_token，有效时间为30天</td>
+</tr>
+<tr>
+<td style="text-align:center">expiresIn</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">access_token的有效时间，单位为s</td>
+</tr>
+<tr>
+<td style="text-align:center">scope</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">目前固定为”all”</td>
+</tr>
+</tbody>
+</table><hr><h5 id="刷新token"><a name="刷新token" href="#刷新token"></a>刷新token</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>getTokenByRefreshToken(String... refreshtokens)
+</code></pre>">getTokenByRefreshToken(String... refreshtokens)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">refreshToken</td>
+<td style="text-align:center">String</td>
+<td style="text-align:center">刷新Token</td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong><br>TokenInfo</p><table>
+<thead>
+<tr>
+<th style="text-align:center">TokenInfo字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">accessToken</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">接口访问标识</td>
+</tr>
+<tr>
+<td style="text-align:center">tokenType</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">目前固定为bearer</td>
+</tr>
+<tr>
+<td style="text-align:center">refreshToken</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">用来刷新access_token，有效时间为30天</td>
+</tr>
+<tr>
+<td style="text-align:center">expiresIn</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">access_token的有效时间，单位为s</td>
+</tr>
+<tr>
+<td style="text-align:center">scope</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">目前固定为”all”</td>
+</tr>
+</tbody>
+</table><p><em>注意：这里仅仅调用本方法就自动完成了Token刷新，无需set，<br>另外提供了：rebuildAccessToken()方法进行自动刷新。都可使用</em></p><hr><h3 id="file操作"><a name="file操作" href="#file操作"></a>File操作</h3><h5 id="获取文件信息"><a name="获取文件信息" href="#获取文件信息"></a>获取文件信息</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>getFileInfo(long id)
+</code></pre>">getFileInfo(<span class="hljs-keyword">long</span> id)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">id</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">文件ID</td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong><br>FileInfo</p><table>
+<thead>
+<tr>
+<th style="text-align:center">FileInfo成员变量</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">comments_count</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">评论数，目前都为0</td>
+</tr>
+<tr>
+<td style="text-align:center">type</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">固定为”file”</td>
+</tr>
+<tr>
+<td style="text-align:center">id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">文件id</td>
+</tr>
+<tr>
+<td style="text-align:center">name</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">文件名称</td>
+</tr>
+<tr>
+<td style="text-align:center">extension_category</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">扩展名分类</td>
+</tr>
+<tr>
+<td style="text-align:center">size</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">文件大小</td>
+</tr>
+<tr>
+<td style="text-align:center">created_at</td>
+<td style="text-align:center">timestamp</td>
+<td style="text-align:center">文件创建时间</td>
+</tr>
+<tr>
+<td style="text-align:center">modified_at</td>
+<td style="text-align:center">timestamp</td>
+<td style="text-align:center">文件更新时间</td>
+</tr>
+<tr>
+<td style="text-align:center">description</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">文件描述</td>
+</tr>
+<tr>
+<td style="text-align:center">path</td>
+<td style="text-align:center">folder数组</td>
+<td style="text-align:center">所有的祖先文件夹</td>
+</tr>
+<tr>
+<td style="text-align:center">owned_by</td>
+<td style="text-align:center">user</td>
+<td style="text-align:center">所有者</td>
+</tr>
+<tr>
+<td style="text-align:center">shared</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">是否被分享，目前都为false</td>
+</tr>
+<tr>
+<td style="text-align:center">parent</td>
+<td style="text-align:center">folder</td>
+<td style="text-align:center">父文件夹</td>
+</tr>
+<tr>
+<td style="text-align:center">sequence_id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">目前没有用</td>
+</tr>
+<tr>
+<td style="text-align:center">in_trash</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">是否在回收站中</td>
+</tr>
+<tr>
+<td style="text-align:center">is_deleted</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">是否已经被删除</td>
+</tr>
+</tbody>
+</table><p></p><hr><p></p><h5 id="更新文件信息"><a name="更新文件信息" href="#更新文件信息"></a>更新文件信息</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>updateFile(long id, String newName, String newDescription)
+</code></pre>">updateFile(<span class="hljs-keyword">long</span> id, String newName, String newDescription)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">id</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">文件ID</td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong><br>FileInfo</p><table>
+<thead>
+<tr>
+<th style="text-align:center">FileInfo成员变量</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">comments_count</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">评论数，目前都为0</td>
+</tr>
+<tr>
+<td style="text-align:center">type</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">固定为”file”</td>
+</tr>
+<tr>
+<td style="text-align:center">id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">文件id</td>
+</tr>
+<tr>
+<td style="text-align:center">name</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">文件名称</td>
+</tr>
+<tr>
+<td style="text-align:center">extension_category</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">扩展名分类</td>
+</tr>
+<tr>
+<td style="text-align:center">size</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">文件大小</td>
+</tr>
+<tr>
+<td style="text-align:center">created_at</td>
+<td style="text-align:center">timestamp</td>
+<td style="text-align:center">文件创建时间</td>
+</tr>
+<tr>
+<td style="text-align:center">modified_at</td>
+<td style="text-align:center">timestamp</td>
+<td style="text-align:center">文件更新时间</td>
+</tr>
+<tr>
+<td style="text-align:center">description</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">文件描述</td>
+</tr>
+<tr>
+<td style="text-align:center">path</td>
+<td style="text-align:center">folder数组</td>
+<td style="text-align:center">所有的祖先文件夹</td>
+</tr>
+<tr>
+<td style="text-align:center">owned_by</td>
+<td style="text-align:center">user</td>
+<td style="text-align:center">所有者</td>
+</tr>
+<tr>
+<td style="text-align:center">shared</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">是否被分享，目前都为false</td>
+</tr>
+<tr>
+<td style="text-align:center">parent</td>
+<td style="text-align:center">folder</td>
+<td style="text-align:center">父文件夹</td>
+</tr>
+<tr>
+<td style="text-align:center">sequence_id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">目前没有用</td>
+</tr>
+<tr>
+<td style="text-align:center">in_trash</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">是否在回收站中</td>
+</tr>
+<tr>
+<td style="text-align:center">is_deleted</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">是否已经被删除</td>
+</tr>
+</tbody>
+</table><hr><h5 id="删除文件至回收站"><a name="删除文件至回收站" href="#删除文件至回收站"></a>删除文件至回收站</h5><p>支持批量操作</p><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>deleteFile(long... fileIds)
+</code></pre>">deleteFile(<span class="hljs-keyword">long</span>... fileIds)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">fileIds</td>
+<td style="text-align:center">List</td>
+<td style="text-align:center">文件id集合</td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong><br>Result</p><table>
+<thead>
+<tr>
+<th style="text-align:center">FileInfo成员变量</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">success</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">删除是否成功</td>
+</tr>
+</tbody>
+</table><p></p><hr><p></p><h5 id="从回收站删除文件"><a name="从回收站删除文件" href="#从回收站删除文件"></a>从回收站删除文件</h5><p>支持批量操作</p><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>deleteFileFromTrash(boolean clear_trash, long... fileIds)
+</code></pre>">deleteFileFromTrash(<span class="hljs-keyword">boolean</span> clear_trash, <span class="hljs-keyword">long</span>... fileIds)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">是否必须</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">fileIds</td>
+<td style="text-align:center">List</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">文件id集合</td>
+</tr>
+<tr>
+<td style="text-align:center">clear_trash</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">清空回收站</td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong><br>Result</p><table>
+<thead>
+<tr>
+<th style="text-align:center">Result成员变量</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">success</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">删除是否成功</td>
+</tr>
+</tbody>
+</table><hr><h5 id="从回收站恢复文件"><a name="从回收站恢复文件" href="#从回收站恢复文件"></a>从回收站恢复文件</h5><p>支持批量操作</p><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>recoveryFileFromTrash(boolean restoreAll, long... fileIds)
+</code></pre>">recoveryFileFromTrash(<span class="hljs-keyword">boolean</span> restoreAll, <span class="hljs-keyword">long</span>... fileIds)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">是否必须</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">fileIds</td>
+<td style="text-align:center">List</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">文件id集合</td>
+</tr>
+<tr>
+<td style="text-align:center">restoreAllh</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">全部恢复</td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong><br>Result</p><table>
+<thead>
+<tr>
+<th style="text-align:center">Result成员变量</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">success</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">删除是否成功</td>
+</tr>
+</tbody>
+</table><hr><h5 id="移动文件"><a name="移动文件" href="#移动文件"></a>移动文件</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>moveFile(List&amp;lt;Long&amp;gt; fileIds, long target_folder_id)
+</code></pre>">moveFile(List&lt;Long&gt; fileIds, <span class="hljs-keyword">long</span> target_folder_id)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">是否必须</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">file_ids</td>
+<td style="text-align:center">long数组</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">被移动的文件id</td>
+</tr>
+<tr>
+<td style="text-align:center">target_folder_id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">移动至的文件夹id</td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong><br>Result</p><table>
+<thead>
+<tr>
+<th style="text-align:center">Result成员变量</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">success</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">删除是否成功</td>
+</tr>
+</tbody>
+</table><hr><h5 id="获取新文件上传地址"><a name="获取新文件上传地址" href="#获取新文件上传地址"></a>获取新文件上传地址</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>uploadFile(long parentId, String name)
+</code></pre>">uploadFile(<span class="hljs-keyword">long</span> parentId, String name)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">是否必须</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">parent_id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">上传至的文件夹id</td>
+</tr>
+<tr>
+<td style="text-align:center">name</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">文件名称，文件名称必须是1到222个字符，并且不能含有/ ? : *</td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong><br>FilePresignUpload</p><table>
+<thead>
+<tr>
+<th style="text-align:center">成员</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">presign_url</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">上传链接，接下来往该链接上传即可上传文件，上传链接的有效时间为1个小时</td>
+</tr>
+</tbody>
+</table><hr><h5 id="获取文件上传新版本地址"><a name="获取文件上传新版本地址" href="#获取文件上传新版本地址"></a>获取文件上传新版本地址</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>newVersion(long id, String name, String remark)
+</code></pre>">newVersion(<span class="hljs-keyword">long</span> id, String name, String remark)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">是否必须</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">parent_id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">上传至的文件夹id</td>
+</tr>
+<tr>
+<td style="text-align:center">name</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">文件名称，文件名称必须是1到222个字符，并且不能含有/ ? : *</td>
+</tr>
+<tr>
+<td style="text-align:center">remark</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">上传新版本的备注。</td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong><br>FilePresignUpload</p><table>
+<thead>
+<tr>
+<th style="text-align:center">成员</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">presign_url</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">上传链接，接下来往该链接上传即可上传文件，上传链接的有效时间为1个小时</td>
+</tr>
+</tbody>
+</table><hr><h5 id="获取文件的下载地址"><a name="获取文件的下载地址" href="#获取文件的下载地址"></a>获取文件的下载地址</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>download(long id)
+</code></pre>">download(<span class="hljs-keyword">long</span> id)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">是否必须</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">parentId</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">上传至的文件夹id</td>
+</tr>
+<tr>
+<td style="text-align:center">name</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">文件名称，文件名称必须是1到222个字符，并且不能含有/ ? : *</td>
+</tr>
+<tr>
+<td style="text-align:center">remark</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">上传新版本的备注。</td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong><br>FilePresignDownload</p><table>
+<thead>
+<tr>
+<th style="text-align:center">返回字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">download_urls</td>
+<td style="text-align:center">key为file_id, value为url组成的map</td>
+<td style="text-align:center">下载链接，访问该下载链接即可下载文件，下载链接的有效时间为1个小时，且只能被使用一次</td>
+</tr>
+</tbody>
+</table><hr><h5 id="预览文件"><a name="预览文件" href="#预览文件"></a>预览文件</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>preview(long id, boolean forceRegenerate, String kind)
+</code></pre>">preview(<span class="hljs-keyword">long</span> id, <span class="hljs-keyword">boolean</span> forceRegenerate, String kind)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">文件id</td>
+</tr>
+<tr>
+<td style="text-align:center">forceRegenerate</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">否</td>
+<td>是否需要重新生成预览</td>
+</tr>
+<tr>
+<td style="text-align:center">kind</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">是</td>
+<td>生成的预览图类型，具体类型见该接口的描述</td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong><br>FilePreviewInfo</p><p>若预览图未生成：</p><table>
+<thead>
+<tr>
+<th style="text-align:center">返回字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">category</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">预览图的分类</td>
+</tr>
+<tr>
+<td style="text-align:center">exif_rotation</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">表示图片的旋转，具体可参考<a href="https://beradrian.wordpress.com/2008/11/14/rotate-exif-images/">https://beradrian.wordpress.com/2008/11/14/rotate-exif-images/</a></td>
+</tr>
+<tr>
+<td style="text-align:center">format</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">预览图的后缀名</td>
+</tr>
+<tr>
+<td style="text-align:center">has_2048</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">是否能生成2048 * 2048的预览图</td>
+</tr>
+<tr>
+<td style="text-align:center">page_count</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">只用在office文件转图片上</td>
+</tr>
+<tr>
+<td style="text-align:center">status</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">预览转换的状态</td>
+</tr>
+</tbody>
+</table><p>若预览图已经生成，则会在上面的基础上多以下字段：</p><table>
+<thead>
+<tr>
+<th style="text-align:center">返回字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">download_url</td>
+<td style="text-align:center">url</td>
+<td style="text-align:center">预览图的下载链接</td>
+</tr>
+</tbody>
+</table><p>若预览图生成失败：</p><table>
+<thead>
+<tr>
+<th style="text-align:center">返回字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">status</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">固定为failed</td>
+</tr>
+<tr>
+<td style="text-align:center">representation_fail_reason</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">预览生成失败的原因</td>
+</tr>
+</tbody>
+</table><hr><h5 id="获取文件预览转换后的下载地址"><a name="获取文件预览转换后的下载地址" href="#获取文件预览转换后的下载地址"></a>获取文件预览转换后的下载地址</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>previewDownload(long id, int pageIndex, String kind)
+</code></pre>">previewDownload(<span class="hljs-keyword">long</span> id, <span class="hljs-keyword">int</span> pageIndex, String kind)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">是否必须</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">page_index</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">分页下载，常用于预览图是多页的情况</td>
+</tr>
+<tr>
+<td style="text-align:center">kind</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">生成的预览图类型，具体类型见该预览文件接口的描述</td>
+</tr>
+<tr>
+<td style="text-align:center">id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">文件id</td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong><br>FilePreviewDownload<br>若预览图未生成：</p><table>
+<thead>
+<tr>
+<th style="text-align:center">返回字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">success</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">固定为false</td>
+</tr>
+</tbody>
+</table><p>若预览图已经生成，则会在上面的基础上多以下字段：</p><table>
+<thead>
+<tr>
+<th style="text-align:center">返回字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">download_url</td>
+<td style="text-align:center">url</td>
+<td style="text-align:center">预览图的下载链接</td>
+</tr>
+</tbody>
+</table><p>若预览图生成失败：</p><table>
+<thead>
+<tr>
+<th style="text-align:center">返回字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">status</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">固定为failed</td>
+</tr>
+<tr>
+<td style="text-align:center">representation_fail_reason</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">预览生成失败的原因</td>
+</tr>
+</tbody>
+</table><h5 id="预览嵌入"><a name="预览嵌入" href="#预览嵌入"></a>预览嵌入</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>getPreviewFrameUrl(long fileId, String fileName)
+</code></pre>">getPreviewFrameUrl(<span class="hljs-keyword">long</span> fileId, String fileName)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">是否必须</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">access_token</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">当前用户的access_token</td>
+</tr>
+<tr>
+<td style="text-align:center">file_id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">需要预览的文件的id</td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong><br>返回Url：String 类型，如“<code>&lt;iframe src="https://open.fangcloud.com/preview/preview.html?access_token=xxx&amp;file_id=1"&gt;&lt;/iframe&gt;</code>”；</p><h5 id="复制文件"><a name="复制文件" href="#复制文件"></a>复制文件</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>copyFile(long fileId, long targetFolderId, boolean checkConflict)
+</code></pre>">copyFile(<span class="hljs-keyword">long</span> fileId, <span class="hljs-keyword">long</span> targetFolderId, <span class="hljs-keyword">boolean</span> checkConflict)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">是否必须</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">file_id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">被拷贝的文件id</td>
+</tr>
+<tr>
+<td style="text-align:center">target_folder_id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">拷贝至的文件夹id</td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">返回字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">new_file</td>
+<td style="text-align:center">file</td>
+<td style="text-align:center">复制产生的新的file</td>
+</tr>
+</tbody>
+</table><hr><h3 id="文件夹（folder）操作"><a name="文件夹（folder）操作" href="#文件夹（folder）操作"></a>文件夹（FOLDER）操作</h3><h5 id="获取文件夹信息"><a name="获取文件夹信息" href="#获取文件夹信息"></a>获取文件夹信息</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>getFolderInfo(long id)
+</code></pre>">getFolderInfo(<span class="hljs-keyword">long</span> id)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">文件夹id</td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong><br><strong>返回字段说明</strong><br>FolderInfo</p><table>
+<thead>
+<tr>
+<th style="text-align:center">返回字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">item_count</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">包含item的数量</td>
+</tr>
+<tr>
+<td style="text-align:center">folder_type</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">文件夹类型</td>
+</tr>
+<tr>
+<td style="text-align:center">type</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">固定为”folder”</td>
+</tr>
+<tr>
+<td style="text-align:center">id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">文件夹id</td>
+</tr>
+<tr>
+<td style="text-align:center">name</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">文件夹名称</td>
+</tr>
+<tr>
+<td style="text-align:center">size</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">文件夹大小</td>
+</tr>
+<tr>
+<td style="text-align:center">created_at</td>
+<td style="text-align:center">timestamp</td>
+<td style="text-align:center">文件夹创建时间，单位为秒</td>
+</tr>
+<tr>
+<td style="text-align:center">modified_at</td>
+<td style="text-align:center">timestamp</td>
+<td style="text-align:center">文件夹更新时间，单位为秒</td>
+</tr>
+<tr>
+<td style="text-align:center">description</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">文件夹描述</td>
+</tr>
+<tr>
+<td style="text-align:center">path</td>
+<td style="text-align:center">folder数组</td>
+<td style="text-align:center">所有的祖先文件夹</td>
+</tr>
+<tr>
+<td style="text-align:center">owned_by</td>
+<td style="text-align:center">user</td>
+<td style="text-align:center">所有者</td>
+</tr>
+<tr>
+<td style="text-align:center">shared</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">是否被分享，目前都为false</td>
+</tr>
+<tr>
+<td style="text-align:center">parent</td>
+<td style="text-align:center">folder</td>
+<td style="text-align:center">父文件夹</td>
+</tr>
+<tr>
+<td style="text-align:center">sequence_id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">目前没有用</td>
+</tr>
+<tr>
+<td style="text-align:center">in_trash</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">是否在回收站中</td>
+</tr>
+<tr>
+<td style="text-align:center">is_deleted</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">是否已经被删除</td>
+</tr>
+</tbody>
+</table><p></p><hr><p></p><h5 id="创建文件夹"><a name="创建文件夹" href="#创建文件夹"></a>创建文件夹</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>createFolder(String name, long parentId)
+</code></pre>">createFolder(String name, <span class="hljs-keyword">long</span> parentId)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">是否必须</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">name</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">文件夹名</td>
+</tr>
+<tr>
+<td style="text-align:center">parentId</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">父文件夹id</td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong><br>CreateFolder</p><table>
+<thead>
+<tr>
+<th style="text-align:center">返回字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">item_count</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">包含item的数量</td>
+</tr>
+<tr>
+<td style="text-align:center">folder_type</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">文件夹类型</td>
+</tr>
+<tr>
+<td style="text-align:center">type</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">固定为”folder”</td>
+</tr>
+<tr>
+<td style="text-align:center">id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">文件夹id</td>
+</tr>
+<tr>
+<td style="text-align:center">name</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">文件夹名称</td>
+</tr>
+<tr>
+<td style="text-align:center">size</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">文件夹大小</td>
+</tr>
+<tr>
+<td style="text-align:center">created_at</td>
+<td style="text-align:center">timestamp</td>
+<td style="text-align:center">文件夹创建时间，单位为秒</td>
+</tr>
+<tr>
+<td style="text-align:center">modified_at</td>
+<td style="text-align:center">timestamp</td>
+<td style="text-align:center">文件夹更新时间，单位为秒</td>
+</tr>
+<tr>
+<td style="text-align:center">description</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">文件夹描述</td>
+</tr>
+<tr>
+<td style="text-align:center">path</td>
+<td style="text-align:center">folder数组</td>
+<td style="text-align:center">所有的祖先文件夹</td>
+</tr>
+<tr>
+<td style="text-align:center">owned_by</td>
+<td style="text-align:center">user</td>
+<td style="text-align:center">所有者</td>
+</tr>
+<tr>
+<td style="text-align:center">shared</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">是否被分享，目前都为false</td>
+</tr>
+<tr>
+<td style="text-align:center">parent</td>
+<td style="text-align:center">folder</td>
+<td style="text-align:center">父文件夹</td>
+</tr>
+<tr>
+<td style="text-align:center">sequence_id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">目前没有用</td>
+</tr>
+<tr>
+<td style="text-align:center">in_trash</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">是否在回收站中</td>
+</tr>
+<tr>
+<td style="text-align:center">is_deleted</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">是否已经被删除</td>
+</tr>
+</tbody>
+</table><p></p><hr><p></p><h5 id="更新文件夹"><a name="更新文件夹" href="#更新文件夹"></a>更新文件夹</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>updateFolder(long id, String newName)
+</code></pre>">updateFolder(<span class="hljs-keyword">long</span> id, String newName)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">是否必须</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">文件夹ID</td>
+</tr>
+<tr>
+<td style="text-align:center">name</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">文件夹名</td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong><br>UpdateFolder</p><table>
+<thead>
+<tr>
+<th style="text-align:center">返回字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">item_count</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">包含item的数量</td>
+</tr>
+<tr>
+<td style="text-align:center">folder_type</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">文件夹类型</td>
+</tr>
+<tr>
+<td style="text-align:center">type</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">固定为”folder”</td>
+</tr>
+<tr>
+<td style="text-align:center">id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">文件夹id</td>
+</tr>
+<tr>
+<td style="text-align:center">name</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">文件夹名称</td>
+</tr>
+<tr>
+<td style="text-align:center">size</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">文件夹大小</td>
+</tr>
+<tr>
+<td style="text-align:center">created_at</td>
+<td style="text-align:center">timestamp</td>
+<td style="text-align:center">文件夹创建时间，单位为秒</td>
+</tr>
+<tr>
+<td style="text-align:center">modified_at</td>
+<td style="text-align:center">timestamp</td>
+<td style="text-align:center">文件夹更新时间，单位为秒</td>
+</tr>
+<tr>
+<td style="text-align:center">description</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">文件夹描述</td>
+</tr>
+<tr>
+<td style="text-align:center">path</td>
+<td style="text-align:center">folder数组</td>
+<td style="text-align:center">所有的祖先文件夹</td>
+</tr>
+<tr>
+<td style="text-align:center">owned_by</td>
+<td style="text-align:center">user</td>
+<td style="text-align:center">所有者</td>
+</tr>
+<tr>
+<td style="text-align:center">shared</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">是否被分享，目前都为false</td>
+</tr>
+<tr>
+<td style="text-align:center">parent</td>
+<td style="text-align:center">folder</td>
+<td style="text-align:center">父文件夹</td>
+</tr>
+<tr>
+<td style="text-align:center">sequence_id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">目前没有用</td>
+</tr>
+<tr>
+<td style="text-align:center">in_trash</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">是否在回收站中</td>
+</tr>
+<tr>
+<td style="text-align:center">is_deleted</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">是否已经被删除</td>
+</tr>
+</tbody>
+</table><p></p><hr><p></p><h5 id="删除文件夹至回收站"><a name="删除文件夹至回收站" href="#删除文件夹至回收站"></a>删除文件夹至回收站</h5><p>支持批量操作</p><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>deleteFolder(long... folderIds)
+</code></pre>">deleteFolder(<span class="hljs-keyword">long</span>... folderIds)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">是否必须</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">folderIds</td>
+<td style="text-align:center">list</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">文件夹id列表</td>
+</tr>
+</tbody>
+</table><p><strong>返回参数</strong><br>DeleteFolder</p><table>
+<thead>
+<tr>
+<th style="text-align:center">返回字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">success</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">删除是否成功</td>
+</tr>
+</tbody>
+</table><p></p><hr><p></p><h5 id="从回收站删除文件夹"><a name="从回收站删除文件夹" href="#从回收站删除文件夹"></a>从回收站删除文件夹</h5><p>支持批量操作</p><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>deleteFolderFromTrash(List&amp;lt;Long&amp;gt; folderIds, boolean clearTrash)
+</code></pre>">deleteFolderFromTrash(List&lt;Long&gt; folderIds, <span class="hljs-keyword">boolean</span> clearTrash)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">是否必须</th>
+<th>字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">folderIds</td>
+<td style="text-align:center">list</td>
+<td style="text-align:center">是</td>
+<td>文件夹id列表</td>
+</tr>
+<tr>
+<td style="text-align:center">clearTrash</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">否</td>
+<td>是否清空回收站</td>
+</tr>
+</tbody>
+</table><p><strong>返回参数</strong></p><p>DeleteFolder</p><table>
+<thead>
+<tr>
+<th style="text-align:center">返回字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">success</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">删除是否成功</td>
+</tr>
+</tbody>
+</table><p></p><hr><p></p><h5 id="从回收站恢复文件夹"><a name="从回收站恢复文件夹" href="#从回收站恢复文件夹"></a>从回收站恢复文件夹</h5><p>支持批量操作</p><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>recoveryFolderFromTrash(List&amp;lt;Long&amp;gt; folderIds, boolean restoreAll)
+</code></pre>">recoveryFolderFromTrash(List&lt;Long&gt; folderIds, <span class="hljs-keyword">boolean</span> restoreAll)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">是否必须</th>
+<th>字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">folderIds</td>
+<td style="text-align:center">list</td>
+<td style="text-align:center">是</td>
+<td>文件夹id列表</td>
+</tr>
+<tr>
+<td style="text-align:center">restoreAll</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">否</td>
+<td>是否恢复所有文件</td>
+</tr>
+</tbody>
+</table><p><strong>返回参数</strong><br>RestoreFolderFromTrash</p><table>
+<thead>
+<tr>
+<th style="text-align:center">返回字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">success</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">删除是否成功</td>
+</tr>
+<tr>
+<td style="text-align:center">folder_ids</td>
+<td style="text-align:center">list</td>
+<td style="text-align:center">文件夹id列表</td>
+</tr>
+</tbody>
+</table><p></p><hr><p></p><h5 id="移动文件夹"><a name="移动文件夹" href="#移动文件夹"></a>移动文件夹</h5><p>支持批量操作</p><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>moveFolder(List&amp;lt;Long&amp;gt; folderIds, long targetFolderId)
+</code></pre>">moveFolder(List&lt;Long&gt; folderIds, <span class="hljs-keyword">long</span> targetFolderId)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">是否必须</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">folderIds</td>
+<td style="text-align:center">list</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">文件夹id列表</td>
+</tr>
+<tr>
+<td style="text-align:center">targetFolderId</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">目标文件夹id</td>
+</tr>
+</tbody>
+</table><p><strong>返回参数</strong><br>MoveFolder</p><table>
+<thead>
+<tr>
+<th style="text-align:center">返回字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">success</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">移动是否成功</td>
+</tr>
+</tbody>
+</table><p></p><hr><p></p><h5 id="获取单层子文件和文件夹列表"><a name="获取单层子文件和文件夹列表" href="#获取单层子文件和文件夹列表"></a>获取单层子文件和文件夹列表</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>getChildren(long folderId, int pageId, int pageCapacity, String type)
+</code></pre>">getChildren(<span class="hljs-keyword">long</span> folderId, <span class="hljs-keyword">int</span> pageId, <span class="hljs-keyword">int</span> pageCapacity, String type)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">folder_id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">文件夹id</td>
+</tr>
+<tr>
+<td style="text-align:center">page_id</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">页号</td>
+</tr>
+<tr>
+<td style="text-align:center">page_capacity</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">页容量</td>
+</tr>
+<tr>
+<td style="text-align:center">type</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">item类型</td>
+</tr>
+</tbody>
+</table><p><strong>返回参数</strong><br>ItemList</p><table>
+<thead>
+<tr>
+<th style="text-align:center">返回字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">folders</td>
+<td style="text-align:center">list</td>
+<td style="text-align:center">包含的folder的list</td>
+</tr>
+<tr>
+<td style="text-align:center">files</td>
+<td style="text-align:center">list</td>
+<td style="text-align:center">包含的file的list</td>
+</tr>
+<tr>
+<td style="text-align:center">total_count</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">所有item的数量</td>
+</tr>
+<tr>
+<td style="text-align:center">page_id</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">页号</td>
+</tr>
+<tr>
+<td style="text-align:center">page_capacity</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">页容量</td>
+</tr>
+</tbody>
+</table><p><strong>返回字段说明</strong></p><h3 id="文件或文件夹（item）操作"><a name="文件或文件夹（item）操作" href="#文件或文件夹（item）操作"></a>文件或文件夹（ITEM）操作</h3><h5 id="搜索"><a name="搜索" href="#搜索"></a>搜索</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>search(String queryWords, String type, int pageNumber, int searchInFolder)
+</code></pre>">search(String queryWords, String type, <span class="hljs-keyword">int</span> pageNumber, <span class="hljs-keyword">int</span> searchInFolder)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">是否必须</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">query_words</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">搜索关键词</td>
+</tr>
+<tr>
+<td style="text-align:center">type</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">搜索类型，分为file，folder，all三种，默认为all</td>
+</tr>
+<tr>
+<td style="text-align:center">page_number</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">第几页，每页默认20，默认为第0页</td>
+</tr>
+<tr>
+<td style="text-align:center">search_in_folder</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">指定父文件夹，匹配的结果都是该文件夹的子文件或子文件夹</td>
+</tr>
+</tbody>
+</table><p><strong>返回参数</strong><br>ItemList</p><table>
+<thead>
+<tr>
+<th style="text-align:center">返回字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">folders</td>
+<td style="text-align:center">list</td>
+<td style="text-align:center">包含的folder的list</td>
+</tr>
+<tr>
+<td style="text-align:center">files</td>
+<td style="text-align:center">list</td>
+<td style="text-align:center">包含的file的list</td>
+</tr>
+<tr>
+<td style="text-align:center">total_count</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">所有item的数量</td>
+</tr>
+<tr>
+<td style="text-align:center">page_id</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">页号</td>
+</tr>
+<tr>
+<td style="text-align:center">page_capacity</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">页容量</td>
+</tr>
+</tbody>
+</table><hr><h3 id="用户（user）操作"><a name="用户（user）操作" href="#用户（user）操作"></a>用户（User）操作</h3><h5 id="获取用户的as_user码"><a name="获取用户的as_user码" href="#获取用户的as_user码"></a>获取用户的as_user码</h5><p><em>此接口为高级接口，常用于跨用户传输文件，若需使用需联系客服</em></p><hr><h5 id="获取自己的信息"><a name="获取自己的信息" href="#获取自己的信息"></a>获取自己的信息</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>getOwnInfo()
+</code></pre>">getOwnInfo()
+</code></pre><p><strong>参数</strong><br>无<br><strong>返回类型</strong><br>GetUserInfo</p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">用户id</td>
+</tr>
+<tr>
+<td style="text-align:center">enterprise_id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">企业id</td>
+</tr>
+<tr>
+<td style="text-align:center">name</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">用户姓名</td>
+</tr>
+<tr>
+<td style="text-align:center">phone</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">用户手机</td>
+</tr>
+<tr>
+<td style="text-align:center">email</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">用户邮箱</td>
+</tr>
+<tr>
+<td style="text-align:center">profile_pic_key</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">用户头像下载所需的key</td>
+</tr>
+<tr>
+<td style="text-align:center">active</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">用户是否激活</td>
+</tr>
+<tr>
+<td style="text-align:center">full_name_pinyin</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">用户姓名的拼音字母</td>
+</tr>
+<tr>
+<td style="text-align:center">pinyin_first_letters</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">用户姓名的拼音首字母</td>
+</tr>
+</tbody>
+</table><h5 id="获取他人的信息"><a name="获取他人的信息" href="#获取他人的信息"></a>获取他人的信息</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>getUserInfo(long id)
+</code></pre>">getUserInfo(<span class="hljs-keyword">long</span> id)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">用户ID</td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong><br>GetUserInfo</p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数字段</th>
+<th style="text-align:center">字段类型</th>
+<th style="text-align:center">字段说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">用户id</td>
+</tr>
+<tr>
+<td style="text-align:center">enterprise_id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">企业id</td>
+</tr>
+<tr>
+<td style="text-align:center">name</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">用户姓名</td>
+</tr>
+<tr>
+<td style="text-align:center">phone</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">用户手机</td>
+</tr>
+<tr>
+<td style="text-align:center">email</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">用户邮箱</td>
+</tr>
+<tr>
+<td style="text-align:center">profile_pic_key</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">用户头像下载所需的key</td>
+</tr>
+<tr>
+<td style="text-align:center">active</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">用户是否激活</td>
+</tr>
+<tr>
+<td style="text-align:center">full_name_pinyin</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">用户姓名的拼音字母</td>
+</tr>
+<tr>
+<td style="text-align:center">pinyin_first_letters</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">用户姓名的拼音首字母</td>
+</tr>
+</tbody>
+</table><h5 id="获取用户头像"><a name="获取用户头像" href="#获取用户头像"></a>获取用户头像</h5><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>getPrifilePicDowload(long userId, String profilePicKey)
+</code></pre>">getPrifilePicDowload(<span class="hljs-keyword">long</span> userId, String profilePicKey)
+</code></pre><p><strong>参数</strong></p><table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">用户ID</td>
+</tr>
+<tr>
+<td style="text-align:center">profilePicKey</td>
+<td style="text-align:center">String</td>
+<td style="text-align:center">用户头像的Key</td>
+</tr>
+</tbody>
+</table><p><strong>返回类型</strong><br>InputStream</p><h3 id="通用对象"><a name="通用对象" href="#通用对象"></a>通用对象</h3><h4 id="file"><a name="file" href="#file"></a>File</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>long</td>
+<td>文件id</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>long</td>
+<td>所有者id</td>
+</tr>
+<tr>
+<td>size</td>
+<td>long</td>
+<td>文件大小</td>
+</tr>
+<tr>
+<td>parent_folder_id</td>
+<td>long</td>
+<td>父文件夹id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>文件名</td>
+</tr>
+<tr>
+<td>extension</td>
+<td>string</td>
+<td>文件扩展名</td>
+</tr>
+<tr>
+<td>extension_category</td>
+<td>string</td>
+<td>文件扩展名的分类</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>文件描述</td>
+</tr>
+<tr>
+<td>remark</td>
+<td>string</td>
+<td>文件备注</td>
+</tr>
+<tr>
+<td>typed_id</td>
+<td>string</td>
+<td>file + “_” + id</td>
+</tr>
+<tr>
+<td>in_trash</td>
+<td>boolean</td>
+<td>是否在回收站</td>
+</tr>
+<tr>
+<td>is_deleted</td>
+<td>boolean</td>
+<td>是否被删除</td>
+</tr>
+<tr>
+<td>owned_by</td>
+<td>user</td>
+<td>所有者对象</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>timestamp</td>
+<td>文件创建时间</td>
+</tr>
+<tr>
+<td>modified_at</td>
+<td>timestamp</td>
+<td>文件修改时间</td>
+</tr>
+</tbody>
+</table><h4 id="folder"><a name="folder" href="#folder"></a>Folder</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">字段</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">文件夹id</td>
+</tr>
+<tr>
+<td style="text-align:center">type</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">固定为folder</td>
+</tr>
+<tr>
+<td style="text-align:center">name</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">文件夹名称</td>
+</tr>
+</tbody>
+</table><h4 id="user"><a name="user" href="#user"></a>User</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">字段</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">用户id</td>
+</tr>
+<tr>
+<td style="text-align:center">name</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">用户名称</td>
+</tr>
+<tr>
+<td style="text-align:center">login</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">用户账号</td>
+</tr>
+<tr>
+<td style="text-align:center">enterprise_id</td>
+<td style="text-align:center">long</td>
+<td style="text-align:center">用户所在的企业id</td>
+</tr>
+</tbody>
+</table><h3 id="日志"><a name="日志" href="#日志"></a>日志</h3><h6 id="配置"><a name="配置" href="#配置"></a>配置</h6><pre><code data-origin="<pre><code>用户可以进行自定义配置，如果用户不自定义指定配置文件，那么会默认使用sdk包下的conf/logback.xml文件作为日志配置文件，
+自定义指定的java代码如下,配置可以参考logback.xml配置文件:
+</code></pre>">用户可以进行自定义配置，如果用户不自定义指定配置文件，那么会默认使用sdk包下的conf/logback.xml文件作为日志配置文件，
+自定义指定的java代码如下,配置可以参考logback.xml配置文件:
+</code></pre><pre class="java hljs"><code class="java" data-origin="<pre><code class=&quot;java&quot;>Config.customLogPath(&quot;your log config path&quot;);
+</code></pre>">Config.customLogPath(<span class="hljs-string">"your log config path"</span>);
+</code></pre><h3 id="异常错误码"><a name="异常错误码" href="#异常错误码"></a>异常错误码</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">code</th>
+<th style="text-align:center">message</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">permission_denied</td>
+<td style="text-align:center">权限不足</td>
+</tr>
+<tr>
+<td style="text-align:center">file_not_found</td>
+<td style="text-align:center">文件不存在</td>
+</tr>
+<tr>
+<td style="text-align:center">folder_not_found</td>
+<td style="text-align:center">文件夹不存在</td>
+</tr>
+<tr>
+<td style="text-align:center">file_deleted</td>
+<td style="text-align:center">文件已删除</td>
+</tr>
+<tr>
+<td style="text-align:center">folder_deleted</td>
+<td style="text-align:center">文件夹已删除</td>
+</tr>
+<tr>
+<td style="text-align:center">file_in_trash_not_found</td>
+<td style="text-align:center">文件不在回收站</td>
+</tr>
+<tr>
+<td style="text-align:center">folder_in_trash_not_found</td>
+<td style="text-align:center">文件夹不在回收站</td>
+</tr>
+<tr>
+<td style="text-align:center">file_name_conflict</td>
+<td style="text-align:center">文件命名冲突</td>
+</tr>
+<tr>
+<td style="text-align:center">folder_name_conflict</td>
+<td style="text-align:center">文件夹命名冲突</td>
+</tr>
+<tr>
+<td style="text-align:center">folder_empty_in_trash</td>
+<td style="text-align:center">回收站无文件夹</td>
+</tr>
+<tr>
+<td style="text-align:center">folder_parent_deleted</td>
+<td style="text-align:center">父文件夹已被删除</td>
+</tr>
+<tr>
+<td style="text-align:center">item_name_invalid</td>
+<td style="text-align:center">文件或文件夹名称不合法</td>
+</tr>
+<tr>
+<td style="text-align:center">item_name_size_incorrect</td>
+<td style="text-align:center">文件或文件夹名称长度错误</td>
+</tr>
+<tr>
+<td style="text-align:center">request_data_invalid</td>
+<td style="text-align:center">请求参数错误</td>
+</tr>
+<tr>
+<td style="text-align:center">exceed_enterprise_space_limit</td>
+<td style="text-align:center">超过企业空间限制</td>
+</tr>
+<tr>
+<td style="text-align:center">exceed_user_space_limit</td>
+<td style="text-align:center">超过用户空间限制</td>
+</tr>
+<tr>
+<td style="text-align:center">folder_is_descendant</td>
+<td style="text-align:center">目标文件夹是移动文件夹的子目录</td>
+</tr>
+</tbody>
+</table>
+
+<footer style="position:fixed; font-size:.8em; text-align:right; bottom:0px; margin-left:-25px; height:20px; width:100%;">generated by <a href="http://pad.haroopress.com" target="_blank">haroopad</a></footer>
+</body>
+</html>
